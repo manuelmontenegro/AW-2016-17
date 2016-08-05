@@ -1,0 +1,289 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>reveal.js</title>
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/white.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<link rel="stylesheet" href="css/traspas.css"/>
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+</head>
+
+<body>
+	<svg width="0" height="0">
+		<defs>
+			<linearGradient id="grad1" x1="0%" y1="0" x2="0%" y2="1">
+				<stop offset="0%" style="stop-color:rgb(100,100,100);stop-opacity:1" />
+				<stop offset="20%" style="stop-color:rgb(200,200,200);stop-opacity:1" />
+				<stop offset="100%" style="stop-color:rgb(100,100,100);stop-opacity:1" />
+			</linearGradient>
+			<g id="arquitectura">
+				<rect x="0" y="0" width="20%" height="50" style="fill:rgb(146, 217, 244);stroke-width:4;stroke:black" />
+				<text x="10%" y="35" text-anchor="middle" style="font-weight:bold">Red</text>
+				<rect x="0" y="50" width="20%" height="50" style="fill:rgb(231, 176, 238);stroke-width:4;stroke:black" />
+				<text x="10%" y="85" text-anchor="middle" style="font-weight:bold">Enlace</text>
+			</g>
+			<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+				<path d="M0,0 L0,6 L9,3 z" fill="#000" />
+			</marker>
+		</defs>
+	</svg>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h2>Modelo TCP/IP</h2>
+				<p>Basado en cuatro capas</p>
+				<svg width="400" height="400">
+					<rect x="0" y="0" width="100%" height="100" style="fill:rgb(255, 174, 162);stroke-width:4;stroke:black" />
+					<text x="50%" y="65" text-anchor="middle" style="font-weight:bold">Aplicación</text>
+					<rect x="0" y="100" width="100%" height="100" style="fill:rgb(252, 219, 145);stroke-width:4;stroke:black" />
+					<text x="50%" y="165" text-anchor="middle" style="font-weight:bold">Transporte</text>
+					<rect x="0" y="200" width="100%" height="100" style="fill:rgb(146, 217, 244);stroke-width:4;stroke:black" />
+					<text x="50%" y="265" text-anchor="middle" style="font-weight:bold">Red</text>
+					<rect x="0" y="300" width="100%" height="100" style="fill:rgb(231, 176, 238);stroke-width:4;stroke:black" />
+					<text x="50%" y="365" text-anchor="middle" style="font-weight:bold">Enlace de datos</text>
+				</svg>
+			</section>
+			<section>
+				<p style="height:3em">La capa de <em>enlace de datos</em> proporciona una vía de transmisión de paquetes de datos entre dos nodos enlazados directamente</p>
+				<svg width="900" height="400">
+					<rect x="20%" y="365" width="60%" height="20" fill="url(#grad1)" />
+					<rect x="0" y="350" width="20%" height="50" style="fill:rgb(231, 176, 238);stroke-width:4;stroke:black" />
+					<text x="10%" y="385" text-anchor="middle" style="font-weight:bold">Enlace</text>
+					<rect x="80%" y="350" width="20%" height="50" style="fill:rgb(231, 176, 238);stroke-width:4;stroke:black" />
+					<text x="90%" y="385" text-anchor="middle" style="font-weight:bold">Enlace</text>
+					<image xlink:href="images/PC.png" x="4%" y="250" height="100px" width="100px" />
+					<image xlink:href="images/PC.png" x="84%" y="250" height="100px" width="100px" />
+				</svg>
+			</section>
+			<section>
+				<p style="height:3em">La capa de <em>red</em> gestiona el envío de mensajes a través de múltiples nodos intermedios.
+					<br/>
+					<span class="fragment fade-up" data-fragment-index="1">
+						Cada nodo está identificado mediante una <em>dirección IP</em>
+					</span>
+				</p>
+				<svg width="900" height="400">
+					<rect x="20%" y="365" width="10%" height="20" fill="url(#grad1)" />
+
+					<rect x="40%" y="365" width="20%" height="20" fill="url(#grad1)" />
+
+					<rect x="70%" y="365" width="10%" height="20" fill="url(#grad1)" />
+
+					<use x="0" y="300" xlink:href="#arquitectura" />
+					<use x="80%" y="300" xlink:href="#arquitectura" />
+
+
+					<image xlink:href="images/PC.png" x="4%" y="200" height="100px" width="100px" />
+					<image xlink:href="images/PC.png" x="84%" y="200" height="100px" width="100px" />
+
+					<circle cx="35%" cy="375" r="20" fill="rgba(0, 0, 0, 0)" stroke="rgb(8, 75, 55)" stroke-width="2px" stroke-dasharray="5,4" />
+					<circle cx="65%" cy="375" r="20" fill="rgba(0, 0, 0, 0)" stroke="rgb(8, 75, 55)" stroke-width="2px" stroke-dasharray="5,4" />
+
+					<text x="10%" y="185" text-anchor="middle" font-family="monospace" font-size="20px" class="fragment fade-up" data-fragment-index="2">147.96.43.21</text>
+					<text x="90%" y="185" text-anchor="middle" font-family="monospace" font-size="20px" class="fragment fade-up" data-fragment-index="2">191.32.5.120</text>
+				</svg>
+			</section>
+
+			<section>
+				<p style="height:3em">Las capas de red de los nodos intervinientes <em>enrutan</em> los paquetes desde el origen hasta el destino</p>
+				<svg width="900" height="400">
+					<rect x="20%" y="365" width="10%" height="20" fill="url(#grad1)" />
+					<rect x="40%" y="365" width="20%" height="20" fill="url(#grad1)" />
+					<rect x="70%" y="365" width="10%" height="20" fill="url(#grad1)" />
+
+					<use x="0" y="300" xlink:href="#arquitectura" />
+					<use x="80%" y="300" xlink:href="#arquitectura" />
+
+
+					<image xlink:href="images/PC.png" x="4%" y="200" height="100px" width="100px" />
+					<image xlink:href="images/PC.png" x="84%" y="200" height="100px" width="100px" />
+					<text x="10%" y="185" text-anchor="middle" font-family="monospace" font-size="20px">147.96.43.21</text>
+					<text x="90%" y="185" text-anchor="middle" font-family="monospace" font-size="20px">191.32.5.120</text>
+					<use xlink:href="#arquitectura" transform="translate(270 335) scale(0.5)" />
+					<use xlink:href="#arquitectura" transform="translate(540 335) scale(0.5)" />
+					<text x="315" y="320" text-anchor="middle" font-family="monospace" font-size="15px">130.41.32.1</text>
+					<text x="585" y="320" text-anchor="middle" font-family="monospace" font-size="15px">132.137.2.38</text>
+				</svg>
+			</section>
+
+			<section>
+				<p style="height:3em">
+					La capa de <em>transporte</em> se encarga de la transmisión sin errores desde origen a destino.
+					<br/> Segmentación en paquetes, recepción en orden correcto...
+				</p>
+				<svg width="900" height="400">
+
+
+
+					<use x="0" y="300" xlink:href="#arquitectura" />
+					<rect x="0" y="250" width="20%" height="50" style="fill:rgb(252, 219, 145);stroke-width:4;stroke:black" />
+					<text x="10%" y="285" text-anchor="middle" style="font-weight:bold" font-size="35px">Transporte</text>
+					<use x="80%" y="300" xlink:href="#arquitectura" />
+					<rect x="80%" y="250" width="20%" height="50" style="fill:rgb(252, 219, 145);stroke-width:4;stroke:black" />
+					<text x="90%" y="285" text-anchor="middle" style="font-weight:bold" font-size="35px">Transporte</text>
+
+
+					<image xlink:href="images/PC.png" x="4%" y="150" height="100px" width="100px" />
+					<image xlink:href="images/PC.png" x="84%" y="150" height="100px" width="100px" />
+					<text x="10%" y="135" text-anchor="middle" font-family="monospace" font-size="20px">147.96.43.21</text>
+					<text x="90%" y="135" text-anchor="middle" font-family="monospace" font-size="20px">191.32.5.120</text>
+					<use xlink:href="#arquitectura" transform="translate(270 335) scale(0.5)" />
+					<use xlink:href="#arquitectura" transform="translate(540 335) scale(0.5)" />
+					<text x="315" y="320" text-anchor="middle" font-family="monospace" font-size="15px">130.41.32.1</text>
+					<text x="585" y="320" text-anchor="middle" font-family="monospace" font-size="15px">132.137.2.38</text>
+
+					<rect x="20%" y="365" width="10%" height="20" fill="url(#grad1)" />
+					<rect x="40%" y="365" width="20%" height="20" fill="url(#grad1)" />
+					<rect x="70%" y="365" width="10%" height="20" fill="url(#grad1)" />
+
+				</svg>
+			</section>
+
+			<section>
+				<h3>Capa de transporte</h3>
+				<p>
+					La capa de transporte permite varios canales de comunicación entre nodos.
+				</p>
+				<div class="barra">
+					<p class="titulo">Protocolos:</p>
+					<ul>
+						<li><strong>TCP</strong>: orientado a conexión, bidireccional, fiable.</li>
+						<li><strong>UDP</strong>: no conexión, no comprobación de paquetes duplicados, extraviados, etc.</li>
+					</ul>
+				</div>
+				<p>
+					Cada canal está identificado por un <em>número de puerto</em>.
+				</p>
+				<p>
+					Existen <em>puertos TCP</em> y <em>puertos UDP</em>.
+				</p>
+			</section>
+			<section>
+				<h3>Ejemplo</h3>
+				<svg width="700" height="250">
+					<defs>
+						<polygon id="flecha" points="0 0, 70 0, 80 15, 70 30, 0 30" style="stroke-width:2;stroke:black" />
+					</defs>
+					<g transform="translate(450 0)">
+						<rect x="0" y="0" width="250" height="250" style="fill:rgb(252, 219, 145);stroke-width:4;stroke:black" />
+						<text x="125" y="85" text-anchor="middle" style="font-weight:bold" font-size="35px">Transporte</text>
+					</g>
+					<g transform="translate(390 30)">
+						<use xlink:href="#flecha" style="fill:rgb(156, 23, 10)" />
+						<text x="10" y="25" style="font-size:28px;font-weight:bold;fill:white">231</text>
+					</g>
+					<g transform="translate(390 70)">
+						<use xlink:href="#flecha" style="fill:rgb(156, 23, 10)"/>
+						<text x="10" y="25" style="font-size:28px;font-weight:bold;fill:white">80</text>
+					</g>
+					<g class="fragment fade-in">
+						<text x="0" y="55" style="font-size:28px">Puertos TCP</text>
+						<line x1="145" y1="45" x2="370" y2="45" style="stroke-width:2;stroke:black" marker-end="url(#arrow)" />
+						<line x1="145" y1="50" x2="370" y2="80" style="stroke-width:2;stroke:black" marker-end="url(#arrow)" />
+					</g>
+					<g transform="translate(390 160)">
+						<use xlink:href="#flecha" style="fill:blue"/>
+						<text x="10" y="25" style="font-size:28px;font-weight:bold;fill:white">80</text>
+					</g>
+					<g transform="translate(390 200)">
+						<use xlink:href="#flecha" style="fill:blue"/>
+						<text x="10" y="25" style="font-size:28px;font-weight:bold;fill:white">3000</text>
+					</g>
+					<g class="fragment fade-in">
+						<text x="0" y="185" style="font-size:28px">Puertos UDP</text>
+						<line x1="155" y1="175" x2="370" y2="175" style="stroke-width:2;stroke:black" marker-end="url(#arrow)" />
+						<line x1="155" y1="180" x2="370" y2="210" style="stroke-width:2;stroke:black" marker-end="url(#arrow)" />
+					</g>
+				</svg>
+			</section>
+			<section>
+				<h3>Puertos TCP/UDP más comunes</h3>
+				<ul>
+					<li><strong>Puerto 20</strong>: FTP (transmisión de archivos).</li>
+					<li><strong>Puerto 22</strong>: SSH (transmisión de archivos segura). </li>
+					<li><strong>Puerto 25</strong>: SMTP (envío de correo). </li>
+					<li class="fragment highlight-blue"><strong>Puerto 80</strong>: HTTP (web). </li>
+					<li><strong>Puerto 110</strong>: POP3 (recepción correo). </li>
+					<li><strong>Puerto 143</strong>: IMAP (recepción correo). </li>
+					<li><strong>Puerto 443</strong>: HTTPS (web segura). </li>
+				</ul>
+				<p class="fragment">
+					Ver: <a href="https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers">List of TCP and UDP port numbers (Wikipedia)</a>
+				</p>
+			</section>
+			<section>
+				<p>
+					El sistema operativo proporciona un mecanismo de acceso a la capa de transporte.
+				</p>
+				<svg width="440" height="310">
+					<g transform="scale(0.6) translate(100 170)">
+						<rect x="0" y="0" width="400" height="100" style="fill:rgb(252, 219, 145);stroke-width:4;stroke:black" />
+						<text x="200" y="65" text-anchor="middle" style="font-weight:bold">Transporte</text>
+						<rect x="0" y="100" width="400" height="100" style="fill:rgb(146, 217, 244);stroke-width:4;stroke:black" />
+						<text x="200" y="165" text-anchor="middle" style="font-weight:bold">Red</text>
+						<rect x="0" y="200" width="400" height="100" style="fill:rgb(231, 176, 238);stroke-width:4;stroke:black" />
+						<text x="200" y="265" text-anchor="middle" style="font-weight:bold">Enlace de datos</text>
+					</g>
+					<rect x="0" y="75" width="360" height="225" style="fill:none;stroke:blue;stroke-dasharray:5 5;stroke-width:3px" class="fragment" data-fragment-index="1"/>
+					<line x1="125" y1="75" x2="125" y2="95" style="stroke:black;stroke-width:2" marker-end="url(#arrow)" class="fragment" data-fragment-index="1"/>
+					<line x1="225" y1="115" x2="225" y2="95" style="stroke:black;stroke-width:2" marker-end="url(#arrow)" class="fragment" data-fragment-index="1"/>
+					<rect x="100" y="70" width="150" height="10" style="fill:blue" class="fragment" data-fragment-index="1"/>
+					<text x="370" y="100" style="fill:blue;font-weight:bold" class="fragment" data-fragment-index="1">S.O.</text>
+					<image xlink:href="images/Programmer.png" x="100" y="0" height="50" width="50" class="fragment" data-fragment-index="2"/>
+					<text x="150" y="40" style="font-size:25px;fill:#7002ba" class="fragment" data-fragment-index="2">Programador/a</text>
+				</svg>
+				<p>
+					Este mecanismo está basado en <em>sockets</em>.
+				</p>
+
+			</section>
+
+
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+
+	<script>
+		// More info https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			history: true,
+
+			// More info https://github.com/hakimel/reveal.js#dependencies
+			dependencies: [{
+				src: 'plugin/markdown/marked.js'
+			}, {
+				src: 'plugin/markdown/markdown.js'
+			}, {
+				src: 'plugin/notes/notes.js',
+				async: true
+			}, {
+				src: 'plugin/highlight/highlight.js',
+				async: true,
+				callback: function() {
+					hljs.initHighlightingOnLoad();
+				}
+			}]
+		});
+	</script>
+</body>
+
+</html>

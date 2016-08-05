@@ -1,0 +1,11 @@
+.barra {
+    background-color:rgb(120, 204, 240)
+}
+
+.barra > .titulo {
+  background-color: rgb(15, 67, 89);
+  color: white;
+  font-weight: bold;
+  text-align: left;
+  padding: 5px 0px 0px 10px;
+}
