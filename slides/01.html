@@ -26,7 +26,7 @@
 </head>
 
 <body>
-	<svg width="0" height="0">
+	<svg width="0" height="0" style="float:left">
 		<defs>
 			<linearGradient id="grad1" x1="0%" y1="0" x2="0%" y2="1">
 				<stop offset="0%" style="stop-color:rgb(100,100,100);stop-opacity:1" />
@@ -39,14 +39,22 @@
 				<rect x="0" y="50" width="20%" height="50" style="fill:rgb(231, 176, 238);stroke-width:4;stroke:black" />
 				<text x="10%" y="85" text-anchor="middle" style="font-weight:bold">Enlace</text>
 			</g>
+			<path id="sobre" d="M 0 0 l 15 0 l 0 10 l -15 0 l 0 -10 L 7.5 6 L 15 0" fill="none" style="stroke-width:1;stroke:rgb(130,130,190);stroke-linejoin:bevel" />
 			<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
 				<path d="M0,0 L0,6 L9,3 z" fill="#000" />
 			</marker>
-			<path id="sobre" d="M 0 0 l 15 0 l 0 10 l -15 0 l 0 -10 L 7.5 6 L 15 0" fill="none" style="stroke-width:1;stroke:rgb(130,130,190);stroke-linejoin:bevel" />
 		</defs>
 	</svg>
 	<div class="reveal">
 		<div class="slides">
+			<section data-background="#b5533c" data-background-transition="zoom">
+				<h3 style="background-color:#000000">Tema 1</h3>
+				<h1>Introducción a las tecnologías web:<br/>El protocolo HTTP</h1>
+				<div style="background-color:#000000">
+					<h4>Aplicaciones Web - GIS - Curso 2016/17</h4>
+					<h4>(C) Manuel Montenegro</h4>
+				</div>
+			</section>
 			<section>
 				<h2>Modelo TCP/IP</h2>
 				<p>Basado en cuatro capas
@@ -429,10 +437,47 @@
 						<li>Ha de conocer la dirección IP del servidor, y el puerto al qué enviar la información (petición)</li>
 					</ul>
 				</div>
-				<div style="height:13em"/>
+				<div style="height:13em" />
+			</section>
+
+			<section data-background="#802020" data-background-transition="zoom" data-transition="concave">
+				<svg width="0" height="0">
+					<defs>
+						<linearGradient id="grad1" x1="0%" y1="0" x2="0%" y2="1">
+							<stop offset="0%" style="stop-color:rgb(100,100,100);stop-opacity:1" />
+							<stop offset="20%" style="stop-color:rgb(200,200,200);stop-opacity:1" />
+							<stop offset="100%" style="stop-color:rgb(100,100,100);stop-opacity:1" />
+						</linearGradient>
+						<g id="arquitectura">
+							<rect x="0" y="0" width="20%" height="50" style="fill:rgb(146, 217, 244);stroke-width:4;stroke:black" />
+							<text x="10%" y="35" text-anchor="middle" style="font-weight:bold">Red</text>
+							<rect x="0" y="50" width="20%" height="50" style="fill:rgb(231, 176, 238);stroke-width:4;stroke:black" />
+							<text x="10%" y="85" text-anchor="middle" style="font-weight:bold">Enlace</text>
+						</g>
+						<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+							<path d="M0,0 L0,6 L9,3 z" fill="#000" />
+						</marker>
+						<path id="sobre" d="M 0 0 l 15 0 l 0 10 l -15 0 l 0 -10 L 7.5 6 L 15 0" fill="none" style="stroke-width:1;stroke:rgb(130,130,190);stroke-linejoin:bevel" />
+					</defs>
+				</svg>
+				<h3 style="background-color:#000000">Tema 1</h3>
+				<h1>Introducción a las tecnologías web:<br/>El protocolo HTTP</h1>
+				<div style="background-color:#000000">
+					<h4>Aplicaciones Web - GIS - Curso 2016/17</h4>
+					<h4>(C) Manuel Montenegro</h4>
+				</div>
 			</section>
 			<section>
-				<p>Hi!</p>
+				<pre><code data-trim data-noescape>
+import java.net.*;
+
+public class ServidorNumeros {
+    public static void main(String[] args) {
+        for (int i = 0; i < 5; i++)
+            System.out.println("El viaje es largo");
+    }
+}
+</code></pre>
 			</section>
 		</div>
 	</div>
