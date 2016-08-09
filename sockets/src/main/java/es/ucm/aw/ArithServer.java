@@ -35,12 +35,70 @@ public class ArithServer {
     private static void servePetition(Socket socket) {
         try (Scanner sc = new Scanner(socket.getInputStream());
              PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()))) {
-            int sum1 = sc.nextInt();
-            int sum2 = sc.nextInt();
-            System.out.println("Sumar " + sum1 + " y " + sum2);
-            out.println(sum1 + sum2);
+            String op = sc.next();
+            switch (op) {
+                case "ADD":
+                    serveAddition(sc, out);
+                    break;
+                case "SUB":
+                    serveSubstraction(sc, out);
+                    break;
+                case "MUL":
+                    serveMultiplication(sc, out);
+                    break;
+                case "DIV":
+                    serveDivision(sc, out);
+                    break;
+                case "SQRT":
+                    serveSquareRoot(sc, out);
+                    break;
+                default:
+                    out.println("ERROR");
+            }
         } catch (IOException e) {
             System.err.println("Error al obtener el flujo de entrada: " + e.getMessage());
+        }
+    }
+
+    private static void serveAddition(Scanner sc, PrintWriter out) {
+        int n1 = sc.nextInt();
+        int n2 = sc.nextInt();
+        System.out.println("Sumando " + n1 + " y " + n2);
+        out.println(n1 + n2);
+    }
+
+    private static void serveSubstraction(Scanner sc, PrintWriter out) {
+        int n1 = sc.nextInt();
+        int n2 = sc.nextInt();
+        System.out.println("Restando " + n1 + " y " + n2);
+        out.println(n1 - n2);
+    }
+
+    private static void serveMultiplication(Scanner sc, PrintWriter out) {
+        int n1 = sc.nextInt();
+        int n2 = sc.nextInt();
+        System.out.println("Multiplicando " + n1 + " y " + n2);
+        out.println(n1 * n2);
+    }
+
+    private static void serveDivision(Scanner sc, PrintWriter out) {
+        int n1 = sc.nextInt();
+        int n2 = sc.nextInt();
+        if (n2 != 0) {
+            System.out.println("Dividiendo " + n1 + " entre " + n2);
+            out.println((double)n1 / n2);
+        } else {
+            out.println("ERROR");
+        }
+    }
+
+    private static void serveSquareRoot(Scanner sc, PrintWriter out) {
+        int n1 = sc.nextInt();
+        if (n1 >= 0) {
+            System.out.println("Raíz cuadrada de " + n1);
+            out.println(Math.sqrt(n1));
+        } else {
+            out.println("ERROR");
         }
     }
 

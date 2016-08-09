@@ -25,6 +25,7 @@ public class ArithClient {
     private static int add(Socket s, int n1, int n2) {
         try (PrintWriter out = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
              Scanner sc = new Scanner(s.getInputStream())) {
+            out.print("ADD ");
             out.print(n1);
             out.print(" ");
             out.println(n2);
@@ -35,6 +36,7 @@ public class ArithClient {
             return -1;
         }
     }
+
 
     public static void main(String... args) throws IOException {
         try {
