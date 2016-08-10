@@ -13,7 +13,6 @@
 	<!-- Theme used for syntax highlighting of code -->
 	<link rel="stylesheet" href="lib/css/zenburn.css">
 
-	<link rel="stylesheet" href="css/traspas.css" />
 
 	<!-- Printing and PDF exports -->
 	<script>
@@ -23,6 +22,8 @@
 		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
 		document.getElementsByTagName('head')[0].appendChild(link);
 	</script>
+
+  <link rel="stylesheet" href="css/traspas.css" />
 </head>
 
 <body>
@@ -40,7 +41,7 @@
 				<text x="10%" y="85" text-anchor="middle" style="font-weight:bold">Enlace</text>
 			</g>
 			<path id="sobre" d="M 0 0 l 15 0 l 0 10 l -15 0 l 0 -10 L 7.5 6 L 15 0" fill="none" style="stroke-width:1;stroke:rgb(130,130,190);stroke-linejoin:bevel" />
-			<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+			<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth" style="display:float">
 				<path d="M0,0 L0,6 L9,3 z" fill="#000" />
 			</marker>
 		</defs>
@@ -164,7 +165,7 @@
 					<p>Cada capa extiende el mensaje a enviar con información propia que le permite realizar su cometido</p>
 					<p>Finalmente, la capa de enlace es la que realiza el envío físico</p>
 				</div>
-				<div style="height:13em" />
+				<div style="clear:left" />
 
 			</section>
 			<section>
@@ -210,10 +211,10 @@
 
 					<image xlink:href="images/PC.png" x="275" y="0" height="100px" width="100px" />
 				</svg>
-				<div style="height:13em" />
+				<div style="clear:left" />
 			</section>
 
-			<section>
+			<section data-transition="slide-in fade-out">
 				<p style="height:3em">La capa de <em>enlace de datos</em> proporciona una vía de transmisión de paquetes de datos entre dos nodos enlazados directamente</p>
 				<svg width="900" height="400">
 					<rect x="20%" y="365" width="60%" height="20" fill="url(#grad1)" />
@@ -226,7 +227,7 @@
 
 				</svg>
 			</section>
-			<section>
+			<section data-transition="fade-in fade-out">
 				<p style="height:3em">La capa de <em>red</em> gestiona el envío de mensajes a través de múltiples nodos intermedios.
 					<br/>
 					<span class="fragment fade-up" data-fragment-index="1">
@@ -255,7 +256,7 @@
 				</svg>
 			</section>
 
-			<section>
+			<section data-transition="fade-in fade-out">
 				<p style="height:3em">Las capas de red de los nodos intervinientes <em>enrutan</em> los paquetes desde el origen hasta el destino</p>
 				<svg width="900" height="400">
 					<rect x="20%" y="365" width="10%" height="20" fill="url(#grad1)" />
@@ -277,7 +278,7 @@
 				</svg>
 			</section>
 
-			<section>
+			<section data-transition="fade-in slide-out">
 				<p style="height:3em">
 					La capa de <em>transporte</em> se encarga de la transmisión sin errores desde origen a destino.
 					<br/> Segmentación en paquetes, recepción en orden correcto...
@@ -382,31 +383,6 @@
 					Ver: <a href="https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers">List of TCP and UDP port numbers (Wikipedia)</a>
 				</p>
 			</section>
-			<section>
-				<p>
-					El sistema operativo proporciona un mecanismo de acceso a la capa de transporte.
-				</p>
-				<svg width="440" height="310">
-					<g transform="scale(0.6) translate(100 170)">
-						<rect x="0" y="0" width="400" height="100" style="fill:rgb(252, 219, 145);stroke-width:4;stroke:black" />
-						<text x="200" y="65" text-anchor="middle" style="font-weight:bold">Transporte</text>
-						<rect x="0" y="100" width="400" height="100" style="fill:rgb(146, 217, 244);stroke-width:4;stroke:black" />
-						<text x="200" y="165" text-anchor="middle" style="font-weight:bold">Red</text>
-						<rect x="0" y="200" width="400" height="100" style="fill:rgb(231, 176, 238);stroke-width:4;stroke:black" />
-						<text x="200" y="265" text-anchor="middle" style="font-weight:bold">Enlace de datos</text>
-					</g>
-					<rect x="0" y="75" width="360" height="225" style="fill:none;stroke:blue;stroke-dasharray:5 5;stroke-width:3px" class="fragment" data-fragment-index="1" />
-					<line x1="125" y1="75" x2="125" y2="95" style="stroke:black;stroke-width:2" marker-end="url(#arrow)" class="fragment" data-fragment-index="1" />
-					<line x1="225" y1="115" x2="225" y2="95" style="stroke:black;stroke-width:2" marker-end="url(#arrow)" class="fragment" data-fragment-index="1" />
-					<rect x="100" y="70" width="150" height="10" style="fill:blue" class="fragment" data-fragment-index="1" />
-					<text x="370" y="100" style="fill:blue;font-weight:bold" class="fragment" data-fragment-index="1">S.O.</text>
-					<image xlink:href="images/Programmer.png" x="100" y="0" height="50" width="50" class="fragment" data-fragment-index="2" />
-					<text x="150" y="40" style="font-size:25px;fill:#7002ba" class="fragment" data-fragment-index="2">Programador/a</text>
-				</svg>
-				<p>
-					Este mecanismo consiste en el uso de <em>sockets</em>.
-				</p>
-			</section>
 
 			<section>
 				<h2>Modelo cliente/servidor</h2>
@@ -416,7 +392,8 @@
 			<section>
 				<p>En el modelo <em>cliente/servidor</em> cada nodo adquiere un rol:
 					<ul>
-						<li>El <em>servidor</em> permanece conectado a la espera de información que llegue por un determinado puerto.
+						<li>El <em>servidor</em> permanece conectado a la espera de información que llegue por un determinado puerto.<br/>
+							Se dice que el servidor <em>escucha</em> en dicho puerto.
 							<li>El <em>cliente</em> inicia la comunicación enviando información al servidor.
 					</ul>
 			</section>
@@ -437,10 +414,11 @@
 						<li>Ha de conocer la dirección IP del servidor, y el puerto al qué enviar la información (petición)</li>
 					</ul>
 				</div>
-				<div style="height:13em" />
+				<div style="clear:left" />
 			</section>
 
-			<section data-background="#802020" data-background-transition="zoom" data-transition="concave">
+
+			<section data-background="#802020" data-background-transition="fade">
 				<svg width="0" height="0">
 					<defs>
 						<linearGradient id="grad1" x1="0%" y1="0" x2="0%" y2="1">
@@ -467,18 +445,206 @@
 					<h4>(C) Manuel Montenegro</h4>
 				</div>
 			</section>
-			<section>
-				<pre><code data-trim data-noescape>
-import java.net.*;
 
-public class ServidorNumeros {
-    public static void main(String[] args) {
-        for (int i = 0; i < 5; i++)
-            System.out.println("El viaje es largo");
+			<section>
+				<p>
+					El sistema operativo proporciona un mecanismo de acceso a la capa de transporte.
+				</p>
+				<svg width="440" height="310">
+					<defs>
+						<marker id="arrow2" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth" style="display:float">
+							<path d="M0,0 L0,6 L9,3 z" fill="#000" />
+						</marker>
+					</defs>
+					<g transform="scale(0.6) translate(100 170)">
+						<rect x="0" y="0" width="400" height="100" style="fill:rgb(252, 219, 145);stroke-width:4;stroke:black" />
+						<text x="200" y="65" text-anchor="middle" style="font-weight:bold">Transporte</text>
+						<rect x="0" y="100" width="400" height="100" style="fill:rgb(146, 217, 244);stroke-width:4;stroke:black" />
+						<text x="200" y="165" text-anchor="middle" style="font-weight:bold">Red</text>
+						<rect x="0" y="200" width="400" height="100" style="fill:rgb(231, 176, 238);stroke-width:4;stroke:black" />
+						<text x="200" y="265" text-anchor="middle" style="font-weight:bold">Enlace de datos</text>
+					</g>
+					<rect x="0" y="75" width="360" height="225" style="fill:none;stroke:blue;stroke-dasharray:5 5;stroke-width:3px" class="fragment" data-fragment-index="1" />
+					<line x1="125" y1="75" x2="125" y2="95" style="stroke:black;stroke-width:2" marker-end="url(#arrow)" class="fragment" data-fragment-index="1" />
+					<line x1="225" y1="115" x2="225" y2="95" style="stroke:black;stroke-width:2" marker-end="url(#arrow)" class="fragment" data-fragment-index="1" />
+					<rect x="100" y="70" width="150" height="10" style="fill:blue" class="fragment" data-fragment-index="1" />
+					<text x="370" y="100" style="fill:blue;font-weight:bold" class="fragment" data-fragment-index="1">S.O.</text>
+					<image xlink:href="images/Programmer.png" x="100" y="0" height="50" width="50" class="fragment" data-fragment-index="2" />
+					<text x="150" y="40" style="font-size:25px;fill:#7002ba" class="fragment" data-fragment-index="2">Programador/a</text>
+				</svg>
+				<p>
+					Este mecanismo consiste en el uso de <em>sockets</em>.
+				</p>
+			</section>
+
+			<section>
+				<p>
+					Supongamos que un servidor está escuchando en un determinado puerto y que
+					un cliente se conecta al mismo:
+				</p>
+				<svg width="600" height="55">
+					<rect x="0" y="0" width="150" height="50" style="fill:rgb(178, 221, 99);stroke:black;stroke-width:2"/>
+					<rect x="450" y="0" width="150" height="50" style="fill:rgb(178, 221, 99);stroke:black;stroke-width:2"/>
+					<text x="75" y="40" text-anchor="middle" style="font-size:30px">Cliente</text>
+					<text x="525" y="40" text-anchor="middle" style="font-size:30px">Servidor</text>
+					<use xlink:href="#flecha" x="0" y="0" style="fill:rgb(156, 23, 10)" transform="translate(390 10)"/>
+					<text x="400" y="32" style="font-size:22px;font-weight:bold;fill:white">5432</text>
+					<line x1="150" y1="25" x2="390" y2="25" style="stroke:black;stroke-width:2"/>
+
+					<ellipse cx="150" cy="25" rx="15" ry="20" style="stroke:blue;stroke-width:3;fill:none" class="fragment" data-fragment-index="1"/>
+					<ellipse cx="390" cy="25" rx="15" ry="20" style="stroke:blue;stroke-width:3;fill:none" class="fragment" data-fragment-index="1"/>
+				</svg>
+				<p>
+					Esto crea un canal de comunicación bidireccional entre cliente y servidor.
+				</p>
+				<div class="barra fragment" data-fragment-index="1" style="padding:5px">
+						A cada uno de los extremos de este canal de comunicación se le llama
+						<em>socket</em>
+				</div>
+			</section>
+
+			<section>
+				<p>
+					Cada socket tiene asociados dos flujos:
+				</p>
+				<ul>
+					<li><strong>Flujo de entrada</strong> (<span style="font-style:italic">input stream</span>)<br/>
+						Cada vez que llegue información del otro extremo, se leerá a través de este flujo.
+					</li>
+					<li style="padding-top:1em"><strong>Flujo de salida</strong> (<span style="font-style:italic">output stream</span>)<br/>
+						Todo lo que es escriba en este flujo será enviado al otro extremo.
+					</li>
+				</ul>
+				<div class="barra" style="margin-top:1em">
+					El programador lee y escribe en estos flujos como si de ficheros
+					se tratase
+				</div>
+			</section>
+
+			<section>
+				<svg width="600" height="55">
+					<rect x="0" y="0" width="150" height="50" style="fill:rgb(178, 221, 99);stroke:black;stroke-width:2"/>
+					<rect x="450" y="0" width="150" height="50" style="fill:rgb(178, 221, 99);stroke:black;stroke-width:2"/>
+					<text x="75" y="40" text-anchor="middle" style="font-size:30px">Cliente</text>
+					<text x="525" y="40" text-anchor="middle" style="font-size:30px">Servidor</text>
+					<use xlink:href="#flecha" x="0" y="0" style="fill:rgb(156, 23, 10)" transform="translate(390 10)"/>
+					<text x="400" y="32" style="font-size:22px;font-weight:bold;fill:white">5432</text>
+					<line x1="150" y1="25" x2="390" y2="25" style="stroke:black;stroke-width:2"/>
+				</svg>
+				<div class="separador"/>
+				<h3>Socket de Servidor</h3>
+				<ul>
+					<li>Recibe las peticiones de a través de su flujo de entrada.</li>
+					<li>Envía las respuestas a través del flujo de salida.</li>
+				</ul>
+				<div class="separador"/>
+
+				<h3>Socket de Cliente</h3>
+				<ul>
+					<li>Envía las peticiones a través del flujo de salida.</li>
+					<li>Recibe las respuestas a través del flujo de entrada.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>Ejemplo: servidor calculadora</h2>
+					<p>
+						Implementamos en Java un sencillo servidor que realiza sumas.
+					</p>
+					<svg width="600" height="80" viewbox="0 -10 600 65">
+						<rect x="0" y="0" width="150" height="50" style="fill:rgb(178, 221, 99);stroke:black;stroke-width:2"/>
+						<rect x="450" y="0" width="150" height="50" style="fill:rgb(178, 221, 99);stroke:black;stroke-width:2"/>
+						<text x="75" y="40" text-anchor="middle" style="font-size:30px">Cliente</text>
+						<text x="525" y="40" text-anchor="middle" style="font-size:30px">Servidor</text>
+						<use xlink:href="#flecha" x="0" y="0" style="fill:rgb(156, 23, 10)" transform="translate(390 10)"/>
+						<text x="400" y="32" style="font-size:22px;font-weight:bold;fill:white">5432</text>
+						<line x1="150" y1="25" x2="390" y2="25" style="stroke:black;stroke-width:2"/>
+
+						<g class="fragment">
+							<text x="240" y="20" text-anchor="middle" style="font-size:30;font-family:monospace;fill:rgb(12, 136, 238)">"21 9"</text>
+							<path d="M 310 10 l 20 0" style="stroke:black;stroke-width:2" marker-end="url(#arrow)"/>
+						</g>
+						<g class="fragment">
+							<text x="320" y="55" text-anchor="middle" style="font-size:30;font-family:monospace;fill:rgb(12, 136, 238)">"30"</text>
+							<path d="M 280 45 l -40 0" style="stroke:black;stroke-width:2" marker-end="url(#arrow)"/>
+						</g>
+					</svg>
+					<p>
+						El cliente envía al servidor una cadena de texto con dos números enteros.
+					</p>
+					<p>
+						El servidor responde con la suma de dichos números.
+					</p>
+
+			</section>
+
+			<section>
+        <h3>Implementación del servidor</h3>
+				<pre><code data-trim data-noescape class="java">
+public class ArithServer {
+    // Número de puerto
+    private static final int PORT_NUMBER = 5432;
+
+    public static void main(String... args) {
+        try {
+            ServerSocket server = new ServerSocket(PORT_NUMBER);
+            Socket s = server.accept();
+            servePetition(s); // Implementado más adelante
+        } catch (IOException e) {
+            ...
+        }
     }
+
+    private static void servePetition(Socket s) { ... }
 }
 </code></pre>
 			</section>
+
+      <section>
+        <div>
+          <pre><code class="java">ServerSocket server = new ServerSocket(PORT_NUMBER);</code></pre>
+          <p>
+            Crea un objeto <code>ServerSocket</code>, que permite recibir conexiones a través del puerto dado.
+          </p>
+        </div>
+        <div class="fragment">
+          <pre><code class="java">Socket s = server.accept();</code></pre>
+          <p>
+            Queda a la espera de que se conecte un cliente.
+            <br/>
+            El método <code>accept()</code> detiene la ejecución del programa hasta que reciba la conexión
+            de un cliente.
+            <br/>
+          </p>
+        </div>
+      </section>
+      <section>
+        El objeto de la clase <code>Socket</code> es el que permite acceder a los
+        flujos de entrada y salida del socket:
+        <pre>public InputStream getInputStream();
+public OutputStream getOutputStream();</pre>
+      </section>
+
+      <section>
+        El método <code>servePetition</code> recibe la petición y envía la
+				respuesta través de los flujos del socket.
+        <pre><code data-trim class="java">
+private static void servePetition(Socket socket) {
+  try (Scanner sc = new Scanner(socket.getInputStream());
+     PrintWriter out =
+      new PrintWriter(
+        new OutputStreamWriter(socket.getOutputStream())
+      )) {
+    // Leer sumandos a partir del flujo de entrada
+    int sum1 = sc.nextInt();
+    int sum2 = sc.nextInt();
+
+    // Escribir en el flujo de salida
+    out.println(sum1 + sum2);
+  } catch (IOException e) { ... }
+}
+</code></pre>
+      </section>
 		</div>
 	</div>
 

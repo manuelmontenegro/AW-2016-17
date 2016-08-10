@@ -9,3 +9,11 @@
   text-align: left;
   padding: 5px 0px 0px 10px;
 }
+
+div.separador {
+  margin-top: 1em;
+}
+
+code {
+  color:rgb(162, 19, 116);
+}
