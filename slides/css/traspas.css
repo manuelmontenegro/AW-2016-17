@@ -1,19 +1,38 @@
 .barra {
-    background-color:rgb(120, 204, 240)
+    background-color: rgb(120, 204, 240)
 }
-
-.barra > .titulo {
-  background-color: rgb(15, 67, 89);
-  color: white;
-  font-weight: bold;
-  text-align: left;
-  padding: 5px 0px 0px 10px;
+.barra> .titulo {
+    background-color: rgb(15, 67, 89);
+    color: white;
+    font-weight: bold;
+    text-align: left;
+    padding: 5px 0px 0px 10px;
 }
-
 div.separador {
-  margin-top: 1em;
+    margin-top: 1em;
+}
+code {
+    color: rgb(162, 19, 116);
+}
+table.protocolo {
+    border: 1px solid black;
+    font-size: 30px;
+}
+table.protocolo th {
+    color: white;
+    background-color: rgb(100, 100, 100);
+}
+table.protocolo td {
+    background-color: white;
+    border: 1px solid black;
 }
 
-code {
-  color:rgb(162, 19, 116);
+span.important {
+    color: rgb(0, 74, 186);
+    font-variant: small-caps;
+    font-weight: bold;
+}
+
+div.important {
+    background-color: #FFFFD0;
 }
