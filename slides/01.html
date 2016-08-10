@@ -23,7 +23,7 @@
 		document.getElementsByTagName('head')[0].appendChild(link);
 	</script>
 
-  <link rel="stylesheet" href="css/traspas.css" />
+	<link rel="stylesheet" href="css/traspas.css" />
 </head>
 
 <body>
@@ -392,8 +392,8 @@
 			<section>
 				<p>En el modelo <em>cliente/servidor</em> cada nodo adquiere un rol:
 					<ul>
-						<li>El <em>servidor</em> permanece conectado a la espera de información que llegue por un determinado puerto.<br/>
-							Se dice que el servidor <em>escucha</em> en dicho puerto.
+						<li>El <em>servidor</em> permanece conectado a la espera de información que llegue por un determinado puerto.
+							<br/> Se dice que el servidor <em>escucha</em> en dicho puerto.
 							<li>El <em>cliente</em> inicia la comunicación enviando información al servidor.
 					</ul>
 			</section>
@@ -479,27 +479,26 @@
 
 			<section>
 				<p>
-					Supongamos que un servidor está escuchando en un determinado puerto y que
-					un cliente se conecta al mismo:
+					Supongamos que un servidor está escuchando en un determinado puerto y que un cliente se conecta al mismo:
 				</p>
 				<svg width="600" height="55">
-					<rect x="0" y="0" width="150" height="50" style="fill:rgb(178, 221, 99);stroke:black;stroke-width:2"/>
-					<rect x="450" y="0" width="150" height="50" style="fill:rgb(178, 221, 99);stroke:black;stroke-width:2"/>
+					<rect x="0" y="0" width="150" height="50" style="fill:rgb(178, 221, 99);stroke:black;stroke-width:2" />
+					<rect x="450" y="0" width="150" height="50" style="fill:rgb(178, 221, 99);stroke:black;stroke-width:2" />
 					<text x="75" y="40" text-anchor="middle" style="font-size:30px">Cliente</text>
 					<text x="525" y="40" text-anchor="middle" style="font-size:30px">Servidor</text>
-					<use xlink:href="#flecha" x="0" y="0" style="fill:rgb(156, 23, 10)" transform="translate(390 10)"/>
+					<use xlink:href="#flecha" x="0" y="0" style="fill:rgb(156, 23, 10)" transform="translate(390 10)" />
 					<text x="400" y="32" style="font-size:22px;font-weight:bold;fill:white">5432</text>
-					<line x1="150" y1="25" x2="390" y2="25" style="stroke:black;stroke-width:2"/>
+					<line x1="150" y1="25" x2="390" y2="25" style="stroke:black;stroke-width:2" />
 
-					<ellipse cx="150" cy="25" rx="15" ry="20" style="stroke:blue;stroke-width:3;fill:none" class="fragment" data-fragment-index="1"/>
-					<ellipse cx="390" cy="25" rx="15" ry="20" style="stroke:blue;stroke-width:3;fill:none" class="fragment" data-fragment-index="1"/>
+					<ellipse cx="150" cy="25" rx="15" ry="20" style="stroke:blue;stroke-width:3;fill:none" class="fragment" data-fragment-index="1" />
+					<ellipse cx="390" cy="25" rx="15" ry="20" style="stroke:blue;stroke-width:3;fill:none" class="fragment" data-fragment-index="1" />
 				</svg>
 				<p>
 					Esto crea un canal de comunicación bidireccional entre cliente y servidor.
 				</p>
 				<div class="barra fragment" data-fragment-index="1" style="padding:5px">
-						A cada uno de los extremos de este canal de comunicación se le llama
-						<em>socket</em>
+					A cada uno de los extremos de este canal de comunicación se le llama
+					<em>socket</em>
 				</div>
 			</section>
 
@@ -508,36 +507,35 @@
 					Cada socket tiene asociados dos flujos:
 				</p>
 				<ul>
-					<li><strong>Flujo de entrada</strong> (<span style="font-style:italic">input stream</span>)<br/>
-						Cada vez que llegue información del otro extremo, se leerá a través de este flujo.
+					<li><strong>Flujo de entrada</strong> (<span style="font-style:italic">input stream</span>)
+						<br/> Cada vez que llegue información del otro extremo, se leerá a través de este flujo.
 					</li>
-					<li style="padding-top:1em"><strong>Flujo de salida</strong> (<span style="font-style:italic">output stream</span>)<br/>
-						Todo lo que es escriba en este flujo será enviado al otro extremo.
+					<li style="padding-top:1em"><strong>Flujo de salida</strong> (<span style="font-style:italic">output stream</span>)
+						<br/> Todo lo que es escriba en este flujo será enviado al otro extremo.
 					</li>
 				</ul>
 				<div class="barra" style="margin-top:1em">
-					El programador lee y escribe en estos flujos como si de ficheros
-					se tratase
+					El programador lee y escribe en estos flujos como si de ficheros se tratase
 				</div>
 			</section>
 
 			<section>
 				<svg width="600" height="55">
-					<rect x="0" y="0" width="150" height="50" style="fill:rgb(178, 221, 99);stroke:black;stroke-width:2"/>
-					<rect x="450" y="0" width="150" height="50" style="fill:rgb(178, 221, 99);stroke:black;stroke-width:2"/>
+					<rect x="0" y="0" width="150" height="50" style="fill:rgb(178, 221, 99);stroke:black;stroke-width:2" />
+					<rect x="450" y="0" width="150" height="50" style="fill:rgb(178, 221, 99);stroke:black;stroke-width:2" />
 					<text x="75" y="40" text-anchor="middle" style="font-size:30px">Cliente</text>
 					<text x="525" y="40" text-anchor="middle" style="font-size:30px">Servidor</text>
-					<use xlink:href="#flecha" x="0" y="0" style="fill:rgb(156, 23, 10)" transform="translate(390 10)"/>
+					<use xlink:href="#flecha" x="0" y="0" style="fill:rgb(156, 23, 10)" transform="translate(390 10)" />
 					<text x="400" y="32" style="font-size:22px;font-weight:bold;fill:white">5432</text>
-					<line x1="150" y1="25" x2="390" y2="25" style="stroke:black;stroke-width:2"/>
+					<line x1="150" y1="25" x2="390" y2="25" style="stroke:black;stroke-width:2" />
 				</svg>
-				<div class="separador"/>
+				<div class="separador" />
 				<h3>Socket de Servidor</h3>
 				<ul>
 					<li>Recibe las peticiones de a través de su flujo de entrada.</li>
 					<li>Envía las respuestas a través del flujo de salida.</li>
 				</ul>
-				<div class="separador"/>
+				<div class="separador" />
 
 				<h3>Socket de Cliente</h3>
 				<ul>
@@ -600,37 +598,34 @@ public class ArithServer {
 </code></pre>
 			</section>
 
-      <section>
-        <div>
-          <pre><code class="java">ServerSocket server = new ServerSocket(PORT_NUMBER);</code></pre>
-          <p>
-            Crea un objeto <code>ServerSocket</code>, que permite recibir conexiones a través del puerto dado.
-          </p>
-        </div>
-        <div class="fragment">
-          <pre><code class="java">Socket s = server.accept();</code></pre>
-          <p>
-            Queda a la espera de que se conecte un cliente.
-            <br/>
-            El método <code>accept()</code> detiene la ejecución del programa hasta que reciba la conexión
-            de un cliente.
-            <br/>
-          </p>
-        </div>
-      </section>
-      <section>
-        El objeto de la clase <code>Socket</code> es el que permite acceder a los
-        flujos de entrada y salida del socket:
-        <pre>public InputStream getInputStream();
+			<section>
+				<div>
+					<pre><code class="java">ServerSocket server = new ServerSocket(PORT_NUMBER);</code></pre>
+					<p>
+						Crea un objeto <code>ServerSocket</code>, que permite recibir conexiones a través del puerto dado.
+					</p>
+				</div>
+				<div class="fragment">
+					<pre><code class="java">Socket s = server.accept();</code></pre>
+					<p>
+						Queda a la espera de que se conecte un cliente.
+						<br/> El método <code>accept()</code> detiene la ejecución del programa hasta que reciba la conexión de un cliente.
+						<br/>
+					</p>
+				</div>
+			</section>
+			<section>
+				El objeto de la clase <code>Socket</code> es el que permite acceder a los flujos de entrada y salida del socket:
+				<pre>public InputStream getInputStream();
 public OutputStream getOutputStream();</pre>
-      </section>
+			</section>
 
-      <section>
-        El método <code>servePetition</code> recibe la petición y envía la
-				respuesta través de los flujos del socket.
-        <pre><code data-trim class="java">
+			<section>
+				El método <code>servePetition</code> recibe la petición y envía la respuesta través de los flujos del socket.
+				<pre><code data-trim class="java">
 private static void servePetition(Socket socket) {
-  try (Scanner sc = new Scanner(socket.getInputStream());
+  try (
+      Scanner sc = new Scanner(socket.getInputStream());
      PrintWriter out =
       new PrintWriter(
         new OutputStreamWriter(socket.getOutputStream())
@@ -644,6 +639,70 @@ private static void servePetition(Socket socket) {
   } catch (IOException e) { ... }
 }
 </code></pre>
+				<p>Más información: <a href="#">Java try-with-resources</a></p>
+			</section>
+
+			<section>
+				<h3>Implementación del cliente</h3>
+        <pre><code data-trim class="java">
+public static void main(String... args) throws IOException {
+  try {
+    Socket s = new Socket("localhost", PORT_NUMBER);
+
+    // Enviar información al servidor y recibir respuesta
+    int res = add(s, 21, 45);
+
+    System.out.println("21 + 45 = " + res);
+  } catch (IOException e) {
+    System.err.println("Error de conexión: " + e.getMessage());
+  }
+}</code></pre>
+    La conexión a un servidor se realiza creando directamente una instancia
+    de la clase <code>Socket</code>, indicando el servidor al que conectarse
+    (<span style="font-family:monospace; font-size:0.9em">localhost</span> = propia máquina) y el puerto.
+			</section>
+
+      <section>
+        La función <code>add()</code> es la que envía la petición al servidor:
+        <pre><code data-trim class="java">
+private static int add(Socket s, int n1, int n2) {
+  try (PrintWriter out = new PrintWriter(
+          new OutputStreamWriter(s.getOutputStream()));
+       Scanner sc = new Scanner(s.getInputStream())) {
+    // Enviar sumandos al servidor
+    out.print(n1);
+    out.print(" ");
+    out.println(n2);
+    out.flush();
+    // Recibir resultado
+    return sc.nextInt();
+  } catch (IOException e) {
+    System.err.println("Error de E/S: " + e.getMessage());
+    return -1;
+  }
+}
+</pre></code>
+      </section>
+
+      <section>
+        <p>Para ejecutar este ejemplo:</p>
+        <ul>
+          <li>Ejecutamos método <code>main()</code> del servidor.</li>
+          <li>Ejecutamos método <code>main()</code> del cliente, obteniendo como salida:
+            <pre>21 + 45 = 66</pre>
+          </li>
+          <li>Tras esto, tanto el cliente como el servidor <strong>finalizan</strong>.</li>
+        </ul>
+      </section>
+
+      <section>
+        Si queremos que el servidor siga atendiendo peticiones de otros clientes, podemos
+        hacerlo mediante un bucle que se repita indefinidamente:
+<pre><code>ServerSocket server = new ServerSocket(PORT_NUMBER);
+while (true) {
+    Socket s = server.accept();
+    servePetition(s);
+}</code></pre>
       </section>
 		</div>
 	</div>
