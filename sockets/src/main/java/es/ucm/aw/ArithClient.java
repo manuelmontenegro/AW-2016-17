@@ -1,8 +1,6 @@
 package es.ucm.aw;
 
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -38,13 +36,25 @@ public class ArithClient {
     }
 
 
+//    public static void main(String... args) {
+//        try {
+//            Socket s = new Socket("localhost", PORT_NUMBER);
+//            int res = add(s, 21, 45);
+//            System.out.println("21 + 45 = " + res);
+//        } catch (IOException e) {
+//            System.err.println("Error de conexión: " + e.getMessage());
+//        }
+//    }
+
     public static void main(String... args) throws IOException {
-        try {
-            Socket s = new Socket("localhost", PORT_NUMBER);
-            int res = add(s, 21, 45);
-            System.out.println("21 + 45 = " + res);
-        } catch (IOException e) {
-            System.err.println("Error de conexión: " + e.getMessage());
-        }
+        Socket s = new Socket("localhost", 5432);
+        BufferedWriter bw = new BufferedWriter(
+                new OutputStreamWriter(s.getOutputStream()));
+        bw.write("MUL 4 12\n");
+        BufferedReader br = new BufferedReader(
+                new InputStreamReader(s.getInputStream()));
+        System.out.println(br.readLine());
+        bw.close();
+        br.close();
     }
 }
