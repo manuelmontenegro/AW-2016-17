@@ -1015,116 +1015,195 @@ Connection: close
                 <h3>Estructura de una petición HTTP</h3>
                 <div style="font-family:monospace;font-size:27px">
                     <div style="background-color:rgb(145, 209, 255);text-align:left">
-                      GET /register.html HTTP/1.1
+                        GET /register.html HTTP/1.1
                         <span class="no_arrow_box fragment" style="font-family:'Source Sans Pro', sans-serif;font-weight:bold;padding:2px 10px;border-radius:10px;left:100px">Línea de petición</span>
                     </div>
                     <div style="background-color:rgb(255, 232, 153);text-align:left">
-                      Host: www.foo.com<br/>
-                      Accept: text/html<br/>
-                      Accept-Language: en-US, es-ES
-                      <span class="no_arrow_box fragment" style="font-family:'Source Sans Pro', sans-serif;font-weight:bold;padding:2px 10px;border-radius:10px;left:70px">Cabeceras</span><br/>
-                      Connection: keep-alive<br/>
-                      If-Modified-Since: Fri, 26 Feb 2016 03:09:05 GMT<br/>
+                        Host: www.foo.com
+                        <br/> Accept: text/html
+                        <br/> Accept-Language: en-US, es-ES
+                        <span class="no_arrow_box fragment" style="font-family:'Source Sans Pro', sans-serif;font-weight:bold;padding:2px 10px;border-radius:10px;left:70px">Cabeceras</span>
+                        <br/> Connection: keep-alive
+                        <br/> If-Modified-Since: Fri, 26 Feb 2016 03:09:05 GMT
+                        <br/>
                     </div>
                     <div>
-                      <span style="color:#A0A0A0;font-style:italic"> (línea en blanco) </span>
+                        <span style="color:#A0A0A0;font-style:italic"> (línea en blanco) </span>
                     </div>
                     <div style="background-color:rgb(236, 255, 170);text-align:left">
-                      name=Francisco%20Sanchez&amp;age=12
-                      <span class="no_arrow_box fragment" style="font-family:'Source Sans Pro', sans-serif;font-weight:bold;padding:2px 10px;border-radius:10px;left:37px;top:10px">Cuerpo de la petición (opcional)</span><br/>
-                      ...
+                        name=Francisco%20Sanchez&amp;age=12
+                        <span class="no_arrow_box fragment" style="font-family:'Source Sans Pro', sans-serif;font-weight:bold;padding:2px 10px;border-radius:10px;left:37px;top:10px">Cuerpo de la petición (opcional)</span>
+                        <br/> ...
                     </div>
                 </div>
             </section>
             <section>
-              <h4>Línea de petición</h4>
-              <p>Tiene el siguiente formato:</p>
-              <pre><code class="nohighlight" data-trim>[método] [recurso] [versión_HTTP]
+                <h4>Línea de petición</h4>
+                <p>Tiene el siguiente formato:</p>
+                <pre><code class="nohighlight" data-trim>[método] [recurso] [versión_HTTP]
               </code></pre>
-              <ul>
-                <li><code style="font-size:30px">[método]</code>: Acción a realizar (GET, POST, HEAD, PUT, ...)</li>
-                <li><code style="font-size:30px">[recurso]</code>: Nombre del recurso (URI) sobre el que se accederá.</li>
-                <li><code style="font-size:30px">[versión_HTTP]</code>: HTTP/1.0 o HTTP/1.1.</li>
-              </ul>
-              <p>Ejemplo:</p>
-              <pre><code class="nohighlight" data-trim>GET /index.html HTTP/1.1
+                <ul>
+                    <li><code style="font-size:30px">[método]</code>: Acción a realizar (GET, POST, HEAD, PUT, ...)</li>
+                    <li><code style="font-size:30px">[recurso]</code>: Nombre del recurso (URI) sobre el que se accederá.</li>
+                    <li><code style="font-size:30px">[versión_HTTP]</code>: HTTP/1.0 o HTTP/1.1.</li>
+                </ul>
+                <p>Ejemplo:</p>
+                <pre><code class="nohighlight" data-trim>GET /index.html HTTP/1.1
               </code></pre>
             </section>
             <section>
-              <h4>Algunos métodos disponibles</h4>
-              <ul>
-                <li><code style="font-size:30px">GET</code>: Obtener un recurso del servidor.</li>
-                <li><code style="font-size:30px">HEAD</code>: Igual que GET, pero el servidor no devolverá el recurso; sólo las cabeceras de la respuesta.</li>
-                <li><code style="font-size:30px">POST</code>: Enviar información al servidor.</li>
-                <li><code style="font-size:30px">PUT</code>: Guardar información en el servidor.</li>
-                <li><code style="font-size:30px">DELETE</code>: Eliminar información del servidor.</li>
-                <li><code style="font-size:30px">OPTIONS</code>: Obtener la lista de métodos soportados por el servidor.</li>
-              </ul>
+                <h4>Algunos métodos disponibles</h4>
+                <ul>
+                    <li><code style="font-size:30px">GET</code>: Obtener un recurso del servidor.</li>
+                    <li><code style="font-size:30px">HEAD</code>: Igual que GET, pero el servidor no devolverá el recurso; sólo las cabeceras de la respuesta.</li>
+                    <li><code style="font-size:30px">POST</code>: Enviar información al servidor.</li>
+                    <li><code style="font-size:30px">PUT</code>: Guardar información en el servidor.</li>
+                    <li><code style="font-size:30px">DELETE</code>: Eliminar información del servidor.</li>
+                    <li><code style="font-size:30px">OPTIONS</code>: Obtener la lista de métodos soportados por el servidor.</li>
+                </ul>
             </section>
 
             <section>
-              <h4>Recursos HTTP</h4>
-              <pre><code class="nohighlight" data-trim data-noescape>[método] <span style="background-color:rgb(239, 255, 140)">[recurso]</span> [versión_HTTP]
+                <h4>Recursos HTTP</h4>
+                <pre><code class="nohighlight" data-trim data-noescape>[método] <span style="background-color:rgb(239, 255, 140)">[recurso]</span> [versión_HTTP]
               </code></pre>
-              <p>El nombre de recurso tiene la aparencia de un nombre de fichero, pero <strong>no tiene por qué corresponder con un fichero físico almacenado en el servidor</strong></p>
-              <p>Un servidor web puede hace corresponder las URIs con llamadas a programas (por ejemplo, servlets), accesos a recursos físicos almacenados con un nombre distinto, etc.</p>
+                <p>El nombre de recurso tiene la aparencia de un nombre de fichero, pero <strong>no tiene por qué corresponder con un fichero físico almacenado en el servidor</strong></p>
+                <p>Un servidor web puede hace corresponder las URIs con llamadas a programas (por ejemplo, servlets), accesos a recursos físicos almacenados con un nombre distinto, etc.</p>
             </section>
 
             <section>
-              <h4>Cabeceras en una petición</h4>
-              <p>Especifican información adicional en una petición</p>
-              <div style="background-color:rgb(255, 232, 153);text-align:left;font-family:monospace;font-size:30px">
-                Host: www.foo.com<br/>
-                Accept: text/html<br/>
-                Accept-Language: en-US, es-ES<br/>
-                Connection: keep-alive<br/>
-                If-Modified-Since: Fri, 26 Feb 2016 03:09:05 GMT<br/>
-              </div>
+                <h4>Cabeceras en una petición</h4>
+                <p>Especifican información adicional en una petición</p>
+                <div style="background-color:rgb(255, 232, 153);text-align:left;font-family:monospace;font-size:30px">
+                    Host: www.foo.com
+                    <br/> Accept: text/html
+                    <br/> Accept-Language: en-US, es-ES
+                    <br/> Connection: keep-alive
+                    <br/> If-Modified-Since: Fri, 26 Feb 2016 03:09:05 GMT
+                    <br/>
+                </div>
             </section>
 
             <section>
-              <h4>Algunos ejemplos de cabeceras</h4>
-              <ul>
-                <li>
-                  <code style="font-size:30px">Host: www.ucm.es</code><br/>
-                  Obligatorio en HTTP/1.1. Indica el servidor virtual al que acceder.
-                </li>
-                <li>
-                  <code style="font-size:30px">Accept: text/html, image/gif, */*</code><br/>
-                  Tipos de contenido (MIME types) que se esperan recibir (<a href="https://www.sitepoint.com/web-foundations/mime-types-complete-list/">Lista de tipos MIME</a>)
-                </li>
-                <li>
-                  <code style="font-size:30px">Accept-Language: en-US</code><br/>
-                  Idioma(s) en los que se espera recibir el recurso (<a href="http://www.langtag.net/registries/lsr-language.txt">Idiomas</a> y
-                  <a href="http://www.langtag.net/registries/lsr-region.txt">Regiones</a>)
-                </li>
-                <li>
-                  <code style="font-size:30px">Accept-Charset: UTF-8</code><br/>
-                  <code style="font-size:30px">Accept-Encoding: x-gzip</code> <br/>Codificación de caracteres.
-                </li>
-              </ul>
+                <h4>Algunos ejemplos de cabeceras</h4>
+                <ul>
+                    <li>
+                        <code style="font-size:30px">Host: www.ucm.es</code>
+                        <br/> Obligatorio en HTTP/1.1. Indica el servidor virtual al que acceder.
+                    </li>
+                    <li>
+                        <code style="font-size:30px">Accept: text/html, image/gif, */*</code>
+                        <br/> Tipos de contenido (MIME types) que se esperan recibir (<a href="https://www.sitepoint.com/web-foundations/mime-types-complete-list/">Lista de tipos MIME</a>)
+                    </li>
+                    <li>
+                        <code style="font-size:30px">Accept-Language: en-US</code>
+                        <br/> Idioma(s) en los que se espera recibir el recurso (<a href="http://www.langtag.net/registries/lsr-language.txt">Idiomas</a> y
+                        <a href="http://www.langtag.net/registries/lsr-region.txt">Regiones</a>)
+                    </li>
+                    <li>
+                        <code style="font-size:30px">Accept-Charset: UTF-8</code>
+                        <br/>
+                        <code style="font-size:30px">Accept-Encoding: x-gzip</code>
+                        <br/>Codificación de caracteres.
+                    </li>
+                </ul>
             </section>
 
             <section>
-              <h4>Algunos ejemplos de cabeceras</h4>
-              <ul>
-                <li>
-                  <code style="font-size:30px">User-Agent: Mozilla/5.0 ...</code><br/>
-                  Navegador o cliente que envía la petición.
-                </li>
-                <li>
-                  <code style="font-size:30px">Content-Type: text/html</code><br/>
-                  En peticiones POST, indica el tipo de contenido que se quiere enviar.
-                </li>
-                <li>
-                  <code style="font-size:30px">Authorization: Basic bWFudWVsOm1hbnVlbA==</code><br/>
-                  Nombre de usuario y contraseña (para acceso a recursos protegidos por contraseña).
-                </li>
-                <li>
-                  <code style="font-size:30px">If-Modified-Since: Fri, 26 Feb 2016 03:09:05 GMT</code><br/>
-                  Indica al servidor que sólo devuelva el recurso si ha sido modificado después de la fecha dada.
-                </li>
-              </ul>
+                <h4>Algunos ejemplos de cabeceras</h4>
+                <ul>
+                    <li>
+                        <code style="font-size:30px">User-Agent: Mozilla/5.0 ...</code>
+                        <br/> Navegador o cliente que envía la petición.
+                    </li>
+                    <li>
+                        <code style="font-size:30px">Content-Type: text/html</code>
+                        <br/> En peticiones POST, indica el tipo de contenido que se quiere enviar.
+                    </li>
+                    <li>
+                        <code style="font-size:30px">Authorization: Basic bWFudWVsOm1hbnVlbA==</code>
+                        <br/> Nombre de usuario y contraseña (para acceso a recursos protegidos por contraseña).
+                    </li>
+                    <li>
+                        <code style="font-size:30px">If-Modified-Since: Fri, 26 Feb 2016 03:09:05 GMT</code>
+                        <br/> Indica al servidor que sólo devuelva el recurso si ha sido modificado después de la fecha dada.
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Estructura de una respuesta HTTP</h3>
+                <div style="font-family:monospace;font-size:25px">
+                    <div style="background-color:rgb(145, 209, 255);text-align:left">
+                        HTTP/1.1 200 OK
+                        <span class="no_arrow_box fragment" style="font-family:'Source Sans Pro', sans-serif;font-weight:bold;padding:2px 10px;border-radius:10px;left:400px">Línea de estado</span>
+                    </div>
+                    <div style="background-color:rgb(255, 232, 153);text-align:left">
+                        Date: Mon, 15 Aug 2016 14:05:30 GMT
+                        <br/> Server: Apache
+                        <span class="no_arrow_box fragment" style="font-family:'Source Sans Pro', sans-serif;font-weight:bold;padding:2px 10px;border-radius:10px;top:-10px;left:415px">Cabeceras de la respuesta</span>
+                        <br/> Set-Cookie: ucmweb=a8bcbkqfml72df71mee86drgj7; domain=ucm.es
+                        <br/> Expires: Thu, 19 Nov 1981 08:52:00 GMT
+                        <br/> Content-Type: text/html; charset=utf-8
+                    </div>
+                    <div>
+                        <span style="color:#A0A0A0;font-style:italic"> (línea en blanco) </span>
+                    </div>
+                    <div style="background-color:rgb(236, 255, 170);text-align:left">
+                        &lt;!DOCTYPE html&gt;
+                        <br/> &lt;html lang="es"&gt;
+                        <span class="no_arrow_box fragment" style="font-family:'Source Sans Pro', sans-serif;font-weight:bold;padding:2px 10px;border-radius:10px;top:-10px;left:385px">Cuerpo de la respuesta</span>
+                        <br/> &lt;head&gt;
+                        <br/> &nbsp; &lt;title&gt;UCM-Universidad Complutense de Madrid&lt;/title&gt;
+                        <br/> ...
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h4>Línea de estado</h4>
+                <div style="font-family:monospace;font-size:25px">
+                    <div style="background-color:rgb(145, 209, 255);text-align:left">
+                        HTTP/1.1 200 OK
+                    </div>
+                </div>
+                <p>Indica la versión del protocolo HTTP utilizada, un código de estado y un texto con la descripción dicho código.</p>
+            </section>
+
+            <section>
+                <h4>Códigos de estado</h4>
+                <ul>
+                    <li><code style="font-size:30px">200 OK</code>: Petición recibida y servida con éxito.</li>
+                    <li><code style="font-size:30px">3xx</code>: Redirección: el recurso ha cambiado de dirección.
+                        <ul>
+                            <li><code style="font-size:30px">301 Move Permanently</code></li>
+                            <li><code style="font-size:30px">302 Move Temporarily</code></li>
+                            <li><code style="font-size:30px">304 Not modified</code></li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>En los códigos 301 y 302 se indica en la cabecera de la respuesta la nueva dirección del recurso. El código 304 se devuelve en el caso en el que el cliente haya incluido
+                    <code style="font-size:30px">If-Modified-Since</code> y el recurso no haya cambiado desde la fecha indicada.</p>
+            </section>
+
+            <section>
+                <h4>Códigos de estado</h4>
+                <ul>
+                    <li><code style="font-size:30px">4xx</code>: Errores atribuibles al cliente.</li>
+                    <ul>
+                        <li><code style="font-size:30px">400 Bad Request</code>: Petición incorrecta.</li>
+                        <li><code style="font-size:30px">401 Authentication Required</code>: Se requiere identificación (nombre y contraseña).</li>
+                        <li><code style="font-size:30px">403 Forbidden</code>: Identificación incorrecta.</li>
+                        <li><code style="font-size:30px">404 Not Found</code>: Recurso no encontrado en el servidor.</li>
+                        <li><code style="font-size:30px">405 Method not Allowed</code>: Acción (GET, POST, etc.) no permitida.</li>
+                    </ul>
+                    </li>
+                    <li><code style="font-size:30px">5xx</code>: Errores atribuibles al servidor.</li>
+                    <ul>
+                        <li><code style="font-size:30px">500 Internal Server Error</code></li>
+                        <li><code style="font-size:30px">503 Service Unavailable</code></li>
+                    </ul>
+                    </li>
+                </ul>
             </section>
 
             </div>
