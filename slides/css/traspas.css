@@ -36,3 +36,37 @@ span.important {
 div.important {
     background-color: #FFFFD0;
 }
+
+td.http_code {
+    font-family: monospace;
+    font-size: 30px;
+}
+
+.arrow_box_left {
+	position: relative;
+	background: #410066;
+  color:white;
+  font-weight: bold;
+}
+
+.arrow_box_left:after {
+	right: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-color: rgba(65, 0, 102, 0);
+	border-right-color: #410066;
+	border-width: 10px;
+	margin-top: -10px;
+}
+
+.no_arrow_box {
+	position: relative;
+	background: #410066;
+  color:white;
+  font-weight: bold;
+}
