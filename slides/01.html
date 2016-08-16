@@ -1206,6 +1206,71 @@ Connection: close
                 </ul>
             </section>
 
+            <section>
+                <h4>Cuerpo de la respuesta</h4>
+                <div style="font-family:monospace;font-size:25px">
+                    <div style="background-color:rgb(236, 255, 170);text-align:left">
+                        &lt;!DOCTYPE html&gt;
+                        <br/> &lt;html lang="es"&gt;
+                        <br/> &lt;head&gt;
+                        <br/> &nbsp; &lt;title&gt;UCM-Universidad Complutense de Madrid&lt;/title&gt;
+                        <br/> ...
+                    </div>
+                </div>
+
+                <p>Tal y como indica la cabecera <code style="font-size:30px">Content-Type: text/html</code>, el cuerpo de la respuesta contiene un texto en formato HTML, que define la estructura de la página web recuperada.</p>
+            </section>
+
+            <section>
+                El código HTML hace referencia a otros recursos:
+                <div style="font-family:monospace;font-size:25px">
+                    <div style="background-color:rgb(236, 255, 170);text-align:left">
+                        ...
+                        <br/> &lt;link type="text/css" media="screen" rel="stylesheet" href="/themes/ucm3/css/portada.css?a=1" /&gt;
+                        <br/> ...
+                        <br/> &lt;img src="/nodes/web/00media/img/ucm-ws.png"/&gt;
+                        <br/> ...
+                    </div>
+                </div>
+                Cada uno de estos recursos deberá ser obtenido por el navegador Web en sucesivas peticiones HTTP al servidor.
+            </section>
+
+            <section>
+                <h3>Ver código fuente en Firefox</h3>
+                <ul>
+                    <li>Botón derecho &rarr; <cite style="font-style:italic">Ver código fuente</cite>, o bien,</li>
+                    <li>Ctrl+U</li>
+                </ul>
+                <img src="images/01/UCMPage.jpg" style="height:400px" />
+            </section>
+
+            <section>
+                <img src="images/01/UCMPageSource.jpg" style="height:600px" />
+            </section>
+
+            <section>
+                <h3>Observar cabeceras HTTP en Firefox</h3>
+                <cite style="font-style:italic">Herramientas</cite> &rarr;
+                <cite style="font-style:italic"> Desarrollador Web </cite> &rarr;
+                <cite style="font-style:italic">Red</cite> (Ctrl+Mayus+Q)</li>
+
+                <iframe width="420" height="315" src="https://www.youtube.com/embed/RaeyLZE6Yo0" frameborder="0" allowfullscreen></iframe>
+                <div>
+                    <a href="https://youtu.be/RaeyLZE6Yo0">https://youtu.be/RaeyLZE6Yo0</a>
+                </div>
+            </section>
+
+            <section>
+                <h3>Referencias</h3>
+                <ul>
+                    <li>Wikipedia - Internet Protocol Suite
+                        <br/>
+                        <a href="https://en.wikipedia.org/wiki/Internet_protocol_suite">https://en.wikipedia.org/wiki/Internet_protocol_suite</a></li>
+                    <li>An Introduction to HTTP Basics
+                        <br/>
+                        <a href="https://www.ntu.edu.sg/home/ehchua/programming/webprogramming/HTTP_Basics.html">https://www.ntu.edu.sg/home/ehchua/<br/>programming/webprogramming/HTTP_Basics.html</a></li>
+                </ul>
+            </section>
             </div>
         </div>
 
