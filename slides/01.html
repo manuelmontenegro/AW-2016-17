@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>reveal.js</title>
+    <title>Tema 1 - Introducción a las tecnologías Web. El protocolo HTTP</title>
 
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/white.css">
+    <link rel="stylesheet" href="css/theme/aw.css">
 
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -48,13 +48,34 @@
     </svg>
     <div class="reveal">
         <div class="slides">
-            <section data-background="#b5533c" data-background-transition="zoom">
-                <h3 style="background-color:#000000">Tema 1</h3>
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="fade">
+                <div class="headerlesson">Tema 1</div>
                 <h1>Introducción a las tecnologías web:<br/>El protocolo HTTP</h1>
-                <div style="background-color:#000000">
-                    <h4>Aplicaciones Web - GIS - Curso 2016/17</h4>
-                    <h4>(C) Manuel Montenegro</h4>
+                <div class="headerlesson">
+                    Aplicaciones Web - GIS - Curso 2016/17
                 </div>
+                <div class="author">
+                    <strong>Manuel Montenegro</strong> [<a href="mailto:montenegro@fdi.ucm.es" style="color:white">montenegro@fdi.ucm.es</a>]
+                    <br/> Dpto de Sistemas Informáticos y Computación
+                    <br/> Facultad de Informática
+                    <br/> Universidad Complutense de Madrid
+                </div>
+                <div class="cc">
+                    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br/>
+                    Esta obra está bajo una <br/><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="color:white">Licencia CC BY-NC-SA 4.0 Internacional</a>.
+                </div>
+                <div style="clear:left;font-size:15px">
+                    </a>
+                </div>
+            </section>
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="fade" id="p1">
+                <ol class="contenidos">
+                  <li><a href="#/p1" class="outline fragment highlight-orange">Repaso del Modelo TCP/IP</a></li>
+                  <li><a href="#/p2" class="outline">Modelo Cliente/Servidor</a></li>
+                  <li><a href="#/p3" class="outline">Sockets y Protocolos</a></li>
+                  <li><a href="#/p4" class="outline">Protocolo HTTP</a></li>
+                  <li><a href="#/p5" class="outline">Referencias</a></li>
+                </ol>
             </section>
             <section>
                 <h2>Modelo TCP/IP</h2>
@@ -384,6 +405,16 @@
                 </p>
             </section>
 
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p2">
+                <ol class="contenidos">
+                  <li><a href="#/p1" class="outline">Repaso del Modelo TCP/IP</a></li>
+                  <li><a href="#/p2" class="outline current">Modelo Cliente/Servidor</a></li>
+                  <li><a href="#/p3" class="outline">Sockets y Protocolos</a></li>
+                  <li><a href="#/p4" class="outline">Protocolo HTTP</a></li>
+                  <li><a href="#/p5" class="outline">Referencias</a></li>
+                </ol>
+            </section>
+
             <section>
                 <h2>Modelo cliente/servidor</h2>
                 <p>Supongamos que dos nodos quieren conectarse para intercambiar información</p>
@@ -418,35 +449,18 @@
             </section>
 
 
-            <section data-background="#802020" data-background-transition="fade">
-                <svg width="0" height="0">
-                    <defs>
-                        <linearGradient id="grad1" x1="0%" y1="0" x2="0%" y2="1">
-                            <stop offset="0%" style="stop-color:rgb(100,100,100);stop-opacity:1" />
-                            <stop offset="20%" style="stop-color:rgb(200,200,200);stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:rgb(100,100,100);stop-opacity:1" />
-                        </linearGradient>
-                        <g id="arquitectura">
-                            <rect x="0" y="0" width="20%" height="50" style="fill:rgb(146, 217, 244);stroke-width:4;stroke:black" />
-                            <text x="10%" y="35" text-anchor="middle" style="font-weight:bold">Red</text>
-                            <rect x="0" y="50" width="20%" height="50" style="fill:rgb(231, 176, 238);stroke-width:4;stroke:black" />
-                            <text x="10%" y="85" text-anchor="middle" style="font-weight:bold">Enlace</text>
-                        </g>
-                        <marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
-                            <path d="M0,0 L0,6 L9,3 z" fill="#000" />
-                        </marker>
-                        <path id="sobre" d="M 0 0 l 15 0 l 0 10 l -15 0 l 0 -10 L 7.5 6 L 15 0" fill="none" style="stroke-width:1;stroke:rgb(130,130,190);stroke-linejoin:bevel" />
-                    </defs>
-                </svg>
-                <h3 style="background-color:#000000">Tema 1</h3>
-                <h1>Introducción a las tecnologías web:<br/>El protocolo HTTP</h1>
-                <div style="background-color:#000000">
-                    <h4>Aplicaciones Web - GIS - Curso 2016/17</h4>
-                    <h4>(C) Manuel Montenegro</h4>
-                </div>
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p3">
+                <ol class="contenidos">
+                  <li><a href="#/p1" class="outline">Repaso del Modelo TCP/IP</a></li>
+                  <li><a href="#/p2" class="outline">Modelo Cliente/Servidor</a></li>
+                  <li><a href="#/p3" class="outline current">Sockets y Protocolos</a></li>
+                  <li><a href="#/p4" class="outline">Protocolo HTTP</a></li>
+                  <li><a href="#/p5" class="outline">Referencias</a></li>
+                </ol>
             </section>
 
             <section>
+              <h2>Sockets</h2>
                 <p>
                     El sistema operativo proporciona un mecanismo de acceso a la capa de transporte.
                 </p>
@@ -978,6 +992,16 @@ Connection: close
                     </ul>
             </section>
 
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p4">
+                <ol class="contenidos">
+                  <li><a href="#/p1" class="outline">Repaso del Modelo TCP/IP</a></li>
+                  <li><a href="#/p2" class="outline">Modelo Cliente/Servidor</a></li>
+                  <li><a href="#/p3" class="outline">Sockets y Protocolos</a></li>
+                  <li><a href="#/p4" class="outline current">Protocolo HTTP</a></li>
+                  <li><a href="#/p5" class="outline">Referencias</a></li>
+                </ol>
+            </section>
+
             <section>
                 <h3>Esquema general</h3>
                 <svg viewBox="0 0 311 111" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:bx="https://boxy-svg.com">
@@ -1260,8 +1284,18 @@ Connection: close
                 </div>
             </section>
 
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p5">
+                <ol class="contenidos">
+                  <li><a href="#/p1" class="outline">Repaso del Modelo TCP/IP</a></li>
+                  <li><a href="#/p2" class="outline">Modelo Cliente/Servidor</a></li>
+                  <li><a href="#/p3" class="outline">Sockets y Protocolos</a></li>
+                  <li><a href="#/p4" class="outline">Protocolo HTTP</a></li>
+                  <li><a href="#/p5" class="outline current">Referencias</a></li>
+                </ol>
+            </section>
+
             <section>
-                <h3>Referencias</h3>
+                <h2>Referencias</h3>
                 <ul>
                     <li>Wikipedia - Internet Protocol Suite
                         <br/>

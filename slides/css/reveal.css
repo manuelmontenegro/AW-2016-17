@@ -140,7 +140,9 @@ body {
 .reveal .slides section .fragment.highlight-green,
 .reveal .slides section .fragment.highlight-current-green,
 .reveal .slides section .fragment.highlight-blue,
-.reveal .slides section .fragment.highlight-current-blue {
+.reveal .slides section .fragment.highlight-current-blue,
+.reveal .slides section .fragment.highlight-orange,
+.reveal .slides section .fragment.highlight-current-orange {
   opacity: 1;
   visibility: visible; }
 
@@ -153,6 +155,9 @@ body {
 .reveal .slides section .fragment.highlight-blue.visible {
   color: #1b91ff; }
 
+  .reveal .slides section .fragment.highlight-orange.visible {
+    color: #eebd7d; }
+
 .reveal .slides section .fragment.highlight-current-red.current-fragment {
   color: #ff2c2d; }
 
@@ -161,6 +166,9 @@ body {
 
 .reveal .slides section .fragment.highlight-current-blue.current-fragment {
   color: #1b91ff; }
+
+  .reveal .slides section .fragment.highlight-current-orange.current-fragment {
+    color: #eebd7d; }
 
 /*********************************************
  * DEFAULT ELEMENT STYLES
