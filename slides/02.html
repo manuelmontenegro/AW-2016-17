@@ -1,0 +1,270 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Tema 2 - HTML y CSS</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/aw.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <link rel="stylesheet" href="css/traspas.css" />
+</head>
+
+<body>
+    <svg width="0" height="0" style="float:left">
+        <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth" style="display:float">
+                <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+            </marker>
+        </defs>
+    </svg>
+    <div class="reveal">
+        <div class="slides">
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="fade">
+                <div class="headerlesson">Tema 2</div>
+                <h1 style="height:3em"><div style="position:relative;top:1em">HTML y CSS</div></h1>
+                <div class="headerlesson">
+                    Aplicaciones Web - GIS - Curso 2016/17
+                </div>
+                <div class="author">
+                    <strong>Manuel Montenegro</strong> [<a href="mailto:montenegro@fdi.ucm.es" style="color:white">montenegro@fdi.ucm.es</a>]
+                    <br/> Dpto de Sistemas Informáticos y Computación
+                    <br/> Facultad de Informática
+                    <br/> Universidad Complutense de Madrid
+                </div>
+                <div class="cc">
+                    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+                    <br/> Esta obra está bajo una
+                    <br/><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="color:white">Licencia CC BY-NC-SA 4.0 Internacional</a>.
+                </div>
+                <div style="clear:left;font-size:15px">
+                    </a>
+                </div>
+            </section>
+            <section>
+                <h2>Introducción</h2>
+                <p>Abordaremos dos lenguajes para la creación de páginas web</p>
+                <ul>
+                    <li><strong>HTML</strong>: (<span class="ingles">HyperText Markup Language</span>)
+                        <br/> Determina la estructura de las páginas web.
+                        <li><strong>CSS</strong>: (<span class="ingles">Cascading Style Sheets</span>)
+                            <br/> Determina la presentación de las páginas web.
+                </ul>
+                <p>
+                    Estándares mantenidos por el <span class="ingles">World Wide Web Consortium</span> (<a href="https://www.w3.org/">W3C</a>)
+                </p>
+            </section>
+
+            <section>
+                <h3>Un documento HTML sencillo</h3>
+                <p>Creamos un fichero <code>primera_pagina.html</code> con el siguiente contenido:</p>
+                <pre><code data-trim class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Mi primera p&aacute;gina web&lt;/title&gt;
+        &lt;meta charset=&quot;utf-8&quot;/&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;&iexcl;Bienvenido!&lt;/h1&gt;
+        &lt;p&gt;Esto es una p&aacute;gina web&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </section>
+
+            <section>
+                <p>Abrimos el fichero HTML en el navegador web:</p>
+                <img src="images/02/Pag1.png" alt="Navegador abierto con la página" />
+            </section>
+
+            <section>
+                <h3>Estructura de un documento HTML</h3>
+                <ul style="width:90%">
+                    <li>Tipo de documento
+                        <pre><code data-trim no-escape class="html">&lt;!DOCTYPE html&gt;</code></pre>
+                    </li>
+                    <li>Cabecera
+                        <pre><code data-trim no-escape class="html">
+&lt;head&gt;
+    &lt;title&gt;Mi primera p&aacute;gina web&lt;/title&gt;
+    &lt;meta charset=&quot;utf-8&quot;/&gt;
+&lt;/head&gt;</code></pre>
+                    </li>
+                    <li>Cuerpo
+                        <pre><code data-trim no-escape class="html">
+&lt;body&gt;
+    &lt;h1&gt;&iexcl;Bienvenido!&lt;/h1&gt;
+    &lt;p&gt;Esto es una p&aacute;gina web&lt;/p&gt;
+&lt;/body&gt;</code></pre>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h4>Tipo de documento</h4>
+                <pre><code data-trim no-escape class="html">&lt;!DOCTYPE html&gt;</code></pre>
+                <p>Indica que es un tipo de fichero HTML.</p>
+                <p>A partir de la versión 5 del éstandar de HTML no se indica qué versión del lenguaje HTML se va a utilizar en la página.</p>
+                <div class="fragment">
+                    <p>En el estándar antiguo (HTML 4.01):</p>
+                    <pre><code data-trim no-escape class="html">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;
+        &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</code></pre>
+                </div>
+
+            </section>
+
+            <section>
+                <h4>Elementos HTML</h4>
+                <p>Una página HTML consta de varios <strong>elementos</strong>, que pueden estar anidados unos dentro de otros.</p>
+                <p>Cada elemento está delimitado por una etiqueta de inicio (<code>&lt;<em>nombreEtiqueta</em>&gt;</code>) y una etiqueta de fin (<code>&lt;<em>/nombreEtiqueta</em>&gt;</code>)</p>
+                <p>El nombre de la etiqueta determina el tipo de elemento</p>
+            </section>
+
+            <section>
+                <p>Las etiquetas de inicio y fin han de estar correctamente anidadas:</p>
+                <ul style="width:100%">
+                    <li>
+                        Correcto:
+                        <pre><code class="html">&lt;p&gt;...&lt;strong&gt;...&lt;/strong&gt;...&lt;/p&gt;</code></pre>
+                        <p>Indica que hay un elemento de tipo <code>&lt;strong&gt;</code> anidado dentro de un elemento de tipo <code>&lt;p&gt;</code>.</p>
+                    </li>
+                    <li class="fragment">
+                        Incorrecto:
+                        <pre><code class="html">&lt;p&gt;...&lt;strong&gt;...&lt;/p&gt;...&lt;/strong&gt;</code></pre>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <p>
+                    El elemento <code class="html">&lt;html&gt;</code> contiene toda la información sobre la estructura de la página web.
+                </p>
+                <p>
+                    Contiene, a su vez, dos elementos: <code class="html">&lt;head&gt;</code> y <code class="html">&lt;body&gt;</code>
+                </p>
+            </section>
+
+            <section>
+                <h4>Cabecera (<code class="html" style="text-transform:none">&lt;head&gt;</code>)</h4>
+                <p>Contiene información sobre la página web que es ajena al propio contenido. En nuestro caso:</p>
+                <pre><code data-trim no-escape class="html">
+&lt;title&gt;Mi primera p&aacute;gina web&lt;/title&gt;</code></pre>
+                <p>Indica el título de la página. Este título suele aparecer en la pestaña del navegador</p>
+                <pre><code data-trim no-escape class="html">
+&lt;meta charset=&quot;utf-8&quot;/&gt;</code></pre>
+                <p>Indica que se utilizará la codificación <span class="ingles">Unicode</span> (UTF-8) en el código HTML.
+                    <a href="http://www.iana.org/assignments/character-sets/character-sets.xhtml">[+]</a>
+                </p>
+
+            </section>
+            <section>
+                <h4>Cuerpo (<code class="html" style="text-transform:none">&lt;body&gt;</code>)</h4>
+                <p>Especifica el contenido de la página web.</p>
+                <p>En nuestro caso contiene:</p>
+                <ul style="width:100%">
+                    <li>
+                        <p>Un encabezado (elemento <code class="html" style="text-transform:none">&lt;h1&gt;</code>)</p>
+                        <p><pre style="margin-left:0px"><code data-trim class="html">&lt;h1&gt;&iexcl;Bienvenido!&lt;/h1&gt;</code></pre></p>
+                        <iframe srcdoc="<h1>Bienvenido!</h1>" class="example" style="height:60px"></iframe>
+                    </li>
+                    <li>Un párrafo (elemento <code class="html" style="text-transform:none">&lt;p&gt;</code>)
+                        <pre style="margin-left:0px"><code data-trim class="html">&lt;p&gt;Esto es una p&aacute;gina web&lt;/p&gt;</code></pre>
+                        <iframe srcdoc="<p>Esto es una página web</p>" class="example" style="height:1em"></iframe>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Encabezados HTML</h3>
+                <p>Se utilizan los elementos <code class="html">&lt;h1&gt;</code>, <code class="html">&lt;h2&gt;</code>, ..., <code class="html">&lt;h6&gt;</code>. </p>
+                <p><code class="html">&lt;h1&gt;</code> representa el encabezado de mayor nivel (el más "importante"). El resto especifican encabezados de importancia decreciente.
+            </section>
+
+            <section>
+                <h4>Ejemplo</h4>
+                <div style="float:left;width:45%">
+                    <pre style="width:100%"><code data-trim class="html">
+&lt;h1&gt;Encabezado H1&lt;/h1&gt;
+&lt;h2&gt;Encabezado H2&lt;/h2&gt;
+&lt;h3&gt;Encabezado H3&lt;/h3&gt;
+&lt;h4&gt;Encabezado H4&lt;/h4&gt;
+&lt;h5&gt;Encabezado H5&lt;/h5&gt;
+&lt;h6&gt;Encabezado H6&lt;/h6&gt;</code></pre>
+                </div>
+                <div style="float:left;width:45%">
+                    <iframe src="resources/02/Headers.html" style="height:300px"></iframe>
+                </div>
+                <div style="clear:left"/>
+            </section>
+
+            <section>
+                <h3>Párrafos</h3>
+                <p>Cada párrafo está contenido dentro de un elemento  <code class="html">&lt;p&gt;</code>
+
+                <div style="float:left;width:65%">
+                    <pre style="width:100%"><code data-trim class="html">
+&lt;h1&gt;Párrafos&lt;/h1&gt;
+&lt;p&gt;
+  Esto es un ejemplo de p&aacute;rrafo que puede
+  extenderse a lo largo de varias l&iacute;neas.
+&lt;/p&gt;
+&lt;p&gt;
+  Esto de aqu&iacute; es otro p&aacute;rrafo completamente
+  distinto. El navegador puede insertar un
+  peque&ntilde;o espacio de separaci&oacute;n entre los
+  dos p&aacute;rrafos.
+&lt;/p&gt;</code></pre>
+                </div>
+                <div style="float:left;width:35%">
+                    <iframe src="resources/02/Paragraphs.html" style="height:300px"></iframe>
+                </div>
+                <div style="clear:left"/>
+            </section>
+        </div>
+    </div>
+
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            history: true,
+
+            // More info https://github.com/hakimel/reveal.js#dependencies
+            dependencies: [{
+                src: 'plugin/markdown/marked.js'
+            }, {
+                src: 'plugin/markdown/markdown.js'
+            }, {
+                src: 'plugin/notes/notes.js',
+                async: true
+            }, {
+                src: 'plugin/highlight/highlight.js',
+                async: true,
+                callback: function() {
+                    hljs.initHighlightingOnLoad();
+                }
+            }]
+        });
+    </script>
+</body>
+
+</html>

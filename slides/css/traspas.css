@@ -70,3 +70,20 @@ td.http_code {
   color:white;
   font-weight: bold;
 }
+
+.ingles {
+  font-style: italic !important;
+}
+
+strong {
+  color: #B71234;
+}
+
+p code {
+  font-size: 0.9em !important;
+}
+
+iframe.example {
+  border: 2px solid #B71234;
+  width: 90%;
+}
