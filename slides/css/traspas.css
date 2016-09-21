@@ -83,7 +83,21 @@ p code {
   font-size: 0.9em !important;
 }
 
+li code {
+  font-size: 0.9em !important;
+}
+
 iframe.example {
   border: 2px solid #B71234;
   width: 90%;
+}
+
+span.section {
+  color: rgb(41, 92, 168);
+  font-weight: bold;
+}
+
+span.myname {
+  color: white;
+  font-weight: bold;
 }
