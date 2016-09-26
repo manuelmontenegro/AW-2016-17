@@ -38,7 +38,7 @@
         <div class="slides">
             <section data-background-image="images/RedBackground.jpg" data-background-transition="fade">
                 <div class="headerlesson">Tema 2</div>
-                <h1 style="height:3em"><div style="position:relative;top:1em">HTML y CSS</div></h1>
+                <h1 style="height:3em;position:relative;top:1em">HTML y CSS</h1>
                 <div class="headerlesson">
                     Aplicaciones Web - GIS - Curso 2016/17
                 </div>
@@ -54,7 +54,6 @@
                     <br/><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="color:white">Licencia CC BY-NC-SA 4.0 Internacional</a>.
                 </div>
                 <div style="clear:left;font-size:15px">
-                    </a>
                 </div>
             </section>
             <section>
@@ -210,7 +209,7 @@
                 <div style="float:left;width:45%">
                     <iframe src="resources/02/Headers.html" style="height:300px"></iframe>
                 </div>
-                <div style="clear:left"/>
+                <div style="clear:left"></div>
             </section>
 
             <section>
@@ -234,7 +233,493 @@
                 <div style="float:left;width:35%">
                     <iframe src="resources/02/Paragraphs.html" style="height:300px"></iframe>
                 </div>
-                <div style="clear:left"/>
+                <div style="clear:left"></div>
+            </section>
+    
+            <section>
+                <h3>Elementos de texto</h3>
+                <p>Afectan al formato del texto que contienen.</p>
+                <ul>
+                    <li><code>&lt;em&gt;</code> sirve para enfatizar un texto.<br/>
+                        El texto suele mostrarse en <span style="font-style:italic">cursiva</span>.</li>
+                    <li><code>&lt;strong&gt;</code> sirve para resaltar aun más un texto.<br/>
+                    Los navegadores suelen mostrarlo en <span style="font-weight:bold">negrita</span>.</li>
+                    <li><code>&lt;code&gt;</code> se utiliza para mostrar el código de un programa.<br/>
+                    Los navegadores suelen mostrarlo en letra de tipo <span style="font-family:monospace">monoespaciada</span>.</li>
+                    
+                </ul>
+            </section>
+            <section>
+                <h4>Ejemplo</h4>
+                <pre><code data-trim class="html">
+Decimos que una función es de &lt;strong&gt;orden superior&lt;/strong&gt; si
+acepta otras funciones como parámetro y/o devuelve funciones como
+resultado. Entre estas funciones podemos citar &lt;code&gt;map&lt;/code&gt;,
+&lt;code&gt;filter&lt;/code&gt; y la familia de funciones de &lt;em&gt;folding&lt;em&gt;.
+                </code></pre>
+                <img src="images/02/StrongEm.png" style="width:90%;border:none"/>
+            </section>
+            <section>
+                <h3>Comentarios</h3>
+                En HTML van delimitados por las secuencias de símbolos
+                <code>&lt;!--</code> y <code>--&gt;</code>
+                <pre><code data-trim class="html">
+&lt;p&gt;Esto es un p&aacute;rrafo&lt;/p&gt;
+&lt;!-- Todo lo que hay en este comentario se ignorar&aacute;, incluyendo
+     etiquetas &lt;em&gt;HTML&lt;/em&gt; --&gt;
+&lt;p&gt;Esto es otro p&aacute;rrafo&lt;/p&gt;
+                </code></pre>
+                <img src="images/02/Comments.png" style="width:90%;border:none"/>
+            </section>
+            <section>
+                HTML interpreta las secuencias de espacios como un único espacio.
+                Los saltos de línea se intepretan como espacios.
+                <pre><code data-trim class="html">
+Esto    es una    línea    con  varios   espacios.
+
+Aquí va otro texto
+
+fragmentado en varias
+líneas.
+                </code></pre>
+                <img src="images/02/Whitespace.png" style="width:90%;border:none"/>
+            </section>
+            <section>
+                <h3>Estructura vs. Estilo</h3>
+                <p>Todas las etiquetas de HTML solamente definen la <strong>estructura</strong>
+                    del contenido de la página, no su aspecto visual.</p>
+                <p>El texto delimitado por algunas etiquetas (como <code>&lt;strong&gt;</code>) puede
+                    aparecer con un determinado formato en el navegador, pero dicho formato no es único
+                    para todos los navegadores web.</p>
+                <p>La apariencia visual de una página se define mediante el lenguaje CSS, y suele
+                definirse en un archivo distinto al documento HTML.</p>
+            </section>
+            <section>
+                Mismo documento HTML mostrado con distintos estilos:
+                <img src="images/02/EstiloDefecto.png" style="width:90%;border:none"/>
+                <img src="images/02/Estilo1.png" style="width:90%;border:none"/>
+                <img src="images/02/Estilo2.png" style="width:90%;border:none"/>
+            </section>
+            <section>
+                <a href="http://www.csszengarden.com/">http://www.csszengarden.com/</a>
+                <p>Distintos estilos aplicados a una misma página web.</p>
+                <img src="images/02/ZenGarden1.png" style="width:40%;border:none"/>
+                <img src="images/02/ZenGarden2.png" style="width:40%;border:none"/>
+                <img src="images/02/ZenGarden3.png" style="width:40%;border:none"/>
+            </section>
+            <section>
+                <h3>Hoja de estilo CSS</h3>
+                <p>Documento que contiene las
+                definiciones de estilo para una o varias páginas web.</p>
+                <p>Creamos un fichero <code>hoja1.css</code> con el siguiente contenido:</p>
+                <pre><code data-trim class="css">
+h1 {
+    color: blue;
+    text-decoration: underline;
+}
+
+strong {
+    color: blue;
+    font-weight: bold;
+}
+            </code></pre>
+            </section>
+            <section>
+                <div>
+                    <pre><code data-trim class="css">
+h1 {
+    color: blue;
+    text-decoration: underline;
+}
+
+                    </code></pre>
+                    <p>Indica que todos los elementos con la etiqueta <code>&lt;h1&gt;</code>
+                        aparecerán subrayados y en color azul.
+                    </p>
+                </div>
+                <div class="fragment">
+                    <pre><code data-trim class="css">
+strong {
+    color: blue;
+    font-weight: bold;
+}
+                    </code></pre>
+                    <p>Indica que todos los elementos con la etiqueta <code>&lt;strong&gt;</code>
+                        aparecerán en negrita y en color azul.
+                    </p>
+                </div>
+            </section>
+            <section>
+                <h3>La etiqueta &lt;link&gt;</h3>
+                <p>La etiqueta <code>&lt;link&gt;</code> permite asociar una hoja de estilo
+                    CSS con un documento HTML.</p>
+                <p>Debe estar en la sección <code>&lt;head&gt;</code> del documento.</p>
+                <pre><code data-trim class="html">
+&lt;head&gt;
+  ...
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;Hoja1.css&quot;/&gt;
+  ...
+&lt;/head&gt;
+                </code></pre>
+                <p>El atributo <code>href</code> indica el nombre del fichero que contiene la hoja de estilo.</p>
+                <p>El atributo <code>rel</code> indica la relación que tiene el fichero referenciado mediante 
+                    <code>href</code> y el documento HTML actual (<em>hoja de estilo</em>).</p>
+            </section>
+            <section>
+                <h4>Ejemplo</h4>
+                <pre><code data-trim class="html" style="font-size:22px;line-height:22px">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;P&aacute;rrafos&lt;/title&gt;
+        &lt;meta charset=&quot;utf-8&quot;/&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;Hoja1.css&quot;/&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Funciones de orden superior&lt;/h1&gt;
+        &lt;p&gt;Decimos que una funci&oacute;n es de 
+        &lt;strong&gt;orden superior&lt;/strong&gt; si acepta otras funciones
+        como par&aacute;metro y/o devuelve funciones como resultado.
+        Entre estas funciones podemos citar &lt;code&gt;map&lt;/code&gt;,
+        &lt;code&gt;filter&lt;/code&gt; y la familia de funciones de
+        &lt;em&gt;folding&lt;em&gt;.&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+                </code></pre>
+                <img src="images/02/Estilo3.png" style="width:90%; border:none" alt="Resultado de la página"/>
+            </section>
+            <section>
+                Creamos otro fichero <code>Hoja2.css</code> con otra hoja
+                de estilo:
+                <pre><code data-trim class="css" style="font-size:18px;line-height:20px">
+body {
+    font-family: sans-serif;
+    background-color: #FFF0F0;
+}
+
+h1 {
+    border-left: 5px solid #006000;
+    padding-left: 10px;
+    color:#006000;
+    background: #E0F0E0;
+}
+
+code {
+    
+    font-family: "Inconsolata", monospace;
+    color: #006000;
+    background: #E0E0E0;
+    padding-left:2px;
+    padding-right:2px;
+}
+                </code></pre>
+            </section>
+            <section>
+                <p>En la página anterior, cambiamos la declaración <code>&lt;link&gt;        
+                    </code> por la siguiente:</p>
+                <pre><code data-trim class="html">
+&lt;link rel=&quot;stylesheet&quot; href=&quot;Hoja2.css&quot;/&gt;
+                </code></pre>
+                <div class="fragment">
+                    <p>Resultado:</p>
+                    <img src="images/02/Estilo4.png" style="width:90%; border:none"/>
+                </div>
+            </section>
+    
+            <section>
+                <h2>Algunos elementos html</h2>
+                <ul>
+                    <li>Hipervínculos: <code>&lt;a&gt;</code></li>
+                    <li>Citas: <code>&lt;q&gt;</code>, <code>&lt;blockquote&gt;</code></li>
+                    <li>Saltos de línea: <code>&lt;br&gt;</code></li>
+                    <li>Listas: <code>&lt;ol&gt;</code>, <code>&lt;ul&gt;</code>, ...</li>
+                    <li>Preformateado: <code>&lt;pre&gt;</code></li>
+                    <li>Imágenes: <code>&lt;img&gt;</code></li>
+                    <li>Tablas: <code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code>, <code>&lt;td&gt;</code>, ...</li>
+                </ul>
+            </section>
+    
+            <section>
+                <h3>Hipervínculo</h3>
+                <p>Mediante la etiqueta <code>&lt;a&gt;</code> podemos especificar enlaces a otras
+                páginas o recursos.</p>
+                <pre><code class="html">&lt;a href="enlace"&gt;...&lt;/a&gt;</code></pre>
+                <p>Al hacer clic en el texto delimitado por la etiqueta <code>&lt;a&gt;</code>, el
+                navegador cargará la página indicada por el atributo <code>href</code>.</p>
+            </section>
+    
+            <section>
+                <h4>Ejemplo</h4>
+                <p>En el fichero <code>Enlace1.html</code>:</p>
+                <pre><code data-trim class="html">
+&lt;p&gt;Pulsa en &lt;a href=&quot;Enlace2.html&quot;&gt;este enlace&lt;/a&gt; para acceder
+a la p&aacute;gina n&uacute;mero dos.&lt;/p&gt;
+                </code></pre>
+                <p><img src="images/02/Enlace1.png" style="height:80%;border:none"/></p>
+                <p>En el fichero <code>Enlace2.html</code>:</p>
+                <pre><code data-trim class="html">
+&lt;p&gt;Est&aacute;s en la p&aacute;gina dos.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;Enlace1.html&quot;&gt;Volver a la p&aacute;gina uno.&lt;/a&gt;&lt;/p&gt;                
+                </code></pre>
+                <p><img src="images/02/Enlace2.png" style="height:80%;border:none"/></p>
+            </section>
+            <section>
+                <h3>Enlaces relativos y absolutos</h3>
+                <pre><code data-trim class="html">
+&lt;a href=&quot;Enlace2.html&quot;&gt;...&lt;/a&gt;
+                </code></pre>
+                <p>Se carga la página <code>Enlace2.html</code> contenida en el mismo
+                directorio que la página que contiene el enlace <code>&lt;a&gt;</code>.</p>
+                <p>
+                    <img src="svgs/Folders1.svg" style="width:30%;border:none;box-shadow:none"/>
+                </p>
+                <p>Se trata de un enlace <strong>relativo</strong></p>
+            </section>
+    
+            <section>
+                <div style="float:left;width:40%">
+                    <img src="svgs/Folders2.svg" style="width:60%;border:none;box-shadow:none"/>
+                </div>
+                <div style="float:right;width:60%">
+                    <p>Si tuviésemos el fichero <code>Enlace2.html</code> dentro de una
+                    carpeta <code>pag2</code> tendríamos el siguiente enlace:</p>
+                    <pre><code data-trim class="html">
+&lt;a href=&quot;pag2/Enlace2.html&quot;&gt;...&lt;/a&gt;
+                    </code></pre>
+                    <p>Si queremos enlazar desde <code>Enlace2.html</code> a
+                        <code>Enlace1.html</code>, tendremos:</p>
+                    <pre><code data-trim class="html">
+&lt;a href=&quot;../Enlace1.html&quot;&gt;...&lt;/a&gt;
+                    </code></pre>
+                </div>
+                <div style="clear:both"/>
+            </section>
+            <section>
+                <p>Los enlaces que comiezan por <code>/</code> son relativos al dominio a través
+                    del cual se accede a la página.</p>
+                <p>Por ejemplo, si en <code>http://www.foo.org/bar/pag1.html</code> tenemos
+                    el siguiente enlace:</p>
+                <pre><code data-trim class="html">
+&lt;a href=&quot;/index.html&quot;&gt;...&lt;/a&gt;
+                </code></pre>
+                <p>Se enlace a la URL <code>http://www.foo.org/index.html</code></p>
+                <p>Si se accede a una página almacenada en el sistema de ficheros el
+                    enlace será relativo al directorio raíz.</p>
+            </section>
+    
+            <section>
+                <p>Los enlaces <strong>absolutos</strong> contienen una URL completa:</p>
+                <pre><code data-trim class="html">
+&lt;a href=&quot;http://www.ucm.es&quot;&gt;Página de la UCM&lt;/a&gt;
+                </code></pre>
+                <div class="fragment">
+                    <p>¿Qué ocurre con el siguiente enlace?</p>
+                    <pre><code data-trim class="html">
+&lt;a href=&quot;www.ucm.es&quot;&gt;Página de la UCM&lt;/a&gt;
+                    </code></pre>
+                </div>
+                <p class="fragment">Para que un enlace sea absoluto se ha de incluir la
+                URL, incluyendo el protocolo <code>http://</code>, <code>https://</code>, etc. </p>
+            </section>
+    
+            <section>
+                <h3>Identificadores</h3>
+                <p>Es posible asociar un identificador a cualquier elemento de un documento HTML.</p>
+                <p>Para ello se utiliza el atributo <code>id</code>.</p>
+                <pre><code data-trim class="html">
+&lt;h1 id="sec1"&gt;Sección 1&lt;/h1&gt;
+                </code></pre>
+                <div class="fragment">
+                    <p>El identificador permite hacer referencia al elemento:</p>
+                    <ul>
+                        <li>Desde un hipervínculo.</li>
+                        <li>Desde una regla CSS.</li>
+                        <li>Desde código Javascript.</li>
+                        <li>...</li>
+                    </ul>
+                </div>
+            </section>
+            <section>
+                <p>Referenciar a un elemento de la página actual desde un hipervínculo: <code>#id</code></p>
+                <pre><code data-trim class="html">
+&lt;a href="#sec1"&gt;Ir a la sección 1&lt;/a&gt;
+                </code></pre>
+                <p>Al hacer clic en el enlace, el navegador saltará al elemento que tiene <code>sec1</code> como
+                identificador.</p>
+                <div class="fragment">
+                    <p>Para hacer referencia a un elemento contenido en otra página:</p>
+                    <pre><code data-trim class="html">
+&lt;a href="pagina2.html#sec21"&gt;Ir a la sección de otra página&lt;/a&gt;
+                    </code></pre>
+                </div>
+                <p class="fragment">Ejemplo: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html">Java API</a></p>
+            </section>
+            <section>
+                <h3>Citas</h3>
+                <p>El elemento <code>&lt;q&gt;</code> se utiliza para introducir citas textuales:</p>
+                <pre><code data-trim class="html">
+&lt;p&gt;Como dijo Javier Leach: &lt;q&gt;Esto es tan sencillo que
+en vez de tautolog&iacute;a es tontolog&iacute;a&lt;/q&gt;.&lt;/p&gt;
+                </code></pre>
+                <img src="images/02/Cita1.png" style="width:70%;border:none"/>
+            </section>
+            <section>
+                <p>Si la cita es grande, <code>&lt;blockquote&gt;</code> inserta la cita en su propio
+                párrafo:</p>
+                <pre><code data-trim class="html">
+&lt;p&gt;Lo siguiente es una cita de Richard Stallman:&lt;/p&gt;
+&lt;blockquote&gt;
+We need to encourage the spirit of cooperation, by respecting
+other people's freedom to cooperate and not advancing schemes
+to divide and dominate them. 
+&lt;/blockquote&gt;
+                </code></pre>
+                <img src="images/02/Cita2.png" style="width:70%;border:none"/>
+            </section>
+            <section>
+                <h3>Saltos de línea</h3>
+                <p>El elemento <code>&lt;br&gt;</code> introduce un salto de línea en el texto.</p>
+                <pre><code data-trim class="html">
+&lt;blockquote&gt;
+Volver&aacute;n las oscuras golondrinas&lt;br&gt;
+en tu balc&oacute;n sus nidos a colgar,&lt;br&gt;
+y otra vez con el ala a sus cristales&lt;br&gt;
+jugando llamar&aacute;n.
+&lt;/blockquote&gt;
+                </code></pre>                
+                <img src="images/02/Cita3.png" class="fragment" style="width:65%;border:none"/>
+                <p class="fragment">El elemento <code>&lt;br&gt;</code> no tiene etiqueta de cierre.</p>
+            </section>
+            <section>
+                <h3>Listas</h3>
+                <p>Se expresan mediante la etiqueta <code>&lt;ol&gt;</code>. Cada elemento de la
+                    lista va delimitado por la etiqueta <code>&lt;li&gt;</code>.</p>
+                <pre><code data-trim class="html">
+&lt;p&gt;Modo de preparaci&oacute;n:&lt;/p&gt;
+&lt;ol&gt;
+    &lt;li&gt;Lava y escurre los tomates, el pepino y el pimiento.&lt;/li&gt;
+    &lt;li&gt;Introduce en la batidora el pan y los tomates
+        cortados.&lt;/li&gt;
+    &lt;li&gt;Quita las semillas al pimiento y ponlo con los
+        tomates.&lt;/li&gt;
+    &lt;li&gt;A&ntilde;adir el ajo picado y la cebolla pelada.&lt;/li&gt;
+    &lt;li&gt;Corta el pepino en cuatro o cinco trozos y a&ntilde;adir
+        a la batidora.&lt;/li&gt;
+    &lt;li&gt;Batir todo.&lt;/li&gt;
+    &lt;li&gt;A&ntilde;adir la sal, el aceite y vinagre y volver a batir.&lt;/li&gt;
+&lt;/ol&gt;
+                </code></pre>                
+            </section>
+            <section>
+                <p>Resultado:</p>
+                <img src="images/02/Listas1.png" style="width:70%;border:none"/>
+            </section>
+    
+            <section>
+                <p>El elemento <code>&lt;ol&gt;</code> sirve para representar listas no numeradas.</p>
+                <pre><code data-trim class="html">
+&lt;p&gt;Ingredientes:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;1 kilo de tomates.&lt;/li&gt;
+    &lt;li&gt;1 pimiento verde.&lt;/li&gt;
+    &lt;li&gt;Medio pepino.&lt;/li&gt;
+    &lt;li&gt;1 rebanada de pan.&lt;/li&gt;
+    &lt;li&gt;3 cucharadas de aceite de oliva.&lt;/li&gt;
+    &lt;li&gt;Media cebolla.&lt;/li&gt;
+    &lt;li&gt;Sal y vinagre&lt;/li&gt;
+&lt;/ul&gt;
+                </code></pre>          
+                <img src="images/02/Listas2.png" class="fragment" style="width:45%;border:none">
+            </section>
+    
+            <section>
+                <p>Las listas se pueden anidar:</p>
+                <pre><code data-trim class="html">
+&lt;ul&gt;
+    &lt;li&gt;1 kilo de tomates.
+        &lt;ul&gt;
+            &lt;li&gt;Comprados en el mercado, o bien&lt;/li&gt;
+            &lt;li&gt;Comprados en el s&uacute;per&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    ...
+&lt;/ul&gt;
+                </code></pre> 
+                <img src="images/02/Listas3.png" class="fragment" style="width:65%;border:none"/>
+            </section>
+    
+            <section>
+                <p>También pueden expresarse listas con definiciones, a modo de glosario.</p>
+                <ul>
+                    <li><code>&lt;dl&gt;</code> para listas de definiciones.</li>
+                    <li><code>&lt;dt&gt;</code> para términos.</li>
+                    <li><code>&lt;dd&gt;</code> para definiciones.</li>
+                </ul>
+                <p>Cada elemento <code>&lt;dt&gt;</code> va seguido por un elemento <code>&lt;dd&gt;</code>.</p>
+            </section>
+            <section>
+                <pre><code data-trim class="html">
+&lt;dl&gt;
+    &lt;dt&gt;Homomorfismo&lt;/dt&gt;
+    &lt;dd&gt;
+        Aplicaci&oacute;n entre dos espacios vectoriales que preserva la
+        estructura de la suma y producto por escalar.
+    &lt;/dd&gt;
+    &lt;dt&gt;Monomorfismo&lt;/dt&gt;
+    &lt;dd&gt;
+        Homomorfismo inyectivo entre dos espacios vectoriales.
+    &lt;/dd&gt;
+    &lt;dt&gt;Isomorfismo&lt;/dt&gt;
+    &lt;dd&gt;
+        Homomorfismo biyectivo entre dos espacios vectoriales
+    &lt;/dd&gt;
+&lt;/dl&gt;
+                </code></pre>
+                <img src="images/02/Listas4.png" style="width:70%;border:none" class="fragment"/>
+            </section>
+            <section>
+                <h3>Texto preformateado</h3>
+                <p>La etiqueta <code>&lt;pre&gt;</code> permite introducir fragmentos de texto sin formato.</p>
+                <pre><code data-trim class="html">
+&lt;pre&gt;
+Esto es un texto preformateado. Se respetan
+totalmente los
+saltos de línea    y los espacios    múltiples
+
+Aquí otro párrafo.
+&lt;/pre&gt;
+                </code></pre>
+                <img src="images/02/Preformat.png" style="width:70%;border:none" class="fragment"/>
+            </section>
+            <section>
+                <h3>Imágenes</h3>
+                <p>Se insertan mediante el elemento <code>&lt;img&gt;</code></p>
+                <pre><code data-trim class="html">
+&lt;p&gt;Foto de M&uuml;nster tomada en septiembre de 2014:&lt;/p&gt;
+&lt;img src=&quot;Munster.jpg&quot;&gt;
+                </code></pre>
+                <img src="images/02/Imagen1.png" style="width:30%"/>
+                <p>Las consideraciones sobre paths absolutos y relativos también se aplican
+                al atributo <code>src</code>.</p>
+            </section>
+    
+            <section>
+                <p>Es conveniente incluir el atributo <code>alt</code> con una breve
+                descripción de la imagen para personas invidentes, con problemas de visión,
+                dispositivos con conexión lenta, etc.</p>
+                <pre><code data-trim class="html">
+&lt;img src=&quot;Munster.jpg&quot alt=&quot;Foto de la calle del ayuntamiento&quot;&gt;
+                </code></pre>
+                <div class="fragment">
+                    <p>Es posible incluir imágenes dentro de enlaces:</p>
+                <pre><code data-trim class="html">
+&lt;a href=&quot;http://www.muenster.de&quot;&gt;                
+  &lt;img src=&quot;Munster.jpg&quot alt=&quot;Foto de la calle del ayuntamiento&quot;&gt;
+&lt;/a&gt;                
+                </code></pre>
+                <p>El navegador saltará al enlace al hacer clic en la imagen.</p>
+                    
+                </div>
             </section>
         </div>
     </div>
