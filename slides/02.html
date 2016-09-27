@@ -552,8 +552,25 @@ a la p&aacute;gina n&uacute;mero dos.&lt;/p&gt;
 &lt;a href="pagina2.html#sec21"&gt;Ir a la sección de otra página&lt;/a&gt;
                     </code></pre>
                 </div>
-                <p class="fragment">Ejemplo: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html">Java API</a></p>
+                <p class="fragment">Ejemplo: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html">Documentación de la API de Java</a></p>
             </section>
+            
+            <section>
+                <h4>Otros tipos de URL</h4>
+                <ul>
+                    <li><code>mailto</code>: Para direcciones de correo electrónico.
+                    <pre><code data-trim class="html">
+&lt;a href="mailto:mmontene@ucm.es"&gt;Más información&lt;/a&gt;
+                    </code></pre>
+                    </li>
+                    <li><code>tel</code>: Para número de teléfonos (navegadores móviles).
+                    <pre><code data-trim class="html">
+&lt;a href="tel:+34987654132"&gt;Llamar&lt;/a&gt;
+                    </code></pre>
+                    </li>
+                </ul>
+            </section>
+    
             <section>
                 <h3>Citas</h3>
                 <p>El elemento <code>&lt;q&gt;</code> se utiliza para introducir citas textuales:</p>
@@ -649,6 +666,37 @@ jugando llamar&aacute;n.
             </section>
     
             <section>
+                <h4>Estilo de listas</h4>
+                <p>Mediante el atributo CSS <code>list-style-type</code> podemos indicar el
+                    tipo de viñetas o numeración.</p>
+                <div style="float:left;width:60%">
+                    <pre><code data-trim class="css">
+ul {
+    list-style-type: square;
+}                    
+                    </code></pre>
+                </div>
+                <div style="float:right;width:40%">
+                    <img src="images/02/Listas5.png" style="border:none"/>
+                </div>
+                <div style="clear:both"/>
+
+                <div style="float:left;width:60%">
+                    <pre><code data-trim class="css">
+ul {
+    list-style-type: lower-roman;
+}                    
+                    </code></pre>
+                </div>
+                <div style="float:right;width:40%">
+                    <img src="images/02/Listas6.png" style="border:none"/>
+                </div>
+                <div style="clear:both"/>
+                
+                <p>Ver: <a href="http://www.w3schools.com/cssref/pr_list-style-type.asp">Tipos disponibles</a></p>
+            </section>
+    
+            <section>
                 <p>También pueden expresarse listas con definiciones, a modo de glosario.</p>
                 <ul>
                     <li><code>&lt;dl&gt;</code> para listas de definiciones.</li>
@@ -718,10 +766,443 @@ Aquí otro párrafo.
 &lt;/a&gt;                
                 </code></pre>
                 <p>El navegador saltará al enlace al hacer clic en la imagen.</p>
-                    
                 </div>
             </section>
+    
+            <section>
+                <p>Se puede ajustar la anchura y altura de la imagen en la página mediante los
+                atributos CSS <code>width</code> y <code>height</code>.</p>
+                <pre><code data-trim class="html">
+&lt;a href=&quot;http://www.muenster.de&quot;&gt;                
+  &lt;img src=&quot;Munster.jpg&quot alt=&quot;Foto de la calle del ayuntamiento&quot;
+       style="width: 640; height: 420"&gt;
+&lt;/a&gt;                
+                </code></pre>
+                <p class="fragment">Más información: <a href="">CSS en línea</a></p>
+            </section>
+
+            <section>
+                <h3>Tablas</h3>
+                <p>Sirven para representar datos en forma tabular.</p>
+                    <p>Las tablas se delimitan con la etiqueta <code>&lt;table&gt;</code>, que 
+                a su vez contiene:</p>
+                    <ul>
+                        <li><code>&lt;caption&gt;</code>, para el título de la tabla.</li>
+                        <li><code>&lt;tr&gt;</code>, para delimitar filas.</li>
+                        <li><code>&lt;th&gt;</code>, para delimitar encabezados.</li>
+                        <li><code>&lt;td&gt;</code>, para delimitar celdas.</li>
+                    </ul>
+                <p style="background:rgb(255,230,230)" class="fragment">Las tablas <strong>no</strong> deben utilizarse para maquetar una página.</p>
+            </section>
+
+    
+            <section>
+                <h4>Estructura de una tabla</h4>
+                <div style="text-align:left">
+                    <code class="black">&lt;table&gt;</code><br>
+                    <table id="lecctabla">
+                        <caption><code class="black">&lt;caption&gt;...&lt;/caption&gt;</code></caption>
+                        <tr>
+                            <th class="noborder"><code class="black">&lt;tr&gt;</code></th>
+                            <th><code class="black">&lt;th&gt;</code>...<code class="black">&lt;/th&gt;</code></th>
+                            <th><code class="black">&lt;th&gt;</code>...<code class="black">&lt;/th&gt;</code></th>
+                            <th><code class="black">&lt;th&gt;</code>...<code class="black">&lt;/th&gt;</code></th>
+                            <th class="noborder"><code class="black">&lt;/tr&gt;</code></th>
+                        </tr>
+                        <tr>
+                            <td class="noborder"><code class="black">&lt;tr&gt;</code></td>
+                            <td><code class="black">&lt;td&gt;</code>...<code class="black">&lt;/td&gt;</code></td>
+                            <td><code class="black">&lt;td&gt;</code>...<code class="black">&lt;/td&gt;</code></td>
+                            <td><code class="black">&lt;td&gt;</code>...<code class="black">&lt;/td&gt;</code></td>
+                            <td class="noborder"><code class="black">&lt;/tr&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td class="noborder"><code class="black">&lt;tr&gt;</code></td>
+                            <td><code class="black">&lt;td&gt;</code>...<code class="black">&lt;/td&gt;</code></td>
+                            <td><code class="black">&lt;td&gt;</code>...<code class="black">&lt;/td&gt;</code></td>
+                            <td><code class="black">&lt;td&gt;</code>...<code class="black">&lt;/td&gt;</code></td>
+                            <td class="noborder"><code class="black">&lt;/tr&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td class="noborder"><code class="black">&lt;tr&gt;</code></td>
+                            <td><code class="black">&lt;td&gt;</code>...<code class="black">&lt;/td&gt;</code></td>
+                            <td><code class="black">&lt;td&gt;</code>...<code class="black">&lt;/td&gt;</code></td>
+                            <td><code class="black">&lt;td&gt;</code>...<code class="black">&lt;/td&gt;</code></td>
+                            <td class="noborder"><code class="black">&lt;/tr&gt;</code></td>
+                        </tr>
+                    </table><br/>
+                    <code class="black">&lt;/table&gt;</code>
+                </div>
+                <p>El título (<code>&lt;caption&gt;</code>) es opcional.</p>
+            </section>
+    
+            <section>
+                <h4>Ejemplo</h4>
+                <pre><code data-trim class="html" style="">
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;&lt;/th&gt;
+        &lt;th&gt;Exp. 1&lt;/th&gt;
+        &lt;th&gt;Exp. 2&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Temperatura&lt;/td&gt;
+        &lt;td&gt;280.5 K&lt;/td&gt;
+        &lt;td&gt;310.4 K&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Presi&oacute;n&lt;/td&gt;
+        &lt;td&gt;1.52 atm&lt;/td&gt;
+        &lt;td&gt;1.58 atm&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+                </code></pre>
+                <img src="images/02/Tabla1.png" style="width:40%;border:none" class="fragment">
+            </section>
+    
+            <section>
+                <h4>Estilo de tablas</h4>
+                <p>Mediante CSS podemos dar estilo al título, encabezados, celdas y bordes de la tabla.</p>
+                <pre><code data-trim data-noescape class="css">
+td, th {
+    border: 2px solid black; <span class="arrow_box_left caja_codigo fragment" style="left:50px">Borde alrededor de cada celda</span>
+}
+
+th {
+    background: gray; <span class="arrow_box_left caja_codigo fragment" style="left:140px">Color de las celdas cabecera</span>
+    color: white;
+}
+                </code></pre>
+            <p><img src="images/02/Tabla2.png" style="border:none;width:40%" class="fragment"/></p>
+            </section>
+    
+            <section>
+                <p style="float:left;width:60%">Por defecto, cada celda tiene un borde totalmente separado de las celdas colindantes.</p>
+                <p style="float:right;width:40%"><img src="images/02/Tabla2.png" style="border:none;width:100%"/></p>
+                <div style="clear:both"/>
+                <p>Podemos fusionar todos los bordes mediante la propiedad <code>border-collapse</code>:</p>
+                <div style="float:left;width:60%;position:relative;top:20px" class="fragment">
+                    <pre><code data-trim data-noescape class="css">
+table {
+    border-collapse: collapse;
+}
+
+                    </code></pre>
+                </div>
+                <p style="float:right;width:40%"  class="fragment"><img src="images/02/Tabla3.png" style="border:none;width:100%"/></p>
+                <div style="clear:both"/>
+            </section>
+    
+            <section>
+                <h2>CSS a fondo</h2>
+                <p>La estructura básica de un fichero CSS es la siguiente:</p>
+                <pre><code data-trim data-noescape class="css">
+selector1 { <span class="arrow_box_left caja_codigo" style="left:240px; top:40px">Regla 1</span>
+    propiedad_1: valor_1;
+    propiedad_2: valor_2;
+    ...
+}
+
+selector2 { <span class="arrow_box_left caja_codigo" style="left:240px; top:40px">Regla 2</span>
+    propiedad_3: valor_3;
+    propiedad_4: valor_4;
+    ...
+}
+
+...
+                </code></pre>
+            </section>
+    
+            <section>
+                <p>Cada regla CSS contiene:</p>
+                <ul>
+                    <li>Un <strong>selector</strong>, que determina los elementos a los que afecta
+                    el estilo definido.</li>
+                    <li>Una lista de <strong>propiedades</strong> y <strong>valores</strong>, que definen
+                    el estilo propiamente dicho.</li>
+                </ul>
+                
+                <div class="fragment">
+                    <p>Si un mismo conjunto de propiedades/valores se aplican a selectores distintos, pueden
+                fusionarse en una única regla:</p>
+                <pre><code data-trim data-noescape class="css">
+selector1, selector2, ... { 
+    propiedad_1: valor_1;
+    propiedad_2: valor_2;
+    ...
+}
+                </code></pre>
+                </div>
+            </section>
+            <section>
+                <h3>Selectores CSS</h3>
+                <p>Ya conocemos el selector más sencillo: un nombre de etiqueta</p>
+                <pre><code data-trim data-noescape class="css">
+p {
+    color:blue;
+}
+                </code></pre>
+                <p>Esta regla se aplica a todos los elementos <code>&lt;p&gt;</code>
+                del documento HTML.</p>
+            </section>
+    
+            <section>
+                <h4>Clases</h4>
+                <p>Es posible asignar uno o varios <string>nombres de clase</string> a cualquier elemento del documento
+                    HTML. Esto se consigue mediante el atributo <code>class</code>.</p>
+                <pre><code data-trim data-noescape class="html">
+&lt;a href="pag.html" class="rojo"&gt;Enlace&lt;/a&gt;
+                </code></pre>
+                <pre><code data-trim data-noescape class="html">
+&lt;strong class="rojo resaltado"&gt;ATENCIÓN&lt;/a&gt;
+                </code></pre>
+                <p>Las clases se utilizan para asignar un mismo estilo a distintos elementos:</p>
+                <pre><code data-trim data-noescape class="css">
+.rojo {  <span class="arrow_box_left caja_codigo fragment" style="left:240px">Afecta a todos los elementos con la clase <span style="font-family:monospace">rojo</span></span>
+    color: red;
+}
+
+.resaltado { <span class="arrow_box_left caja_codigo fragment" style="left:150px; top:-5px">Afecta a todos los elementos con la clase <span style="font-family:monospace">resaltado</span></span>
+    text-decoration: underline;
+    background: gray;
+}
+                </code></pre>
+            </section>
+    
+            <section>
+                <div>
+                    <pre><code data-trim data-noescape class="css">
+.rojo { ... }                
+                    </code></pre>
+                    <p>Afecta a todos los elementos de la clase <code>rojo</code>.</p>
+                </div>
+                <div class="fragment">
+                    <pre><code data-trim data-noescape class="css">
+p.rojo { ... }                
+                    </code></pre>
+                    <p>Afecta a todos los elementos <code>&lt;p&gt;</code> de la clase <code>rojo</code>.</p>
+                </div>
+                <div class="fragment">
+                    <pre><code data-trim data-noescape class="css">
+#ident { ... }
+                    </code></pre>
+                    <p>Afecta al elemento con identificador <code>ident</code>.</p>
+                    <p>Por ejemplo: <code>&lt;p id="ident"&gt;...&lt;/p&gt;</code></p>
+                </div>
+            </section>
+    
+            <section>
+                <h4>Clases vs. identificadores</h4>
+                <ul>
+                    <li>Un identificador es <strong>único</strong> en todo el documento HTML.<br>
+                        No deben existir dos elementos con el mismo identificador.</li>
+                    <li>Sin embargo, pueden existir dos elementos con la misma clase.<br>
+                        Las clases se utilizan para asignar un mismo estilo a distintos
+                    elementos de la página web.</li>
+                </ul>
+            </section>
+            <section>
+                <div>
+                    <pre><code data-trim data-noescape class="css">
+* { ... }
+                    </code></pre>
+                    <p>Afecta a todos los elementos.</p>
+                </div>
+                <div class="fragment">
+                    <pre><code data-trim data-noescape class="css">
+p.miclase a { ... }
+                    </code></pre>
+                    <p>Afecta a todos los enlaces (<code>&lt;a&gt;</code>) contenidos en un párrafo (<code>&lt;p&gt;</code>) de clase <code>miclase</code>, ya sea directa o indirectamente a través de otro elemento.
+                    </p>
+                </div>
+                <div class="fragment">
+                    <pre><code data-trim data-noescape class="css">
+p.miclase &gt; a { ... }
+                    </code></pre>
+                    <p>Afecta a todos los enlaces (<code>&lt;a&gt;</code>) contenidos <em>directamente</em> en un párrafo (<code>&lt;p&gt;</code>) de clase <code>miclase</code>.
+                    </p>
+                </div>
+                <div  class="fragment">
+                    <pre><code data-trim data-noescape class="css">
+table + p { ... }
+                    </code></pre>
+                    <p>Afecta a todos los párrafos (<code>&lt;p&gt;</code>) situados <em>a continuación</em>
+                    de una tabla (<code>&lt;table&gt;</code>).</code>
+                    </p>
+                </div>
+            </section>
+    
+            <section>
+                <div>
+                    <pre><code data-trim data-noescape class="css">
+img[src="icono.png"] { ... ]
+                    </code></pre>
+                    <p>Elementos <code>&lt;img&gt;</code> que tengan un atributo <code>src</code>
+                        que contenga el valor <code>icono.png</code>.
+                    </p>
+                </div>
+                <div class="fragment">
+                    <pre><code data-trim data-noescape class="css">
+a[href^="https"] { ... }
+                    </code></pre>
+                    <p>Enlaces cuyo atributo <code>href</code> comience por <code>https</code>.
+                    </p>
+                </div>
+                <div class="fragment">
+                    <pre><code data-trim data-noescape class="css">
+a[href$=".php"] { ... }
+                    </code></pre>
+                    <p>Enlaces cuyo atributo <code>href</code> termine por <code>php</code>.
+                    </p>
+                </div>
+                <div class="fragment">
+                    <pre><code data-trim data-noescape class="css">
+a[href*="server"] { ... }   /* Cadena */
+a[href~="server"] { ... }   /* Palabra */
+                    </code></pre>
+                    <p>Enlaces cuyo atributo <code>href</code> contenga la cadena (resp. palabra) <code>server</code>.
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <h4>Pseudoclases</h4>
+                <div>
+                    <pre><code data-trim data-noescape class="css">
+h1:hover { ... }
+                    </code></pre>
+                    <p>Se aplica un encabezado (<code>&lt;h1&gt;</code>) si el ratón está situado sobre él.
+                    </p>
+                </div>
+                <div class="fragment">
+                    <pre><code data-trim data-noescape class="css">
+a:active { ... }
+a:link { ... }
+a:visited { ... }
+                    </code></pre>
+                    <p>Enlaces <em>activos</em> (se ha pulsado sobre ellos), sin visitar y visitados.
+                    </p>
+                </div>
+                <div class="fragment">
+                    <pre><code data-trim data-noescape class="css">
+table > tr:nth-child(even) { ... }
+table > tr:nth-child(odd) { ... }
+                    </code></pre>
+                    <p>
+                        Filas pares (resp. impares) contenidas directamente en un elemento <code>&lt;table&gt;</code>.
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <h4>Pseudoelementos</h4>
+                <div>
+                    <pre><code data-trim data-noescape class="css">
+h1.nuevo::after { 
+    content: " [Nuevo]";
+}
+                    </code></pre>
+                    <p>Inserta la cadena <code>" [Nuevo]"</code> después de todos
+                        los encabezados <code>&lt;h1&gt;</code> que tengan la clase
+                        <code>nuevo</code>.
+                    </p>
+                </div>
+                <div>
+                    <pre><code data-trim data-noescape class="css">
+a[href$=".pdf"]::before { 
+    content: img(icono_documento.png);
+}
+                    </code></pre>
+                    <p>Inserta una imagen antes de los enlaces que hagan referencia
+                        a un fichero <code>.pdf</code>.
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <h4>Más información</h4>
+                <ul>
+                    <li><a href="http://www.w3schools.com/cssref/css_selectors.asp">CSS Selectors reference</a><br>
+                    http://www.w3schools.com/cssref/css_selectors.asp</li>
+                    <li><a href="http://www.w3schools.com/cssref/trysel.asp">Try CSS selector</a><br>http://www.w3schools.com/cssref/trysel.asp</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Atributos de color</h3>
+                <ul>
+                    <li><code>color</code>: Color del elemento (texto, borde, etc.).</li>
+                    <li><code>background-color</code>: Color de fondo.
+                </ul>
+                <pre><code data-trim class="css">
+a {
+    color: green;
+    background-color: yellow;
+}
+                </code></pre>
+                <img src="images/02/Colors.png" class="fragment" style="width:30%;border:0"/>
+            </section>
+
+            <section>
+                <h4>Especificar colores</h4>
+                <ul>
+                    <li>Colores predefinidos <a href="http://www.w3schools.com/colors/colors_names.asp">[+]</a><br>
+                        <code>black</code>, <code>red</code>, <code>DarkViolet</code>, etc.
+                    </li>
+                    <li class="fragment" style="margin-top:1em">
+                        Notación hexadecimal: <code>#RRVVAA</code>.
+                        <ul>
+                            <li><code>RR</code> componente rojo (00..FF)</li>
+                            <li><code>VV</code> componente verde (00..FF)</li>
+                            <li><code>AA</code> componente azul (00..FF)</li>
+                        </ul>
+                        Números hexadecimales de dos cifras. Su
+                        mezcla determina el color resultante.<br>
+                        Ejemplos: <span style="color:#FF0000">#FF0000</span>,
+                        <span style="color:#00FF00">#00FF00</span>,
+                        <span style="color:#0000FF">#0000FF</span>,
+                        <span style="color:#4E6000">#2E6000</span>,
+                        <span style="color:#606060">#606060</span>,
+                        <span style="color:#FF4100">#FF4100</span>, etc.
+                    </li>
+                    
+                </ul>
+            </section>
+            <section>
+                <ul>
+                    <li>
+                        Notación decimal: <code>rgb(r, v, a)</code><br>
+                        Donde <code>r</code>, <code>v</code> y <code>a</code>
+                        son números entre 0 y 255, o porcentajes entre 0% y 100%.<br/>
+                        
+                        Ejemplos: <span style="color:rgb(0, 250, 120)">rgb(0, 250, 120)</span>,
+                        <span style="color:rgb(200, 100, 0)">rgb(50, 100, 0)</span>,
+                        <span style="color:rgb(50%, 50%, 50%)">color:rgb(50%, 50%, 50%)</span>, etc.
+                    </li>
+                    <li class="fragment" style="margin-top:1em">
+                        Notación decimal con transparencia: <code>rgba(r, v, a, t)</code><br>
+                        La componente <code>t</code> indica la transparencia, desde 0
+                        (transparente) a 1 (completamente opaco).
+                        <br>
+                        Ejemplo: <span style="color:rgba(0, 250, 120, 0.5)">rgba(0, 250, 120, 0.5)</span>.
+                    </li>
+                </ul>
+                <p class="fragment">Ver: <a href="http://www.w3schools.com/colors/colors_picker.asp">Color picker</a></p>
+            </section>
+
+            <section>
+                <h4>Ejemplo</h4>
+                <pre><code data-trim class="css">
+a {
+    color:  #00134d;
+    background-color: rgb(221, 204, 255);
+}
+                </code></pre>
+                <img src="images/02/Colors2.png" style="width:30%;border:0"/>
+            </section>
+
         </div>
+    
     </div>
 
 

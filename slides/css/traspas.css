@@ -65,10 +65,17 @@ td.http_code {
 }
 
 .no_arrow_box {
-	position: relative;
+    position: relative;
 	background: #410066;
   color:white;
   font-weight: bold;
+}
+
+.caja_codigo {
+  font-family:'Source Sans Pro', sans-serif !important;
+  font-weight:bold !important;
+  padding:2px 10px !important ;
+  border-radius:10px !important;
 }
 
 .ingles {
@@ -100,4 +107,47 @@ span.section {
 span.myname {
   color: white;
   font-weight: bold;
+}
+
+code.black {
+  color:black;
+}
+
+th code.black {
+  color:white;
+  font-weight: normal;
+}
+
+th.noborder code.black {
+  color:black;
+  font-weight: normal;
+}
+
+#lecctabla {
+    border-collapse: collapse;
+    font-size: 23pt;
+}
+
+
+#lecctabla td {
+    border: 2px solid black;
+    background: rgb(201, 255, 208);
+}
+
+#lecctabla td.noborder {
+    border: none;
+    background: white;
+}
+
+#lecctabla th {
+    border: 2px solid black;
+    background: rgb(0, 24, 70);
+    color: white;
+}
+
+#lecctabla th.noborder {
+    border: none;
+    color: black;
+    background: white;
+    font-weight: normal;
 }
