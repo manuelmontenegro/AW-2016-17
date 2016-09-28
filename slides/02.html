@@ -53,8 +53,7 @@
                     <br/> Esta obra está bajo una
                     <br/><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="color:white">Licencia CC BY-NC-SA 4.0 Internacional</a>.
                 </div>
-                <div style="clear:left;font-size:15px">
-                </div>
+                <div style="clear:left;font-size:15px"></div>
             </section>
             <section>
                 <h2>Introducción</h2>
@@ -179,7 +178,7 @@
                 <ul style="width:100%">
                     <li>
                         <p>Un encabezado (elemento <code class="html" style="text-transform:none">&lt;h1&gt;</code>)</p>
-                        <p><pre style="margin-left:0px"><code data-trim class="html">&lt;h1&gt;&iexcl;Bienvenido!&lt;/h1&gt;</code></pre></p>
+                        <pre style="margin-left:0px"><code data-trim class="html">&lt;h1&gt;&iexcl;Bienvenido!&lt;/h1&gt;</code></pre>
                         <iframe srcdoc="<h1>Bienvenido!</h1>" class="example" style="height:60px"></iframe>
                     </li>
                     <li>Un párrafo (elemento <code class="html" style="text-transform:none">&lt;p&gt;</code>)
@@ -492,7 +491,7 @@ a la p&aacute;gina n&uacute;mero dos.&lt;/p&gt;
 &lt;a href=&quot;../Enlace1.html&quot;&gt;...&lt;/a&gt;
                     </code></pre>
                 </div>
-                <div style="clear:both"/>
+                <div style="clear:both"></div>
             </section>
             <section>
                 <p>Los enlaces que comiezan por <code>/</code> son relativos al dominio a través
@@ -679,7 +678,7 @@ ul {
                 <div style="float:right;width:40%">
                     <img src="images/02/Listas5.png" style="border:none"/>
                 </div>
-                <div style="clear:both"/>
+                <div style="clear:both"></div>
 
                 <div style="float:left;width:60%">
                     <pre><code data-trim class="css">
@@ -691,7 +690,7 @@ ul {
                 <div style="float:right;width:40%">
                     <img src="images/02/Listas6.png" style="border:none"/>
                 </div>
-                <div style="clear:both"/>
+                <div style="clear:both"></div>
                 
                 <p>Ver: <a href="http://www.w3schools.com/cssref/pr_list-style-type.asp">Tipos disponibles</a></p>
             </section>
@@ -756,13 +755,13 @@ Aquí otro párrafo.
                 descripción de la imagen para personas invidentes, con problemas de visión,
                 dispositivos con conexión lenta, etc.</p>
                 <pre><code data-trim class="html">
-&lt;img src=&quot;Munster.jpg&quot alt=&quot;Foto de la calle del ayuntamiento&quot;&gt;
+&lt;img src=&quot;Munster.jpg&quot;alt=&quot;Foto de la calle del ayuntamiento&quot;&gt;
                 </code></pre>
                 <div class="fragment">
                     <p>Es posible incluir imágenes dentro de enlaces:</p>
                 <pre><code data-trim class="html">
 &lt;a href=&quot;http://www.muenster.de&quot;&gt;                
-  &lt;img src=&quot;Munster.jpg&quot alt=&quot;Foto de la calle del ayuntamiento&quot;&gt;
+  &lt;img src=&quot;Munster.jpg&quot;alt=&quot;Foto de la calle del ayuntamiento&quot;&gt;
 &lt;/a&gt;                
                 </code></pre>
                 <p>El navegador saltará al enlace al hacer clic en la imagen.</p>
@@ -774,7 +773,7 @@ Aquí otro párrafo.
                 atributos CSS <code>width</code> y <code>height</code>.</p>
                 <pre><code data-trim class="html">
 &lt;a href=&quot;http://www.muenster.de&quot;&gt;                
-  &lt;img src=&quot;Munster.jpg&quot alt=&quot;Foto de la calle del ayuntamiento&quot;
+  &lt;img src=&quot;Munster.jpg&quot;alt=&quot;Foto de la calle del ayuntamiento&quot;
        style="width: 640; height: 420"&gt;
 &lt;/a&gt;                
                 </code></pre>
@@ -879,7 +878,7 @@ th {
             <section>
                 <p style="float:left;width:60%">Por defecto, cada celda tiene un borde totalmente separado de las celdas colindantes.</p>
                 <p style="float:right;width:40%"><img src="images/02/Tabla2.png" style="border:none;width:100%"/></p>
-                <div style="clear:both"/>
+                <div style="clear:both"></div>
                 <p>Podemos fusionar todos los bordes mediante la propiedad <code>border-collapse</code>:</p>
                 <div style="float:left;width:60%;position:relative;top:20px" class="fragment">
                     <pre><code data-trim data-noescape class="css">
@@ -890,7 +889,7 @@ table {
                     </code></pre>
                 </div>
                 <p style="float:right;width:40%"  class="fragment"><img src="images/02/Tabla3.png" style="border:none;width:100%"/></p>
-                <div style="clear:both"/>
+                <div style="clear:both"></div>
             </section>
     
             <section>
@@ -1027,7 +1026,7 @@ p.miclase &gt; a { ... }
 table + p { ... }
                     </code></pre>
                     <p>Afecta a todos los párrafos (<code>&lt;p&gt;</code>) situados <em>a continuación</em>
-                    de una tabla (<code>&lt;table&gt;</code>).</code>
+                    de una tabla (<code>&lt;table&gt;</code>).
                     </p>
                 </div>
             </section>
@@ -1200,6 +1199,683 @@ a {
                 </code></pre>
                 <img src="images/02/Colors2.png" style="width:30%;border:0"/>
             </section>
+            <section>
+                <h3>Bordes</h3>
+                <div><pre><code data-trim data-noescape class="css">
+border-style: <span style="border:none">none</span> | <span style="border:solid; padding: 0px 10px;">solid</span> | <span style="border:dashed; padding: 0px 10px">dashed</span> | <span style="border:dotted; padding: 0px 10px">dotted</span> | ...
+                </code></pre>
+                <p>Indica el estilo de la línea del borde <a href="http://www.w3schools.com/cssreF/pr_border-style.asp">[+]</a>.</p></div>
+                <div class="fragment"><pre><code data-trim data-noescape class="css">
+border-color: <span style="border:solid #FF0000; padding: 0px 10px">#FF0000</span>
+                </code></pre>
+                <p>Indica el color de la línea del borde.</p></div>
+                <div class="fragment"><pre><code data-trim data-noescape class="css" style="line-height:2em">
+                
+border-width: <span style="border:solid white 1px; padding: 0px 10px">1px</span> | <span style="border:solid white 
+    3px; padding: 0px 10px">3px</span> | <span style="border:solid white 
+    0.5em; padding: 0px 10px">0.5em</span> | ... </code></pre>
+                <p>Indica la anchura de línea. Unidades de medida <a href="http://www.w3schools.com/cssref/css_units.asp">[+]</a>:</p>
+                <ul>
+                    <li>Absolutas: <code>3px</code>, <code>1cm</code>, <code>4mm</code>, <code>2in</code>, ...</li>
+                    <li>Relativas: <code>2em</code>, <code>50%</code>, ...</li>
+                </ul></div>
+            </section>
+
+            <section>
+                <p>Pueden agruparse en una única propiedad <code>border</code>:</p>
+                <pre><code data-trim data-noescape class="css">
+border: <span style="border:2px dashed cyan; padding: 0px 10px">2px dashed cyan</span>;
+                </code></pre>
+                <p>Es posible especificar el estilo de cada borde por separado:</p>
+                <pre><code data-trim data-noescape class="css">
+border-top: 1px solid white;
+border-bottom: 2px dashed black;
+border-left-style: dotted;
+border-bottom-color: #FF0000;
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>Modelo de cajas CSS</h3>
+                <p><img src="images/02/boxmodel.gif" style="width:40%;border:none"/><br>
+                    <span style="font-size:20px; position:relative; top:-30px">(Fuente: <a href="https://www.washington.edu/accesscomputing/webd2/student/unit3/module4/lesson1.html">University of Washington</a>)</span>
+                </p>
+                <ul>
+                    <li><strong>Margin</strong>: espacio del borde con respecto a los demás elementos.</li>                    
+                    <li><strong>Padding</strong>: espacio del contenido del elemento con respecto al borde.</li>                    
+                </ul>
+            </section>
+
+            <section>
+                <h4>Propiedades margin y padding</h4>
+                <pre><code data-trim class="css">
+margin: 2px;
+padding: 3px;
+                </code></pre>
+                <p>Espaciado a todos los lados del elemento.</p>
+                <pre><code data-trim class="css">
+margin: 0px 5px;
+                </code></pre>
+                <p>Espacio de <code>0px</code> en lados superior-inferior y <code>5px</code> en lados izquierdo-derecho.</p>
+                <pre><code data-trim class="css">
+padding: 0px 5px 1px 2px;
+                </code></pre>
+                <p><code>0px</code> en lado superior, <code>5px</code> en derecho, <code>1px</code> en lado inferior y
+                    <code>2px</code> en lado izquierdo.</p>
+            </section>
+
+            <section>
+                <p>Puede especificarse el <code>margin</code> y <code>padding</code> de cada lado individualmente:</p>
+                <pre><code data-trim class="css">
+margin-left: 10px;
+padding-top: 5px;
+margin-right: 1px;
+margin-bottom: 2em;
+                </code></pre>
+            </section>
+
+            <section>
+                <h4>Ejemplo</h4>
+                <pre><code data-trim class="html">
+&lt;p&gt;Esto es un p&aacute;rrafo normal.&lt;/p&gt;
+&lt;p class=&quot;importante&quot;&gt;
+    Esto es muy importante!
+&lt;/p&gt;    
+&lt;p&gt;Vuelta al p&aacute;rrafo normal.&lt;/p&gt;
+                </code></pre>
+                <pre><code data-trim class="css">
+p.importante {
+    background-color: rgb(255, 200, 200);
+    border: 1px dashed rgb(200, 0, 0);
+    border-left: 5px solid rgb(200, 0, 0);
+    margin-left: 20px;
+    padding: 10px 30px;
+    font-weight: bold;
+}
+                </code></pre>
+                <img src="images/02/Margins.png" style="border:none; width:60%">
+                
+            </section>
+
+            <section>
+                <h3>Atributos del texto</h3>
+                <pre><code data-trim class="css">
+font-family: tipo_de_letra1, tipo_de_letra2, ...                
+                </code></pre>
+                <p>Especifica el tipo de letra. Se comprobará la disponibilidad de las fuentes en el orden especificado. Se usará la primera fuente que esté disponible.</p>
+                <p>Cada tipo de letra especificado puede ser:</p>
+                <ul>
+                    <li>Un nombre <strong>específico</strong>:<br>
+                        <code>Times New Roman</code>, <code>Georgia</code>, <code>Open Sans</code>, etc.
+                    </li>
+                    <li>Una familia <strong>genérica</strong>:<br>
+                        <code>serif</code>, <code>sans-serif</code>, <code>monospace</code>, <code>fantasy</code>, etc.
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <p>Es muy recomendable que el último tipo de letra especificado en la lista <code>font-family</code>
+                sea genérico.</p>
+                <pre><code data-trim class="css">
+font-family: "Open Sans", "Verdana", sans-serif;
+                </code></pre>
+            </section>
+
+            <section>
+                <h4>Incluir fuentes nuevas en el CSS</h4>
+                <p>Si disponemos de los ficheros de fuente, podemos definirlos en el CSS para que el navegador utilice dichos ficheros:</p>
+               <pre><code data-trim class="css" data-noescape>
+@font-face { 
+    font-family: "Baloo Bhai"; <span class="arrow_box_left caja_codigo" style="left:100px">Nombre que asignamos a la fuente</span>
+    src: url("BalooBhai-Regular.ttf")
+}
+               </code></pre>
+                <p>Podemos utilizar esta fuente en el resto del CSS.</p>
+                <pre><code class="css" data-trim>
+h1 {
+    font-family: "Baloo Bhai", Arial, sans-serif;
+    font-weight: normal;
+}                
+                </code></pre>
+                <div class="fragment">
+                    <pre style="float:left;width:60%"><code class="html">&lt;h1&gt;Hola!&lt;/h1&gt;</code></pre>
+                    <img style="height:1em; border:none" src="images/02/HeadingFont.png">
+                </div>
+                <div style="clear:both"></div>
+             </section>
+
+            <section>
+                <h4>Otros atributos de texto</h4>
+                <div>
+                    <pre><code data-trim class="css">
+font-size: medium | small | large | ... | 20px | 12pt | 95% | ...
+                    </code></pre>
+                    <p>Tamaño de la letra.</p>
+                </div>
+                <div class="fragment">
+                    <pre><code data-trim class="css">
+font-style: normal | italic | oblique | ...
+                    </code></pre>
+                    <p>Inclinación de la tipografía. </p>
+                </div>
+                <div class="fragment">
+                    <pre><code data-trim class="css">
+font-weight: normal | bold | bolder | lighter | ...
+                    </code></pre>
+                    <p>Grosor de la tipografía. </p>
+                </div>
+                <div class="fragment">
+                    <pre><code data-trim class="css">
+font: italic bold 10px serif;
+                    </code></pre>
+                    <p>Establecer varios atributos a la vez. </p>
+                </div>
+            </section>
+
+            <section>
+                <h3>Dimensiones de un elemento</h3>
+                <p>Se controlan mediante los atributos <code>width</code> y <code>height</code></p>
+                <p>Por defecto, las dimensiones de un elemento dependen del contenido del mismo y del ancho de la ventana del navegador. Es equivalente a poner:</p>
+                    <pre><code data-trim class="css">
+width: auto;
+height: auto;
+                    </code></pre>
+                    Podemos definir unas dimensiones absolutas:
+                    <pre><code data-trim class="css">
+width: 200px;
+height: 3em;
+                    </code></pre>
+                    o relativas al elemento contenedor:
+                    <pre><code data-trim class="css">
+width: 90%;
+                    </code></pre>
+            </section>
+
+            <section>
+                <h4>Ejemplo</h4>
+                <div>
+                    <pre style="float:left;width:40%"><code data-trim class="css">
+p.importante {
+    width: 30%;
+    margin-left: 20px;
+    ...
+}                
+                    </code></pre>
+                    <img src="images/02/Width.png" style="width:50%; border:none">
+                </div>
+                <div style="clear:both"></div>
+                <div class="fragment">
+                    <pre style="float:left;width:40%"><code data-trim class="css">
+p.importante {
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    ...
+}
+                    </code></pre>
+                    <img src="images/02/Width2.png" style="width:50%; border:none">
+                </div>
+                <div style="clear:both"></div>
+            </section>
+            <section>
+                <h3>Imágenes de fondo</h3>
+                    <pre><code data-trim data-noescape class="css">
+background-image: url(<span style="font-style:italic">nombre_fichero</span>)
+background-position: left top | left center | left bottom
+                   | center top | center center | center bottom
+                   | right top | right center | right bottom
+background-repeat: repeat | repeat-x | repeat-y | no-repeat
+                    </code></pre>
+                    Ejemplo:
+                    <pre><code data-trim data-noescape class="css">
+p.importante {
+    background-image: url(Caution2.png);
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-color: rgb(255, 200, 200);
+    ...
+}
+                    </code></pre>
+                    <img src="images/02/Background.png" style="width:50%; border:none"/>
+            </section>
+            <section>
+                <p style="font-size:200px;font-weight:bold;color:#A050F0">?</p>
+                <p>¿Qué diferencia hay entre incluir una imagen mediante CSS y mediante un elemento
+                <code>&lt;img&gt;</code>?</p>
+            </section>
+
+            <section>
+                <h3>Reglas de precedencia</h3>
+                <p>Supongamos que tenemos dos atributos CSS contradictorios en reglas distintas que afectan al mismo elemento.</p>
+                <p><strong>¿Cuál prevalece?</strong></p>
+            </section>
+
+            <section>
+                <h4>Ejemplo</h4>
+                <pre><code data-trim data-noescape class="html" style="font-size:19px">
+&lt;p&gt;
+    Esto es un &lt;a href=&quot;http://www.ucm.es&quot;&gt;enlace normal&lt;/a&gt;, este tiene una 
+    &lt;a href=&quot;http://www.google.com&quot; class=&quot;enlace&quot;&gt;clase&lt;/a&gt;
+    y este tiene un
+    &lt;a href=&quot;http://informatica.ucm.es&quot; id=&quot;fdi&quot;&gt;identificador&lt;/a&gt;.
+&lt;/p&gt;                
+                </code></pre>
+
+                <pre><code data-trim data-noescape class="css" style="font-size:19px">
+a {
+    color: blue;
+}
+
+p > a {
+    color: red;
+}
+
+.enlace {
+    color: purple;
+}
+
+#fdi {
+    color: green;
+}
+                </code></pre>
+                
+            </section>
+            <section>
+                <h4>Regla 1: Especificidad</h4>
+                <p>En caso de conflicto se aplican los atributos con selectores más específicos.</p>
+                <ul>
+                    <li><code>p > a</code> es un selector más específico que <code>a</code>, porque afecta
+                    a menos elementos.</li>
+                    <li>Los selectores de clase son más específicos que los selectores sin clase.</li>
+                    <li>Los selectores de identificador son más específicos que cualquier otro.</li>
+                </ul>
+                <p>En nuestro ejemplo:</p>
+                <img src="images/02/Prioridad.png" style="width:60%;border:none">
+            </section>
+            
+            <section>
+                <h4>Regla 2: Orden de las clases en el CSS</h4>
+                <pre><code data-trim style="html">
+&lt;a href="index.html" class="verde desactivado importante"&gt;
+    Volver
+&lt;/a&gt;
+                </code></pre>
+                <pre><code data-trim style="css">
+.verde { ... }
+.importante { ... }
+.desactivado { ... }
+                </code></pre>
+                <p>Los atributos de la clase <code>desactivado</code> prevalecen sobre
+                los de <code>importante</code>, que a su vez prevalecen sobre los de <code>verde</code>.</p>
+                
+                <p>En general, prevalecen las clases que se definen después en la hoja de estilo CSS.</p>
+            </section>
+            
+            <section>
+                <h4>Regla 3: Atributo <code style="text-transform:none">style</code></h4>
+                <p>Es posible (aunque no se recomienda) introducir estilos directamente en el código HTML:</p>
+                <pre><code data-trim style="html">
+&lt;a href="index.html" style="font-weight:bold; color: yellow"&gt;
+    Volver
+&lt;/a&gt;
+                </code></pre>
+                <p>Estos atributos tienen precedencia sobre los especificados en cualquier hoja
+                de estilo CSS.</p>
+            </section>
+
+            <section>
+                <h4>Regla 4: La marca <code style="text-transform:none">!important</code></h4>
+                <p>Los atributos CSS con la marca <code>!important</code> tienen prioridad sobre
+                los que no lo tienen.</p>
+                <pre><code data-trim class="css">
+a {
+    color: blue !important;
+}
+
+p > a {
+    color: red;
+}
+                </code></pre>
+                <img src="images/02/Important.png" style="width:60%; border:none">
+            </section>
+
+            <section>
+                <h3>Herencia de propiedades</h3>
+                <p>Cuando un elemento HTML está contenido dentro de otro, hereda algunas
+                de sus propiedades de estilo.</p>
+                <ul>
+                    <li>Propiedades heredables: <code>font</code>, <code>color</code>, etc.</li>
+                    <li>Propiedades no heredables: <code>border</code>, <code>margin</code>, 
+                        <code>padding</code>, etc.</li>
+                </ul>
+            </section>
+            <section>
+                <h4>Ejemplo</h4>
+                <pre><code data-trim class="html">
+&lt;body&gt;
+    &lt;p class=&quot;cuadro&quot;&gt;
+        Introducimos un &lt;a href=&quot;...&quot;&gt;enlace&lt;/a&gt;
+        dentro del p&aacute;rrafo.
+    &lt;/p&gt;
+&lt;/body&gt;
+                </code></pre>
+                <pre><code data-trim class="css">
+body {
+    font-family: sans-serif;
+}
+
+p.cuadro {
+    border: 2px dashed blue;
+    padding: 20px;
+}
+                </code></pre>
+                <img src="images/02/Herencia1.png" style="width:50%;border:none">
+                <p>El enlace hereda el tipo de letra de <code>&lt;body&gt;</code>, pero no
+                el borde del párrafo.</p>
+            </section>
+            
+            <section>
+                <p>Un elemento puede sobreescribir las propiedades heredadas. El valor
+                sobreescrito prevalece sobre el heredado.</p>
+                <pre><code data-trim class="css">
+a {
+    font-family: serif;
+}
+                </code></pre>
+                <img src="images/02/Herencia2.png" style="width:50%;border:none">
+            </section>
+            
+            <section>
+                <p>Un elemento puede decidir heredar aquellas propiedades
+                no heredables introduciendo el valor <code>inherit</code> a la propiedad
+                correspondiente:</p>
+                <pre><code data-trim class="css">
+a {
+    border: inherit;
+    padding-left: inherit;
+    padding-right: inherit;
+}
+                </code></pre>
+                <img src="images/02/Herencia3.png" style="width:50%;border:none">
+            </section>
+            
+            <section>
+                <h3>Hojas de estilo múltiples</h3>
+                <p>Es posible asociar varias hojas de estilo a un mismo documento.</p>
+                <pre><code data-trim class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        ...
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;Hoja1.css&quot;/&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;Hoja2.css&quot;/&gt;
+        &lt;!-- Hoja2.css prevalece sobre Hoja1.css --&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        ...
+    &lt;/body&gt;
+&lt;/html&gt;                
+                </code></pre>
+                <p>Las reglas de las hojas de estilo incluidas posteriormente prevalecen
+                    sobre los anteriores.</p>
+            </section>
+            
+            <section>
+                <h4>El atributo <code style="text-transform:none">media</code></h4>
+                <p>
+                    Si se tienen varias hojas de estilo en un mismo documento, se puede asociar
+                    cada una de ellas con un dispositivo o configuración diferente.
+                </p>
+                <pre><code data-trim class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        ...
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;MediaScreen.css&quot; 
+                    media=&quot;screen&quot;/&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;MediaPrint.css&quot;
+                    media=&quot;print&quot;/&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        ...
+    &lt;/body&gt;
+&lt;/html&gt;
+                </code></pre>
+                <p>Se utilizará la hoja <code>MediaScreen.css</code> para la visualización en pantalla, 
+                <code>MediaPrint.css</code> para la impresión en papel.</p>
+            </section>
+            
+            <section>
+                <pre><code data-trim class="html">
+&lt;link rel=&quot;stylesheet&quot; href=&quot;...&quot; media=&quot;all&quot;/&gt;
+                </code></pre>
+                <p>La hoja de estilo se aplica en todos los dispositivos.</p>
+                
+                <pre><code data-trim class="html">
+&lt;link rel=&quot;stylesheet&quot; href=&quot;...&quot; 
+                    media=&quot;screen and (max-device-width:500px)&quot;/&gt;
+                </code></pre>
+                <p>La hoja de estilo se aplica en los dispositivos con una anchira de pantalla inferior a 500px.</p>
+            </section>
+            
+            <section>
+                <h3>Inspector de propiedades de Firefox</h3>
+                <p>
+                <cite style="font-style:italic">Herramientas</cite> &rarr;
+                <cite style="font-style:italic"> Desarrollador </cite> &rarr;
+                <cite style="font-style:italic">Inspector</cite> (Ctrl+Mayus+C)
+                </p>
+
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/TAAL707ARPs" frameborder="0" allowfullscreen></iframe>
+                <div>
+                    <a href="https://youtu.be/TAAL707ARPs">https://youtu.be/TAAL707ARPs</a>
+                </div>
+            </section>
+            
+            <section>
+                <h2>Flujo y posicionamiento</h2>
+                <p>En HTML se distinguen dos tipos de elementos:</p>
+                <ul>
+                    <li>
+                        Elementos de tipo <strong>bloque</strong>:
+                        <ul>
+                            <li>Ocupan todo el ancho de la página.</li>
+                            <li>Los elementos de tipo bloque contiguos se colocan de arriba a
+                            abajo en la página HTML.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Elementos de tipo <strong>inline</strong>:
+                        <ul>
+                            <li>Ocupan el ancho que necesiten, según el contenido.</li>
+                            <li>Se colocan de izquierda a derecha, hasta ocupar el ancho de la página.
+                            Saltan a la línea siguiente si es necesario.</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+            </section>
+            
+            <section>
+                <p>Elementos de tipo bloque:</p>
+                <p>
+                    <code>&lt;p&gt;</code>, 
+                    <code>&lt;h1&gt;</code>, 
+                    <code>&lt;h2&gt;</code>, ..., 
+                    <code>&lt;h6&gt;</code>, 
+                    <code>&lt;ul&gt;</code>, 
+                    <code>&lt;ol&gt;</code>, 
+                    <code>&lt;li&gt;</code>, 
+                    <code>&lt;table&gt;</code>, 
+                    <code>&lt;blockquote&gt;</code>, 
+                    <code>&lt;pre&gt;</code>, etc.
+                </p>
+                <p>Elementos de tipo inline:</p>
+                <p>
+                    <code>&lt;a&gt;</code>, 
+                    <code>&lt;strong&gt;</code>, 
+                    <code>&lt;img&gt;</code>,
+                    <code>&lt;q&gt;</code>,  etc.
+                </p>
+            </section>
+            
+            <section>
+                <p>Elementos de tipo bloque: flujo vertical.</p>
+                <pre><code data-trim class="html">
+&lt;p&gt;P&aacute;rrafo 1&lt;/p&gt;
+&lt;p&gt;P&aacute;rrafo 2&lt;/p&gt;
+&lt;blockquote&gt;Cita&lt;/blockquote&gt;
+&lt;p&gt;P&aacute;rrafo 3&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;Elem 1&lt;/li&gt;
+    &lt;li&gt;Elem 2&lt;/li&gt;
+&lt;/ul&gt;                
+                </code></pre>
+                <img src="images/02/VerticalFlow.png" style="width:60%; border: none">
+            </section>
+
+
+            
+            <section>
+                <p>Elementos de tipo inline: flujo horizontal con el texto.</p>
+                <pre><code data-trim class="html">
+&lt;p&gt;
+    Coloco un enlace &lt;a href=&quot;#&quot;&gt;Enlace&lt;/a&gt;,
+    seguido de una imagen &lt;img src=&quot;Mail.png&quot;&gt;,
+    y una &lt;q&gt;cita&lt;/q&gt;
+&lt;/p&gt;
+                </code></pre>
+                <img src="images/02/HorizontalFlow.png" style="width:70%; border: none">
+            </section>
+            
+            <section>
+                <h3>El atributo <code style="text-transform:none">display</code></h3>
+                <p>Sirve para modificar el tipo de un elemento (block, inline) u
+                    ocultarlo.</p>
+                <pre><code data-trim class="css">
+display: block | inline | none | ...
+                </code></pre>
+                
+                <p>En los ejemplos anteriores:</p>
+                <pre style="float:left;width:40%"><code data-trim class="css">
+li {
+    margin: 4px;
+    display: inline;
+}
+
+a {
+    display: block;
+}
+
+                </code></pre>
+                <img src="images/02/AlteredFlow.png" style="width:50%; border: none">
+                <div style="clear:both"></div>
+            </section>
+            
+            <section>
+                <h3>Secciones lógicas</h3>
+                <p>El elemento <code>&lt;div&gt;</code> sirve para agrupar distintos elementos, con
+                el fin de aplicar un mismo estilo, o de tratarlos como una unidad lógica.</p>
+                <p>Los elementos <code>&lt;div&gt;</code> son de tipo bloque.</p>
+            </section>
+            
+            <section>
+                <h4>Ejemplo</h4>
+                <pre><code data-trim class="html">
+&lt;div class=&quot;articulo&quot;&gt;
+    &lt;h2&gt;Articulo 1&lt;/h2&gt;
+    &lt;p&gt;...&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;articulo&quot;&gt;
+    &lt;h2&gt;Articulo 2&lt;/h2&gt;
+    &lt;p&gt;...&lt;/p&gt;
+&lt;/div&gt;                
+                </code></pre>
+                <pre><code data-trim class="css">
+div.articulo {
+    margin-left: 20px;
+    margin-top: 10px;
+    padding: 10px 20px;
+
+    background-image: url(...);
+    border-radius: 10px;
+}
+
+div.articulo h2 {
+    color: #902020;
+}                </code></pre>
+            </section>
+            
+            <section>
+                <p>Resultado:</p>
+                <img src="images/02/Div.png" style="width:90%; border:none">
+            </section>
+            
+            <section>
+                <p>El elemento <code>&lt;span&gt;</code> tiene una finalidad similar a la de
+                <code>&lt;div&gt;</code>, pero es un elemento de tipo inline.</p>
+                <pre><code data-trim class="html">
+&lt;p&gt;Curabitur vitae &lt;span class="rojo"&gt;ipsum ipsum&lt;/span&gt; ...&lt;/p&gt;
+                </code></pre>
+                <pre><code data-trim class="css">
+span.rojo {
+    color: red;
+}
+                </code></pre>
+                <img src="images/02/Span.png" style="height:1em;border:none">
+            </section>
+            
+            <section>
+                <h3>Posicionamiento flotante</h3>
+                <pre><code data-trim class="css">
+float: left | right
+                </code></pre>
+                <p>Cuando a un elemento se le asigna una propiedad <code>float</code>,
+                    es eliminado del flujo normal de posicionamiento, y pasa a ser
+                considerado <strong>flotante</strong>.</p>
+                <p>Los elementos colindantes se situan alrededor del elemento
+                    flotante.</p>
+            </section>
+            
+            <section>
+                <h4>Ejemplo</h4>
+                <pre><code data-trim class="html">
+&lt;p&gt;P1: Lorem ipsum ...&lt;/p&gt;
+&lt;p&gt;P2: Sed vitae ...&lt;/p&gt;
+&lt;p&gt;P3: Maecenas tincidunt...&lt;/p&gt;
+&lt;p&gt;P4: Suspendisse ac ...&lt;/p&gt;
+                </code></pre>
+                <pre><code data-trim class="css">
+p {
+    padding: 5px;
+    background-color: #F0F0FF;
+}
+
+p.flotante {
+    float: left;
+    width: 50%;
+    background-color: #FFA000;
+}
+                </code></pre>
+
+            </section>
+            
+            <section>
+                <img src="images/02/Float1.png" style="width:70%;border:none" alt="Resultado del ejemplo anterior">
+            </section>
+
+            <section>
+                <p>Tras añadir la clase <code>flotante</code> al segundo párrafo:</p>
+                <img src="images/02/Float2.png" style="width:70%;border:none" alt="Resultado del ejemplo anterior">
+            </section>
+
+            <section>
+                <p>Tras cambiar <code>float:left</code> por <code>float:right</code>:</p>
+                <img src="images/02/Float3.png" style="width:70%;border:none" alt="Resultado del ejemplo anterior">
+            </section>
+            
 
         </div>
     
