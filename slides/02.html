@@ -1854,6 +1854,7 @@ span.rojo {
                 <img src="images/02/Span.png" style="height:1em;border:none">
             </section>
             
+            
             <section>
                 <h3>Posicionamiento flotante</h3>
                 <pre><code data-trim class="css">
@@ -1880,9 +1881,15 @@ p {
     background-color: #F0F0FF;
 }
 
-p.flotante {
+p.flotante_izq {
     float: left;
-    width: 50%;
+    width: 40%;
+    background-color: #FFA000;
+}
+
+p.flotante_dch {
+    float: right;
+    width: 40%;
     background-color: #FFA000;
 }
                 </code></pre>
@@ -1894,16 +1901,136 @@ p.flotante {
             </section>
 
             <section>
-                <p>Tras añadir la clase <code>flotante</code> al segundo párrafo:</p>
+                <p>Tras añadir la clase <code>flotante_izq</code> al segundo párrafo:</p>
                 <img src="images/02/Float2.png" style="width:70%;border:none" alt="Resultado del ejemplo anterior">
             </section>
 
             <section>
-                <p>Tras cambiar <code>float:left</code> por <code>float:right</code>:</p>
+                <p>Tras cambiar la clase <code>flotante_izq</code> en P2 por <code>flotante_dch</code>:</p>
                 <img src="images/02/Float3.png" style="width:70%;border:none" alt="Resultado del ejemplo anterior">
             </section>
             
+            <section>
+                <h4>¿Qué pasa si...?</h4>
+                <ul>
+                    <li>Añadimos la clase <code>flotante_dch</code> a P1 y P2.</li>
+                    <li>Añadimos la clase <code>flotante_izq</code> a P1 y <code>flotante_dch</code> a P2.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h4>La propiedad <code style="text-transform:none">clear</code></h4>
+                <p>Sirve para evitar que un elemento se distribuya alrededor de elementos
+                flotantes.</p>
+                <p>Por ejemplo, partiendo de la siguiente situación:</p>
+                <img src="images/02/Float2.png" style="width:50%;border:none" alt="P2 a la izquierda">
+            </section>
+            
+            <section>
+                <p>Añadimos la propiedad <code>clear:left</code> al estilo de P4.</p>
+                <img src="images/02/Clear1.png" style="width:60%;border:none" alt="P4 se desplaza hacia abajo">
+            </section>
+            
+            <section>
+                <pre><code data-trim class="css">
+clear: left | right | both | none
+                </code></pre>
+                
+                <p>Los elementos que tengan la propiedad <code>clear</code> con un valor distinto de <code>none</code> no se distribuirán alrededor de los elementos que <em>floten</em> por la izquierda (<code>left</code>), por la derecha (<code>right</code>) o por ambos lados (<code>both</code>).</p>
+            </section>
+            
+            
+            <section>
+                <h3>Centrado de elementos</h3>
+                <p>Partimos de la siguiente situación en la que hemos asignado la propiedad <code>width:50%</code> a P2:</p>
+                <img src="images/02/ElasticMargin1.png" style="width:60%;border:none" alt="Cuatro párrafos dispuestos verticalmente">
+            </section>
 
+            <section>
+                <p>Asignando la propiedad <code>margin-left:auto</code> a P2, convertimos el margen izquierdo
+                de este párrafo en un margen <em>elástico</em>, que se expande todo lo posible.</p>
+                <img src="images/02/ElasticMargin2.png" style="width:60%;border:none" alt="Cuatro párrafos dispuestos verticalmente">
+            </section>
+
+            <section>
+                <p>Si, además de lo anterior, añadimos <code>margin-right:auto</code> a P2, convertiremos
+                ambos márgenes en elásticos. El elemento aparecerá centrado.</p>
+                <img src="images/02/ElasticMargin3.png" style="width:60%;border:none" alt="Cuatro párrafos dispuestos verticalmente">
+            </section>
+            
+            <section>
+                <h3>Posicionamiento absoluto</h3>
+                <p>Es posible utilizar CSS para situar elementos en una posición arbitraria de la página.</p>
+                <pre><code data-trim data-noescape class="css">
+position: absolute;
+left: <span style="font-style:italic">coordenada_x</span>;
+top: <span style="font-style:italic">coordenada_y</span>;
+                </code></pre>
+                
+                <p>Las posiciones son relativas a la esquina superior izquierda de la <strong>página HTML</strong>.</p>
+
+            </section>
+            
+            <section>
+                <p>Cuando un elemento recibe la propiedad <code>position:absolute</code>, deja de formar
+                parte del flujo de la página y se sitúa en la posición indicada por las propiedades
+                <code>left</code> y <code>top</code>.</p>
+                
+                <p>Por ejemplo, si aplicamos al párrafo P2 del ejemplo anterior las siguientes propiedades:</p>
+                <pre><code data-trim class="css">
+position: absolute;
+left: 100px;
+top: 20px;
+width: 40%;
+background-color: #FFA000;
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Obtenemos:</p>
+                <img src="images/02/Absolute.png" style="width:70%;border:none">
+            </section>
+            
+            <section>
+                <h3>Posicionamiento relativo</h3>
+                <pre><code data-trim data-noescape class="css">
+position: relative;
+left: <span style="font-style:italic">coordenada_x</span>;
+top: <span style="font-style:italic">coordenada_y</span>;
+                </code></pre>
+                
+                <p>Los elementos con posicionamiento relativo no son eliminados del flujo de
+                    la página.</p> 
+                <p>Los atributos <code>left</code> y <code>top</code> indican la posición del elemento
+                    tomando como origen la posición en la que estaría situado el elemento según el flujo de la
+                    página.
+                </p>
+            </section>
+            
+            <section>
+                
+                <p>En el ejemplo anterior, cambiamos <code>position:absolute</code> por <code>position:relative</code>:</p>
+                
+                <img src="images/02/Relative.png" style="width:80%;border:none">
+            
+            
+            </section>
+            
+            <section>
+                <h3>Posicionamiento fijo</h3>
+                <pre><code data-trim data-noescape class="css">
+position: fixed;
+left: <span style="font-style:italic">coordenada_x</span>;
+top: <span style="font-style:italic">coordenada_y</span>;
+                </code></pre>
+                <p>Los elementos con <code>position:fixed</code> se sitúan en una posición independiente
+                de la parte de la página que se esté visualizando en el navegador.</p>
+            </section>
+            
+            <section>
+                <p>En el ejemplo anterior, asignamos la propiedad <code>position:fixed</code> a P2:</p>
+                <img src="images/02/Fixed.gif" style="width:80%;border:none">
+            </section>
         </div>
     
     </div>
