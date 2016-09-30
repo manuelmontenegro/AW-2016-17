@@ -2029,8 +2029,84 @@ top: <span style="font-style:italic">coordenada_y</span>;
             
             <section>
                 <p>En el ejemplo anterior, asignamos la propiedad <code>position:fixed</code> a P2:</p>
-                <img src="images/02/Fixed.gif" style="width:80%;border:none">
+                <img src="images/02/Fixed.gif" style="width:60%;border:none">
             </section>
+            
+            <section>
+                <h3>Posicionamiento en forma de tabla</h3>
+                <p>En ocasiones resulta útil concebir la disposición de una página web como una tabla.</p>
+                <img src="images/02/TableLayout.png" style="width:80%;border:none">
+            </section>
+            
+            <section>
+                <p>El elemento <code>&lt;table&gt;</code> <strong>no</strong> debe usarse para esto,
+                ya que se mezclarían detalles de estilo de la página con la estructura. </p>
+                
+                <p>No obstante, se puede conseguir una distribución similar considerando cada celda
+                    de esta tabla virtual como una sección lógica <code>&lt;div&gt;</code> y utilizando las propiedades
+                    <code>display:table-row</code> y <code>display:table-cell</code>.
+                </p>
+            </section>
+            
+            <section>
+                <h4>Ejemplo</h4>
+                <pre><code data-trim class="html">
+&lt;div id=&quot;contenido&quot;&gt;
+    &lt;div id=&quot;fila_superior&quot;&gt;
+        &lt;div id=&quot;logo&quot;&gt; ... &lt;/div&gt;
+        &lt;div id=&quot;titulo&quot;&gt; ...  &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div id=&quot;fila_inferior&quot;&gt;
+        &lt;div id=&quot;menu&quot;&gt; ... &lt;/div&gt;
+        &lt;div id=&quot;texto&quot;&gt; ... &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                </code></pre>
+                <ul>
+                    <li>Secciones lógicas que se comportan como filas: <code>#fila_superior</code> y
+                    <code>#fila_inferior</code>.</li>
+                    <li>Secciones lógicas que se comportan como celdas: <code>#logo</code>, <code>#titulo</code>,
+                        <code>#menu</code> y <code>#texto</code>.
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <pre><code data-trim class="css">
+#contenido {
+    display: table;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#fila_superior, #fila_inferior {
+    display: table-row;
+}
+
+#logo, #titulo, #menu, #texto {
+    display: table-cell;
+    padding: 5px;
+}
+
+#logo { 
+    background-color: #A0A0A0;
+    text-align: center;
+    width: 200px;
+}
+
+#titulo { background-color: #F0F0F0; }
+#menu   { background-color: #A0FFFF; }
+#texto  { background-color: #FFFFA0; }                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Resultado:</p>
+                <img src="images/02/TableLayoutResult.png" style="width:80%;border:none">
+            </section>
+            
+            
         </div>
     
     </div>
