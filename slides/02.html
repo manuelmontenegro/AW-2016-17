@@ -43,7 +43,7 @@
                     Aplicaciones Web - GIS - Curso 2016/17
                 </div>
                 <div class="author">
-                    <strong>Manuel Montenegro</strong> [<a href="mailto:montenegro@fdi.ucm.es" style="color:white">montenegro@fdi.ucm.es</a>]
+                    <span class="myname">Manuel Montenegro</span> [<a href="mailto:montenegro@fdi.ucm.es" style="color:white">montenegro@fdi.ucm.es</a>]
                     <br/> Dpto de Sistemas Informáticos y Computación
                     <br/> Facultad de Informática
                     <br/> Universidad Complutense de Madrid
@@ -55,20 +55,20 @@
                 </div>
                 <div style="clear:left;font-size:15px"></div>
             </section>
-            
+
             <section data-background-image="images/RedBackground.jpg" data-background-transition="fade" id="p1">
                 <ol class="contenidos">
-                  <li><a href="#/p1" class="outline fragment highlight-orange">Introducción. Página básica</a></li>
-                  <li><a href="#/p2" class="outline">Elementos HTML</a></li>
-                  <li><a href="#/p3" class="outline">Atributos CSS</a></li>
-                  <li><a href="#/p4" class="outline">Modelo de cajas y posicionamiento</a></li>
-                  <li><a href="#/p5" class="outline">Elementos HTML5</a></li>
-                  <li><a href="#/p6" class="outline">Formularios</a></li>
-                  <li><a href="#/p7" class="outline">Bibliografía</a></li>
+                    <li><a href="#/p1" class="outline fragment highlight-orange">Introducción. Página básica</a></li>
+                    <li><a href="#/p2" class="outline">Elementos HTML</a></li>
+                    <li><a href="#/p3" class="outline">Atributos CSS</a></li>
+                    <li><a href="#/p4" class="outline">Flujo y posicionamiento</a></li>
+                    <li><a href="#/p5" class="outline">Elementos HTML5</a></li>
+                    <li><a href="#/p6" class="outline">Formularios</a></li>
+                    <li><a href="#/p7" class="outline">Bibliografía</a></li>
                 </ol>
             </section>
-            
-            
+
+
             <section>
                 <h2>Introducción</h2>
                 <p>Abordaremos dos lenguajes para la creación de páginas web</p>
@@ -227,10 +227,10 @@
 
             <section>
                 <h3>Párrafos</h3>
-                <p>Cada párrafo está contenido dentro de un elemento  <code class="html">&lt;p&gt;</code>
+                <p>Cada párrafo está contenido dentro de un elemento <code class="html">&lt;p&gt;</code>
 
-                <div style="float:left;width:65%">
-                    <pre style="width:100%"><code data-trim class="html">
+                    <div style="float:left;width:65%">
+                        <pre style="width:100%"><code data-trim class="html">
 &lt;h1&gt;Párrafos&lt;/h1&gt;
 &lt;p&gt;
   Esto es un ejemplo de p&aacute;rrafo que puede
@@ -242,24 +242,24 @@
   peque&ntilde;o espacio de separaci&oacute;n entre los
   dos p&aacute;rrafos.
 &lt;/p&gt;</code></pre>
-                </div>
-                <div style="float:left;width:35%">
-                    <iframe src="resources/02/Paragraphs.html" style="height:300px"></iframe>
-                </div>
-                <div style="clear:left"></div>
+                    </div>
+                    <div style="float:left;width:35%">
+                        <iframe src="resources/02/Paragraphs.html" style="height:300px"></iframe>
+                    </div>
+                    <div style="clear:left"></div>
             </section>
-    
+
             <section>
                 <h3>Elementos de texto</h3>
                 <p>Afectan al formato del texto que contienen.</p>
                 <ul>
-                    <li><code>&lt;em&gt;</code> sirve para enfatizar un texto.<br/>
-                        El texto suele mostrarse en <span style="font-style:italic">cursiva</span>.</li>
-                    <li><code>&lt;strong&gt;</code> sirve para resaltar aun más un texto.<br/>
-                    Los navegadores suelen mostrarlo en <span style="font-weight:bold">negrita</span>.</li>
-                    <li><code>&lt;code&gt;</code> se utiliza para mostrar el código de un programa.<br/>
-                    Los navegadores suelen mostrarlo en letra de tipo <span style="font-family:monospace">monoespaciada</span>.</li>
-                    
+                    <li><code>&lt;em&gt;</code> sirve para enfatizar un texto.
+                        <br/> El texto suele mostrarse en <span style="font-style:italic">cursiva</span>.</li>
+                    <li><code>&lt;strong&gt;</code> sirve para resaltar aun más un texto.
+                        <br/> Los navegadores suelen mostrarlo en <span style="font-weight:bold">negrita</span>.</li>
+                    <li><code>&lt;code&gt;</code> se utiliza para mostrar el código de un programa.
+                        <br/> Los navegadores suelen mostrarlo en letra de tipo <span style="font-family:monospace">monoespaciada</span>.</li>
+
                 </ul>
             </section>
             <section>
@@ -270,11 +270,10 @@ acepta otras funciones como parámetro y/o devuelve funciones como
 resultado. Entre estas funciones podemos citar &lt;code&gt;map&lt;/code&gt;,
 &lt;code&gt;filter&lt;/code&gt; y la familia de funciones de &lt;em&gt;folding&lt;em&gt;.
                 </code></pre>
-                <img src="images/02/StrongEm.png" style="width:90%;border:none"/>
+                <img src="images/02/StrongEm.png" style="width:90%;border:none" />
             </section>
             <section>
-                <h3>Comentarios</h3>
-                En HTML van delimitados por las secuencias de símbolos
+                <h3>Comentarios</h3> En HTML van delimitados por las secuencias de símbolos
                 <code>&lt;!--</code> y <code>--&gt;</code>
                 <pre><code data-trim class="html">
 &lt;p&gt;Esto es un p&aacute;rrafo&lt;/p&gt;
@@ -282,11 +281,10 @@ resultado. Entre estas funciones podemos citar &lt;code&gt;map&lt;/code&gt;,
      etiquetas &lt;em&gt;HTML&lt;/em&gt; --&gt;
 &lt;p&gt;Esto es otro p&aacute;rrafo&lt;/p&gt;
                 </code></pre>
-                <img src="images/02/Comments.png" style="width:90%;border:none"/>
+                <img src="images/02/Comments.png" style="width:90%;border:none" />
             </section>
             <section>
-                HTML interpreta las secuencias de espacios como un único espacio.
-                Los saltos de línea se intepretan como espacios.
+                HTML interpreta las secuencias de espacios como un único espacio. Los saltos de línea se intepretan como espacios.
                 <pre><code data-trim class="html">
 Esto    es una    línea    con  varios   espacios.
 
@@ -295,35 +293,30 @@ Aquí va otro texto
 fragmentado en varias
 líneas.
                 </code></pre>
-                <img src="images/02/Whitespace.png" style="width:90%;border:none"/>
+                <img src="images/02/Whitespace.png" style="width:90%;border:none" />
             </section>
             <section>
                 <h3>Estructura vs. Estilo</h3>
-                <p>Todas las etiquetas de HTML solamente definen la <strong>estructura</strong>
-                    del contenido de la página, no su aspecto visual.</p>
-                <p>El texto delimitado por algunas etiquetas (como <code>&lt;strong&gt;</code>) puede
-                    aparecer con un determinado formato en el navegador, pero dicho formato no es único
-                    para todos los navegadores web.</p>
-                <p>La apariencia visual de una página se define mediante el lenguaje CSS, y suele
-                definirse en un archivo distinto al documento HTML.</p>
+                <p>Todas las etiquetas de HTML solamente definen la <strong>estructura</strong> del contenido de la página, no su aspecto visual.</p>
+                <p>El texto delimitado por algunas etiquetas (como <code>&lt;strong&gt;</code>) puede aparecer con un determinado formato en el navegador, pero dicho formato no es único para todos los navegadores web.</p>
+                <p>La apariencia visual de una página se define mediante el lenguaje CSS, y suele definirse en un archivo distinto al documento HTML.</p>
             </section>
             <section>
                 Mismo documento HTML mostrado con distintos estilos:
-                <img src="images/02/EstiloDefecto.png" style="width:90%;border:none"/>
-                <img src="images/02/Estilo1.png" style="width:90%;border:none"/>
-                <img src="images/02/Estilo2.png" style="width:90%;border:none"/>
+                <img src="images/02/EstiloDefecto.png" style="width:90%;border:none" />
+                <img src="images/02/Estilo1.png" style="width:90%;border:none" />
+                <img src="images/02/Estilo2.png" style="width:90%;border:none" />
             </section>
             <section>
                 <a href="http://www.csszengarden.com/">http://www.csszengarden.com/</a>
                 <p>Distintos estilos aplicados a una misma página web.</p>
-                <img src="images/02/ZenGarden1.png" style="width:40%;border:none"/>
-                <img src="images/02/ZenGarden2.png" style="width:40%;border:none"/>
-                <img src="images/02/ZenGarden3.png" style="width:40%;border:none"/>
+                <img src="images/02/ZenGarden1.png" style="width:40%;border:none" />
+                <img src="images/02/ZenGarden2.png" style="width:40%;border:none" />
+                <img src="images/02/ZenGarden3.png" style="width:40%;border:none" />
             </section>
             <section>
                 <h3>Hoja de estilo CSS</h3>
-                <p>Documento que contiene las
-                definiciones de estilo para una o varias páginas web.</p>
+                <p>Documento que contiene las definiciones de estilo para una o varias páginas web.</p>
                 <p>Creamos un fichero <code>hoja1.css</code> con el siguiente contenido:</p>
                 <pre><code data-trim class="css">
 h1 {
@@ -346,8 +339,7 @@ h1 {
 }
 
                     </code></pre>
-                    <p>Indica que todos los elementos con la etiqueta <code>&lt;h1&gt;</code>
-                        aparecerán subrayados y en color azul.
+                    <p>Indica que todos los elementos con la etiqueta <code>&lt;h1&gt;</code> aparecerán subrayados y en color azul.
                     </p>
                 </div>
                 <div class="fragment">
@@ -357,15 +349,13 @@ strong {
     font-weight: bold;
 }
                     </code></pre>
-                    <p>Indica que todos los elementos con la etiqueta <code>&lt;strong&gt;</code>
-                        aparecerán en negrita y en color azul.
+                    <p>Indica que todos los elementos con la etiqueta <code>&lt;strong&gt;</code> aparecerán en negrita y en color azul.
                     </p>
                 </div>
             </section>
             <section>
-                <h3>La etiqueta &lt;link&gt;</h3>
-                <p>La etiqueta <code>&lt;link&gt;</code> permite asociar una hoja de estilo
-                    CSS con un documento HTML.</p>
+                <h3>La etiqueta <code style="text-transform:none">&lt;link&gt;</code></h3>
+                <p>La etiqueta <code>&lt;link&gt;</code> permite asociar una hoja de estilo CSS con un documento HTML.</p>
                 <p>Debe estar en la sección <code>&lt;head&gt;</code> del documento.</p>
                 <pre><code data-trim class="html">
 &lt;head&gt;
@@ -375,7 +365,7 @@ strong {
 &lt;/head&gt;
                 </code></pre>
                 <p>El atributo <code>href</code> indica el nombre del fichero que contiene la hoja de estilo.</p>
-                <p>El atributo <code>rel</code> indica la relación que tiene el fichero referenciado mediante 
+                <p>El atributo <code>rel</code> indica la relación que tiene el fichero referenciado mediante
                     <code>href</code> y el documento HTML actual (<em>hoja de estilo</em>).</p>
             </section>
             <section>
@@ -390,7 +380,7 @@ strong {
     &lt;/head&gt;
     &lt;body&gt;
         &lt;h1&gt;Funciones de orden superior&lt;/h1&gt;
-        &lt;p&gt;Decimos que una funci&oacute;n es de 
+        &lt;p&gt;Decimos que una funci&oacute;n es de
         &lt;strong&gt;orden superior&lt;/strong&gt; si acepta otras funciones
         como par&aacute;metro y/o devuelve funciones como resultado.
         Entre estas funciones podemos citar &lt;code&gt;map&lt;/code&gt;,
@@ -399,11 +389,10 @@ strong {
     &lt;/body&gt;
 &lt;/html&gt;
                 </code></pre>
-                <img src="images/02/Estilo3.png" style="width:90%; border:none" alt="Resultado de la página"/>
+                <img src="images/02/Estilo3.png" style="width:90%; border:none" alt="Resultado de la página" />
             </section>
             <section>
-                Creamos otro fichero <code>Hoja2.css</code> con otra hoja
-                de estilo:
+                Creamos otro fichero <code>Hoja2.css</code> con otra hoja de estilo:
                 <pre><code data-trim class="css" style="font-size:18px;line-height:20px">
 body {
     font-family: sans-serif;
@@ -418,7 +407,7 @@ h1 {
 }
 
 code {
-    
+
     font-family: "Inconsolata", monospace;
     color: #006000;
     background: #E0E0E0;
@@ -428,30 +417,30 @@ code {
                 </code></pre>
             </section>
             <section>
-                <p>En la página anterior, cambiamos la declaración <code>&lt;link&gt;        
+                <p>En la página anterior, cambiamos la declaración <code>&lt;link&gt;
                     </code> por la siguiente:</p>
                 <pre><code data-trim class="html">
 &lt;link rel=&quot;stylesheet&quot; href=&quot;Hoja2.css&quot;/&gt;
                 </code></pre>
                 <div class="fragment">
                     <p>Resultado:</p>
-                    <img src="images/02/Estilo4.png" style="width:90%; border:none"/>
+                    <img src="images/02/Estilo4.png" style="width:90%; border:none" />
                 </div>
             </section>
-    
+
             <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p2">
                 <ol class="contenidos">
-                  <li><a href="#/p1" class="outline">Introducción. Página básica</a></li>
-                  <li><a href="#/p2" class="outline current">Elementos HTML</a></li>
-                  <li><a href="#/p3" class="outline">Atributos CSS</a></li>
-                  <li><a href="#/p4" class="outline">Modelo de cajas y posicionamiento</a></li>
-                  <li><a href="#/p5" class="outline">Elementos HTML5</a></li>
-                  <li><a href="#/p6" class="outline">Formularios</a></li>
-                  <li><a href="#/p7" class="outline">Bibliografía</a></li>
+                    <li><a href="#/p1" class="outline">Introducción. Página básica</a></li>
+                    <li><a href="#/p2" class="outline current">Elementos HTML</a></li>
+                    <li><a href="#/p3" class="outline">Atributos CSS</a></li>
+                    <li><a href="#/p4" class="outline">Flujo y posicionamiento</a></li>
+                    <li><a href="#/p5" class="outline">Elementos HTML5</a></li>
+                    <li><a href="#/p6" class="outline">Formularios</a></li>
+                    <li><a href="#/p7" class="outline">Bibliografía</a></li>
                 </ol>
             </section>
-            
-            
+
+
             <section>
                 <h2>Elementos html básicos</h2>
                 <ul>
@@ -464,16 +453,14 @@ code {
                     <li>Tablas: <code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code>, <code>&lt;td&gt;</code>, ...</li>
                 </ul>
             </section>
-    
+
             <section>
-                <h3>Hipervínculo</h3>
-                <p>Mediante la etiqueta <code>&lt;a&gt;</code> podemos especificar enlaces a otras
-                páginas o recursos.</p>
+                <h3>Hipervínculos</h3>
+                <p>Mediante la etiqueta <code>&lt;a&gt;</code> podemos especificar enlaces a otras páginas o recursos.</p>
                 <pre><code class="html">&lt;a href="enlace"&gt;...&lt;/a&gt;</code></pre>
-                <p>Al hacer clic en el texto delimitado por la etiqueta <code>&lt;a&gt;</code>, el
-                navegador cargará la página indicada por el atributo <code>href</code>.</p>
+                <p>Al hacer clic en el texto delimitado por la etiqueta <code>&lt;a&gt;</code>, el navegador cargará la página indicada por el atributo <code>href</code>.</p>
             </section>
-    
+
             <section>
                 <h4>Ejemplo</h4>
                 <p>En el fichero <code>Enlace1.html</code>:</p>
@@ -481,34 +468,32 @@ code {
 &lt;p&gt;Pulsa en &lt;a href=&quot;Enlace2.html&quot;&gt;este enlace&lt;/a&gt; para acceder
 a la p&aacute;gina n&uacute;mero dos.&lt;/p&gt;
                 </code></pre>
-                <p><img src="images/02/Enlace1.png" style="height:80%;border:none"/></p>
+                <p><img src="images/02/Enlace1.png" style="height:80%;border:none" /></p>
                 <p>En el fichero <code>Enlace2.html</code>:</p>
                 <pre><code data-trim class="html">
 &lt;p&gt;Est&aacute;s en la p&aacute;gina dos.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;Enlace1.html&quot;&gt;Volver a la p&aacute;gina uno.&lt;/a&gt;&lt;/p&gt;                
+&lt;p&gt;&lt;a href=&quot;Enlace1.html&quot;&gt;Volver a la p&aacute;gina uno.&lt;/a&gt;&lt;/p&gt;
                 </code></pre>
-                <p><img src="images/02/Enlace2.png" style="height:80%;border:none"/></p>
+                <p><img src="images/02/Enlace2.png" style="height:80%;border:none" /></p>
             </section>
             <section>
                 <h3>Enlaces relativos y absolutos</h3>
                 <pre><code data-trim class="html">
 &lt;a href=&quot;Enlace2.html&quot;&gt;...&lt;/a&gt;
                 </code></pre>
-                <p>Se carga la página <code>Enlace2.html</code> contenida en el mismo
-                directorio que la página que contiene el enlace <code>&lt;a&gt;</code>.</p>
+                <p>Se carga la página <code>Enlace2.html</code> contenida en el mismo directorio que la página que contiene el enlace <code>&lt;a&gt;</code>.</p>
                 <p>
-                    <img src="svgs/Folders1.svg" style="width:30%;border:none;box-shadow:none"/>
+                    <img src="svgs/Folders1.svg" style="width:30%;border:none;box-shadow:none" />
                 </p>
                 <p>Se trata de un enlace <strong>relativo</strong></p>
             </section>
-    
+
             <section>
                 <div style="float:left;width:40%">
-                    <img src="svgs/Folders2.svg" style="width:60%;border:none;box-shadow:none"/>
+                    <img src="svgs/Folders2.svg" style="width:60%;border:none;box-shadow:none" />
                 </div>
                 <div style="float:right;width:60%">
-                    <p>Si tuviésemos el fichero <code>Enlace2.html</code> dentro de una
-                    carpeta <code>pag2</code> tendríamos el siguiente enlace:</p>
+                    <p>Si tuviésemos el fichero <code>Enlace2.html</code> dentro de una carpeta <code>pag2</code> tendríamos el siguiente enlace:</p>
                     <pre><code data-trim class="html">
 &lt;a href=&quot;pag2/Enlace2.html&quot;&gt;...&lt;/a&gt;
                     </code></pre>
@@ -521,18 +506,15 @@ a la p&aacute;gina n&uacute;mero dos.&lt;/p&gt;
                 <div style="clear:both"></div>
             </section>
             <section>
-                <p>Los enlaces que comiezan por <code>/</code> son relativos al dominio a través
-                    del cual se accede a la página.</p>
-                <p>Por ejemplo, si en <code>http://www.foo.org/bar/pag1.html</code> tenemos
-                    el siguiente enlace:</p>
+                <p>Los enlaces que comiezan por <code>/</code> son relativos al dominio a través del cual se accede a la página.</p>
+                <p>Por ejemplo, si en <code>http://www.foo.org/bar/pag1.html</code> tenemos el siguiente enlace:</p>
                 <pre><code data-trim class="html">
 &lt;a href=&quot;/index.html&quot;&gt;...&lt;/a&gt;
                 </code></pre>
                 <p>Se enlace a la URL <code>http://www.foo.org/index.html</code></p>
-                <p>Si se accede a una página almacenada en el sistema de ficheros el
-                    enlace será relativo al directorio raíz.</p>
+                <p>Si se accede a una página almacenada en el sistema de ficheros el enlace será relativo al directorio raíz.</p>
             </section>
-    
+
             <section>
                 <p>Los enlaces <strong>absolutos</strong> contienen una URL completa:</p>
                 <pre><code data-trim class="html">
@@ -544,10 +526,9 @@ a la p&aacute;gina n&uacute;mero dos.&lt;/p&gt;
 &lt;a href=&quot;www.ucm.es&quot;&gt;Página de la UCM&lt;/a&gt;
                     </code></pre>
                 </div>
-                <p class="fragment">Para que un enlace sea absoluto se ha de incluir la
-                URL, incluyendo el protocolo <code>http://</code>, <code>https://</code>, etc. </p>
+                <p class="fragment">Para que un enlace sea absoluto se ha de incluir la URL, incluyendo el protocolo <code>http://</code>, <code>https://</code>, etc. </p>
             </section>
-    
+
             <section>
                 <h3>Identificadores</h3>
                 <p>Es posible asociar un identificador a cualquier elemento de un documento HTML.</p>
@@ -570,8 +551,8 @@ a la p&aacute;gina n&uacute;mero dos.&lt;/p&gt;
                 <pre><code data-trim class="html">
 &lt;a href="#sec1"&gt;Ir a la sección 1&lt;/a&gt;
                 </code></pre>
-                <p>Al hacer clic en el enlace, el navegador saltará al elemento que tiene <code>sec1</code> como
-                identificador.</p>
+                <p>Al hacer clic en el enlace, el navegador saltará al elemento que tiene <code>sec1</code> como identificador.
+                </p>
                 <div class="fragment">
                     <p>Para hacer referencia a un elemento contenido en otra página:</p>
                     <pre><code data-trim class="html">
@@ -580,23 +561,23 @@ a la p&aacute;gina n&uacute;mero dos.&lt;/p&gt;
                 </div>
                 <p class="fragment">Ejemplo: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html">Documentación de la API de Java</a></p>
             </section>
-            
+
             <section>
                 <h4>Otros tipos de URL</h4>
                 <ul>
                     <li><code>mailto</code>: Para direcciones de correo electrónico.
-                    <pre><code data-trim class="html">
+                        <pre><code data-trim class="html">
 &lt;a href="mailto:mmontene@ucm.es"&gt;Más información&lt;/a&gt;
                     </code></pre>
                     </li>
                     <li><code>tel</code>: Para número de teléfonos (navegadores móviles).
-                    <pre><code data-trim class="html">
+                        <pre><code data-trim class="html">
 &lt;a href="tel:+34987654132"&gt;Llamar&lt;/a&gt;
                     </code></pre>
                     </li>
                 </ul>
             </section>
-    
+
             <section>
                 <h3>Citas</h3>
                 <p>El elemento <code>&lt;q&gt;</code> se utiliza para introducir citas textuales:</p>
@@ -604,20 +585,20 @@ a la p&aacute;gina n&uacute;mero dos.&lt;/p&gt;
 &lt;p&gt;Como dijo Javier Leach: &lt;q&gt;Esto es tan sencillo que
 en vez de tautolog&iacute;a es tontolog&iacute;a&lt;/q&gt;.&lt;/p&gt;
                 </code></pre>
-                <img src="images/02/Cita1.png" style="width:70%;border:none"/>
+                <img src="images/02/Cita1.png" style="width:70%;border:none" />
             </section>
             <section>
-                <p>Si la cita es grande, <code>&lt;blockquote&gt;</code> inserta la cita en su propio
-                párrafo:</p>
+                <p>Si la cita es grande, <code>&lt;blockquote&gt;</code> inserta la cita en su propio párrafo:
+                </p>
                 <pre><code data-trim class="html">
 &lt;p&gt;Lo siguiente es una cita de Richard Stallman:&lt;/p&gt;
 &lt;blockquote&gt;
 We need to encourage the spirit of cooperation, by respecting
 other people's freedom to cooperate and not advancing schemes
-to divide and dominate them. 
+to divide and dominate them.
 &lt;/blockquote&gt;
                 </code></pre>
-                <img src="images/02/Cita2.png" style="width:70%;border:none"/>
+                <img src="images/02/Cita2.png" style="width:70%;border:none" />
             </section>
             <section>
                 <h3>Saltos de línea</h3>
@@ -629,14 +610,13 @@ en tu balc&oacute;n sus nidos a colgar,&lt;br&gt;
 y otra vez con el ala a sus cristales&lt;br&gt;
 jugando llamar&aacute;n.
 &lt;/blockquote&gt;
-                </code></pre>                
-                <img src="images/02/Cita3.png" class="fragment" style="width:65%;border:none"/>
+                </code></pre>
+                <img src="images/02/Cita3.png" class="fragment" style="width:65%;border:none" />
                 <p class="fragment">El elemento <code>&lt;br&gt;</code> no tiene etiqueta de cierre.</p>
             </section>
             <section>
                 <h3>Listas</h3>
-                <p>Se expresan mediante la etiqueta <code>&lt;ol&gt;</code>. Cada elemento de la
-                    lista va delimitado por la etiqueta <code>&lt;li&gt;</code>.</p>
+                <p>Se expresan mediante la etiqueta <code>&lt;ol&gt;</code>. Cada elemento de la lista va delimitado por la etiqueta <code>&lt;li&gt;</code>.</p>
                 <pre><code data-trim class="html">
 &lt;p&gt;Modo de preparaci&oacute;n:&lt;/p&gt;
 &lt;ol&gt;
@@ -651,13 +631,13 @@ jugando llamar&aacute;n.
     &lt;li&gt;Batir todo.&lt;/li&gt;
     &lt;li&gt;A&ntilde;adir la sal, el aceite y vinagre y volver a batir.&lt;/li&gt;
 &lt;/ol&gt;
-                </code></pre>                
+                </code></pre>
             </section>
             <section>
                 <p>Resultado:</p>
-                <img src="images/02/Listas1.png" style="width:70%;border:none"/>
+                <img src="images/02/Listas1.png" style="width:70%;border:none" />
             </section>
-    
+
             <section>
                 <p>El elemento <code>&lt;ol&gt;</code> sirve para representar listas no numeradas.</p>
                 <pre><code data-trim class="html">
@@ -671,10 +651,10 @@ jugando llamar&aacute;n.
     &lt;li&gt;Media cebolla.&lt;/li&gt;
     &lt;li&gt;Sal y vinagre&lt;/li&gt;
 &lt;/ul&gt;
-                </code></pre>          
+                </code></pre>
                 <img src="images/02/Listas2.png" class="fragment" style="width:45%;border:none">
             </section>
-    
+
             <section>
                 <p>Las listas se pueden anidar:</p>
                 <pre><code data-trim class="html">
@@ -687,23 +667,22 @@ jugando llamar&aacute;n.
     &lt;/li&gt;
     ...
 &lt;/ul&gt;
-                </code></pre> 
-                <img src="images/02/Listas3.png" class="fragment" style="width:65%;border:none"/>
+                </code></pre>
+                <img src="images/02/Listas3.png" class="fragment" style="width:65%;border:none" />
             </section>
-    
+
             <section>
                 <h4>Estilo de listas</h4>
-                <p>Mediante el atributo CSS <code>list-style-type</code> podemos indicar el
-                    tipo de viñetas o numeración.</p>
+                <p>Mediante el atributo CSS <code>list-style-type</code> podemos indicar el tipo de viñetas o numeración.</p>
                 <div style="float:left;width:60%">
                     <pre><code data-trim class="css">
 ul {
     list-style-type: square;
-}                    
+}
                     </code></pre>
                 </div>
                 <div style="float:right;width:40%">
-                    <img src="images/02/Listas5.png" style="border:none"/>
+                    <img src="images/02/Listas5.png" style="border:none" />
                 </div>
                 <div style="clear:both"></div>
 
@@ -711,17 +690,17 @@ ul {
                     <pre><code data-trim class="css">
 ul {
     list-style-type: lower-roman;
-}                    
+}
                     </code></pre>
                 </div>
                 <div style="float:right;width:40%">
-                    <img src="images/02/Listas6.png" style="border:none"/>
+                    <img src="images/02/Listas6.png" style="border:none" />
                 </div>
                 <div style="clear:both"></div>
-                
+
                 <p>Ver: <a href="http://www.w3schools.com/cssref/pr_list-style-type.asp">Tipos disponibles</a></p>
             </section>
-    
+
             <section>
                 <p>También pueden expresarse listas con definiciones, a modo de glosario.</p>
                 <ul>
@@ -749,7 +728,7 @@ ul {
     &lt;/dd&gt;
 &lt;/dl&gt;
                 </code></pre>
-                <img src="images/02/Listas4.png" style="width:70%;border:none" class="fragment"/>
+                <img src="images/02/Listas4.png" style="width:70%;border:none" class="fragment" />
             </section>
             <section>
                 <h3>Texto preformateado</h3>
@@ -763,7 +742,7 @@ saltos de línea    y los espacios    múltiples
 Aquí otro párrafo.
 &lt;/pre&gt;
                 </code></pre>
-                <img src="images/02/Preformat.png" style="width:70%;border:none" class="fragment"/>
+                <img src="images/02/Preformat.png" style="width:70%;border:none" class="fragment" />
             </section>
             <section>
                 <h3>Imágenes</h3>
@@ -772,37 +751,33 @@ Aquí otro párrafo.
 &lt;p&gt;Foto de M&uuml;nster tomada en septiembre de 2014:&lt;/p&gt;
 &lt;img src=&quot;Munster.jpg&quot;&gt;
                 </code></pre>
-                <img src="images/02/Imagen1.png" style="width:30%"/>
-                <p>Las consideraciones sobre paths absolutos y relativos también se aplican
-                al atributo <code>src</code>.</p>
+                <img src="images/02/Imagen1.png" style="width:30%" />
+                <p>Las consideraciones sobre paths absolutos y relativos también se aplican al atributo <code>src</code>.</p>
             </section>
-    
+
             <section>
-                <p>Es conveniente incluir el atributo <code>alt</code> con una breve
-                descripción de la imagen para personas invidentes, con problemas de visión,
-                dispositivos con conexión lenta, etc.</p>
+                <p>Es conveniente incluir el atributo <code>alt</code> con una breve descripción de la imagen para personas invidentes, con problemas de visión, dispositivos con conexión lenta, etc.</p>
                 <pre><code data-trim class="html">
-&lt;img src=&quot;Munster.jpg&quot;alt=&quot;Foto de la calle del ayuntamiento&quot;&gt;
+&lt;img src=&quot;Munster.jpg&quot; alt=&quot;Foto de la calle del ayuntamiento&quot;&gt;
                 </code></pre>
                 <div class="fragment">
                     <p>Es posible incluir imágenes dentro de enlaces:</p>
-                <pre><code data-trim class="html">
-&lt;a href=&quot;http://www.muenster.de&quot;&gt;                
+                    <pre><code data-trim class="html">
+&lt;a href=&quot;http://www.muenster.de&quot;&gt;
   &lt;img src=&quot;Munster.jpg&quot;alt=&quot;Foto de la calle del ayuntamiento&quot;&gt;
-&lt;/a&gt;                
+&lt;/a&gt;
                 </code></pre>
-                <p>El navegador saltará al enlace al hacer clic en la imagen.</p>
+                    <p>El navegador saltará al enlace al hacer clic en la imagen.</p>
                 </div>
             </section>
-    
+
             <section>
-                <p>Se puede ajustar la anchura y altura de la imagen en la página mediante los
-                atributos CSS <code>width</code> y <code>height</code>.</p>
+                <p>Se puede ajustar la anchura y altura de la imagen en la página mediante los atributos CSS <code>width</code> y <code>height</code>.</p>
                 <pre><code data-trim class="html">
-&lt;a href=&quot;http://www.muenster.de&quot;&gt;                
+&lt;a href=&quot;http://www.muenster.de&quot;&gt;
   &lt;img src=&quot;Munster.jpg&quot;alt=&quot;Foto de la calle del ayuntamiento&quot;
        style="width: 640; height: 420"&gt;
-&lt;/a&gt;                
+&lt;/a&gt;
                 </code></pre>
                 <p class="fragment">Más información: <a href="">CSS en línea</a></p>
             </section>
@@ -810,22 +785,22 @@ Aquí otro párrafo.
             <section>
                 <h3>Tablas</h3>
                 <p>Sirven para representar datos en forma tabular.</p>
-                    <p>Las tablas se delimitan con la etiqueta <code>&lt;table&gt;</code>, que 
-                a su vez contiene:</p>
-                    <ul>
-                        <li><code>&lt;caption&gt;</code>, para el título de la tabla.</li>
-                        <li><code>&lt;tr&gt;</code>, para delimitar filas.</li>
-                        <li><code>&lt;th&gt;</code>, para delimitar encabezados.</li>
-                        <li><code>&lt;td&gt;</code>, para delimitar celdas.</li>
-                    </ul>
+                <p>Las tablas se delimitan con la etiqueta <code>&lt;table&gt;</code>, que a su vez contiene:</p>
+                <ul>
+                    <li><code>&lt;caption&gt;</code>, para el título de la tabla.</li>
+                    <li><code>&lt;tr&gt;</code>, para delimitar filas.</li>
+                    <li><code>&lt;th&gt;</code>, para delimitar encabezados.</li>
+                    <li><code>&lt;td&gt;</code>, para delimitar celdas.</li>
+                </ul>
                 <p style="background:rgb(255,230,230)" class="fragment">Las tablas <strong>no</strong> deben utilizarse para maquetar una página.</p>
             </section>
 
-    
+
             <section>
                 <h4>Estructura de una tabla</h4>
                 <div style="text-align:left">
-                    <code class="black">&lt;table&gt;</code><br>
+                    <code class="black">&lt;table&gt;</code>
+                    <br>
                     <table id="lecctabla">
                         <caption><code class="black">&lt;caption&gt;...&lt;/caption&gt;</code></caption>
                         <tr>
@@ -856,12 +831,13 @@ Aquí otro párrafo.
                             <td><code class="black">&lt;td&gt;</code>...<code class="black">&lt;/td&gt;</code></td>
                             <td class="noborder"><code class="black">&lt;/tr&gt;</code></td>
                         </tr>
-                    </table><br/>
+                    </table>
+                    <br/>
                     <code class="black">&lt;/table&gt;</code>
                 </div>
                 <p>El título (<code>&lt;caption&gt;</code>) es opcional.</p>
             </section>
-    
+
             <section>
                 <h4>Ejemplo</h4>
                 <pre><code data-trim class="html" style="">
@@ -885,7 +861,7 @@ Aquí otro párrafo.
                 </code></pre>
                 <img src="images/02/Tabla1.png" style="width:40%;border:none" class="fragment">
             </section>
-    
+
             <section>
                 <h4>Estilo de tablas</h4>
                 <p>Mediante CSS podemos dar estilo al título, encabezados, celdas y bordes de la tabla.</p>
@@ -899,12 +875,12 @@ th {
     color: white;
 }
                 </code></pre>
-            <p><img src="images/02/Tabla2.png" style="border:none;width:40%" class="fragment"/></p>
+                <p><img src="images/02/Tabla2.png" style="border:none;width:40%" class="fragment" /></p>
             </section>
-    
+
             <section>
                 <p style="float:left;width:60%">Por defecto, cada celda tiene un borde totalmente separado de las celdas colindantes.</p>
-                <p style="float:right;width:40%"><img src="images/02/Tabla2.png" style="border:none;width:100%"/></p>
+                <p style="float:right;width:40%"><img src="images/02/Tabla2.png" style="border:none;width:100%" /></p>
                 <div style="clear:both"></div>
                 <p>Podemos fusionar todos los bordes mediante la propiedad <code>border-collapse</code>:</p>
                 <div style="float:left;width:60%;position:relative;top:20px" class="fragment">
@@ -915,12 +891,25 @@ table {
 
                     </code></pre>
                 </div>
-                <p style="float:right;width:40%"  class="fragment"><img src="images/02/Tabla3.png" style="border:none;width:100%"/></p>
+                <p style="float:right;width:40%" class="fragment"><img src="images/02/Tabla3.png" style="border:none;width:100%" /></p>
                 <div style="clear:both"></div>
             </section>
-    
+
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p3">
+                <ol class="contenidos">
+                    <li><a href="#/p1" class="outline">Introducción. Página básica</a></li>
+                    <li><a href="#/p2" class="outline">Elementos HTML</a></li>
+                    <li><a href="#/p3" class="outline current">Atributos CSS</a></li>
+                    <li><a href="#/p4" class="outline">Flujo y posicionamiento</a></li>
+                    <li><a href="#/p5" class="outline">Elementos HTML5</a></li>
+                    <li><a href="#/p6" class="outline">Formularios</a></li>
+                    <li><a href="#/p7" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+
+
             <section>
-                <h2>CSS a fondo</h2>
+                <h2>Atributos CSS</h2>
                 <p>La estructura básica de un fichero CSS es la siguiente:</p>
                 <pre><code data-trim data-noescape class="css">
 selector1 { <span class="arrow_box_left caja_codigo" style="left:240px; top:40px">Regla 1</span>
@@ -938,21 +927,18 @@ selector2 { <span class="arrow_box_left caja_codigo" style="left:240px; top:40px
 ...
                 </code></pre>
             </section>
-    
+
             <section>
                 <p>Cada regla CSS contiene:</p>
                 <ul>
-                    <li>Un <strong>selector</strong>, que determina los elementos a los que afecta
-                    el estilo definido.</li>
-                    <li>Una lista de <strong>propiedades</strong> y <strong>valores</strong>, que definen
-                    el estilo propiamente dicho.</li>
+                    <li>Un <strong>selector</strong>, que determina los elementos a los que afecta el estilo definido.</li>
+                    <li>Una lista de <strong>propiedades</strong> y <strong>valores</strong>, que definen el estilo propiamente dicho.</li>
                 </ul>
-                
+
                 <div class="fragment">
-                    <p>Si un mismo conjunto de propiedades/valores se aplican a selectores distintos, pueden
-                fusionarse en una única regla:</p>
-                <pre><code data-trim data-noescape class="css">
-selector1, selector2, ... { 
+                    <p>Si un mismo conjunto de propiedades/valores se aplican a selectores distintos, pueden fusionarse en una única regla:</p>
+                    <pre><code data-trim data-noescape class="css">
+selector1, selector2, ... {
     propiedad_1: valor_1;
     propiedad_2: valor_2;
     ...
@@ -968,14 +954,13 @@ p {
     color:blue;
 }
                 </code></pre>
-                <p>Esta regla se aplica a todos los elementos <code>&lt;p&gt;</code>
-                del documento HTML.</p>
+                <p>Esta regla se aplica a todos los elementos <code>&lt;p&gt;</code> del documento HTML.</p>
             </section>
-    
+
             <section>
                 <h4>Clases</h4>
-                <p>Es posible asignar uno o varios <string>nombres de clase</string> a cualquier elemento del documento
-                    HTML. Esto se consigue mediante el atributo <code>class</code>.</p>
+                <p>Es posible asignar uno o varios
+                    <string>nombres de clase</string> a cualquier elemento del documento HTML. Esto se consigue mediante el atributo <code>class</code>.</p>
                 <pre><code data-trim data-noescape class="html">
 &lt;a href="pag.html" class="rojo"&gt;Enlace&lt;/a&gt;
                 </code></pre>
@@ -994,17 +979,17 @@ p {
 }
                 </code></pre>
             </section>
-    
+
             <section>
                 <div>
                     <pre><code data-trim data-noescape class="css">
-.rojo { ... }                
+.rojo { ... }
                     </code></pre>
                     <p>Afecta a todos los elementos de la clase <code>rojo</code>.</p>
                 </div>
                 <div class="fragment">
                     <pre><code data-trim data-noescape class="css">
-p.rojo { ... }                
+p.rojo { ... }
                     </code></pre>
                     <p>Afecta a todos los elementos <code>&lt;p&gt;</code> de la clase <code>rojo</code>.</p>
                 </div>
@@ -1016,15 +1001,14 @@ p.rojo { ... }
                     <p>Por ejemplo: <code>&lt;p id="ident"&gt;...&lt;/p&gt;</code></p>
                 </div>
             </section>
-    
+
             <section>
                 <h4>Clases vs. identificadores</h4>
                 <ul>
-                    <li>Un identificador es <strong>único</strong> en todo el documento HTML.<br>
-                        No deben existir dos elementos con el mismo identificador.</li>
-                    <li>Sin embargo, pueden existir dos elementos con la misma clase.<br>
-                        Las clases se utilizan para asignar un mismo estilo a distintos
-                    elementos de la página web.</li>
+                    <li>Un identificador es <strong>único</strong> en todo el documento HTML.
+                        <br> No deben existir dos elementos con el mismo identificador.</li>
+                    <li>Sin embargo, pueden existir dos elementos con la misma clase.
+                        <br> Las clases se utilizan para asignar un mismo estilo a distintos elementos de la página web.</li>
                 </ul>
             </section>
             <section>
@@ -1048,23 +1032,21 @@ p.miclase &gt; a { ... }
                     <p>Afecta a todos los enlaces (<code>&lt;a&gt;</code>) contenidos <em>directamente</em> en un párrafo (<code>&lt;p&gt;</code>) de clase <code>miclase</code>.
                     </p>
                 </div>
-                <div  class="fragment">
+                <div class="fragment">
                     <pre><code data-trim data-noescape class="css">
 table + p { ... }
                     </code></pre>
-                    <p>Afecta a todos los párrafos (<code>&lt;p&gt;</code>) situados <em>a continuación</em>
-                    de una tabla (<code>&lt;table&gt;</code>).
+                    <p>Afecta a todos los párrafos (<code>&lt;p&gt;</code>) situados <em>a continuación</em> de una tabla (<code>&lt;table&gt;</code>).
                     </p>
                 </div>
             </section>
-    
+
             <section>
                 <div>
                     <pre><code data-trim data-noescape class="css">
 img[src="icono.png"] { ... ]
                     </code></pre>
-                    <p>Elementos <code>&lt;img&gt;</code> que tengan un atributo <code>src</code>
-                        que contenga el valor <code>icono.png</code>.
+                    <p>Elementos <code>&lt;img&gt;</code> que tengan un atributo <code>src</code> que contenga el valor <code>icono.png</code>.
                     </p>
                 </div>
                 <div class="fragment">
@@ -1124,23 +1106,21 @@ table > tr:nth-child(odd) { ... }
                 <h4>Pseudoelementos</h4>
                 <div>
                     <pre><code data-trim data-noescape class="css">
-h1.nuevo::after { 
+h1.nuevo::after {
     content: " [Nuevo]";
 }
                     </code></pre>
-                    <p>Inserta la cadena <code>" [Nuevo]"</code> después de todos
-                        los encabezados <code>&lt;h1&gt;</code> que tengan la clase
+                    <p>Inserta la cadena <code>" [Nuevo]"</code> después de todos los encabezados <code>&lt;h1&gt;</code> que tengan la clase
                         <code>nuevo</code>.
                     </p>
                 </div>
                 <div>
                     <pre><code data-trim data-noescape class="css">
-a[href$=".pdf"]::before { 
+a[href$=".pdf"]::before {
     content: img(icono_documento.png);
 }
                     </code></pre>
-                    <p>Inserta una imagen antes de los enlaces que hagan referencia
-                        a un fichero <code>.pdf</code>.
+                    <p>Inserta una imagen antes de los enlaces que hagan referencia a un fichero <code>.pdf</code>.
                     </p>
                 </div>
             </section>
@@ -1148,9 +1128,11 @@ a[href$=".pdf"]::before {
             <section>
                 <h4>Más información</h4>
                 <ul>
-                    <li><a href="http://www.w3schools.com/cssref/css_selectors.asp">CSS Selectors reference</a><br>
-                    http://www.w3schools.com/cssref/css_selectors.asp</li>
-                    <li><a href="http://www.w3schools.com/cssref/trysel.asp">Try CSS selector</a><br>http://www.w3schools.com/cssref/trysel.asp</li>
+                    <li><a href="http://www.w3schools.com/cssref/css_selectors.asp">CSS Selectors reference</a>
+                        <br> http://www.w3schools.com/cssref/css_selectors.asp
+                    </li>
+                    <li><a href="http://www.w3schools.com/cssref/trysel.asp">Try CSS selector</a>
+                        <br>http://www.w3schools.com/cssref/trysel.asp</li>
                 </ul>
             </section>
 
@@ -1166,13 +1148,14 @@ a {
     background-color: yellow;
 }
                 </code></pre>
-                <img src="images/02/Colors.png" class="fragment" style="width:30%;border:0"/>
+                <img src="images/02/Colors.png" class="fragment" style="width:30%;border:0" />
             </section>
 
             <section>
                 <h4>Especificar colores</h4>
                 <ul>
-                    <li>Colores predefinidos <a href="http://www.w3schools.com/colors/colors_names.asp">[+]</a><br>
+                    <li>Colores predefinidos <a href="http://www.w3schools.com/colors/colors_names.asp">[+]</a>
+                        <br>
                         <code>black</code>, <code>red</code>, <code>DarkViolet</code>, etc.
                     </li>
                     <li class="fragment" style="margin-top:1em">
@@ -1182,35 +1165,30 @@ a {
                             <li><code>VV</code> componente verde (00..FF)</li>
                             <li><code>AA</code> componente azul (00..FF)</li>
                         </ul>
-                        Números hexadecimales de dos cifras. Su
-                        mezcla determina el color resultante.<br>
-                        Ejemplos: <span style="color:#FF0000">#FF0000</span>,
+                        Números hexadecimales de dos cifras. Su mezcla determina el color resultante.
+                        <br> Ejemplos: <span style="color:#FF0000">#FF0000</span>,
                         <span style="color:#00FF00">#00FF00</span>,
                         <span style="color:#0000FF">#0000FF</span>,
                         <span style="color:#4E6000">#2E6000</span>,
                         <span style="color:#606060">#606060</span>,
                         <span style="color:#FF4100">#FF4100</span>, etc.
                     </li>
-                    
+
                 </ul>
             </section>
             <section>
                 <ul>
                     <li>
-                        Notación decimal: <code>rgb(r, v, a)</code><br>
-                        Donde <code>r</code>, <code>v</code> y <code>a</code>
-                        son números entre 0 y 255, o porcentajes entre 0% y 100%.<br/>
-                        
-                        Ejemplos: <span style="color:rgb(0, 250, 120)">rgb(0, 250, 120)</span>,
+                        Notación decimal: <code>rgb(r, v, a)</code>
+                        <br> Donde <code>r</code>, <code>v</code> y <code>a</code> son números entre 0 y 255, o porcentajes entre 0% y 100%.
+                        <br/> Ejemplos: <span style="color:rgb(0, 250, 120)">rgb(0, 250, 120)</span>,
                         <span style="color:rgb(200, 100, 0)">rgb(50, 100, 0)</span>,
                         <span style="color:rgb(50%, 50%, 50%)">color:rgb(50%, 50%, 50%)</span>, etc.
                     </li>
                     <li class="fragment" style="margin-top:1em">
-                        Notación decimal con transparencia: <code>rgba(r, v, a, t)</code><br>
-                        La componente <code>t</code> indica la transparencia, desde 0
-                        (transparente) a 1 (completamente opaco).
-                        <br>
-                        Ejemplo: <span style="color:rgba(0, 250, 120, 0.5)">rgba(0, 250, 120, 0.5)</span>.
+                        Notación decimal con transparencia: <code>rgba(r, v, a, t)</code>
+                        <br> La componente <code>t</code> indica la transparencia, desde 0 (transparente) a 1 (completamente opaco).
+                        <br> Ejemplo: <span style="color:rgba(0, 250, 120, 0.5)">rgba(0, 250, 120, 0.5)</span>.
                     </li>
                 </ul>
                 <p class="fragment">Ver: <a href="http://www.w3schools.com/colors/colors_picker.asp">Color picker</a></p>
@@ -1224,28 +1202,31 @@ a {
     background-color: rgb(221, 204, 255);
 }
                 </code></pre>
-                <img src="images/02/Colors2.png" style="width:30%;border:0"/>
+                <img src="images/02/Colors2.png" style="width:30%;border:0" />
             </section>
             <section>
                 <h3>Bordes</h3>
                 <div><pre><code data-trim data-noescape class="css">
 border-style: <span style="border:none">none</span> | <span style="border:solid; padding: 0px 10px;">solid</span> | <span style="border:dashed; padding: 0px 10px">dashed</span> | <span style="border:dotted; padding: 0px 10px">dotted</span> | ...
                 </code></pre>
-                <p>Indica el estilo de la línea del borde <a href="http://www.w3schools.com/cssreF/pr_border-style.asp">[+]</a>.</p></div>
+                    <p>Indica el estilo de la línea del borde <a href="http://www.w3schools.com/cssreF/pr_border-style.asp">[+]</a>.</p>
+                </div>
                 <div class="fragment"><pre><code data-trim data-noescape class="css">
 border-color: <span style="border:solid #FF0000; padding: 0px 10px">#FF0000</span>
                 </code></pre>
-                <p>Indica el color de la línea del borde.</p></div>
+                    <p>Indica el color de la línea del borde.</p>
+                </div>
                 <div class="fragment"><pre><code data-trim data-noescape class="css" style="line-height:2em">
-                
-border-width: <span style="border:solid white 1px; padding: 0px 10px">1px</span> | <span style="border:solid white 
-    3px; padding: 0px 10px">3px</span> | <span style="border:solid white 
+
+border-width: <span style="border:solid white 1px; padding: 0px 10px">1px</span> | <span style="border:solid white
+    3px; padding: 0px 10px">3px</span> | <span style="border:solid white
     0.5em; padding: 0px 10px">0.5em</span> | ... </code></pre>
-                <p>Indica la anchura de línea. Unidades de medida <a href="http://www.w3schools.com/cssref/css_units.asp">[+]</a>:</p>
-                <ul>
-                    <li>Absolutas: <code>3px</code>, <code>1cm</code>, <code>4mm</code>, <code>2in</code>, ...</li>
-                    <li>Relativas: <code>2em</code>, <code>50%</code>, ...</li>
-                </ul></div>
+                    <p>Indica la anchura de línea. Unidades de medida <a href="http://www.w3schools.com/cssref/css_units.asp">[+]</a>:</p>
+                    <ul>
+                        <li>Absolutas: <code>3px</code>, <code>1cm</code>, <code>4mm</code>, <code>2in</code>, ...</li>
+                        <li>Relativas: <code>2em</code>, <code>50%</code>, ...</li>
+                    </ul>
+                </div>
             </section>
 
             <section>
@@ -1261,15 +1242,16 @@ border-left-style: dotted;
 border-bottom-color: #FF0000;
                 </code></pre>
             </section>
-            
+
             <section>
                 <h3>Modelo de cajas CSS</h3>
-                <p><img src="images/02/boxmodel.gif" style="width:40%;border:none"/><br>
+                <p><img src="images/02/boxmodel.gif" style="width:40%;border:none" />
+                    <br>
                     <span style="font-size:20px; position:relative; top:-30px">(Fuente: <a href="https://www.washington.edu/accesscomputing/webd2/student/unit3/module4/lesson1.html">University of Washington</a>)</span>
                 </p>
                 <ul>
-                    <li><strong>Margin</strong>: espacio del borde con respecto a los demás elementos.</li>                    
-                    <li><strong>Padding</strong>: espacio del contenido del elemento con respecto al borde.</li>                    
+                    <li><strong>Margin</strong>: espacio del borde con respecto a los demás elementos.</li>
+                    <li><strong>Padding</strong>: espacio del contenido del elemento con respecto al borde.</li>
                 </ul>
             </section>
 
@@ -1307,7 +1289,7 @@ margin-bottom: 2em;
 &lt;p&gt;Esto es un p&aacute;rrafo normal.&lt;/p&gt;
 &lt;p class=&quot;importante&quot;&gt;
     Esto es muy importante!
-&lt;/p&gt;    
+&lt;/p&gt;
 &lt;p&gt;Vuelta al p&aacute;rrafo normal.&lt;/p&gt;
                 </code></pre>
                 <pre><code data-trim class="css">
@@ -1321,29 +1303,30 @@ p.importante {
 }
                 </code></pre>
                 <img src="images/02/Margins.png" style="border:none; width:60%">
-                
+
             </section>
 
             <section>
                 <h3>Atributos del texto</h3>
                 <pre><code data-trim class="css">
-font-family: tipo_de_letra1, tipo_de_letra2, ...                
+font-family: tipo_de_letra1, tipo_de_letra2, ...
                 </code></pre>
                 <p>Especifica el tipo de letra. Se comprobará la disponibilidad de las fuentes en el orden especificado. Se usará la primera fuente que esté disponible.</p>
                 <p>Cada tipo de letra especificado puede ser:</p>
                 <ul>
-                    <li>Un nombre <strong>específico</strong>:<br>
+                    <li>Un nombre <strong>específico</strong>:
+                        <br>
                         <code>Times New Roman</code>, <code>Georgia</code>, <code>Open Sans</code>, etc.
                     </li>
-                    <li>Una familia <strong>genérica</strong>:<br>
+                    <li>Una familia <strong>genérica</strong>:
+                        <br>
                         <code>serif</code>, <code>sans-serif</code>, <code>monospace</code>, <code>fantasy</code>, etc.
                     </li>
                 </ul>
             </section>
 
             <section>
-                <p>Es muy recomendable que el último tipo de letra especificado en la lista <code>font-family</code>
-                sea genérico.</p>
+                <p>Es muy recomendable que el último tipo de letra especificado en la lista <code>font-family</code> sea genérico.</p>
                 <pre><code data-trim class="css">
 font-family: "Open Sans", "Verdana", sans-serif;
                 </code></pre>
@@ -1352,8 +1335,8 @@ font-family: "Open Sans", "Verdana", sans-serif;
             <section>
                 <h4>Incluir fuentes nuevas en el CSS</h4>
                 <p>Si disponemos de los ficheros de fuente, podemos definirlos en el CSS para que el navegador utilice dichos ficheros:</p>
-               <pre><code data-trim class="css" data-noescape>
-@font-face { 
+                <pre><code data-trim class="css" data-noescape>
+@font-face {
     font-family: "Baloo Bhai"; <span class="arrow_box_left caja_codigo" style="left:100px">Nombre que asignamos a la fuente</span>
     src: url("BalooBhai-Regular.ttf")
 }
@@ -1363,14 +1346,14 @@ font-family: "Open Sans", "Verdana", sans-serif;
 h1 {
     font-family: "Baloo Bhai", Arial, sans-serif;
     font-weight: normal;
-}                
+}
                 </code></pre>
                 <div class="fragment">
                     <pre style="float:left;width:60%"><code class="html">&lt;h1&gt;Hola!&lt;/h1&gt;</code></pre>
                     <img style="height:1em; border:none" src="images/02/HeadingFont.png">
                 </div>
                 <div style="clear:both"></div>
-             </section>
+            </section>
 
             <section>
                 <h4>Otros atributos de texto</h4>
@@ -1404,17 +1387,15 @@ font: italic bold 10px serif;
                 <h3>Dimensiones de un elemento</h3>
                 <p>Se controlan mediante los atributos <code>width</code> y <code>height</code></p>
                 <p>Por defecto, las dimensiones de un elemento dependen del contenido del mismo y del ancho de la ventana del navegador. Es equivalente a poner:</p>
-                    <pre><code data-trim class="css">
+                <pre><code data-trim class="css">
 width: auto;
 height: auto;
-                    </code></pre>
-                    Podemos definir unas dimensiones absolutas:
-                    <pre><code data-trim class="css">
+                    </code></pre> Podemos definir unas dimensiones absolutas:
+                <pre><code data-trim class="css">
 width: 200px;
 height: 3em;
-                    </code></pre>
-                    o relativas al elemento contenedor:
-                    <pre><code data-trim class="css">
+                    </code></pre> o relativas al elemento contenedor:
+                <pre><code data-trim class="css">
 width: 90%;
                     </code></pre>
             </section>
@@ -1427,7 +1408,7 @@ p.importante {
     width: 30%;
     margin-left: 20px;
     ...
-}                
+}
                     </code></pre>
                     <img src="images/02/Width.png" style="width:50%; border:none">
                 </div>
@@ -1447,15 +1428,14 @@ p.importante {
             </section>
             <section>
                 <h3>Imágenes de fondo</h3>
-                    <pre><code data-trim data-noescape class="css">
+                <pre><code data-trim data-noescape class="css">
 background-image: url(<span style="font-style:italic">nombre_fichero</span>)
 background-position: left top | left center | left bottom
                    | center top | center center | center bottom
                    | right top | right center | right bottom
 background-repeat: repeat | repeat-x | repeat-y | no-repeat
-                    </code></pre>
-                    Ejemplo:
-                    <pre><code data-trim data-noescape class="css">
+                    </code></pre> Ejemplo:
+                <pre><code data-trim data-noescape class="css">
 p.importante {
     background-image: url(Caution2.png);
     background-repeat: no-repeat;
@@ -1464,12 +1444,12 @@ p.importante {
     ...
 }
                     </code></pre>
-                    <img src="images/02/Background.png" style="width:50%; border:none"/>
+                <img src="images/02/Background.png" style="width:50%; border:none" />
             </section>
             <section>
                 <p style="font-size:200px;font-weight:bold;color:#A050F0">?</p>
                 <p>¿Qué diferencia hay entre incluir una imagen mediante CSS y mediante un elemento
-                <code>&lt;img&gt;</code>?</p>
+                    <code>&lt;img&gt;</code>?</p>
             </section>
 
             <section>
@@ -1482,11 +1462,11 @@ p.importante {
                 <h4>Ejemplo</h4>
                 <pre><code data-trim data-noescape class="html" style="font-size:19px">
 &lt;p&gt;
-    Esto es un &lt;a href=&quot;http://www.ucm.es&quot;&gt;enlace normal&lt;/a&gt;, este tiene una 
+    Esto es un &lt;a href=&quot;http://www.ucm.es&quot;&gt;enlace normal&lt;/a&gt;, este tiene una
     &lt;a href=&quot;http://www.google.com&quot; class=&quot;enlace&quot;&gt;clase&lt;/a&gt;
     y este tiene un
     &lt;a href=&quot;http://informatica.ucm.es&quot; id=&quot;fdi&quot;&gt;identificador&lt;/a&gt;.
-&lt;/p&gt;                
+&lt;/p&gt;
                 </code></pre>
 
                 <pre><code data-trim data-noescape class="css" style="font-size:19px">
@@ -1506,21 +1486,20 @@ p > a {
     color: green;
 }
                 </code></pre>
-                
+
             </section>
             <section>
                 <h4>Regla 1: Especificidad</h4>
                 <p>En caso de conflicto se aplican los atributos con selectores más específicos.</p>
                 <ul>
-                    <li><code>p > a</code> es un selector más específico que <code>a</code>, porque afecta
-                    a menos elementos.</li>
+                    <li><code>p > a</code> es un selector más específico que <code>a</code>, porque afecta a menos elementos.</li>
                     <li>Los selectores de clase son más específicos que los selectores sin clase.</li>
                     <li>Los selectores de identificador son más específicos que cualquier otro.</li>
                 </ul>
                 <p>En nuestro ejemplo:</p>
                 <img src="images/02/Prioridad.png" style="width:60%;border:none">
             </section>
-            
+
             <section>
                 <h4>Regla 2: Orden de las clases en el CSS</h4>
                 <pre><code data-trim style="html">
@@ -1533,12 +1512,11 @@ p > a {
 .importante { ... }
 .desactivado { ... }
                 </code></pre>
-                <p>Los atributos de la clase <code>desactivado</code> prevalecen sobre
-                los de <code>importante</code>, que a su vez prevalecen sobre los de <code>verde</code>.</p>
-                
+                <p>Los atributos de la clase <code>desactivado</code> prevalecen sobre los de <code>importante</code>, que a su vez prevalecen sobre los de <code>verde</code>.</p>
+
                 <p>En general, prevalecen las clases que se definen después en la hoja de estilo CSS.</p>
             </section>
-            
+
             <section>
                 <h4>Regla 3: Atributo <code style="text-transform:none">style</code></h4>
                 <p>Es posible (aunque no se recomienda) introducir estilos directamente en el código HTML:</p>
@@ -1547,14 +1525,12 @@ p > a {
     Volver
 &lt;/a&gt;
                 </code></pre>
-                <p>Estos atributos tienen precedencia sobre los especificados en cualquier hoja
-                de estilo CSS.</p>
+                <p>Estos atributos tienen precedencia sobre los especificados en cualquier hoja de estilo CSS.</p>
             </section>
 
             <section>
                 <h4>Regla 4: La marca <code style="text-transform:none">!important</code></h4>
-                <p>Los atributos CSS con la marca <code>!important</code> tienen prioridad sobre
-                los que no lo tienen.</p>
+                <p>Los atributos CSS con la marca <code>!important</code> tienen prioridad sobre los que no lo tienen.</p>
                 <pre><code data-trim class="css">
 a {
     color: blue !important;
@@ -1569,11 +1545,10 @@ p > a {
 
             <section>
                 <h3>Herencia de propiedades</h3>
-                <p>Cuando un elemento HTML está contenido dentro de otro, hereda algunas
-                de sus propiedades de estilo.</p>
+                <p>Cuando un elemento HTML está contenido dentro de otro, hereda algunas de sus propiedades de estilo.</p>
                 <ul>
                     <li>Propiedades heredables: <code>font</code>, <code>color</code>, etc.</li>
-                    <li>Propiedades no heredables: <code>border</code>, <code>margin</code>, 
+                    <li>Propiedades no heredables: <code>border</code>, <code>margin</code>,
                         <code>padding</code>, etc.</li>
                 </ul>
             </section>
@@ -1598,13 +1573,11 @@ p.cuadro {
 }
                 </code></pre>
                 <img src="images/02/Herencia1.png" style="width:50%;border:none">
-                <p>El enlace hereda el tipo de letra de <code>&lt;body&gt;</code>, pero no
-                el borde del párrafo.</p>
+                <p>El enlace hereda el tipo de letra de <code>&lt;body&gt;</code>, pero no el borde del párrafo.</p>
             </section>
-            
+
             <section>
-                <p>Un elemento puede sobreescribir las propiedades heredadas. El valor
-                sobreescrito prevalece sobre el heredado.</p>
+                <p>Un elemento puede sobreescribir las propiedades heredadas. El valor sobreescrito prevalece sobre el heredado.</p>
                 <pre><code data-trim class="css">
 a {
     font-family: serif;
@@ -1612,11 +1585,10 @@ a {
                 </code></pre>
                 <img src="images/02/Herencia2.png" style="width:50%;border:none">
             </section>
-            
+
             <section>
-                <p>Un elemento puede decidir heredar aquellas propiedades
-                no heredables introduciendo el valor <code>inherit</code> a la propiedad
-                correspondiente:</p>
+                <p>Un elemento puede decidir heredar aquellas propiedades no heredables introduciendo el valor <code>inherit</code> a la propiedad correspondiente:
+                </p>
                 <pre><code data-trim class="css">
 a {
     border: inherit;
@@ -1626,7 +1598,7 @@ a {
                 </code></pre>
                 <img src="images/02/Herencia3.png" style="width:50%;border:none">
             </section>
-            
+
             <section>
                 <h3>Hojas de estilo múltiples</h3>
                 <p>Es posible asociar varias hojas de estilo a un mismo documento.</p>
@@ -1642,24 +1614,22 @@ a {
     &lt;body&gt;
         ...
     &lt;/body&gt;
-&lt;/html&gt;                
+&lt;/html&gt;
                 </code></pre>
-                <p>Las reglas de las hojas de estilo incluidas posteriormente prevalecen
-                    sobre los anteriores.</p>
+                <p>Las reglas de las hojas de estilo incluidas posteriormente prevalecen sobre los anteriores.</p>
             </section>
-            
+
             <section>
                 <h4>El atributo <code style="text-transform:none">media</code></h4>
                 <p>
-                    Si se tienen varias hojas de estilo en un mismo documento, se puede asociar
-                    cada una de ellas con un dispositivo o configuración diferente.
+                    Si se tienen varias hojas de estilo en un mismo documento, se puede asociar cada una de ellas con un dispositivo o configuración diferente.
                 </p>
                 <pre><code data-trim class="html">
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
     &lt;head&gt;
         ...
-        &lt;link rel=&quot;stylesheet&quot; href=&quot;MediaScreen.css&quot; 
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;MediaScreen.css&quot;
                     media=&quot;screen&quot;/&gt;
         &lt;link rel=&quot;stylesheet&quot; href=&quot;MediaPrint.css&quot;
                     media=&quot;print&quot;/&gt;
@@ -1669,29 +1639,29 @@ a {
     &lt;/body&gt;
 &lt;/html&gt;
                 </code></pre>
-                <p>Se utilizará la hoja <code>MediaScreen.css</code> para la visualización en pantalla, 
-                <code>MediaPrint.css</code> para la impresión en papel.</p>
+                <p>Se utilizará la hoja <code>MediaScreen.css</code> para la visualización en pantalla,
+                    <code>MediaPrint.css</code> para la impresión en papel.</p>
             </section>
-            
+
             <section>
                 <pre><code data-trim class="html">
 &lt;link rel=&quot;stylesheet&quot; href=&quot;...&quot; media=&quot;all&quot;/&gt;
                 </code></pre>
                 <p>La hoja de estilo se aplica en todos los dispositivos.</p>
-                
+
                 <pre><code data-trim class="html">
-&lt;link rel=&quot;stylesheet&quot; href=&quot;...&quot; 
+&lt;link rel=&quot;stylesheet&quot; href=&quot;...&quot;
                     media=&quot;screen and (max-device-width:500px)&quot;/&gt;
                 </code></pre>
                 <p>La hoja de estilo se aplica en los dispositivos con una anchira de pantalla inferior a 500px.</p>
             </section>
-            
+
             <section>
                 <h3>Inspector de propiedades de Firefox</h3>
                 <p>
-                <cite style="font-style:italic">Herramientas</cite> &rarr;
-                <cite style="font-style:italic"> Desarrollador </cite> &rarr;
-                <cite style="font-style:italic">Inspector</cite> (Ctrl+Mayus+C)
+                    <cite style="font-style:italic">Herramientas</cite> &rarr;
+                    <cite style="font-style:italic"> Desarrollador </cite> &rarr;
+                    <cite style="font-style:italic">Inspector</cite> (Ctrl+Mayus+C)
                 </p>
 
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/TAAL707ARPs" frameborder="0" allowfullscreen></iframe>
@@ -1699,7 +1669,21 @@ a {
                     <a href="https://youtu.be/TAAL707ARPs">https://youtu.be/TAAL707ARPs</a>
                 </div>
             </section>
-            
+
+
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p4">
+                <ol class="contenidos">
+                    <li><a href="#/p1" class="outline">Introducción. Página básica</a></li>
+                    <li><a href="#/p2" class="outline">Elementos HTML</a></li>
+                    <li><a href="#/p3" class="outline">Atributos CSS</a></li>
+                    <li><a href="#/p4" class="outline current">Flujo y posicionamiento</a></li>
+                    <li><a href="#/p5" class="outline">Elementos HTML5</a></li>
+                    <li><a href="#/p6" class="outline">Formularios</a></li>
+                    <li><a href="#/p7" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+
+
             <section>
                 <h2>Flujo y posicionamiento</h2>
                 <p>En HTML se distinguen dos tipos de elementos:</p>
@@ -1708,45 +1692,43 @@ a {
                         Elementos de tipo <strong>bloque</strong>:
                         <ul>
                             <li>Ocupan todo el ancho de la página.</li>
-                            <li>Los elementos de tipo bloque contiguos se colocan de arriba a
-                            abajo en la página HTML.</li>
+                            <li>Los elementos de tipo bloque contiguos se colocan de arriba a abajo en la página HTML.</li>
                         </ul>
                     </li>
                     <li>
                         Elementos de tipo <strong>inline</strong>:
                         <ul>
                             <li>Ocupan el ancho que necesiten, según el contenido.</li>
-                            <li>Se colocan de izquierda a derecha, hasta ocupar el ancho de la página.
-                            Saltan a la línea siguiente si es necesario.</li>
+                            <li>Se colocan de izquierda a derecha, hasta ocupar el ancho de la página. Saltan a la línea siguiente si es necesario.</li>
                         </ul>
                     </li>
                 </ul>
-                
+
             </section>
-            
+
             <section>
                 <p>Elementos de tipo bloque:</p>
                 <p>
-                    <code>&lt;p&gt;</code>, 
-                    <code>&lt;h1&gt;</code>, 
-                    <code>&lt;h2&gt;</code>, ..., 
-                    <code>&lt;h6&gt;</code>, 
-                    <code>&lt;ul&gt;</code>, 
-                    <code>&lt;ol&gt;</code>, 
-                    <code>&lt;li&gt;</code>, 
-                    <code>&lt;table&gt;</code>, 
-                    <code>&lt;blockquote&gt;</code>, 
+                    <code>&lt;p&gt;</code>,
+                    <code>&lt;h1&gt;</code>,
+                    <code>&lt;h2&gt;</code>, ...,
+                    <code>&lt;h6&gt;</code>,
+                    <code>&lt;ul&gt;</code>,
+                    <code>&lt;ol&gt;</code>,
+                    <code>&lt;li&gt;</code>,
+                    <code>&lt;table&gt;</code>,
+                    <code>&lt;blockquote&gt;</code>,
                     <code>&lt;pre&gt;</code>, etc.
                 </p>
                 <p>Elementos de tipo inline:</p>
                 <p>
-                    <code>&lt;a&gt;</code>, 
-                    <code>&lt;strong&gt;</code>, 
+                    <code>&lt;a&gt;</code>,
+                    <code>&lt;strong&gt;</code>,
                     <code>&lt;img&gt;</code>,
-                    <code>&lt;q&gt;</code>,  etc.
+                    <code>&lt;q&gt;</code>, etc.
                 </p>
             </section>
-            
+
             <section>
                 <p>Elementos de tipo bloque: flujo vertical.</p>
                 <pre><code data-trim class="html">
@@ -1757,13 +1739,13 @@ a {
 &lt;ul&gt;
     &lt;li&gt;Elem 1&lt;/li&gt;
     &lt;li&gt;Elem 2&lt;/li&gt;
-&lt;/ul&gt;                
+&lt;/ul&gt;
                 </code></pre>
                 <img src="images/02/VerticalFlow.png" style="width:60%; border: none">
             </section>
 
 
-            
+
             <section>
                 <p>Elementos de tipo inline: flujo horizontal con el texto.</p>
                 <pre><code data-trim class="html">
@@ -1775,15 +1757,15 @@ a {
                 </code></pre>
                 <img src="images/02/HorizontalFlow.png" style="width:70%; border: none">
             </section>
-            
+
             <section>
                 <h3>El atributo <code style="text-transform:none">display</code></h3>
-                <p>Sirve para modificar el tipo de un elemento (block, inline) u
-                    ocultarlo.</p>
+                <p>Sirve para modificar el tipo de un elemento (block, inline) u ocultarlo.
+                </p>
                 <pre><code data-trim class="css">
 display: block | inline | none | ...
                 </code></pre>
-                
+
                 <p>En los ejemplos anteriores:</p>
                 <pre style="float:left;width:40%"><code data-trim class="css">
 li {
@@ -1799,14 +1781,13 @@ a {
                 <img src="images/02/AlteredFlow.png" style="width:50%; border: none">
                 <div style="clear:both"></div>
             </section>
-            
+
             <section>
                 <h3>Secciones lógicas</h3>
-                <p>El elemento <code>&lt;div&gt;</code> sirve para agrupar distintos elementos, con
-                el fin de aplicar un mismo estilo, o de tratarlos como una unidad lógica.</p>
+                <p>El elemento <code>&lt;div&gt;</code> sirve para agrupar distintos elementos, con el fin de aplicar un mismo estilo, o de tratarlos como una unidad lógica.</p>
                 <p>Los elementos <code>&lt;div&gt;</code> son de tipo bloque.</p>
             </section>
-            
+
             <section>
                 <h4>Ejemplo</h4>
                 <pre><code data-trim class="html">
@@ -1818,7 +1799,7 @@ a {
 &lt;div class=&quot;articulo&quot;&gt;
     &lt;h2&gt;Articulo 2&lt;/h2&gt;
     &lt;p&gt;...&lt;/p&gt;
-&lt;/div&gt;                
+&lt;/div&gt;
                 </code></pre>
                 <pre><code data-trim class="css">
 div.articulo {
@@ -1834,15 +1815,15 @@ div.articulo h2 {
     color: #902020;
 }                </code></pre>
             </section>
-            
+
             <section>
                 <p>Resultado:</p>
                 <img src="images/02/Div.png" style="width:90%; border:none">
             </section>
-            
+
             <section>
                 <p>El elemento <code>&lt;span&gt;</code> tiene una finalidad similar a la de
-                <code>&lt;div&gt;</code>, pero es un elemento de tipo inline.</p>
+                    <code>&lt;div&gt;</code>, pero es un elemento de tipo inline.</p>
                 <pre><code data-trim class="html">
 &lt;p&gt;Curabitur vitae &lt;span class="rojo"&gt;ipsum ipsum&lt;/span&gt; ...&lt;/p&gt;
                 </code></pre>
@@ -1853,20 +1834,18 @@ span.rojo {
                 </code></pre>
                 <img src="images/02/Span.png" style="height:1em;border:none">
             </section>
-            
-            
+
+
             <section>
                 <h3>Posicionamiento flotante</h3>
                 <pre><code data-trim class="css">
 float: left | right
                 </code></pre>
-                <p>Cuando a un elemento se le asigna una propiedad <code>float</code>,
-                    es eliminado del flujo normal de posicionamiento, y pasa a ser
-                considerado <strong>flotante</strong>.</p>
-                <p>Los elementos colindantes se situan alrededor del elemento
-                    flotante.</p>
+                <p>Cuando a un elemento se le asigna una propiedad <code>float</code>, es eliminado del flujo normal de posicionamiento, y pasa a ser considerado <strong>flotante</strong>.</p>
+                <p>Los elementos colindantes se situan alrededor del elemento flotante.
+                </p>
             </section>
-            
+
             <section>
                 <h4>Ejemplo</h4>
                 <pre><code data-trim class="html">
@@ -1895,7 +1874,7 @@ p.flotante_dch {
                 </code></pre>
 
             </section>
-            
+
             <section>
                 <img src="images/02/Float1.png" style="width:70%;border:none" alt="Resultado del ejemplo anterior">
             </section>
@@ -1909,7 +1888,7 @@ p.flotante_dch {
                 <p>Tras cambiar la clase <code>flotante_izq</code> en P2 por <code>flotante_dch</code>:</p>
                 <img src="images/02/Float3.png" style="width:70%;border:none" alt="Resultado del ejemplo anterior">
             </section>
-            
+
             <section>
                 <h4>¿Qué pasa si...?</h4>
                 <ul>
@@ -1917,29 +1896,30 @@ p.flotante_dch {
                     <li>Añadimos la clase <code>flotante_izq</code> a P1 y <code>flotante_dch</code> a P2.</li>
                 </ul>
             </section>
-            
+
             <section>
                 <h4>La propiedad <code style="text-transform:none">clear</code></h4>
-                <p>Sirve para evitar que un elemento se distribuya alrededor de elementos
-                flotantes.</p>
+                <p>Sirve para evitar que un elemento se distribuya alrededor de elementos flotantes.
+                </p>
                 <p>Por ejemplo, partiendo de la siguiente situación:</p>
-                <img src="images/02/Float2.png" style="width:50%;border:none" alt="P2 a la izquierda">
+                <img src="images/02/Float2.png" style="width:35%;border:none" alt="P2 a la izquierda">
             </section>
-            
+
             <section>
                 <p>Añadimos la propiedad <code>clear:left</code> al estilo de P4.</p>
                 <img src="images/02/Clear1.png" style="width:60%;border:none" alt="P4 se desplaza hacia abajo">
             </section>
-            
+
             <section>
                 <pre><code data-trim class="css">
 clear: left | right | both | none
                 </code></pre>
-                
-                <p>Los elementos que tengan la propiedad <code>clear</code> con un valor distinto de <code>none</code> no se distribuirán alrededor de los elementos que <em>floten</em> por la izquierda (<code>left</code>), por la derecha (<code>right</code>) o por ambos lados (<code>both</code>).</p>
+
+                <p>Los elementos que tengan la propiedad <code>clear</code> con un valor distinto de <code>none</code> no se distribuirán alrededor de los elementos que <em>floten</em> por la izquierda (<code>left</code>), por la derecha (<code>right</code>)
+                    o por ambos lados (<code>both</code>).</p>
             </section>
-            
-            
+
+
             <section>
                 <h3>Centrado de elementos</h3>
                 <p>Partimos de la siguiente situación en la que hemos asignado la propiedad <code>width:50%</code> a P2:</p>
@@ -1947,17 +1927,15 @@ clear: left | right | both | none
             </section>
 
             <section>
-                <p>Asignando la propiedad <code>margin-left:auto</code> a P2, convertimos el margen izquierdo
-                de este párrafo en un margen <em>elástico</em>, que se expande todo lo posible.</p>
+                <p>Asignando la propiedad <code>margin-left:auto</code> a P2, convertimos el margen izquierdo de este párrafo en un margen <em>elástico</em>, que se expande todo lo posible.</p>
                 <img src="images/02/ElasticMargin2.png" style="width:60%;border:none" alt="Cuatro párrafos dispuestos verticalmente">
             </section>
 
             <section>
-                <p>Si, además de lo anterior, añadimos <code>margin-right:auto</code> a P2, convertiremos
-                ambos márgenes en elásticos. El elemento aparecerá centrado.</p>
+                <p>Si, además de lo anterior, añadimos <code>margin-right:auto</code> a P2, convertiremos ambos márgenes en elásticos. El elemento aparecerá centrado.</p>
                 <img src="images/02/ElasticMargin3.png" style="width:60%;border:none" alt="Cuatro párrafos dispuestos verticalmente">
             </section>
-            
+
             <section>
                 <h3>Posicionamiento absoluto</h3>
                 <p>Es posible utilizar CSS para situar elementos en una posición arbitraria de la página.</p>
@@ -1966,16 +1944,15 @@ position: absolute;
 left: <span style="font-style:italic">coordenada_x</span>;
 top: <span style="font-style:italic">coordenada_y</span>;
                 </code></pre>
-                
+
                 <p>Las posiciones son relativas a la esquina superior izquierda de la <strong>página HTML</strong>.</p>
 
             </section>
-            
+
             <section>
-                <p>Cuando un elemento recibe la propiedad <code>position:absolute</code>, deja de formar
-                parte del flujo de la página y se sitúa en la posición indicada por las propiedades
-                <code>left</code> y <code>top</code>.</p>
-                
+                <p>Cuando un elemento recibe la propiedad <code>position:absolute</code>, deja de formar parte del flujo de la página y se sitúa en la posición indicada por las propiedades
+                    <code>left</code> y <code>top</code>.</p>
+
                 <p>Por ejemplo, si aplicamos al párrafo P2 del ejemplo anterior las siguientes propiedades:</p>
                 <pre><code data-trim class="css">
 position: absolute;
@@ -1985,12 +1962,12 @@ width: 40%;
 background-color: #FFA000;
                 </code></pre>
             </section>
-            
+
             <section>
                 <p>Obtenemos:</p>
                 <img src="images/02/Absolute.png" style="width:70%;border:none">
             </section>
-            
+
             <section>
                 <h3>Posicionamiento relativo</h3>
                 <pre><code data-trim data-noescape class="css">
@@ -1998,24 +1975,21 @@ position: relative;
 left: <span style="font-style:italic">coordenada_x</span>;
 top: <span style="font-style:italic">coordenada_y</span>;
                 </code></pre>
-                
-                <p>Los elementos con posicionamiento relativo no son eliminados del flujo de
-                    la página.</p> 
-                <p>Los atributos <code>left</code> y <code>top</code> indican la posición del elemento
-                    tomando como origen la posición en la que estaría situado el elemento según el flujo de la
-                    página.
+
+                <p>Los elementos con posicionamiento relativo no son eliminados del flujo de la página.</p>
+                <p>Los atributos <code>left</code> y <code>top</code> indican la posición del elemento tomando como origen la posición en la que estaría situado el elemento según el flujo de la página.
                 </p>
             </section>
-            
+
             <section>
-                
+
                 <p>En el ejemplo anterior, cambiamos <code>position:absolute</code> por <code>position:relative</code>:</p>
-                
+
                 <img src="images/02/Relative.png" style="width:80%;border:none">
-            
-            
+
+
             </section>
-            
+
             <section>
                 <h3>Posicionamiento fijo</h3>
                 <pre><code data-trim data-noescape class="css">
@@ -2023,31 +1997,28 @@ position: fixed;
 left: <span style="font-style:italic">coordenada_x</span>;
 top: <span style="font-style:italic">coordenada_y</span>;
                 </code></pre>
-                <p>Los elementos con <code>position:fixed</code> se sitúan en una posición independiente
-                de la parte de la página que se esté visualizando en el navegador.</p>
+                <p>Los elementos con <code>position:fixed</code> se sitúan en una posición independiente de la parte de la página que se esté visualizando en el navegador.</p>
             </section>
-            
+
             <section>
                 <p>En el ejemplo anterior, asignamos la propiedad <code>position:fixed</code> a P2:</p>
                 <img src="images/02/Fixed.gif" style="width:60%;border:none">
             </section>
-            
+
             <section>
                 <h3>Posicionamiento en forma de tabla</h3>
                 <p>En ocasiones resulta útil concebir la disposición de una página web como una tabla.</p>
                 <img src="images/02/TableLayout.png" style="width:80%;border:none">
             </section>
-            
+
             <section>
-                <p>El elemento <code>&lt;table&gt;</code> <strong>no</strong> debe usarse para esto,
-                ya que se mezclarían detalles de estilo de la página con la estructura. </p>
-                
-                <p>No obstante, se puede conseguir una distribución similar considerando cada celda
-                    de esta tabla virtual como una sección lógica <code>&lt;div&gt;</code> y utilizando las propiedades
+                <p>El elemento <code>&lt;table&gt;</code> <strong>no</strong> debe usarse para esto, ya que se mezclarían detalles de estilo de la página con la estructura. </p>
+
+                <p>No obstante, se puede conseguir una distribución similar considerando cada celda de esta tabla virtual como una sección lógica <code>&lt;div&gt;</code> y utilizando las propiedades
                     <code>display:table-row</code> y <code>display:table-cell</code>.
                 </p>
             </section>
-            
+
             <section>
                 <h4>Ejemplo</h4>
                 <pre><code data-trim class="html">
@@ -2056,7 +2027,7 @@ top: <span style="font-style:italic">coordenada_y</span>;
         &lt;div id=&quot;logo&quot;&gt; ... &lt;/div&gt;
         &lt;div id=&quot;titulo&quot;&gt; ...  &lt;/div&gt;
     &lt;/div&gt;
-    
+
     &lt;div id=&quot;fila_inferior&quot;&gt;
         &lt;div id=&quot;menu&quot;&gt; ... &lt;/div&gt;
         &lt;div id=&quot;texto&quot;&gt; ... &lt;/div&gt;
@@ -2065,7 +2036,7 @@ top: <span style="font-style:italic">coordenada_y</span>;
                 </code></pre>
                 <ul>
                     <li>Secciones lógicas que se comportan como filas: <code>#fila_superior</code> y
-                    <code>#fila_inferior</code>.</li>
+                        <code>#fila_inferior</code>.</li>
                     <li>Secciones lógicas que se comportan como celdas: <code>#logo</code>, <code>#titulo</code>,
                         <code>#menu</code> y <code>#texto</code>.
                     </li>
@@ -2089,7 +2060,7 @@ top: <span style="font-style:italic">coordenada_y</span>;
     padding: 5px;
 }
 
-#logo { 
+#logo {
     background-color: #A0A0A0;
     text-align: center;
     width: 200px;
@@ -2097,18 +2068,18 @@ top: <span style="font-style:italic">coordenada_y</span>;
 
 #titulo { background-color: #F0F0F0; }
 #menu   { background-color: #A0FFFF; }
-#texto  { background-color: #FFFFA0; }                
+#texto  { background-color: #FFFFA0; }
                 </code></pre>
             </section>
-            
+
             <section>
                 <p>Resultado:</p>
                 <img src="images/02/TableLayoutResult.png" style="width:80%;border:none">
             </section>
-            
-            
+
+
         </div>
-    
+
     </div>
 
 
