@@ -145,7 +145,9 @@
                 <h4>Elementos HTML</h4>
                 <p>Una página HTML consta de varios <strong>elementos</strong>, que pueden estar anidados unos dentro de otros.</p>
                 <p>Cada elemento está delimitado por una etiqueta de inicio (<code>&lt;<em>nombreEtiqueta</em>&gt;</code>) y una etiqueta de fin (<code>&lt;<em>/nombreEtiqueta</em>&gt;</code>)</p>
-                <p>El nombre de la etiqueta determina el tipo de elemento</p>
+                <p>El nombre de la etiqueta determina el tipo de elemento.</p>
+                <p>Si el contenido de la etiqueta está vacío se puede escribir <code>&lt;<em>nombreEtiqueta</em>/&gt;</code> en lugar de<br> <code>&lt;<em>nombreEtiqueta</em>&gt;&lt;<em>nombreEtiqueta</em>/&gt;</code>
+                
             </section>
 
             <section>
@@ -283,7 +285,48 @@ resultado. Entre estas funciones podemos citar &lt;code&gt;map&lt;/code&gt;,
                 </code></pre>
                 <img src="images/02/Comments.png" style="width:90%;border:none" />
             </section>
+            
             <section>
+            	<h3>Caracteres especiales</h3>
+            	<div style="float:left;width: 55%">
+		        	<p>Los caracteres <code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code>, etc. tienen un significado especial en HTML. Si se quieren utilizar como parte del contenido HTML se han de utilizar sus correspondientes <strong>entidades</strong>.
+		        	<p>Una entidad comienza por <code>&amp;</code> y termina
+		        	por <code>;</code>
+		        </div>
+            	<table style="float:right;width:40%" class="fragment">
+            		<tr>
+            			<th>Entidad</th>
+            			<th>Carácter</th>
+            		</tr>
+            		<tr>
+            			<td><code>&amp;lt;</code></td>
+            			<td>&lt;</td>
+            		</tr>
+            		<tr>
+            			<td><code>&amp;gt;</code></td>
+            			<td>&gt;</td>
+            		</tr>
+            		<tr>
+            			<td><code>&amp;amp;</code></td>
+            			<td>&amp;</td>
+            		</tr>
+            		<tr>
+            			<td><code>&amp;quot;</code></td>
+            			<td>&quot;</td>
+            		</tr>
+            		<tr>
+            			<td><code>&amp;euro;</code></td>
+            			<td>&euro;</td>
+            		</tr>
+            	</table>
+            	
+            	<div style="clear:both" class="fragment">
+            		La entidad <code>&amp;#<span style="font-style:italic">num</span>;</code> representa el carácter Unicode con código <code style="font-style:italic">num</code>. Por ej. <code>&amp;#8704;</code> representa &#8704;
+            	</div>
+            	
+            </section>
+            <section>
+            	<h3>Espacios y saltos de línea</h3>
                 HTML interpreta las secuencias de espacios como un único espacio. Los saltos de línea se intepretan como espacios.
                 <pre><code data-trim class="html">
 Esto    es una    línea    con  varios   espacios.
@@ -861,6 +904,12 @@ Aquí otro párrafo.
                 </code></pre>
                 <img src="images/02/Tabla1.png" style="width:40%;border:none" class="fragment">
             </section>
+            
+            <section>
+            	<p>Los atributos <code>rowspan</code> y <code>colspan</code> permiten que una celda se extienda más allá de una fila o columna. Reciben el número de filas o columnas que ocupa la celda.</p>
+            	<img src="images/02/Rowspan.png" style="width:90%; border:none">
+            	
+            </section>
 
             <section>
                 <h4>Estilo de tablas</h4>
@@ -875,7 +924,7 @@ th {
     color: white;
 }
                 </code></pre>
-                <p><img src="images/02/Tabla2.png" style="border:none;width:40%" class="fragment" /></p>
+                <p><img src="images/02/Tabla2.png" style="border:none;width:40%" class="fragment" alt="Introduciendo <td colspan=&quot;2&quot;> la celda ocupa dos columnas" /></p>
             </section>
 
             <section>
