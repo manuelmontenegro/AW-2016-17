@@ -167,7 +167,7 @@
 
             <section>
                 <p>
-                    El elemento <code class="html">&lt;html&gt;</code> contiene toda la información sobre la estructura de la página web. Puede contener un atributo <code>lang</code> con el idioma del contenido de la
+                    El elemento <code class="html">&lt;html&gt;</code> contiene toda la información sobre la estructura de la página web. Puede incluir un atributo <code>lang</code> con el idioma del contenido de la
                     página web.
                 </p>
                 <p>
@@ -683,7 +683,7 @@ jugando llamar&aacute;n.
             </section>
 
             <section>
-                <p>El elemento <code>&lt;ol&gt;</code> sirve para representar listas no numeradas.</p>
+                <p>El elemento <code>&lt;ul&gt;</code> sirve para representar listas no numeradas.</p>
                 <pre><code data-trim class="html">
 &lt;p&gt;Ingredientes:&lt;/p&gt;
 &lt;ul&gt;
@@ -1254,6 +1254,38 @@ a {
                 </code></pre>
                 <img src="images/02/Colors2.png" style="width:30%;border:0" />
             </section>
+            
+            
+            <section>
+                <h3>Gradientes</h3>
+                <p>Se puede utilizar las funciones <code>linear-gradient</code>, <code>radial-gradient</code> allá donde pueda especificarse un color. Éstas son soportadas por versiones <em>modernas</em> de los navegadores:
+                <ul>
+                    <li>Chrome &ge; 26</li>
+                    <li>Firefox &ge; 16</li>
+                    <li>MS Explorer &ge; 10</li>
+                </ul>
+                
+                <p>Más información: <a href="http://www.w3schools.com/css/css3_gradients.asp">http://www.w3schools.com/css/css3_gradients.asp</a></p>
+            </section>
+            
+            <section>
+                <pre><code data-trim class="css">
+#grad1 {
+    background: linear-gradient(to right, yellow, green);
+}
+
+#grad2 {
+    background: linear-gradient(to right bottom, black, 
+                                gray, black);
+}
+
+#grad3 {
+    background: radial-gradient(yellow, white);
+}
+                </code></pre>
+                <img src="images/02/Gradientes.png" style="width:70%;border:none" class="fragment">
+            </section>
+            
             <section>
                 <h3>Bordes</h3>
                 <div><pre><code data-trim data-noescape class="css">
@@ -2240,6 +2272,19 @@ top: <span style="font-style:italic">coordenada_y</span>;
                 </ul>
             </section>
             
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p6">
+                <ol class="contenidos">
+                    <li><a href="#/p1" class="outline">Introducción. Página básica</a></li>
+                    <li><a href="#/p2" class="outline">Elementos HTML</a></li>
+                    <li><a href="#/p3" class="outline">Atributos CSS</a></li>
+                    <li><a href="#/p4" class="outline">Flujo y posicionamiento</a></li>
+                    <li><a href="#/p5" class="outline">Elementos HTML5</a></li>
+                    <li><a href="#/p6" class="outline current">Formularios</a></li>
+                    <li><a href="#/p7" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
+            
             <section>
                 <h2>Formularios HTML</h2>
                 <p>Sirven para solicitar información al usuario de la página.</p>
@@ -2363,11 +2408,129 @@ nombre_campo=Me+llamo+Elisa
 &lt;input type="date" name="fecha_nacimiento"&gt;
                 </code></pre>
                 
-                <p>Los tipos <code>range</code>, <code>color</code> y <code>date</code> pueden no mostrarse correctamente en algunos navegadores.</p>
+                <p>Los campos de entrada de tipo <code>range</code>, <code>color</code> y <code>date</code> pueden no mostrarse correctamente en algunos navegadores.</p>
                 <img src="images/02/Formulario4.png" style="width:60%;border:none">
                 
             </section>
+            
+            <section>
+                <h4>Áreas de texto</h4>
+                <p>Permiten la introducción de varias líneas de texto</p>
+                <pre><code data-trim class="html">
+&lt;textarea name=&quot;observaciones&quot; id=&quot;text_observ&quot;&gt;
+Texto por defecto
+&lt;/textarea&gt;
+                </code></pre>
+                <pre><code data-trim class="css">
+#text_observ {
+    display: block;
+    width: 30em;
+    height: 5em;
+    background: linear-gradient(to bottom, white, #E0E0E0);
+    border: 1px solid #A0A0A0;
+    color: blue;
+}                </code></pre>
+                <img src="images/02/TextArea.png" style="width:60%;border:none">
+            </section>
+            
+            
+            <section>
+                <p>A la hora de enviar el formulario, los saltos de línea introducidos
+                    en el <code>&lt;textarea&gt;</code> se traducen en secuencias <code>%0D%0A</code>
+                    (salto de línea <code>\n</code> + retorno de carro <code>\r</code>).
+                <img src="images/02/TextArea2.png" style="width:60%;border:none">
+                <pre>observaciones=Esto+es+un+texto+que<span style="color:blue">%0D%0A</span>decido+partir<span style="color:blue">%0D%0A</span>en
++varias+l%C3%ADneas</pre>
+            </section>
+            
+            <section>
+                <h4>Cajas de selección (checkbox)</h4>
+                <pre><code data-trim class="html">
+Fumador/a:
+&lt;input type="checkbox" name="fuma" value="si"&gt;
+                </code></pre>
+                <img src="images/02/Checkbox1.png" style="height:1em; border:none">
+                <pre><code data-trim class="html">
+Fumador/a:
+&lt;input type="checkbox" name="fuma" value="si" checked&gt;
+                </code></pre>
+                <img src="images/02/Checkbox2.png" style="height:1.1em; border:none">
+                <p>Si la casilla está marcada al enviar el formulario, se añadirá el parámetro
+                <code>fuma=si</code> a la petición. Si no, el parámetro no aparecerá en la petición.</p>
+            </section>
+            
+            <section>
+                <h4>Selección exclusiva (radio button)</h4>
+                <pre><code data-trim class="html">
+Sexo:
+&lt;input type="radio" name="sexo" value="hombre"&gt; Hombre
+&lt;input type="radio" name="sexo" value="mujer"&gt; Mujer
+                </code></pre>
+                <img src="images/02/Radio1.png" style="height:1em; border:none">
+                <p>Al enviar el formulario se añade el parámetro <code>sexo=hombre</code> a la petición.
+                Si no se selecciona ninguna opción, no aparece el parámetro <code>sexo</code> en la petición.</p>
+            </section>
+            
+            <section>
+                <h4>Listas desplegables</h4>
+                <pre><code data-trim class="html">
+&lt;select&gt;
+    &lt;option value=&quot;fut&quot;&gt;F&uacute;tbol&lt;/option&gt;
+    &lt;option value=&quot;bal&quot;&gt;Baloncesto&lt;/option&gt;
+    &lt;option value=&quot;nat&quot;&gt;Nataci&oacute;n&lt;/option&gt;
+    &lt;option value=&quot;ten&quot;&gt;Tenis&lt;/option&gt;
+    &lt;option value=&quot;pad&quot;&gt;P&aacute;del&lt;/option&gt;
+&lt;/select&gt;                
+                </code></pre>
+                <img src="images/02/ListaDesplegable.png" style="width:40%; border: none">
+                
+                <p>Al enviar el formulario tras seleccionar <code>Tenis</code> se añade el parámetro <code>opt=ten</code> a la petición.</p>
+            </section>
+            
+            <section>
+                <h4>Etiquetas (<code style="text-transform:none">&lt;label&gt;</code>)</h4>
+                <p>Se representan como texto normal, pero van asociadas a un componente del formulario.</p>
+                <p>Cuando el usuario hace clic sobre la etiqueta, el componente correspondiente se activa.</p>
+                <pre><code data-trim class="html">
+&lt;label for=&quot;txt_nombre&quot;&gt;Nombre:&lt;/label&gt;
+&lt;input type=&quot;text&quot; name=&quot;nombre&quot; value=&quot;Defecto&quot; id=&quot;txt_nombre&quot;&gt;
+                </code></pre>
+            </section>
+            
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p7">
+                <ol class="contenidos">
+                    <li><a href="#/p1" class="outline">Introducción. Página básica</a></li>
+                    <li><a href="#/p2" class="outline">Elementos HTML</a></li>
+                    <li><a href="#/p3" class="outline">Atributos CSS</a></li>
+                    <li><a href="#/p4" class="outline">Flujo y posicionamiento</a></li>
+                    <li><a href="#/p5" class="outline">Elementos HTML5</a></li>
+                    <li><a href="#/p6" class="outline">Formularios</a></li>
+                    <li><a href="#/p7" class="outline current">Bibliografía</a></li>
+                </ol>
+            </section>
 
+            
+            <section>
+                <h2>Bibliografía</h2>
+                <div style="float:left; width:60%">
+                <ul>
+                    <li>E. Robson, E. Freeman<br>
+                        <a href="http://cisne.sim.ucm.es/record=b3283071~S6*spi">Head First HTML and CSS</a><br>
+                        O'Reilly (2012)
+                    </li>
+                    <li>
+                        <a href="http://www.w3schools.com/tags/">HTML Reference</a><br>
+                        http://www.w3schools.com/tags/
+                    </li>
+                    <li>
+                        <a href="http://www.w3schools.com/cssref/">CSS Reference</a><br>
+                        http://www.w3schools.com/cssref/
+                    </li>
+                </ul></div>
+                <div style="float:right; width: 30%">
+                    <img src="http://akamaicovers.oreilly.com/images/9780596159924/lrg.jpg" style="width:50%; border:none">
+                </div>
+            </section>
         </div>
 
     </div>
