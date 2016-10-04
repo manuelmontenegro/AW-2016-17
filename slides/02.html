@@ -147,7 +147,7 @@
                 <p>Cada elemento está delimitado por una etiqueta de inicio (<code>&lt;<em>nombreEtiqueta</em>&gt;</code>) y una etiqueta de fin (<code>&lt;<em>/nombreEtiqueta</em>&gt;</code>)</p>
                 <p>El nombre de la etiqueta determina el tipo de elemento.</p>
                 <p>Si el contenido de la etiqueta está vacío se puede escribir <code>&lt;<em>nombreEtiqueta</em>/&gt;</code> en lugar de<br> <code>&lt;<em>nombreEtiqueta</em>&gt;&lt;<em>nombreEtiqueta</em>/&gt;</code>
-                
+
             </section>
 
             <section>
@@ -286,7 +286,7 @@ resultado. Entre estas funciones podemos citar &lt;code&gt;map&lt;/code&gt;,
                 </code></pre>
                 <img src="images/02/Comments.png" style="width:90%;border:none" />
             </section>
-            
+
             <section>
             	<h3>Caracteres especiales</h3>
             	<div style="float:left;width: 55%">
@@ -320,11 +320,11 @@ resultado. Entre estas funciones podemos citar &lt;code&gt;map&lt;/code&gt;,
             			<td>&euro;</td>
             		</tr>
             	</table>
-            	
+
             	<div style="clear:both" class="fragment">
             		La entidad <code>&amp;#<span style="font-style:italic">num</span>;</code> representa el carácter Unicode con código <code style="font-style:italic">num</code>. Por ej. <code>&amp;#8704;</code> representa &#8704;
             	</div>
-            	
+
             </section>
             <section>
             	<h3>Espacios y saltos de línea</h3>
@@ -905,11 +905,11 @@ Aquí otro párrafo.
                 </code></pre>
                 <img src="images/02/Tabla1.png" style="width:40%;border:none" class="fragment">
             </section>
-            
+
             <section>
             	<p>Los atributos <code>rowspan</code> y <code>colspan</code> permiten que una celda se extienda más allá de una fila o columna. Reciben el número de filas o columnas que ocupa la celda.</p>
             	<img src="images/02/Rowspan.png" style="width:90%; border:none">
-            	
+
             </section>
 
             <section>
@@ -1254,8 +1254,8 @@ a {
                 </code></pre>
                 <img src="images/02/Colors2.png" style="width:30%;border:0" />
             </section>
-            
-            
+
+
             <section>
                 <h3>Gradientes</h3>
                 <p>Se puede utilizar las funciones <code>linear-gradient</code>, <code>radial-gradient</code> allá donde pueda especificarse un color. Éstas son soportadas por versiones <em>modernas</em> de los navegadores:
@@ -1264,10 +1264,10 @@ a {
                     <li>Firefox &ge; 16</li>
                     <li>MS Explorer &ge; 10</li>
                 </ul>
-                
+
                 <p>Más información: <a href="http://www.w3schools.com/css/css3_gradients.asp">http://www.w3schools.com/css/css3_gradients.asp</a></p>
             </section>
-            
+
             <section>
                 <pre><code data-trim class="css">
 #grad1 {
@@ -1275,7 +1275,7 @@ a {
 }
 
 #grad2 {
-    background: linear-gradient(to right bottom, black, 
+    background: linear-gradient(to right bottom, black,
                                 gray, black);
 }
 
@@ -1285,7 +1285,7 @@ a {
                 </code></pre>
                 <img src="images/02/Gradientes.png" style="width:70%;border:none" class="fragment">
             </section>
-            
+
             <section>
                 <h3>Bordes</h3>
                 <div><pre><code data-trim data-noescape class="css">
@@ -2093,7 +2093,7 @@ top: <span style="font-style:italic">coordenada_y</span>;
                 <img src="images/02/TableLayout.png" style="width:80%;border:none">
             </section>
 
-            
+
             <section>
                 <p>El elemento <code>&lt;table&gt;</code> <strong>no</strong> debe usarse para esto, ya que se mezclarían detalles de estilo de la página con la estructura. </p>
 
@@ -2159,7 +2159,7 @@ top: <span style="font-style:italic">coordenada_y</span>;
                 <p>Resultado:</p>
                 <img src="images/02/TableLayoutResult.png" style="width:80%;border:none">
             </section>
-            
+
             <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p5">
                 <ol class="contenidos">
                     <li><a href="#/p1" class="outline">Introducción. Página básica</a></li>
@@ -2171,8 +2171,8 @@ top: <span style="font-style:italic">coordenada_y</span>;
                     <li><a href="#/p7" class="outline">Bibliografía</a></li>
                 </ol>
             </section>
-            
-            
+
+
             <section>
                 <h2>Elementos HTML5</h2>
                 <p>Es frecuente utilizar secciones lógicas <code>&lt;div&gt;</code> para dividir
@@ -2196,9 +2196,9 @@ top: <span style="font-style:italic">coordenada_y</span>;
     &lt;div class=&quot;pie_de_pagina&quot;&gt;
         ...
     &lt;/div&gt;
-&lt;/body&gt;                
+&lt;/body&gt;
                 </code></pre>
-                
+
             </section>
             <section>
                 <p>Esta división, aunque correcta, no proporciona demasiada información al navegador
@@ -2214,7 +2214,7 @@ top: <span style="font-style:italic">coordenada_y</span>;
                     </ul>
                 </div>
             </section>
-            
+
             <section>
                 <h3>Elementos de marcado semántico</h3>
                 <ul>
@@ -2226,7 +2226,7 @@ top: <span style="font-style:italic">coordenada_y</span>;
                     <li><code>&lt;article&gt;</code> Composición autocontenida en la página (artículo de un blog, post de un foro, comentario de un usuario, etc.)</li>
                 </ul>
             </section>
-            
+
             <section>
                 En el ejemplo anterior:
                 <pre><code data-trim class="html">
@@ -2248,19 +2248,19 @@ top: <span style="font-style:italic">coordenada_y</span>;
     &lt;footer&gt;
         ...
     &lt;/footer&gt;
-&lt;/body&gt;                
+&lt;/body&gt;
                 </code></pre>
             </section>
-            
+
             <section>
                 <h3>La etiqueta <code style="text-transform:none">&lt;time&gt;</code></h3>
                 <p>Es una división lógica para mostrar una fecha y/o hora.</p>
                 <p>Permite almacenar "internamente" la fecha en un formato legible por el navegador
                 para su procesamiento.</p>
-                <pre><code class="html">Abrimos a las 
+                <pre><code class="html">Abrimos a las
 &lt;time datetime="2014-04-04 10:00"&gt;10 de la mañana&lt;/time&gt;.</code></pre>
             </section>
-            
+
             <section>
                 <h3>Otros elementos HTML5</h3>
                 <ul>
@@ -2271,7 +2271,14 @@ top: <span style="font-style:italic">coordenada_y</span>;
                         <code>&lt;menuitem&gt;</code>, <code>&lt;progress&gt;</code>, etc.</li>
                 </ul>
             </section>
-            
+
+            <section>
+              <h3>Validador HTML5</h3>
+              <p><a href="https://validator.w3.org/">https://validator.w3.org/</a>
+                <img src="images/02/Validator.png" style="width:60%;border:none">
+            </section>
+
+
             <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p6">
                 <ol class="contenidos">
                     <li><a href="#/p1" class="outline">Introducción. Página básica</a></li>
@@ -2283,8 +2290,8 @@ top: <span style="font-style:italic">coordenada_y</span>;
                     <li><a href="#/p7" class="outline">Bibliografía</a></li>
                 </ol>
             </section>
-            
-            
+
+
             <section>
                 <h2>Formularios HTML</h2>
                 <p>Sirven para solicitar información al usuario de la página.</p>
@@ -2293,8 +2300,8 @@ top: <span style="font-style:italic">coordenada_y</span>;
                 <p style="background-color:#C0C0FF; border-radius: 10px" class="fragment">En este tema solamente trataremos la especificación de los formularios. Más adelante
                 veremos cómo procesa el servidor esta información.</p>
             </section>
-            
-            
+
+
             <section>
                 <h3>Definición de un formulario</h3>
                 <pre><code data-trim class="html">
@@ -2310,7 +2317,7 @@ top: <span style="font-style:italic">coordenada_y</span>;
                     </li>
                 </ul>
             </section>
-            
+
             <section>
                 <h3>Formularios GET vs POST</h3>
                 <pre><code data-trim data-noescape class="html">
@@ -2321,24 +2328,24 @@ top: <span style="font-style:italic">coordenada_y</span>;
                 </code></pre>
                 <p>Enviamos la siguiente información:</p>
                 <img src="images/02/Formulario1.png" style="width:80%;border:none">
-                
+
             </section>
-            
+
             <section>
                 <h4>Método GET</h4>
 <pre><code data-trim data-noescape class="text">
 GET http://.../ProcesarFormulario.html<span style="color:blue">?nombre=Gerardo</span>
-</code></pre>                
+</code></pre>
                 <p>La información se envía como parte de la URL.</p>
 <pre><code data-trim data-noescape class="text">
 http://.../destino<span style="color:blue">?param1=val1&amp;param2=val2&amp;...</span>
-</code></pre>              
+</code></pre>
                 <div class="fragment">
                 <h4>Método POST</h4>
 <pre><code data-trim data-noescape class="text">
 POST http://.../ProcesarFormulario.html
 ... Cabeceras ...
- 
+
 <div style="background-color:#E0FFE0">Content-Type: application/x-www-form-urlencoded
 Content-Length: 14 <span class="no_arrow_box caja_codigo" style="position:relative; left:45%">Cuerpo de la petición</span>
 <span style="color:blue">nombre=Gerardo</span></div>
@@ -2347,20 +2354,20 @@ Content-Length: 14 <span class="no_arrow_box caja_codigo" style="position:relati
 <pre><code data-trim data-noescape class="text">
 <span style="color:blue">param1=val1&amp;param2=val2&amp;...</span>
 </code></pre>                </div>
-                
+
             </section>
-            
+
             <section>
                 <h4>Método GET</h4>
                 <p>Adecuado cuando se puede reproducir la misma petición varias veces, sin "efectos secundarios".</p>
                 <p>Se puede volver a realizar la petición introduciendo la misma URL en el navegador.</p>
                 <p>Ejemplo: búsquedas, consultas, etc.</p>
-                
+
                 <h4>Método POST</h4>
                 <p>Adecuado para enviar información que modifica el estado del servidor.</p>
                 <p>Ejemplo: altas, bajas, modificaciones, etc.</p>
             </section>
-            
+
             <section>
                 <h3>Elementos en un formulario</h3>
                 <ul>
@@ -2369,15 +2376,15 @@ Content-Length: 14 <span class="no_arrow_box caja_codigo" style="position:relati
                     <li>Casillas seleccionables.</li>
                     <li>Listas.</li>
                 </ul>
-                
+
             </section>
-            
+
             <section>
                 <h4>Botones</h4>
                 <pre><code data-trim class="html">
-&lt;input type="submit" value="Enviar"&gt;                
-&lt;input type="reset" value="Borrar formulario"&gt;                
-&lt;input type="button" value="Borrar formulario"&gt;                
+&lt;input type="submit" value="Enviar"&gt;
+&lt;input type="reset" value="Borrar formulario"&gt;
+&lt;input type="button" value="Borrar formulario"&gt;
                 </code></pre>
                 <img src="images/02/Formulario2.png" style="width:50%;border:none">
                 <p>Los botones de tipo <code>submit</code> realizan la petición indicada por el atributo <code>method</code> del formulario a la URL indicada por el atributo <code>action</code>.</p>
@@ -2389,7 +2396,7 @@ Content-Length: 14 <span class="no_arrow_box caja_codigo" style="position:relati
             <section>
                 <h4>Cuadros de texto</h4>
                 <pre><code data-trim class="html">
-&lt;input type="text" name="nombre_campo" value="Valor por defecto"&gt;                
+&lt;input type="text" name="nombre_campo" value="Valor por defecto"&gt;
                 </code></pre>
                 <img src="images/02/Formulario3.png" style="height:1.5em;border:none">
                 <p>Datos enviados:</p>
@@ -2397,7 +2404,7 @@ Content-Length: 14 <span class="no_arrow_box caja_codigo" style="position:relati
 nombre_campo=Me+llamo+Elisa
                 </code></pre>
             </section>
-            
+
             <section>
                 <h4>Otros tipos de cuadros de texto</h4>
                 <pre><code data-trim class="html">
@@ -2407,12 +2414,12 @@ nombre_campo=Me+llamo+Elisa
 &lt;input type="color" name="color_favorito"&gt;
 &lt;input type="date" name="fecha_nacimiento"&gt;
                 </code></pre>
-                
+
                 <p>Los campos de entrada de tipo <code>range</code>, <code>color</code> y <code>date</code> pueden no mostrarse correctamente en algunos navegadores.</p>
                 <img src="images/02/Formulario4.png" style="width:60%;border:none">
-                
+
             </section>
-            
+
             <section>
                 <h4>Áreas de texto</h4>
                 <p>Permiten la introducción de varias líneas de texto</p>
@@ -2432,8 +2439,8 @@ Texto por defecto
 }                </code></pre>
                 <img src="images/02/TextArea.png" style="width:60%;border:none">
             </section>
-            
-            
+
+
             <section>
                 <p>A la hora de enviar el formulario, los saltos de línea introducidos
                     en el <code>&lt;textarea&gt;</code> se traducen en secuencias <code>%0D%0A</code>
@@ -2442,7 +2449,7 @@ Texto por defecto
                 <pre>observaciones=Esto+es+un+texto+que<span style="color:blue">%0D%0A</span>decido+partir<span style="color:blue">%0D%0A</span>en
 +varias+l%C3%ADneas</pre>
             </section>
-            
+
             <section>
                 <h4>Cajas de selección (checkbox)</h4>
                 <pre><code data-trim class="html">
@@ -2458,7 +2465,7 @@ Fumador/a:
                 <p>Si la casilla está marcada al enviar el formulario, se añadirá el parámetro
                 <code>fuma=si</code> a la petición. Si no, el parámetro no aparecerá en la petición.</p>
             </section>
-            
+
             <section>
                 <h4>Selección exclusiva (radio button)</h4>
                 <pre><code data-trim class="html">
@@ -2470,7 +2477,7 @@ Sexo:
                 <p>Al enviar el formulario se añade el parámetro <code>sexo=hombre</code> a la petición.
                 Si no se selecciona ninguna opción, no aparece el parámetro <code>sexo</code> en la petición.</p>
             </section>
-            
+
             <section>
                 <h4>Listas desplegables</h4>
                 <pre><code data-trim class="html">
@@ -2480,13 +2487,13 @@ Sexo:
     &lt;option value=&quot;nat&quot;&gt;Nataci&oacute;n&lt;/option&gt;
     &lt;option value=&quot;ten&quot;&gt;Tenis&lt;/option&gt;
     &lt;option value=&quot;pad&quot;&gt;P&aacute;del&lt;/option&gt;
-&lt;/select&gt;                
+&lt;/select&gt;
                 </code></pre>
                 <img src="images/02/ListaDesplegable.png" style="width:40%; border: none">
-                
+
                 <p>Al enviar el formulario tras seleccionar <code>Tenis</code> se añade el parámetro <code>opt=ten</code> a la petición.</p>
             </section>
-            
+
             <section>
                 <h4>Etiquetas (<code style="text-transform:none">&lt;label&gt;</code>)</h4>
                 <p>Se representan como texto normal, pero van asociadas a un componente del formulario.</p>
@@ -2496,7 +2503,7 @@ Sexo:
 &lt;input type=&quot;text&quot; name=&quot;nombre&quot; value=&quot;Defecto&quot; id=&quot;txt_nombre&quot;&gt;
                 </code></pre>
             </section>
-            
+
             <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p7">
                 <ol class="contenidos">
                     <li><a href="#/p1" class="outline">Introducción. Página básica</a></li>
@@ -2509,7 +2516,7 @@ Sexo:
                 </ol>
             </section>
 
-            
+
             <section>
                 <h2>Bibliografía</h2>
                 <div style="float:left; width:60%">
@@ -2531,6 +2538,7 @@ Sexo:
                     <img src="http://akamaicovers.oreilly.com/images/9780596159924/lrg.jpg" style="width:50%; border:none">
                 </div>
             </section>
+
         </div>
 
     </div>
