@@ -1,0 +1,23 @@
+p, blockquote, ul, li {
+    background-color: #E0E0FF;
+    border: 2px solid blue;
+}
+
+p {
+    margin: 10px 0px;
+    padding: 5px;
+}
+
+li {
+    margin: 4px;
+    display: inline;
+}
+
+a {
+    display: block;
+}
+
+a, img, q {
+    background-color: #FFE0E0;
+    border: 2px solid red;
+}
