@@ -88,7 +88,7 @@
                 <p>Creamos un fichero <code>primera_pagina.html</code> con el siguiente contenido:</p>
                 <pre><code data-trim class="html">
 &lt;!DOCTYPE html&gt;
-&lt;html&gt;
+&lt;html lang="es"&gt;
     &lt;head&gt;
         &lt;title&gt;Mi primera p&aacute;gina web&lt;/title&gt;
         &lt;meta charset=&quot;utf-8&quot;/&gt;
@@ -167,7 +167,8 @@
 
             <section>
                 <p>
-                    El elemento <code class="html">&lt;html&gt;</code> contiene toda la información sobre la estructura de la página web.
+                    El elemento <code class="html">&lt;html&gt;</code> contiene toda la información sobre la estructura de la página web. Puede contener un atributo <code>lang</code> con el idioma del contenido de la
+                    página web.
                 </p>
                 <p>
                     Contiene, a su vez, dos elementos: <code class="html">&lt;head&gt;</code> y <code class="html">&lt;body&gt;</code>
@@ -2060,6 +2061,7 @@ top: <span style="font-style:italic">coordenada_y</span>;
                 <img src="images/02/TableLayout.png" style="width:80%;border:none">
             </section>
 
+            
             <section>
                 <p>El elemento <code>&lt;table&gt;</code> <strong>no</strong> debe usarse para esto, ya que se mezclarían detalles de estilo de la página con la estructura. </p>
 
@@ -2125,7 +2127,246 @@ top: <span style="font-style:italic">coordenada_y</span>;
                 <p>Resultado:</p>
                 <img src="images/02/TableLayoutResult.png" style="width:80%;border:none">
             </section>
+            
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p5">
+                <ol class="contenidos">
+                    <li><a href="#/p1" class="outline">Introducción. Página básica</a></li>
+                    <li><a href="#/p2" class="outline">Elementos HTML</a></li>
+                    <li><a href="#/p3" class="outline">Atributos CSS</a></li>
+                    <li><a href="#/p4" class="outline">Flujo y posicionamiento</a></li>
+                    <li><a href="#/p5" class="outline current">Elementos HTML5</a></li>
+                    <li><a href="#/p6" class="outline">Formularios</a></li>
+                    <li><a href="#/p7" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
+            
+            <section>
+                <h2>Elementos HTML5</h2>
+                <p>Es frecuente utilizar secciones lógicas <code>&lt;div&gt;</code> para dividir
+                las distintas partes que componen una página web.</p>
+                <pre><code data-trim class="html">
+&lt;body&gt;
+    &lt;div class=&quot;titulo&quot;&gt;
+        ...
+    &lt;/div&gt;
+    &lt;div class=&quot;menu_izquierdo&quot;&gt;
+        &lt;ul&gt;...&lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;contenido&quot;&gt;
+        &lt;div class=&quot;articulo&quot;&gt;
+            ...
+        &lt;/div&gt;
+        &lt;div class=&quot;articulo&quot;&gt;
+            ...
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;pie_de_pagina&quot;&gt;
+        ...
+    &lt;/div&gt;
+&lt;/body&gt;                
+                </code></pre>
+                
+            </section>
+            <section>
+                <p>Esta división, aunque correcta, no proporciona demasiada información al navegador
+                sobre la <strong>semántica</strong> de los elementos de la página web.</p>
+                <p>En HTML5 se introdujeron nuevas etiquetas para ayudar al navegador a distinguir los distintos elementos de la página.</p>
+                <div class="fragment">
+                    <h4>Ventajas</h4>
+                    <ul>
+                        <li>El navegador puede alterar la presentación de algunos elementos
+                    de la página (p. ej. para personas con discapacidad visual).</li>
+                        <li>Los
+                    buscadores pueden obtener información sobre la estructura de la página.</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section>
+                <h3>Elementos de marcado semántico</h3>
+                <ul>
+                    <li><code>&lt;header&gt;</code> Contenido situado en la parte superior de la página (título, logo, etc.) o de una sección de ésta.</li>
+                    <li><code>&lt;nav&gt;</code> Enlaces para navegar por el sitio web.</li>
+                    <li><code>&lt;footer&gt;</code> Contenido situado en la parte inferior de la página o de una sección de ésta.</li>
+                    <li><code>&lt;section&gt;</code> Sección lógica (suele contener encabezado y pie de página).</li>
+                    <li><code>&lt;aside&gt;</code> Contenido complementario a la página (suele estar en el margen derecho).</li>
+                    <li><code>&lt;article&gt;</code> Composición autocontenida en la página (artículo de un blog, post de un foro, comentario de un usuario, etc.)</li>
+                </ul>
+            </section>
+            
+            <section>
+                En el ejemplo anterior:
+                <pre><code data-trim class="html">
+&lt;body&gt;
+    &lt;header&gt;
+        ...
+    &lt;/header&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;...&lt;/ul&gt;
+    &lt;/nav&gt;
+    &lt;div class=&quot;contenido&quot;&gt;
+        &lt;article&gt;
+            ...
+        &lt;/article&gt;
+        &lt;article&gt;
+            ...
+        &lt;/article&gt;
+    &lt;/div&gt;
+    &lt;footer&gt;
+        ...
+    &lt;/footer&gt;
+&lt;/body&gt;                
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>La etiqueta <code style="text-transform:none">&lt;time&gt;</code></h3>
+                <p>Es una división lógica para mostrar una fecha y/o hora.</p>
+                <p>Permite almacenar "internamente" la fecha en un formato legible por el navegador
+                para su procesamiento.</p>
+                <pre><code class="html">Abrimos a las 
+&lt;time datetime="2014-04-04 10:00"&gt;10 de la mañana&lt;/time&gt;.</code></pre>
+            </section>
+            
+            <section>
+                <h3>Otros elementos HTML5</h3>
+                <ul>
+                    <li><strong>Gráficos: </strong> <code>&lt;canvas&gt;</code>.</li>
+                    <li><strong>Multimedia: </strong> <code>&lt;audio&gt;</code>,
+                        <code>&lt;video&gt;</code>, <code>&lt;embed&gt;</code>, etc.</li>
+                    <li><strong>Marcado semántico: </strong> <code>&lt;figure&gt;</code>,
+                        <code>&lt;menuitem&gt;</code>, <code>&lt;progress&gt;</code>, etc.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h2>Formularios HTML</h2>
+                <p>Sirven para solicitar información al usuario de la página.</p>
+                <p>Cuando el usuario envía la información, se realiza una petición
+                HTTP al servidor. Esta petición contiene los datos introducidos por el usuario.</p>
+                <p style="background-color:#C0C0FF; border-radius: 10px" class="fragment">En este tema solamente trataremos la especificación de los formularios. Más adelante
+                veremos cómo procesa el servidor esta información.</p>
+            </section>
+            
+            
+            <section>
+                <h3>Definición de un formulario</h3>
+                <pre><code data-trim class="html">
+&lt;form action="post" action="procesar_formulario.html"&gt;
+    &lt;!-- Contenido del formulario --&gt;
+&lt;/form&gt;
+                </code></pre>
+                <ul>
+                    <li>Atributo <code>method</code>: método HTTP que se utilizará para enviar la información al servidor (GET o POST).
+                    </li>
+                    <li>
+                        Atributo <code>action</code>: URL sobre la que se realizará la petición.
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h3>Formularios GET vs POST</h3>
+                <pre><code data-trim data-noescape class="html">
+&lt;form action=&quot;ProcesarFormulario.html&quot; method=&quot;<span class="no_arrow_box caja_codigo">método</span>&quot;&gt;
+    Nombre: &lt;input type=&quot;text&quot; name=&quot;nombre&quot;&gt;
+    &lt;input type=&quot;submit&quot;&gt;
+&lt;/form&gt;
+                </code></pre>
+                <p>Enviamos la siguiente información:</p>
+                <img src="images/02/Formulario1.png" style="width:80%;border:none">
+                
+            </section>
+            
+            <section>
+                <h4>Método GET</h4>
+<pre><code data-trim data-noescape class="text">
+GET http://.../ProcesarFormulario.html<span style="color:blue">?nombre=Gerardo</span>
+</code></pre>                
+                <p>La información se envía como parte de la URL.</p>
+<pre><code data-trim data-noescape class="text">
+http://.../destino<span style="color:blue">?param1=val1&amp;param2=val2&amp;...</span>
+</code></pre>              
+                <div class="fragment">
+                <h4>Método POST</h4>
+<pre><code data-trim data-noescape class="text">
+POST http://.../ProcesarFormulario.html
+... Cabeceras ...
+ 
+<div style="background-color:#E0FFE0">Content-Type: application/x-www-form-urlencoded
+Content-Length: 14 <span class="no_arrow_box caja_codigo" style="position:relative; left:45%">Cuerpo de la petición</span>
+<span style="color:blue">nombre=Gerardo</span></div>
+</code></pre>
+                <p>La información se envía en el cuerpo de la petición, con el mismo formato que el método GET:</p>
+<pre><code data-trim data-noescape class="text">
+<span style="color:blue">param1=val1&amp;param2=val2&amp;...</span>
+</code></pre>                </div>
+                
+            </section>
+            
+            <section>
+                <h4>Método GET</h4>
+                <p>Adecuado cuando se puede reproducir la misma petición varias veces, sin "efectos secundarios".</p>
+                <p>Se puede volver a realizar la petición introduciendo la misma URL en el navegador.</p>
+                <p>Ejemplo: búsquedas, consultas, etc.</p>
+                
+                <h4>Método POST</h4>
+                <p>Adecuado para enviar información que modifica el estado del servidor.</p>
+                <p>Ejemplo: altas, bajas, modificaciones, etc.</p>
+            </section>
+            
+            <section>
+                <h3>Elementos en un formulario</h3>
+                <ul>
+                    <li>Botones.</li>
+                    <li>Cuadros de texto.</li>
+                    <li>Casillas seleccionables.</li>
+                    <li>Listas.</li>
+                </ul>
+                
+            </section>
+            
+            <section>
+                <h4>Botones</h4>
+                <pre><code data-trim class="html">
+&lt;input type="submit" value="Enviar"&gt;                
+&lt;input type="reset" value="Borrar formulario"&gt;                
+&lt;input type="button" value="Borrar formulario"&gt;                
+                </code></pre>
+                <img src="images/02/Formulario2.png" style="width:50%;border:none">
+                <p>Los botones de tipo <code>submit</code> realizan la petición indicada por el atributo <code>method</code> del formulario a la URL indicada por el atributo <code>action</code>.</p>
+                <p>Los botones de tipo <code>reset</code> reinician los elementos del formulario a sus valores
+                    por defecto.</p>
+                <p>Los botones de tipo <code>button</code> no hacen nada, a menos que se maneje su evento de pulsación en <em>Javascript</em>.</p>
+            </section>
 
+            <section>
+                <h4>Cuadros de texto</h4>
+                <pre><code data-trim class="html">
+&lt;input type="text" name="nombre_campo" value="Valor por defecto"&gt;                
+                </code></pre>
+                <img src="images/02/Formulario3.png" style="height:1.5em;border:none">
+                <p>Datos enviados:</p>
+                <pre><code data-trim class="text">
+nombre_campo=Me+llamo+Elisa
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>Otros tipos de cuadros de texto</h4>
+                <pre><code data-trim class="html">
+&lt;input type="password" name="contrasenya"&gt;
+&lt;input type="number" name="edad"&gt;
+&lt;input type="range" name="peso" min="30" max="200"&gt;
+&lt;input type="color" name="color_favorito"&gt;
+&lt;input type="date" name="fecha_nacimiento"&gt;
+                </code></pre>
+                
+                <p>Los tipos <code>range</code>, <code>color</code> y <code>date</code> pueden no mostrarse correctamente en algunos navegadores.</p>
+                <img src="images/02/Formulario4.png" style="width:60%;border:none">
+                
+            </section>
 
         </div>
 
