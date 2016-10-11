@@ -220,10 +220,10 @@ console.log("El valor absoluto de x es " + x);
                 <ul style="width:100%">
                     <li>
                         Bloques try-catch-finally:
-                        <pre><code data-trim class="javascript">
+                        <pre><code data-trim data-noescape class="javascript">
 try {
    funcion_no_existe();
-} catch (e) {
+} catch (e) {  <span class="arrow_box_left caja_codigo fragment" style="position:relative;left:5em">No se especifica el tipo de excepción</span>
     console.error(e.message);
 } finally {
     console.log("Esto se ejecuta siempre");
@@ -261,8 +261,8 @@ var str = 'Esto es una cadena';
                     </li>
                     <li>
                         Acceso al carácter i-ésimo:
-                        <pre><code data-trim class="javascript">
-str[2]   // &rarr; "t"
+                        <pre><code data-trim data-noescape class="javascript">
+str[2]  <span class="no_arrow_box caja_codigo fragment">!</span> // &rarr; "t" 
                         </code></pre>
                     </li>
                 </ul>
@@ -287,16 +287,20 @@ str.startsWith("Est");
                     </code></pre>
                     </li>
                 </ul>
-                <div style="clear:both"/>
+                <div style="clear:both"></div>
             </section>
             
             <section>
                 <h3>Operadores</h3>
-                <ul>
+                <ul style="position:relative; top: 1em">
                     <li>Relacionales:
-                        <code>==</code>, <code>===</code>,
+                        <code>==</code>, <code>===</code>, 
                         <code>&lt;</code>, <code>&lt;=</code>,
                         <code>&gt;</code>, <code>&gt;=</code>
+                                                <span class="no_arrow_box caja_codigo fragment"
+                              style="position:relative; top:-1.3em;left:-6.4em"
+                              >!</span>
+
                     </li>
                     
                     <li>
@@ -318,7 +322,387 @@ str.startsWith("Est");
                     
                 </ul>
             </section>
+            
+            
+            <section>
+                <h3>Arrays</h3>
+                <ul style="width:100%">
+                    <li>Inicialización:
+                    <pre><code data-trim data-noescape class="javascript">
+var x = [4, 6, "pepe", 1, 3]; <span class="arrow_box_left caja_codigo fragment">Corchetes en lugar de { }</span>
 
+var z = []; <span class="arrow_box_left caja_codigo fragment" style="position:relative;">Vector vacío</span>
+
+var m = new Array(3);
+                    </code></pre>
+                    </li>
+                    <li>Acceso:
+                        <pre><code data-trim class="javascript">
+console.log(x[3]);  // &rarr; 1
+m[2] = "Elemento nuevo";
+                        </code></pre>
+                    </li>
+                    <li>
+                        Longitud:
+                        <pre><code data-trim class="javascript">
+x.length  // &rarr; 5
+z.length  // &rarr; 0
+m.length  // &rarr; 3
+                        </code></pre>
+                    </li>
+                </ul>
+            </section>
+
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p3">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline">Primeros programas</a></li>
+                    <li><a href="#/p2" class="outline">Javascript es como Java...</a></li>
+                    <li><a href="#/p3" class="outline current">...pero no es como Java</a></li>
+                    <li><a href="#/p4" class="outline">Clases estándar</a></li>
+                    <li><a href="#/p5" class="outline">Herramientas</a></li>
+                    <li><a href="#/p6" class="outline">ECMAscript 6</a></li>
+                    <li><a href="#/p7" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
+            <section>
+                <h2>Las 10 rarezas de Javascript</h2>
+                <p><strong>(según un programador/a Java)</strong></p>
+                <ol>
+                    <li>Javascript es dinámicamente tipado.</li>
+                    
+                </ol>
+            </section>
+            
+            <section>
+                <section>
+                    <div class="bloquetitulo" style="padding:20px">
+                        <h3><span class="titulo_rareza">Rareza 1</span><span style="display:none">:</span><br>Javascript es un lenguaje dinámicamente tipado</h3>
+                    </div>
+                </section>
+                
+                <section>
+                    <h3>declaraciones de tipo</h3>
+                    <p>En Java es necesario declarar el tipo de una variable antes de su primer uso:</p>
+                    <pre><code data-trim class="java">
+int x;
+String z = "It's something";
+List&lt;Integer&gt; lista;
+                    </code></pre>
+                    
+                    <p>En Javascript no se indica el tipo de la variable a declarar. Se utiliza siempre la palabra reservada <code>var</code>.</p>
+                    <pre><code data-trim class="javascript">
+var x;
+var z = "It's something";
+var lista;
+                    </code></pre>
+                    
+                    <div class="fragment" style="color:blue">
+                        ¿Qué ventajas e inconvenientes tiene indicar el tipo de las variables en el programa?
+                    </div>
+                </section>
+                
+                <section>
+                    <h4>Lenguajes <strong>estáticamente tipados</strong></h4>
+                    <ul>
+                        <li>
+                            <p>El compilador detecta <strong>en tiempo de compilación</strong> que las operaciones se realizan sobre argumentos del tipo correcto.</p>
+                            <p>Por ejemplo, el compilador avisa de cosas como:</p>
+                            <pre><code data-trim class="javascript">
+"pepe" * 24                            
+                            </code></pre>
+                        </li>
+                        <li>
+                            <p>Pueden requerir declaraciones de tipos por parte del programador.</p>
+                            <p>Por ejemplo: Java, C, etc.</p>
+                        </li>
+                        <li>
+                            <p>En algunos casos <strong>infieren</strong> información de tipos</p>
+                            <p>Por ejemplo: Haskell, C++, etc.</p>
+                        </li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h4>Lenguajes <strong>dinámicamente</strong> tipados</h4>
+                    <ul>
+                        <li>
+                            <p>Se comprueba <strong>durante la ejecución del programa</strong> que las operaciones se realizan sobre argumentos de tipo correcto.</p>
+                            <p>Por ejemplo, en Javascript:</p>
+                            <pre><code data-trim class="javascript">
+if (...) {
+    y = 3 * "foo";
+}
+                            </code></pre>
+                            <p>El error debido a la expresión <code>3 * "foo"</code> solamente se manifestará si la condición del <code>if</code> se cumple.</p>
+                        </li>
+                        
+                    </ul>
+                </section>
+                <section>
+                    <h4>Ejemplos</h4>
+                    <ul>
+                        <li><p><strong>Lenguajes sin tipos</strong></p>
+                            <p style="font-size:70%">Son poco usuales: Tcl, ensamblador, etc.</p>
+                        </li>
+                        <li>
+                            <p><strong>Lenguajes estáticamente tipados, no dinámicamente</strong></p>
+                            <p style="font-size:70%">C, Haskell, etc.</p>
+                        </li>
+                        <li>
+                            <p><strong>Lenguajes dinámicamente tipados, no estáticamente</strong></p>
+                            <p style="font-size:70%">Python, Javascript, PHP, etc.</p>
+                        </li>
+                        <li>
+                            <p><strong>Lenguajes estáticamente y dinámicamente tipados</strong></p>
+                            <p style="font-size:70%">Java, C++, C#, etc.</p>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h4>Tipos disponibles en Javascript</h4>
+                    <ul>
+                        <li>Tipo del valor indefinido (<code>undefined</code>)</li>
+                        <li>Tipo del puntero nulo (<code>null</code>)</li>
+                        <li><p>Tipo numérico (<code>number</code>).</p><p style="font-size:70%">El sistema de tipos no distingue entre enteros y coma flotante.</p></li>
+                        <li>Tipo booleano (<code>boolean</code>).<p  style="font-size:70%">Incluye los valores <code>true</code> y <code>false</code>.</p></li>
+                        <li>Tipo cadena (<code>string</code>).</li>
+                        <li>Tipo objeto (<code>object</code>).
+                            <p style="font-size:70%">Incluye también a arrays, funciones y expresiones regulares.</p>
+                        </li>
+                        
+                    </ul>
+                </section>
+                
+                <section>
+                    <h4>Tipos primitivos vs tipos objeto</h4>
+                    <div style="width:80%;margin-left:auto;margin-right:auto">
+                    <ul style="float:left">
+                        <li>Tipos primitivos:
+                            <ul>
+                                <li>Indefinido</li>
+                                <li>Nulo</li>
+                                <li>Numérico</li>
+                                <li>Booleano</li>
+                                <li>Cadena</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>Tipos objeto:
+                            <ul><li>Objeto</li></ul>
+                        </li>
+                    </ul>
+                    </div>
+                    <div style="clear:both"></div>
+                </section>                
+                <section>
+                    <p>Los tipos primitivos son <strong>inmutables</strong></p>
+                    <pre><code data-trim data-noescape class="javascript">
+var str1 = "Cadena";
+var str2 = str1.slice(0, 3);      <span class="arrow_box_left caja_codigo">No modifica la cadena <span style="font-family:monospace">str1</span></span>
+console.log(str1);  // &rarr; Cadena1
+console.log(str2);  // &rarr; Cad
+                    </code></pre>
+                    <p>Las comparaciones entre tipos primitivos se hacen por <strong>valor</strong>, no por referencia</p>
+                    <pre><code data-trim data-noescape class="javascript">
+var str1 = "Cadena";
+var str2 = "Cadena";
+var str3 = "Otra cadena";
+str1 == str2;   // &rarr; true
+str1 === str2;  // &rarr; true
+str1 != str3    // &rarr; true
+str1 !== str3   // &rarr; true
+                    </code></pre>
+                    <p>En Java <code>str1 == str2</code> devuelve <code>false</code>, pues son
+                    objetos distintos. En cambio, <code>str1.equals(str2)</code> devuelve <code>true</code>.</p>
+                </section>
+                
+                <section>
+                    <p>Las cadenas pueden compararse lexicográficamente mediante los operadores
+                    relacionales <code>&lt;=</code>, <code>&lt;</code>, <code>&gt;=</code> y
+                    <code>&gt;</code>:</p>
+                    <pre><code data-trim class="javascript">
+"Pablo" &lt; "Diana"    // &rarr; true
+"Pablo" &lt; "Paolo"    // &rarr; true 
+"alma" &lt;= "Pablo"    // &rarr; false
+"Águeda" &lt; "Pablo"   // &rarr; false
+                    </code></pre>
+                    <p>Se utiliza <code>localeCompare()</code> para comparar según el abecedario del idioma correspondiente.</p>
+                    <pre><code data-trim class="javascript">
+"alma".localeCompare("Pablo");      // &rarr; -1 ('alma' es menor)
+"Sergio".localeCompare("Pablo");    // &rarr; 1  ('Pablo' es menor)
+"Sergio".localeCompare("Sergio");   // &rarr; 0  (iguales)
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Comprobación de tipos</h4>
+                    <p>La función <code>typeof</code> permite obtener el tipo de un elemento. Devuelve una cadena con el nombre del tipo.</p>
+                    <pre><code data-trim class="javascript">
+var x = 3;
+console.log(typeof(x));                         // &rarr; number
+console.log(typeof("Hola"));                    // &rarr; string
+console.log(typeof(variable_que_no_existe));    // &rarr; undefined
+console.log(typeof(2 &lt; 9));                     // &rarr; boolean
+console.log(typeof([1, 3, 5]));                 // &rarr; object
+console.log(typeof(null));                      // &rarr; object
+                    </code></pre>
+                    <p>Aunque <code>null</code> es un tipo básico, <code>typeof(null)</code>
+                        devuelve <code>"object"</code>.
+                    </p>
+                </section>
+            </section>
+            
+            <section>
+                <section>
+                    <div class="bloquetitulo" style="padding:20px">
+                        <h3><span class="titulo_rareza">Rareza 2</span><span style="display:none">:</span><br>Valores indefinidos, nulos, y <span style="text-transform:none">NaN</span></h3>
+                    </div>
+                </section>
+                
+                <section>
+                    <h4>El valor indefinido (<code style="text-transform:none">undefined</code>)</h4>
+                    <p>Se utiliza para las variables no inicializadas y para atributos no existentes dentro de objetos.</p>
+                    <pre><code data-trim class="javascript">
+var coordenadas = { x: 5, y: 6 };
+var v;
+console.log(v);                 // &rarr; undefined
+console.log(coordenadas.z);     // &rarr; undefined
+                    </code></pre>
+                    <h4>El valor nulo (<code style="text-transform:none">null</code>)</h4>
+                    <p>Se utiliza para denotar una referencia a objeto nula.</p>
+                    <pre><code data-trim class="javascript">
+var x = null;   // La variable 'x' esta inicializada, pero a una
+                // referencia nula.
+console.log(x); // &rarr; null                
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>El valor Not-a-Number (<code style="text-transform:none">NaN</code>)</h4>
+                    <p>Se devuelve como resultado de operaciones aritméticas incorrectas:</p>
+                    <pre><code data-trim class="javascript">
+Math.log(-2)    // &rarr; NaN
+                    </code></pre>
+                    <p><code>Infinity</code> y <code>-Infinity</code> se utilizan para desbordamientos, o para operaciones que devuelven &plusmn;&infin;</p>
+                    <pre><code data-trim class="javascript">
+Math.pow(2, 10000)  // &rarr; Infinity
+Math.log(0)         // &rarr; -Infinity
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>¡Cuidado con las comparaciones de <code>NaN</code>!</p>
+                    <pre><code data-trim class="javascript">
+Math.log(-3) === NaN // &rarr; false
+NaN === NaN          // &rarr; false
+                    </code></pre>
+                    <p>Si se quiere determinar si una operación ha dado <code>NaN</code> como resultado, debe utilizarse la función <code>isNaN</code></p>
+                    <pre><code data-trim class="javascript">
+isNaN(NaN)          // &rarr; true
+isNaN(Math.log(-3)) // &rarr; true
+                    </code></pre>
+                </section>
+                
+            </section>
+            
+            <section>
+                <section>
+                    <div class="bloquetitulo" style="padding:20px">
+                        <h3><span class="titulo_rareza">Rareza 3</span><span style="display:none">:</span><br>Las conversiones invisibles</h3>
+                    </div>
+                </section>
+                
+                <section>
+                    <h4>Conversiones Javascript</h4>
+                    <p>¿A qué valor se evalúan las siguientes expresiones?</p>
+                    <pre><code data-trim class="javascript">
+3 * 4               // &rarr; 12
+"3" * 4             // &rarr; 12
+"3" * "4"           // &rarr; 12
+"3" * "pepe"        // &rarr; NaN
+"12" + "20"         // &rarr; 1220
+"12" + 20           // &rarr; 1220
+12 + "20"           // &rarr; 1220
+Math.log10("1000")  // &rarr; 3
+"10" &lt; "2"          // &rarr; true
+"10" &lt; 2            // &rarr; false
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>¿En qué casos se cumple la condición del <code>if</code>?</p>
+                    <pre><code data-trim class="javascript">
+if (23) { .... }            // &rarr; se cumple
+if (-1) { .... }            // &rarr; se cumple
+if (0) { .... }             // &rarr; no se cumple
+if ("Pepe") { .... }        // &rarr; se cumple
+if ("") { .... }            // &rarr; no se cumple
+if ([1, 3]) { .... }        // &rarr; se cumple
+if ([]) { .... }            // &rarr; se cumple
+if (null) { .... }          // &rarr; no se cumple
+if (undefined) { .... }     // &rarr; no se cumple
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Cómo evitar confusiones</h4>
+                    <p>Con este panorama, hay dos alternativas:</p>
+                    <ol>
+                        <li>Aprenderse concienzudamente las reglas de conversión de Javascript:
+                            <p>Información: <a href="http://webreflection.blogspot.com.es/2010/10/javascript-coercion-demystified.html">http://webreflection.blogspot.com.es/2010/10/javascript-coercion-demystified.html</a></p>
+                        </li>
+                        <li>
+                            <strong>[Recomendado]</strong> Hacer las conversiones explícitamente, en caso de no estar seguro/a del tipo de una expresión
+                            <p>Funciones <code>Number(...)</code>, <code>String(...)</code>, <code>Boolean(...)</code></p>
+                        </li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h4>Funciones de conversión</h4>
+                    <p>La función <code>Number()</code></p>
+                    <pre><code data-trim data-noescape class="javascript">
+Number("32")        // &rarr; 32
+Number("2f3")       // &rarr; NaN
+Number(true)        // &rarr; 1
+Number(false)       // &rarr; 0
+Number(undefined)   // &rarr; NaN
+Number(null)        // &rarr; 0
+Number(new Date())  // &rarr; 1476191814528 (depende de fecha y hora)
+                    </code></pre>
+                    <p>Cuando la función <code>Number</code> se llama sobre un objeto <code>x</code>, se devuelve <code>x.valueOf()</code>.</p>
+                    <p>Ver también: <code>parseInt</code> <a href="http://www.w3schools.com/jsref/jsref_parseint.asp">[+]</a></p>
+                    
+                </section>
+                
+                <section>
+                    <p>La función <code>String()</code></p>
+                    <pre><code data-trim class="javascript">
+String(true)       // &rarr; "true"
+String(undefined)  // &rarr; "undefined"
+String(32)         // &rarr; "32"
+String(new Date()) // &rarr; "Tue Oct 11 2016 15:23:02 GMT+0200 (CEST)"
+                    </code></pre>
+                    
+                    <p>La función <code>String</code> aplicada sobre un objeto <code>x</code>
+                    llama al método <code>x.toString()</code></p>
+                </section>
+                
+                <section>
+                    <p>La función <code>Boolean()</code></p>
+                    <ul>
+                        <li>Valores falsos: <code>undefined</code>, <code>null</code>, <code>false</code>, <code>0</code>, <code>NaN</code>, <code>""</code>.</li>
+                        <li>Valores ciertos: el resto.</li>
+                    </ul>
+                    
+                    <pre><code data-trim class="javascript">
+Boolean("")         // &rarr; true
+Boolean(34)         // &rarr; false
+                    </code></pre>
+                </section>
+            </section>
 
         </div>
 

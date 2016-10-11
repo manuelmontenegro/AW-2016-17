@@ -151,3 +151,16 @@ th.noborder code.black {
     background: white;
     font-weight: normal;
 }
+
+.bloquetitulo {
+    background-color: #B71234;
+    color: white;
+}
+
+.bloquetitulo h3 {
+    color: white;
+}
+
+.bloquetitulo .titulo_rareza {
+    font-size: 150%;
+}
