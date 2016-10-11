@@ -1067,9 +1067,310 @@ Aplicar función 2 pasando 2: 2
 Aplicar función 3 pasando 2: 0.6931471805599453</pre>
                     
                     <p>¿Puede reemplazarse la referencia a <code>factorial</code> 
-                        por una función anónima?</p>
+                        por otra función anónima?</p>
+                </section>
+                
+                <section>
+                    <h4>Ámbito de variables</h4>
+                    <p>Las variables declaradas dentro de una función tienen como ámbito dicha función:</p>
+                    <pre><code data-trim class="javascript">
+function f(n) {
+    var x = ...;
+    // x está en ámbito dentro de la función
+}
+
+// aquí x está fuera de ámbito
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p><strong>Solamente las funciones definen ámbitos</strong></p>
+                    <p>El resto de bloques no.</p>
+                    <pre><code data-trim class="javascript">
+if (...) {
+    var z = ...;
+}
+
+// La z está en ámbito fuera del if-then
+
+for (var x = 0; x &lt; 10; x++) {
+    var y = ...;
+}
+
+// Tanto 'x' como 'y' están en ámbito a la salida
+// del bucle.
+                    </code></pre>
+                    <p>Puede arreglarse mediante <em>expresiones funcionales invocadas inmediatamente</em> (IIFE) <a href="https://en.wikipedia.org/wiki/Immediately-invoked_function_expression">[+]</a></p>
+                </section>
+                
+                <section>
+                    <h4>Clausuras</h4>
+                    <p>Una función puede hacer referencia a variables declaradas en un ámbito superior</p>
+                    <pre><code data-trim data-noescape class="javascript">
+var y = 3;  // variable global
+
+var f = function(x) {
+    return x + y;   <span class="arrow_box_left caja_codigo">Referencia a la variable global y</span>
+}
+
+console.log(f(5));
+// Imprime: 8
+                    </code></pre>
+                    <p>¿Y si cambio el valor de la variable <code>y</code> después de definir <code>f</code>?</p>
+                    <pre><code data-trim class="javascript">
+y = 9;
+console.log(f(2));
+// Imprime: 11
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Más difícil todavía</h4>
+                    <p>Supongamos el siguiente caso</p>
+                    <pre><code data-trim class="javascript">
+var z = 3;  // Variable global
+
+function g() {
+    var z = 7;     // Variable local; oculta a la global
+    var f = function(x) { return z + x; };
+    console.log(f(1));
+}
+
+g();
+                    </code></pre>
+                    <p>¿Qué imprime <code>g()</code>?</p>
+                    <pre>8   // es decir: 7 + 1</pre>
+                    <p>En la expresión <code>z + x</code> dentro de la definición de <code>f</code>, la aparición de <code>z</code> se liga a la variable <code>z</code> definida dentro de <code>g</code>, que es la que está en ámbito en el momento de crear la función <code>f</code>. </p>
+                </section>
+                
+                <section>
+                    <h4>Y aún más difícil</h4>
+                    <p>Ahora &laquo;sacamos&raquo; la función <code>f</code> del ámbito <code>g</code> devolviéndola como resultado:</p>
+                    <pre><code data-trim class="javascript">
+var z = 3;  // Variable global
+
+function g() {
+    var z = 7;  // Variable local; oculta a la global
+    return function(x) { return z + x; };
+}
+
+// La variable local z ya no está en ámbito,
+// Pero la variable global z sí lo está
+var h = g();
+
+// ¿Qué imprime esto? ¿3 + 5? ¿7 + 5?
+console.log(h(5));                    
+                    </code></pre>
+                    <p>Resultado:</p>
+                    <pre>12</pre>
+                </section>
+                
+                <section>
+                    <pre><code data-trim class="javascript">
+function g() {
+    var z = 7;
+    return function(x) { return z + x; };
+}
+                    </code></pre>
+                    <p>En la expresión <code>function(x) { return z + x; }</code>, la aparición de <code>z</code> queda ligada a la variable <code>z</code> local en <code>g</code>, que es la que está en ámbito en el momento de crear la función. Este vínculo es <strong>permamente</strong>.
+                    </p>
+                    <p>Tras crear la función anónima, cualquier llamada  la misma utilizará siempre esta variable <code>z</code>, ¡aunque ya esté fuera de ámbito en el momento de realizar la llamada!</p>
+                </section>
+                
+                <section>
+                    <div style="background-color:#F0BfDf; padding: 20px 20px">
+                        Cuando se crea una función que hace referencia a nombres de variables externas, esos nombres siempre referenciarán a las variables que estuviesen en ámbito <strong>en el momento de crear la función</strong>.
+                    </div>
+                </section>
+                
+                <section>
+                    <h4>Ejemplo: incrementador</h4>
+                    <pre><code data-trim class="javascript">
+function incrementador(n) {
+    return function(x) { return x + n; };
+}                    
+                    </code></pre>
+                    <pre><code data-trim class="javascript">
+var inc1 = incrementador(1);
+console.log(inc1(5)); // &rarr; 6
+console.log(inc1(9)); // &rarr; 10
+                    </code></pre>
+                    <pre><code data-trim class="javascript">
+var inc3 = incrementador(3);
+console.log(inc3(5)); // &rarr; 8
+console.log(inc3(9)); // &rarr; 12        
+                    </code></pre>
+                </section>
+                
+                <section  data-transition="slide-in fade-out">
+                    <img src="images/03/Inc1.svg" style="width:100%; border:none">
+                    <p>Al comenzar la llamada a <code>incrementador(1)</code> se crea un entorno con el valor de la variable local <code>n = 1</code> </p>
                 </section>
 
+                <section data-transition="fade-in fade-out">
+                    <img src="images/03/Inc2.svg" style="width:100%; border:none">
+                    <p>La llamada a <code>incrementador(1)</code> devuelve una función en la que
+                    la <code>n</code> está ligada al entorno correspondiente.</p>
+                </section>                
+
+                <section data-transition="fade-in fade-out">
+                    <img src="images/03/Inc3.svg" style="width:100%; border:none">
+                    <p>Al llamar a <code>incrementador(3)</code> se crea otro entorno distinto en el que <code>n = 3</code>.</p>
+                </section>
+                
+                <section data-transition="fade-in slide-out">
+                    <img src="images/03/Inc4.svg" style="width:100%; border:none">
+                    <p>La función creada en esta llamada tiene la variable <code>n</code> ligada
+                    a la  <code>n</code> de este último entorno.</p>
+                </section>
+                
+                <section>
+                    <h4>Ejemplo: contador</h4>
+                    <pre><code data-trim class="javascript">
+function contador() {
+    var n = 1;
+    return function() {
+                return n++;
+           }
+}
+
+var c1 = contador();
+var c2 = contador();
+
+console.log(c1());  // &rarr; 1
+console.log(c1());  // &rarr; 2
+console.log(c1());  // &rarr; 3
+console.log(c2());  // &rarr; 1
+console.log(c2());  // &rarr; 2
+console.log(c1());  // &rarr; 4
+                    </code></pre>
+                </section>
+            </section>
+            
+            <section>
+                <section>
+                    <div class="bloquetitulo" style="padding:20px">
+                        <h3><span class="titulo_rareza">Rareza 6</span><span style="display:none">:</span><br>Javascript tiene objetos,<br> pero no clases</h3>
+                    </div>
+                </section>
+                
+                <section>
+                    <h4>Objetos</h4>
+                    <p>Un <strong>objeto</strong> es una colección de <strong style="color:#5050FF">atributos</strong>, cada uno de ellos  asociado a un <strong style="color:#5050FF">valor</strong>.</p>
+                    <pre><code data-trim class="javascript">
+var x = {
+    nombre: "Ana María",
+    apellidos: "Gamboa Esteban",
+    edad: 54
+};                    
+                   </code></pre>
+                    <p>El literal <code>{}</code> representa un objeto vacío (sin atributos)</p>
+                    <pre><code data-trim class="javascript">
+var y = {};                    
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>El acceso a los atributos de un objeto se realiza mediante:</p>
+                    <ul style="width: 100%">
+                        <li>El operador punto (<code>.</code>)
+                            <pre><code data-trim class="javascript">
+x.apellidos // &rarr; "Gamboa Esteban"
+                            </code></pre>
+                        </li>
+                        <li>o bien, el operador corchete
+                            <pre><code data-trim class="javascript">
+x["apellidos"] // &rarr; "Gamboa Esteban"                            
+                            </code></pre>
+                            <pre><code data-trim class="javascript">
+var atrib = "nombre";
+x[atrib] // &rarr; "Ana María"
+                            </code></pre>
+                        </li>
+                    </ul>
+                    <p>El acceso a una propiedad inexistente devuelve <code>undefined</code></p>
+                    <pre><code data-trim class="javascript">
+x.noexiste  // &rarr; undefined
+y.nombre    // &rarr; undefined
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>Modificación de atributos:</p>
+                    <pre><code data-trim class="javascript">
+x.edad = x.edad + 1;  // o bien: x.edad++
+x.["nombre"] = "Ana Josefa";
+                    </code></pre>
+                    <p>Es posible añadir atributos dinámicamente en cualquier momento:</p>
+                    <pre><code data-trim class="javascript">
+x.direccion = "Calle Bautista, 25";
+y.nombre = "Javier";
+
+console.log(x);
+ // { nombre: 'Ana Josefa', apellidos: 'Gamboa Esteban', edad: 55 }
+console.log(y);
+ // { nombre: 'Javier' }
+                    </code></pre>
+                    <p>...y también borrarlos:</p>
+                    <pre><code data-trim class="javascript">
+delete x.edad;
+console.log(x);
+ // { nombre: 'Ana Josefa', apellidos: 'Gamboa Esteban' }
+
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>Los nombres de atributos no han de ser necesariamente identificadores válidos de Javascript. Los nombres especiales han de ir entre comillas:</p>
+                    <pre><code data-trim class="javascript">
+var z = {
+    "Atributo con espacios": 21,
+    "14": "foo",
+    "false": "ok"
+};
+                    </code></pre>
+                    <p>Para acceder a atributos con nombres especiales solamente se puede utilizar la notación corchete</p>
+                    <pre><code data-trim class="javascript">
+z["Atributo con espacios"] = 22;
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>La función <code>Object.keys()</code> devuelve un array con las  claves de un objeto:</p>
+                    <pre><code data-trim class="javascript">
+var x = {
+    nombre: "Ana María",
+    apellidos: "Gamboa Esteban",
+    edad: 54
+};
+
+console.log(Object.keys(x));
+    // [ 'nombre', 'apellidos', 'edad' ]
+                    </code></pre>
+                    <p>El operador <code>in</code> permite determinar la existencia de un atributo dentro de un objeto:</p>
+                    <pre><code data-trim class="javascript">
+if ("edad" in x) {
+    console.log("x tiene un atributo llamado 'edad'");
+}                    
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Igualdad de objetos</h4>
+                    <p>Cuando se aplica el operador <code>==</code> o <code>===</code> sobre objetos, se comprueba que los objetos a ambos lados del operador son el mismo (igualdad al estilo de Java)</p>
+                    <pre><code data-trim class="javascript">
+var coords1 = { x: 20, y: 30 };
+var coords2 = { x: 20, y: 30 };
+var coords3 = coords1;
+
+console.log(coords1 === coords2);
+    // &rarr; false
+    
+console.log(coords1 === coords3);
+    // &rarr; true
+                    </code></pre>
+                    <p><strong>Recuerda:</strong> en Javascript, las cadenas no son objetos; son tipos básicos.</p>
+                </section>
             </section>
 
         </div>
