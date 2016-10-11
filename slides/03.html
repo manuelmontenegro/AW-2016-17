@@ -1,0 +1,355 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tema 3 - Javascript</title>
+
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/aw.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/magula.css">
+
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <link rel="stylesheet" href="css/traspas.css" />
+</head>
+
+<body>
+    <svg width="0" height="0" style="float:left">
+        <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth" style="display:float">
+                <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+            </marker>
+        </defs>
+    </svg>
+    <div class="reveal">
+        <div class="slides">
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="fade">
+                <div class="headerlesson">Tema 3</div>
+                <h1 style="height:3em;position:relative;top:0.3em">Programación en JavascriPT</h1>
+                <div class="headerlesson">
+                    Aplicaciones Web - GIS - Curso 2016/17
+                </div>
+                <div class="author">
+                    <span class="myname">Manuel Montenegro</span> [<a href="mailto:montenegro@fdi.ucm.es" style="color:white">montenegro@fdi.ucm.es</a>]
+                    <br/> Dpto de Sistemas Informáticos y Computación
+                    <br/> Facultad de Informática
+                    <br/> Universidad Complutense de Madrid
+                </div>
+                <div class="cc">
+                    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+                    <br/> Esta obra está bajo una
+                    <br/><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="color:white">Licencia CC BY-NC-SA 4.0 Internacional</a>.
+                </div>
+                <div style="clear:left;font-size:15px"></div>
+            </section>
+
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="fade" id="p1">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline fragment highlight-orange">Primeros programas</a></li>
+                    <li><a href="#/p2" class="outline">Javascript es como Java...</a></li>
+                    <li><a href="#/p3" class="outline">...pero no es como Java</a></li>
+                    <li><a href="#/p4" class="outline">Clases estándar</a></li>
+                    <li><a href="#/p5" class="outline">Herramientas</a></li>
+                    <li><a href="#/p6" class="outline">ECMAscript 6</a></li>
+                    <li><a href="#/p7" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p2">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline">Primeros programas</a></li>
+                    <li><a href="#/p2" class="outline current">Javascript es como Java...</a></li>
+                    <li><a href="#/p3" class="outline">...pero no es como Java</a></li>
+                    <li><a href="#/p4" class="outline">Clases estándar</a></li>
+                    <li><a href="#/p5" class="outline">Herramientas</a></li>
+                    <li><a href="#/p6" class="outline">ECMAscript 6</a></li>
+                    <li><a href="#/p7" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
+
+            <section>
+                <h2>El &laquo;Java&raquo; en Javascript</h2>
+                <p>
+                    La sintaxis de Javascript está inspirada, en gran medida, por la de Java.
+                </p>
+                <ul>
+                    <li>
+                        Comentarios:
+                        <pre><code data-trim class="javascript">
+// Comentario de una línea
+/* Comentario de varias
+   líneas */
+                        </code></pre>
+                    </li>
+                    <li>Declaraciones de variables y asignaciones:
+                    <pre><code data-trim class="javascript">
+var x = 3;
+var y = y + 1;
+y += 3;
+                    </code></pre>
+                    </li>
+                    <li>Pre/postincremento, pre/postdecremento:
+                    <pre><code data-trim class="javascript">
+z = x++;
+--x;
+                    </code></pre>
+                    </li>
+                    
+                </ul>
+            </section>
+            
+            <section>
+                <h3>Sentencias condicionales</h3>
+                <ul style="width:20em">
+                    <li>
+                        If-then-else:
+                        <pre><code data-trim class="javascript">
+if (x &lt; y) {
+    return x;
+} else {
+    return y;
+}                         
+                        </code></pre>
+                    </li>
+                    <li>
+                        Switch:
+                        <pre><code data-trim class="javascript">
+switch(day) {
+    case 6:
+    case 7:
+        console.log("Es fin de semana");
+        break;
+    default:
+        console.log("Es día laborable");
+}
+                        </code></pre>
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h3>Bucles</h3>
+                <ul style="width:20em">
+                    <li>Bucle while
+                    <pre><code data-trim class="javascript">
+while (x &lt;= 0) {
+    n = n * x;
+    x--;
+}
+                    </code></pre>
+                    </li>
+                    <li>Bucle do-while:
+                    <pre><code data-trim class="javascript">
+do {
+    mult *= a[x];
+    x++:
+} while (a[x] === 0)
+                    </code></pre>
+                    </li>
+                    <li>
+                        Bucles for:
+                        <pre><code data-trim class="javascript">
+for (var i = 0; i &lt; b.length; i++) {
+    sum += b[i] + c[i];
+}
+                        </code></pre>
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <ul style="width:20em">
+                    <li>
+                        break y continue:
+                        <pre><code data-trim class="javascript">
+for (var i = 0; i &lt; x.length; i++) {
+    if (x[i] % 2 === 0)
+        continue;
+    z *= x[i];
+}
+                        </code></pre>
+                        <pre><code data-trim class="javascript">
+while (i &lt; x.length) {
+    if (x[i] === ".") break;
+    i++;
+}
+                        
+                        </code></pre>
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h3>Funciones</h3>
+                <pre><code data-trim class="javascript">
+function abs(x) {
+    if (x &lt; 0) {
+        return x;
+    } else {
+        return -x;
+    }
+}
+                </code></pre>
+                <ul style="width: 100%">
+                    <li>
+                        Llamadas a funciones y métodos:
+                    </li>
+                </ul>
+<pre><code data-trim class="javascript">
+x = abs(-3);
+console.log("El valor absoluto de x es " + x);
+</code></pre>                        
+            </section>
+            
+            <section>
+                <h3>Manejo de excepciones</h3>
+                <ul style="width:100%">
+                    <li>
+                        Bloques try-catch-finally:
+                        <pre><code data-trim class="javascript">
+try {
+   funcion_no_existe();
+} catch (e) {
+    console.error(e.message);
+} finally {
+    console.log("Esto se ejecuta siempre");
+}
+                        </code></pre>
+                    </li>
+                    <li>
+                        Lanzamiento de excepciones:
+                        <pre><code data-trim class="javascript">
+throw new Error("Fichero no encontrado");
+                        </code></pre>
+                    </li>
+                    <li>
+                    Atributos de <code>Error</code>:
+                        <ul>
+                            <li><code>Error.message</code>: mensaje de error.</li>
+                            <li><code>Error.stack</code>: pila de ejecución.</li>
+                            <li><code>Error.name</code>: nombre de la clase del error.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h3>Cadenas de texto</h3>
+                <ul style="float:left; width:45%">
+                    <li>Inicialización:
+                    <pre><code data-trim class="javascript">
+var str = "Esto es una cadena";
+                    </code></pre>
+                        o bien
+                    <pre><code data-trim class="javascript">
+var str = 'Esto es una cadena';
+                    </code></pre>
+                    </li>
+                    <li>
+                        Acceso al carácter i-ésimo:
+                        <pre><code data-trim class="javascript">
+str[2]   // &rarr; "t"
+                        </code></pre>
+                    </li>
+                </ul>
+                <ul style="float:right; width:45%">
+                    <li>Métodos:
+                    <pre><code data-trim class="javascript">
+str.slice(2, 5); 
+    // &rarr; "to es"
+"  vale ".trim();
+    // &rarr; "vale"
+str.split(" ");
+    // &rarr; ["Esto", "es", 
+    //    "una", "cadena"]
+str.toUpperCase();
+    // &rarr; "ESTO ES UNA CADENA"
+str.toLocaleUpperCase();
+    // &rarr; "ESTO ES UNA CADENA"
+str.startsWith("Est");
+    // &rarr; true
+"ab".repeat(5);
+    // &rarr; "ababababab"
+                    </code></pre>
+                    </li>
+                </ul>
+                <div style="clear:both"/>
+            </section>
+            
+            <section>
+                <h3>Operadores</h3>
+                <ul>
+                    <li>Relacionales:
+                        <code>==</code>, <code>===</code>,
+                        <code>&lt;</code>, <code>&lt;=</code>,
+                        <code>&gt;</code>, <code>&gt;=</code>
+                    </li>
+                    
+                    <li>
+                        Aritméticos:
+                        <code>+</code>, <code>-</code>, <code>*</code>,
+                        <code>/</code>, <code>%</code>
+                    </li>
+                    
+                    <li>
+                        Lógicos:
+                        <code>&amp;&amp;</code>, <code>||</code>, <code>!</code>
+                    </li>
+                    <li>
+                        A nivel de bit:
+                        <code>&amp;</code>, <code>|</code>, <code>^</code>,
+                        <code>&gt;&gt;</code>, <code>&lt;&lt;</code>,
+                        <code>&lt;&lt;&lt;</code>
+                    </li>
+                    
+                </ul>
+            </section>
+
+
+        </div>
+
+    </div>
+
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            history: true,
+
+            // More info https://github.com/hakimel/reveal.js#dependencies
+            dependencies: [{
+                src: 'plugin/markdown/marked.js'
+            }, {
+                src: 'plugin/markdown/markdown.js'
+            }, {
+                src: 'plugin/notes/notes.js',
+                async: true
+            }, {
+                src: 'plugin/highlight/highlight.js',
+                async: true,
+                callback: function() {
+                    hljs.initHighlightingOnLoad();
+                }
+            }]
+        });
+    </script>
+</body>
+
+</html>
