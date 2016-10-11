@@ -370,7 +370,10 @@ m.length  // &rarr; 3
                 <p><strong>(según un programador/a Java)</strong></p>
                 <ol>
                     <li>Javascript es dinámicamente tipado.</li>
-                    
+                    <li>Valores indefinidos, nulos y NaN.</li>
+                    <li>Las conversiones invisibles.</li>
+                    <li>Argumentos que sobran y faltan.</li>
+                    <li>Las funciones son ciudadanos de primera clase.</li>
                 </ol>
             </section>
             
@@ -702,6 +705,371 @@ Boolean("")         // &rarr; true
 Boolean(34)         // &rarr; false
                     </code></pre>
                 </section>
+                
+                
+                <section>
+                    <h4>Operadores de igualdad</h4>
+                    <dl>
+                        <dt><code>x === y</code> - Igualdad estricta</dt>
+                        <dd><code>x</code> e <code>y</code> son del mismo tipo y tienen el mismo valor.</dd>
+                        <dt><code>x == y</code> - Igualdad flexible</dt>
+                        <dd><code>x</code> e <code>y</code> pueden convertirse al mismo tipo, de modo que tras hacer la conversión tienen el mismo valor.</dd>
+                    </dl>
+                    
+                    <pre><code data-trim class="javascript">
+"25" == 25      // &rarr; true
+"25" === 25     // &rarr; false
+false == 0      // &rarr; true
+"" == 0         // &rarr; true
+2.0 === 2       // &rarr; true (recuerda: no se distingue entre tipo
+                //         de enteros y de coma flotante)
+
+                    </code></pre>
+                    
+                    <p>También se definen <code>!=</code> y <code>!==</code> como la negación de <code>==</code> y <code>===</code> respectivamente.</p>
+                </section>
+                
+                <section>
+                    <h4>Moraleja</h4>
+                    <p style="background-color:#007000; color:white; padding: 80px 20px; font-size: 200%">Utiliza siempre
+                    <span style="font-family: monospace">===</span> y <span style="font-family: monospace">!==</span></p>
+                </section>
+                
+            </section>
+            
+            <section>
+                <section>
+                    <div class="bloquetitulo" style="padding:20px">
+                        <h3><span class="titulo_rareza">Rareza 4</span><span style="display:none">:</span><br>Argumentos que sobran y faltan</h3>
+                    </div>
+                </section>
+                
+                <section>
+                    <h4>Definición de una función</h4>
+                    <pre><code data-trim class="javascript">
+function imprime_args(p1, p2, p3) {
+    console.log("p1: " + p1);
+    console.log("p2: " + p2);
+    console.log("p3: " + p3);
+}
+
+                    </code></pre>
+                    <h4>Llamada a una función</h4>
+                    <pre><code data-trim class="javascript">
+imprime_args(1, "bar", true);
+                    </code></pre>
+                    <p>Resultado:</p>
+                    <pre>
+p1: 1
+p2: bar
+p3: true</pre>
+                </section>
+                
+                <section>
+                    <p>El número de argumentos en la llamada a la función no ha de coincidir necesariamente con el número de parámetros en la definición</p>
+                    
+                    <ul>
+                        <li>Si se proporcionan argumentos &laquo;de más&raquo; se ignoran los sobrantes:
+                        <pre><code data-trim class="javascript">
+imprime_args("uno", "dos", "tres", "cuatro");
+                        </code></pre>
+                        <pre>
+p1: uno
+p2: dos
+p3: tres</pre>
+                        </li>
+                        <li>
+                            Si faltan argumentos, los parámetros correspondientes tomarán el valor <code>undefined</code>
+                            <pre><code data-trim class="">
+imprime_args("uno", "dos");
+                            </code></pre>
+                        <pre>
+p1: uno
+p2: dos
+p3: undefined</pre>                           
+                        </li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <p>Lo anterior permite definir funciones con parámetros opcionales.</p>
+                    <pre><code data-trim class="javascript">
+/*
+    El parámetro 'color' es opcional. Su valor por defecto
+    es 'negro'.
+    
+    El parámetro 'trazo' especifica el grosor del trazo y
+    también es opcional. Su valor por defecto es 1.
+*/
+function pintar_circulo(x, y, color, trazo) {
+    if (color === undefined) color = "negro";
+    if (trazo === undefined) trazo = 1;
+    
+    console.log("Pintar círculo en (" + x + ", " + y + ")" +
+                " con color " + color + 
+                " y trazo de grosor " + trazo);
+}
+                   </code></pre>
+                </section>
+                
+                <section>
+                    <p>Implementación alternativa:</p>
+                    <pre><code data-trim class="javascript">
+/*
+    El parámetro 'color' es opcional. Su valor por defecto
+    es 'negro'.
+    
+    El parámetro 'trazo' especifica el grosor del trazo y
+    también es opcional. Su valor por defecto es 1.
+*/
+function pintar_circulo(x, y, color, trazo) {
+    color = color || "negro";
+    trazo = trazo || 1;
+    
+    console.log("Pintar círculo en (" + x + ", " + y + ")" +
+                " con color " + color + 
+                " y trazo de grosor " + trazo);
+}
+                   </code></pre>
+                    <p>¿Es correcta?</p>
+                </section>
+                
+                <section>
+                    <h4>Número variable de parámetros</h4>
+                    <p>La variable especial <code>arguments</code> contiene la lista
+                    de argumentos recibidos por la función</p>
+                    <pre><code data-trim class="javascript">
+/*
+    Devuelve el resultado de sumar los números pasados como
+    parámetros. Los argumentos que no sean números se ignoran.
+*/
+function suma() {
+    var result = 0;
+    for (var i = 0; i &lt; arguments.length; i++) {
+        if (typeof(arguments[i]) === "number") {
+            result += arguments[i];
+        }
+    }
+    return result;
+}
+                    </code></pre>
+                    <pre><code data-trim class="javascript">
+suma(3, 4, "foo", 9)    // &rarr; 16
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Parámetros nominales</h4>
+                    <p>Utilizando objetos podemos simular el paso de parámetros nominales.</p>
+                    <p>Por ejemplo, supongamos una función <code>abrir_fichero</code> que espera
+                    un nombre de fichero y, opcionalmente:</p>
+                    <ul>
+                        <li><p>Un parámetro <code>solo_lectura</code> que indica si el fichero se abre en modo lectura o en modo lectura/escritura.</p>
+                            <p>Valor por defecto: <code>true</code></p>
+                        </li>
+                        <li><p>Un parámetro <code>binario</code> que indica si el fichero es binario o no.</p>
+                            <p>Valor por defecto: <code>false</code></p>
+                        </li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <p>Ejemplos de llamadas</p>
+                    <pre><code data-trim class="javascript">
+abrir_fichero("mio.txt");
+// Abriendo fichero mio.txt en modo lectura
+
+abrir_fichero("mio.txt", { solo_lectura: false });
+// Abriendo fichero mio.txt en modo lectura/escritura
+
+abrir_fichero("mio.txt", { binario: true });
+// Abriendo fichero binario mio.txt en modo lectura
+
+abrir_fichero("mio.txt", { binario: true, solo_lectura: false });
+// Abriendo fichero binario mio.txt en modo lectura/escritura
+
+abrir_fichero("mio.txt", { solo_lectura: true, binario: false });
+// Abriendo fichero mio.txt en modo lectura
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>Implementación:</p>
+                    <pre><code data-trim class="javascript">
+/*
+    El objeto 'ops' tiene como atributos los parámetros
+    opcionales.
+*/
+function abrir_fichero(nombre, ops) {
+    // Si no se han pasado parámetros opcionales, el objeto
+    // 'ops' habrá tomado el valor undefined. Lo inicializamos
+    // al objeto vacío.
+    if (ops === undefined) ops = {};
+    
+    // Inicialización de los parámetros opcionales no pasados
+    if (ops.solo_lectura === undefined) ops.solo_lectura = true;
+    if (ops.binario      === undefined) ops.binario      = false;
+    
+    // Cuerpo de la función
+    console.log("Abriendo fichero "
+        + (ops.binario ? "binario " : "")
+        + nombre + " en modo "
+        + (ops.solo_lectura ? "lectura" : "lectura/escritura"));
+        
+}                    
+                    </code></pre>
+                </section>
+            
+            </section>
+            
+            <section>
+                <section>
+                    <div class="bloquetitulo" style="padding:20px">
+                        <h3><span class="titulo_rareza">Rareza 5</span><span style="display:none">:</span><br>Las funciones son ciudadanos de primera clase</h3>
+                    </div>
+                </section>
+                
+                <section>
+                    <h4>¿Qué significa eso?</h4>
+                    <p>Que las funciones son tratadas como objetos.</p>
+                    <p>En particular:</p>
+                    <ul style="color:#008dbc">
+                        <li>Se puede asignar una función a una variable.</li>
+                        <li>Pueden pasarse funciones como parámetros.</li>
+                        <li>Pueden recibirse funciones como resultados.</li>
+                    </ul>
+                    
+                    <p>Esta característica es compartida por muchos lenguajes funcionales e imperativos:</p>
+                    <p>Haskell, Scala, Erlang, C, C++, Java 8, etc.</p>
+                </section>
+                
+                <section>
+                    <p>Partimos de las siguientes definiciones:</p>
+                    <pre><code data-trim class="javascript">
+function incrementar(x) {
+    return x + 1;
+}
+
+function duplicar(x) {
+    return 2 * x;
+}
+
+function cuadrado(y) {
+    return y * y;
+}
+
+function factorial(n) {
+    if (n &lt;= 0) {
+        return 1;
+    } else {
+        return n * factorial(n - 1);
+    }
+}
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>Asignamos algunas de estas funciones a la variable <code>f</code>:</p>
+                    <pre><code data-trim class="">
+var f = incrementar;
+console.log(f(5));
+// Imprime: 6
+
+f = factorial;
+console.log(f(10));
+// Imprime: 3628800
+                    </code></pre>
+                    
+                    <p>¡Cuidado con los paréntesis!</p>
+                    <pre><code data-trim class="">
+var f = incrementar();  // INCORRECTO
+// Esto realiza la llamada incrementar(undefined), y devuelve el
+// valor resultante (que también es undefined a f).
+
+console.log(f(5));
+// ERROR: f no es una función
+                    </code></pre>
+                </section>
+                
+                
+                <section>
+                    <p>La siguiente función recibe una lista de funciones y un valor. Aplica
+                    cada una de las funciones de la lista al valor dado y muestra los resultados
+                    por consola:</p>
+                    <pre><code data-trim class="javascript">
+function aplicar_funciones(funs, z) {
+    for (var i = 0; i &lt; funs.length; i++) {
+        console.log("Aplicar función " + i +
+                    " pasando " + z + ": " + funs[i](z));
+    }
+}
+                    </code></pre>
+                    <p>Ejemplo:</p>
+                    <pre><code data-trim class="javascript">
+aplicar_funciones([incrementar,duplicar,cuadrado,factorial], 5);
+                    </code></pre>
+                    <pre>
+Aplicar función 0 pasando 5: 6
+Aplicar función 1 pasando 5: 10
+Aplicar función 2 pasando 5: 25
+Aplicar función 3 pasando 5: 120</pre>
+                </section>
+                
+                <section>
+                    <p>De igual modo, se puede devolver una función como resultado:</p>
+                    <pre><code data-trim class="javascript">
+function buscar_por_nombre(nombre) {
+    switch(nombre) {
+        case "INC": return incrementar;
+        case "DUP": return dup;
+        case "SQR": return cuadrado;
+        case "FCT": return factorial;
+    }
+    // Si la función termina sin alcanzar un return,
+    // se considera que devuelve undefined
+}
+                    </code></pre>
+                    <p>Ejemplo:</p>
+                    <pre><code data-trim class="javascript">
+var g = buscar_por_nombre("INC");
+console.log(g(10));                    
+                    </code></pre>
+                    <pre>
+11</pre>
+                </section>
+                
+                <section>
+                    <h4>Funciones como expresiones</h4>
+                    <p>Se puede utilizar una definición de función en cualquier sitio donde se espere una expresión.</p>
+                    <p>En estos casos es posible omitir el nombre de la función (<strong>función anónima</strong>)</p>
+                    <pre><code data-trim class="javascript">
+var f = function() { console.log("Hola"); };
+f();
+
+var g = function(x, y) { return x + y; };
+console.log(g(3, 5));
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>En el ejemplo anterior:</p>
+                    <pre><code data-trim class="javascript">
+aplicar_funciones(
+    [ function(x) { return x - 3; },
+      function(x) { return Math.sqrt(x); },
+      factorial,
+      function(z) { return Math.log(z); }  ], 2);                    
+                    </code></pre>
+                    <pre>
+Aplicar función 0 pasando 2: -1
+Aplicar función 1 pasando 2: 1.4142135623730951
+Aplicar función 2 pasando 2: 2
+Aplicar función 3 pasando 2: 0.6931471805599453</pre>
+                    
+                    <p>¿Puede reemplazarse la referencia a <code>factorial</code> 
+                        por una función anónima?</p>
+                </section>
+
             </section>
 
         </div>
