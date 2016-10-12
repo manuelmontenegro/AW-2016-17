@@ -1539,8 +1539,486 @@ c1.coordenadasPolares = function() {
                 
                 <section>
                     <h4>Prototipo de un objeto</h4>
+                    <p>Todo objeto en Javascript tiene un puntero &laquo;secreto&raquo; que puede apuntar a otro objeto:</p>
+                    <img src="images/03/ComplejoPrototipo.svg" style="width:40%;border:none;box-shadow:none">
+                    <p>... o puede ser un puntero nulo:</p>
+                    <img src="images/03/ComplejoPrototipo2.svg" style="width:23%;border:none;box-shadow:none">
+                </section>
+                
+                <section>
+                    <img src="images/03/CadenaPrototipos1.svg" style="width:50%;border:none;box-shadow:none">
+                    <p>En el primer caso decimos que el objeto apuntado es <strong>prototipo</strong> de <code>c1</code>.</p>
+                </section>
+                
+                <section>
+                    <p>A su vez, <code>c2</code> puede tener otro prototipo:</p>
+                    <img src="images/03/CadenaPrototipos2.svg" style="width:80%;border:none;box-shadow:none">
+                    <p>De este modo tenemos una <strong>cadena de prototipos</strong>, que acabará en un objeto que tenga el puntero &laquo;oculto&raquo; a <code>null</code>.</p>
+                </section>
+                
+                <section>
+                    <h4>Búsqueda de atributos</h4>
+                    <p>¿Qué ocurre cuando se accede al atributo de un objeto?</p>
+                    <p>Supongamos la expresión <code>c1.nombre</code></p>
+                </section>
+                
+                <section>
+                    <p><code>c1.nombre</code></p>
+                    <img src="images/03/CadenaPrototipos3.svg" style="width:80%;border:none;box-shadow:none">
+                    <p>En primer lugar se intenta buscar un atributo llamado <code>nombre</code> dentro de <code>c1</code>.</p>
+                </section>
+
+                <section>
+                    <p><code>c1.nombre</code></p>
+                    <img src="images/03/CadenaPrototipos4.svg" style="width:80%;border:none;box-shadow:none">
+                    <p>Si no se encuentra en <code>c1</code>, se busca el atributo dentro del prototipo de <code>c1</code>.</p>
+                </section>
+                
+                <section>
+                    <img src="images/03/CadenaPrototipos5.svg" style="width:80%;border:none;box-shadow:none">
+                    <p>Si no se encuentra en el prototipo de <code>c1</code>, se busca el dentro del prototipo del prototipo de <code>c1</code>.
+                        Si no se encuentra allí, la búsqueda continúa por la cadena de prototipos hasta que:
+                    </p>
+                    <ul>
+                        <li>Se encuentre el atributo en la cadena.</li>
+                        <li>Se llegue al final de la cadena. En este caso la expresión <code>c1.nombre</code> se evalúa a <code>undefined</code>.</li>
+                    </ul>
+                    
+                </section>
+                
+                <section>
+                    <h4>Crear objetos a partir de un prototipo</h4>
+                    <p>Se utiliza la función <code>Object.create()</code></p>
+                    <p>La siguiente sentencia:</p>
+                    <pre><code data-trim class="javascript">
+var y = Object.create(x);
+                    </code></pre>
+                    <p>crea un objeto <code>y</code> que tiene a <code>x</code> como prototipo:</p>
+                    <img src="images/03/PrototiposXY.svg" style="width:50%;border:none;box-shadow:none">
+                </section>
+                
+                <section>
+                    Ejemplo:
+                    <pre><code data-trim class="javascript">
+var circulo = {
+    centro: { x: 10, y: 20 },
+    radio: 5
+};
+
+var circulo_verde = Object.create(circulo);
+circulo_verde.color = "verde";
+
+
+var circulo_rojo = Object.create(circulo);
+circulo_rojo.color = "rojo";
+                    </code></pre>
+                    
+                    <pre><code data-trim class="javascript">
+console.log(circulo_rojo.color);        // &rarr; "rojo"
+console.log(circulo_verde.radio);       // &rarr; 5
+console.log(circulo_verde.centro.x);    // &rarr; 10
+console.log(circulo_rojo.centro);       // &rarr; { x: 10, y: 20 }
+                    </code></pre>
+                    
+                </section>
+                
+                <section>
+                    <h4>Cambiar y añadir atributos al prototipo</h4>
+                    <p>Añadimos lo siguiente al ejemplo anterior:</p>
+                    <pre><code data-trim class="javascript">
+                    circulo.grosorBorde = 2;
+                    </code></pre>
+                    <p>¿Qué ocurre con <code>circulo_verde</code> y <code>circulo_rojo</code>?</p>
+                    <pre><code data-trim class="javascript">
+console.log(circulo_rojo.grosorBorde);      // &rarr; 2
+console.log(circulo_verde.grosorBorde);     // &rarr; 2
+                    </code></pre>
+                    <p>&laquo;Heredan&raquo; automáticamente el nuevo atributo.</p>
+                    <p>Lo mismo ocurre con las modificaciones al prototipo:</p>
+                    <pre><code data-trim class="javascript">
+circulo.radio = 6;
+
+console.log(circulo_rojo.radio);    // &rarr; 6
+console.log(circulo_verde.radio);   // &rarr; 6      
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Sobreescritura de atributos</h4>
+                    <p>Un objeto puede sobreescribir cualquier atributo heredado de su prototipo:</p>
+                    <pre><code data-trim class="">
+circulo_rojo.radio = 3;
+                    </code></pre>
+                    <pre><code data-trim class="javascript">
+console.log(circulo_rojo.radio);    // &rarr; 3
+console.log(circulo_verde.radio);   // &rarr; 6
+                    </code></pre>
+                    <p>El atributo sobreescrito no afecta a los demás objetos que tengan el mismo protoipo.</p>
+                </section>
+                
+                <section>
+                    <p><code>circulo_rojo.radio = 3;</code></p>
+                    <img src="images/03/CirculosRojoyVerde.svg" style="width:60%;border:none;box-shadow:none">
+                    
+                    <p>¿Qué ocurre con lo siguiente?</p>
+                    <pre><code data-trim class="javascript">
+circulo_rojo.centro.x = 15;
+console.log(circulo_verde.centro.x);
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>Volviendo al ejemplo de los números complejos</p>
+                    <img src="images/03/DosComplejosComparten.svg" style="width:95%; border:none">
+                </section>
+                
+                <section>
+                    <pre><code data-trim class="javascript">
+var prototipoComplejo = {
+    modulo: function() {
+        return Math.sqrt(this.r * this.r + this.i * this.i);
+    },
+    argumento: function() {
+        return Math.atan2(this.i, this. r);
+    }
+};
+
+
+function construirComplejo(real, imag) {
+    var resultado = Object.create(prototipoComplejo);
+    resultado.r = real;
+    resultado.i = imag;
+    return resultado;
+}                    
+                    </code></pre>
+                    <pre><code data-trim class="javascript">
+var c1 = construirComplejo(-3, 0);
+var c2 = construirComplejo(1, 1);                    
+                    </code></pre>
+                </section>
+                
+                
+                <section>
+                    <p>Todas las funciones que se añadan al prototipo estarán disponibles automáticamente para todos los objetos que hayan sido creados previamente por <code>construirComplejo</code></p>
+                    <pre><code data-trim class="javascript">
+// Añadimos una nueva función al prototipo:
+
+prototipoComplejo.coordenadasPolares = function() {
+  console.log("(" + this.modulo() + ", " + this.argumento() + ")");
+}
+
+c1.coordenadasPolares();
+    // &rarr; (3, 3.141592653589793)
+    
+c2.coordenadasPolares();
+    // &rarr; (1.4142135623730951, 0.7853981633974483)
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>El objeto <code style="text-transform:none">Object.prototype</code></h4>
+                    <p>Salvo que haya sido creado mediante <code>Object.create</code>, un objeto tiene como prototipo <code>Object.prototype</code>.</p>
+                    <p><code>Object.prototype</code> tiene algunos métodos predefinidos:</p>
+                    <ul>
+                        <li><code>toString()</code></li>
+                        <li><code>valueOf()</code></li>
+                        <li><code>isPrototypeOf()</code></li>
+                        <li><code>hasOwnProperty()</code></li>
+                        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype">[+]</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>Ejemplos</h4>
+                    <pre><code data-trim class="javascript">
+var c3 = construirComplejo(1, 3);
+
+console.log(c3.toString());
+    // &rarr; [object Object]
+
+prototipoComplejo.toString = function() {
+    return "(" + this.r + ", " + this.i + ")";
+}
+
+console.log(c3.toString());
+    // &rarr; (1, 3)
+                    </code></pre>
+                    <pre><code data-trim class="javascript">
+console.log(prototipoComplejo.isPrototypeOf(c3));
+    // &rarr; true
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Evitar la herencia de  <code style="text-transform:none">Object.prototype</code></h4>
+                    <p>Basta con crear un objeto mediante <code>Object.create</code> pasando <code>null</code> como prototipo.</p>
+                    <pre><code data-trim class="javascript">
+var objeto_vacio = Object.create(null);
+objeto_vacio.toString();    // ERROR
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>El operador <code>in</code> tiene en cuenta tanto los atributos propios como los heredados:</p>
+                    <pre><code data-trim class="javascript">
+var c4 = construirComplejo(1, 3);
+console.log("r" in c4);             // &rarr; true
+console.log("modulo" in c4);        // &rarr; true
+                    </code></pre>
+                    <p>Si se desea comprobar la existencia de un atributo propio, ha de utilizarse el método <code>hasOwnProperty()</code>:</p>
+                    <pre><code data-trim class="javascript">
+console.log(c4.hasOwnProperty("r"));        // &rarr; true
+console.log(c4.hasOwnProperty("modulo"));   // &rarr; false
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Descriptores de objeto</h4>
+                    <p>Hasta ahora todos los atributos de un objeto permiten la lectura y escritura de su valor asociado.</p>
+                    <p>Mediante el método <code>Object.defineProperty()</code> podemos configurar los atributos de un objeto.</p>
+                    <pre><code data-trim class="javascript">
+var x = {};
+
+Object.defineProperty(x, "ancho", {
+    value: 10,
+    writable: false
+});
+
+console.log(x.ancho);
+x.ancho = 20; // ERROR
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>Esto permite encapsular el acceso a un atributo:</p>
+                    <pre><code data-trim class="javascript">
+x.__alto = 10; // Este es el atributo "privado"
+
+Object.defineProperty(x, "alto", {
+    // Método de acceso
+    get : function() { return this.__alto; },
+
+    // Método de modificación
+    set: function(nuevoAlto) {
+        if (nuevoAlto &lt; 0) {
+            this.__alto = 0;
+        } else if (nuevoAlto &gt; 100) {
+            this.__alto = 100;
+        } else {
+            this.__alto = nuevoAlto;
+        }
+    }
+});
+
+x.alto = -5;
+console.log(x.alto);    // &rarr; 0
+
+x.alto = 21;
+console.log(x.alto);    // &rarr; 21
+
+                    
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>La función <code>defineProperty()</code> recibe un objeto como tercer parámetro que define las propiedades del atributo:</p>
+                    <ul>
+                        <li>
+                            <code>writable: true | false</code><br>
+                            Control de acceso a escritura.
+                        </li>
+                        <li>
+                            <code>value</code><br>
+                            Valor por defecto.
+                        </li>
+                        <li>
+                            <code>get: function() { ... }</code><br>
+                            Método de acceso.
+                        </li>
+                        <li>
+                            <code>set: function(newValue) { ... }</code><br>
+                            Método de modificación.
+                        </li>
+                        <li>
+                            <code>enumerable: true | false</code><br>
+                            La propiedad aparecerá en el listado devuelto por <code>Object.keys()</code>.
+                        </li>
+                    </ul>
                 </section>
             </section>
+            
+            <section>
+                <section>
+                    <div class="bloquetitulo" style="padding:20px">
+                        <h3><span class="titulo_rareza">Rareza 7</span><span style="display:none">:</span><br>Las funciones constructoras y el operador <span style="font-family:monospace; text-transform:none">new</span></h3>
+                    </div>
+                </section>
+                
+                <section>
+                    <h4>Atributos de funciones</h4>
+                    <p>Las funciones de Javascript también son objetos.</p>
+                    <p>Esto implica que también pueden contener atributos.</p>
+                    <pre><code data-trim class="javascript">
+function saludar() {
+    console.log("Hola, mundo!");
+}
+
+saludar.numeroLineas = 1;
+saludar.numeroParametros = 0;
+                    </code></pre>
+                    <img src="images/03/SaludarFun.svg" style="width:60%;border:none;box-shadow:none">
+                </section>
+                
+                <section>
+                    <p>De hecho, las funciones tienen algunos atributos predefinidos:</p>
+                    <pre><code data-trim class="javascript">
+console.log(saludar.name)   // &rarr; "saludar"
+console.log(saludar.length) // &rarr; 0  (nº de argumentos)
+                    </code></pre>
+                    <p>Entre estos atributos predefinidos existe uno llamado <code>prototype</code>, que inicialmente apunta  un objeto vacío.</p>
+                    <pre><code data-trim class="javascript">
+console.log(saludar.prototype); // &rarr; { }
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>¡No confundir la propiedad <code>prototype</code> con el prototipo del objeto función!</p>
+                    <img src="images/03/SaludarFunPrototype.svg" style="width:90%;border:none;box-shadow:none">
+                    <p>El atributo <code>prototype</code> juega un papel esencial en las funciones constructoras.</p>
+                </section>
+                
+                <section>
+                    <h4>Funciones constructoras</h4>
+                    <p>Una función constructora se encarga de inicializar los atributos del objeto que se encuentra en la variable <code>this</code>.</p>
+                    <pre><code data-trim class="javascript">
+function Complejo(real, imag) {
+    this.r = real;
+    this.i = imag;
+}
+                    </code></pre>
+                    <p>Los nombres de las funciones constructoras suelen comenzar con letra mayúscula.</p>
+                    <p>Una función constructora es el equivalente a una <em>clase</em> Java.</p>
+                </section>
+                
+                <section>
+                    <p>El atributo <code>prototype</code> de las funciones constructoras sirve para almacenar los métodos comunes a la &laquo;clase&raquo;.</p>
+                    <pre><code data-trim class="javascript">
+Complejo.prototype.modulo = function() {
+    return Math.sqrt(this.r * this.r + this.i * this.i);
+}
+
+Complejo.prototype.argumento = function() {
+    return Math.atan2(this.i, this.r);
+}
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>El operador <code style="text-transform:none">new</code></h4>
+                    <p>Se puede invocar a una constructora utilizando el operador <code>new</code>:</p>
+                    <pre><code data-trim class="javascript">
+var x = new Complejo(-3, 0);                    
+                    </code></pre>
+                    <p>A continuación se describe el funcionamiento de <code>new</code>.</p>
+                </section>
+                
+                <section data-transition="slide-in fade-out">
+                    <pre><code data-trim class="javascript">
+var x = new Complejo(-3, 0);                    
+                    </code></pre>
+                    <img src="images/03/ComplejoConstructora1.svg" style="width:70%;border:none">
+                    <ol style="height:3em; width:90%">
+                        
+                    </ol>
+                </section>
+
+                <section data-transition="fade-in fade-out">
+                    <pre><code data-trim class="javascript">
+var x = new Complejo(-3, 0);                    
+                    </code></pre>
+                    <img src="images/03/ComplejoConstructora2.svg" style="width:70%;border:none">
+                    <ol style="height:3em; width:90%">
+                        <li>Se crea un objeto nuevo.</li>
+                    </ol>
+                </section>
+
+                <section data-transition="fade-in fade-out">
+                    <pre><code data-trim class="javascript">
+var x = new Complejo(-3, 0);                    
+                    </code></pre>
+                    <img src="images/03/ComplejoConstructora3.svg" style="width:70%;border:none">
+                    <ol style="height:3em; width:90%" start="2">
+                        <li>El prototipo del nuevo objeto será <code>Complejo.prototype</code>.</li>
+                    </ol>
+                </section>
+
+                <section data-transition="fade-in fade-out">
+                    <pre><code data-trim class="javascript">
+var x = new Complejo(-3, 0);                    
+                    </code></pre>
+                    <img src="images/03/ComplejoConstructora4.svg" style="width:70%;border:none">
+                    <ol style="height:3em; width:90%" start="3">
+                        <li>Se llama a la función constructora <code>Complejo</code> utilizando el nuevo objeto como <code>this</code>.</li>
+                    </ol>
+                </section>
+
+                <section data-transition="fade-in slide-out">
+                    <pre><code data-trim class="javascript">
+var x = new Complejo(-3, 0);                    
+                    </code></pre>
+                    <img src="images/03/ComplejoConstructora5.svg" style="width:70%;border:none">
+                    <ol style="height:3em; width:90%" start="4">
+                        <li>Se asigna la variable <code>x</code> el objeto resultante.</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h4>Resultado</h4>
+                    <pre><code data-trim class="javascript">
+function Complejo(real, imag) {
+    this.r = real;
+    this.i = imag;
+}
+
+Complejo.prototype.modulo = function() {
+    return Math.sqrt(this.r * this.r + this.i * this.i);
+}
+
+Complejo.prototype.argumento = function() {
+    return Math.atan2(this.i, this.r);
+}
+
+var x = new Complejo(-3, 0);
+console.log(x.modulo());     // &rarr; 3
+console.log(x.argumento());  // &rarr; 3.141592653589793
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Resumen</h4>
+                    <p>La expresión <code>new C(...)</code> se evalúa del siguiente modo:</p>
+                    <ol>
+                        <li>Se crea un nuevo objeto.</li>
+                        <li>Se establece el prototipo del nuevo objeto a <code>C.prototype</code>.</li>
+                        <li>Se llama a la función <code>C</code>, utilizando el nuevo objeto como <code>this</code>.</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h4>El operador <code style="text-transform:none">instanceof</code></h4>
+                    <p>La expresión <code>x instanceof C</code> se evalúa a <code>true</code> si el objeto <code>C.prototype</code> es alcanzable siguiendo ascendiendo desde <code>x</code> en la cadena de prototipos:</p>
+                    <pre><code data-trim class="javascript">
+var x = new Complejo(-3, 0);
+
+console.log(x instanceof Complejo); // &rarr; true
+console.log(x instanceof Object);   // &rarr; true
+console.log(x instanceof Number);   // &rarr; false
+                    </code></pre>
+                </section>
+            </section>
+            
+            
+            
 
         </div>
 
