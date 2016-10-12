@@ -2017,7 +2017,275 @@ console.log(x instanceof Number);   // &rarr; false
                 </section>
             </section>
             
+            <section>
+                <section>
+                    <div class="bloquetitulo" style="padding:20px">
+                        <h3><span class="titulo_rareza">Rareza 8</span><span style="display:none">:</span><br>Los arrays tienen poco de arrays, y mucho de objetos</h3>
+                    </div>
+                </section>
+                
+                <section>
+                    <h4>Inicialización de arrays</h4>
+                    <p>
+                        Un array puede inicializarse enumerando sus elementos:
+                    </p>
+                    <pre><code data-trim class="javascript">
+var a = [23, 12, 69, 11, 34, 45];
+                    </code></pre>
+                    <p>o bien mediante el constructor <code>Array</code>:</p>
+                    <pre><code data-trim class="javascript">
+var b = new Array(10);
+// Todos los elementos están a 'undefined'
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Los arrays son objetos</h4>
+                    <p>Es posible asignar propiedades arbitrarias a un array.</p>
+                    <pre><code data-trim class="javascript">
+var a = [23, 12, 69, 11, 34, 45];
+a.estaOrdenado = false;
+
+console.log(a);
+    // &rarr; [ 1, 5, 3, 5, 4, esta_ordenado: false ]
+                    </code></pre>
+                    
+                    <p>Todos los arrays tienen como prototipo el objeto <code>Array.prototype</code>, que contiene algunos métodos de utilidad sobre arrays. <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/prototype">[+]</a></p>
+                </section>
+                
+                <section>
+                    <h4>Los arrays son flexibles y pueden tener &laquo;huecos&raquo;</h4>
+                    <p>Puede variarse la longitud de un array en tiempo de ejecución. Basta con modificar la propiedad <code>length</code>:</p>
+                    <pre><code data-trim class="javascript">
+var a = [23, 12, 69, 11, 34, 45];
+a.length += 2;  // Ampliamos el array
+
+console.log(a); // &rarr; [ 23, 12, 69, 11, 34, 45, ,  ]
+
+a.length = 3;  // Reducimos el array
+
+console.log(a); // &rarr; [ 23, 12, 69 ]
+                    </code></pre>
+                    <p>También se puede ampliar el array añadiendo elementos fuera de rango:</p>
+                    <pre><code data-trim class="javascript">
+a[5] = 32;
+console.log(a); // &rarr; [ 23, 12, 69, , , 32 ]
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>Métodos para modificar el tamaño del array:</p>
+                    <ul>
+                        <li>
+                            <code>push(x)</code><br>
+                            Inserta <code>x</code> al final del array.
+                        </li>
+                        <li>
+                            <code>pop()</code><br>
+                            Elimina y devuelve el último elemento del array.
+                        </li>
+                        <li>
+                            <code>unshift(x)</code><br>
+                            Añade <code>x</code> al principio del array, desplazando los restantes elementos.
+                        </li>
+                        <li>
+                            <code>shift()</code><br>
+                            Elimina el primer elemento del array, desplazando los restantes elementos.
+                        </li>
+                        <li>
+                            <code>splice(ini, num)</code>
+                            Partiendo del elemento en la posición <code>ini</code>, elimina <code>num</code> elementos.
+                        </li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <p>Ejemplo:</p>
+                    <pre><code data-trim class="javascript">
+var a = [1, 2, 3, 4, 5];
+    // a = [1, 2, 3, 4, 5];
+
+a.push(8);
+    // a = [1, 2, 3, 4, 5, 8];
+
+a.unshift(-4);
+    // a = [-4, 1, 2, 3, 4, 5, 8];
+
+a.pop(); // &rarr; 8
+    // a = [-4, 1, 2, 3, 4, 5];
+
+a.shift(); // &rarr; -4
+    // a = [1, 2, 3, 4, 5];
+
+a.splice(2, 2); // &rarr; [3, 4]
+    // a = [1, 2, 5];
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>Otras operaciones destructivas:</p>
+                    <pre><code data-trim class="javascript">
+a = [4, 7, 4, 1, 3, 5];
+a.sort();
+    // a = [1, 3, 4, 4, 5, 7]
+    
+a.reverse();
+    // a = [7, 5, 4, 4, 3, 1]
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>Operaciones no destructivas:</p>
+                    <ul>
+                        <li>
+                            <code>concat(arr_1, ..., arr_n)</code><br>
+                            Añade los arrays pasados como argumento y devuelve el resultado.
+                            <pre><code data-trim class="javascript">
+[1, 2, 3].concat([4, 5], [6, 7, 8]);
+    // &rarr; [1, 2, 3, 4, 5, 6, 7, 8]
+
+                            </code></pre>
+                        </li>
+                        <li>
+                            <code>slice(ini, fin)</code><br>
+                            Devuelve el segmento <code>[ini, fin)</code> del array.
+                            <pre><code data-trim class="javascript">
+["a", "b", "c", "d", "e", "f", "g"].slice(2, 5);
+    // &rarr; ["c", "d", "e"]
+                            </code></pre>
+                        </li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <ul>
+                        <li>
+                            <code>join(sep)</code><br>
+                            Concatena los elementos del array intercalando
+                            <code>sep</code> como separador:
+                            <pre><code data-trim class="javascript">
+["Esto", "no", "me", "gusta"].join(" - ");
+    // &rarr; "Esto - no - me - gusta"
+                            </code></pre>
+                        </li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <p>Búsqueda de valores:</p>
+                    <ul>
+                        <li><code>indexOf(elem, [pos_inicial])</code>
+                            <p>Devuelve el índice de la última aparición de <code>elem</code> en el array, o -1 si no se encuentra.</p>
+                        </li>
+                        <li><code>lastIndexOf(elem)</code>
+                            <p>Devuelve el índice de la última aparición de <code>elem</code> en el array, o  -1 si no se encuentra.</p>
+                        </li>
+                    </ul>
+                </section>
+                
+            </section>
             
+            <section>
+                <section>
+                    <div class="bloquetitulo" style="padding:20px">
+                        <h3><span class="titulo_rareza">Rareza 9</span><span style="display:none">:</span><br>Las funciones de orden superior sobre arrays</h3>
+                    </div>
+                </section>
+                
+                <section>
+                    <h4>Funciones de orden superior</h4>
+                    <p>Una función de <strong>orden superior</strong> es una función que recibe funciones como parámetro y/o devuelve funciones.</p>
+                    <p>Javascript proporciona varios métodos de orden superior para arrays que son muy útiles en la práctica.</p>
+                </section>
+                
+                <section>
+                    <h4>Iteración: método <code style="text-transform:none">forEach</code></h4>
+                    <ul>
+                        <li>
+                            <code>forEach(f)</code><br>
+                            Aplica la función <code>f</code> sobre todos los elementos del array.
+                        </li>
+                        <pre><code data-trim class="javascript">
+var personas = [ { nombre: "Ricardo", edad: 45}, 
+                 { nombre: "Julia", edad: 24 }, 
+                 { nombre: "Ashley", edad: 28 } ];
+
+personas.forEach(function(p) {
+    console.log("Hola, me llamo " + p.nombre 
+                + " y tengo " + p.edad + " años");
+})                 
+                        
+                        </code></pre>
+                    </ul>
+                </section>
+                
+                
+                <section>
+                    <h4>Funciones de transformación</h4>
+                    <ul>
+                        <li>
+                            <code>map(f)</code><br>
+                            Aplica la función <code>f</code> a cada elemento del array, devolviendo otro array con los resultados.
+                            <pre><code data-trim class="javascript">
+var a = [1, 3, 5, 2, 4];
+var dobles = a.map(function(n) {
+    return n * 2;
+});
+console.log(dobles); // [2, 6, 10, 4, 8]
+                            </code></pre>
+                        </li>
+                        <li>
+                            <code>filter(f)</code><br>
+                            Selecciona los elementos <code>x</code> del array tales que <code>f(x)</code> devuelve <code>true</code>.
+                            <pre><code data-trim class="javascript">
+var pares = a.filter(function(n) {
+    return n % 2 === 0;
+});
+console.log(pares); // [2, 4]
+                            </code></pre>
+                        </li>
+                    </ul>
+                    
+                </section>
+                
+                <section>
+                    <h4>Funciones de reducción (I)</h4>
+                    <ul>
+                        <li>
+                            <code>every(f)</code><br>
+                            Devuelve <code>true</code> si para <em>todo</em> elemento <code>x</code> del array, <code>f(x)</code> devuelve <code>true</code>.
+                        </li>
+                        <li>
+                            <code>some(f)</code><br>
+                            Devuelve <code>true</code> si <em>existe</em> un elemento <code>x</code> en el array tal que <code>f(x)</code> devuelva <code>true</code>.
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>Funciones de reducción (II)</h4>
+                    <ul>
+                        <li>
+                            <code>reduce(f, [elemInicial])</code><br>
+                            Recorre el array de izquierda a derecha, acumulando un valor durante el recorrido.
+                        </li>
+                        <pre><code data-trim class="javascript">
+var a = [2, 6, 9, 1];
+
+console.log(
+    "Valor final: " +
+    a.reduce(function(acum, n) { return 2 * acum +  n; }, 7)
+);  // &rarr; 171
+    
+                        </code></pre>
+                    </ul>
+                </section>
+                
+                <section>
+                    <p><img src="images/03/Reduce1.svg" style="width:100%; border:none; box-shadow:none"></p>
+                </section>
+            
+            </section>
             
 
         </div>
