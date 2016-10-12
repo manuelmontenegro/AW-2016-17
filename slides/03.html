@@ -1371,6 +1371,175 @@ console.log(coords1 === coords3);
                     </code></pre>
                     <p><strong>Recuerda:</strong> en Javascript, las cadenas no son objetos; son tipos básicos.</p>
                 </section>
+                
+                <section>
+                    <h4>Funciones dentro de objetos</h4>
+                    <p>Como las funciones son ciudadanos de primera clase, pueden ser asignadas a los atributos de un objeto:</p>
+                    <pre><code data-trim class="javascript">
+var empleado = {
+    nombre: "Manuel",
+    saludar: function() {
+        console.log("¡Hola!");
+    }
+};
+
+empleado.saludar();
+    // &rarr; ¡Hola!
+                    </code></pre>
+                    <p>Este tipo de funciones reciben el nombre de <strong>métodos</strong>.</p>
+                    <p>Se puede añadir métodos a un  objeto ya construido:</p>
+                    <pre><code data-trim class="javascript">
+empleado.despedir = function() { console.log("¡Adios!"); };
+empleado.despedir();
+                    
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>El objeto <code style="text-transform:none">this</code></h4>
+                    <p style="font-family:monospace">
+                        <span style="background-color:#A4A430; padding:2px; border-radius: 6px">empleado</span>.<span style="background-color:#B080B0; padding:2px; border-radius: 6px">saludar</span>();
+                    </p>
+                    <p>En toda llamada a método se distinguen tres componentes:</p>
+                    <ul>
+                        <li>Método llamado: <span style="background-color:#B080B0; padding:2px; border-radius: 6px; font-family:monospace">saludar</span></li>
+                        <li>Argumentos (ninguno, en este caso)</li>
+                        <li>Objeto sobre el que se realiza la llamada: <span style="background-color:#A4A430; padding:2px; border-radius: 6px; font-family:monospace">empleado</span></li>
+                    </ul>
+                    <p>Cuando llamamos a un método, éste recibe, además de los correspondientes
+                    argumentos, una variable especial (<code>this</code>) que contiene una referencia al objeto sobre el que se realiza la llamada.</p>
+                </section>
+                
+                <section>
+                    Ejemplo:
+                    <pre><code data-trim data-noescape class="javascript">
+var empleado = {
+    nombre: "Manuel",
+    
+    saludar: function() {
+        console.log("¡Hola, " + <span style="background-color:#D4D430; padding:2px; border-radius: 6px">this</span>.nombre + "!");
+    }
+    
+    cambiarNombre: function(nuevoNombre) {
+        <span style="background-color:#D4D430; padding:2px; border-radius: 6px">this</span>.nombre = nuevoNombre;
+    }
+};
+                    </code></pre>
+                    
+                    <pre><code data-trim class="javascript">
+empleado.saludar();
+    // &rarr; ¡Hola, Manuel!
+    
+empleado.cambiarNombre("Irene");
+
+empleado.saludar();
+    // &rarr; ¡Hola, Irene!
+                    </code></pre>
+                    
+                </section>
+                
+                <section>
+                    <p>Pueden transferirse métodos entre distintos objetos: </p>
+                    <pre><code data-trim data-noescape class="javascript">
+var otro_empleado = {
+    nombre: "David",
+    saludar: empleado.saludar
+};
+
+<span style="background-color:#D4D430; padding:2px; border-radius: 6px">otro_empleado</span>.saludar();
+    // &rarr; ¡Hola, <span style="background-color:#D4D430; padding:2px; border-radius: 6px">David</span>!
+                    </code></pre>
+                    <p>Se imprime el nombre de <code>otro_empleado</code>, porque es el objeto que recibe la llamada, aunque se llame a un método proveniente de otro objeto.</p>
+                    
+                    <p>¿Qué ocurre al ejecutar el siguiente código?</p>
+                    <pre><code data-trim class="javascript">
+var f = empleado.saludar;
+f();
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>Podemos encapsular la creación de objetos mediante funciones constructoras:</p>
+                    <pre><code data-trim class="javascript">
+function construirComplejo(real, imag) {
+    return {
+        r : real,
+        i : imag,
+        
+        modulo: function() {
+            return Math.sqrt(this.r * this.r + this.i * this.i);
+        },
+        
+        argumento: function() {
+            return Math.atan2(this.i, this. r);
+        }
+        
+    }
+}
+
+var c1 = construirComplejo(-3, 0);
+console.log(c1.argumento());  // &rarr; 3.141592653589793
+var c2 = construirComplejo(1, 1);
+console.log(c2.modulo());     // &rarr; 1.4142135623730951
+                    </code></pre>
+                    <p style="font-size:60%">(Más adelante veremos otra forma de crear funciones constructoras)</p>
+                </section>
+                
+                <section>
+                    <p>Problema: duplicidad de objetos función para cada objeto.</p>
+                    <img src="images/03/DosComplejos.svg" style="height:100%; border:none">
+                    <p>¿No podrían <code>c1</code> y <code>c2</code> compartir los métodos?</p>
+                </section>
+                
+                <section>
+                    <p>Posible solución:</p>
+                    <pre><code data-trim class="javascript">
+function moduloComplejo() {
+    return Math.sqrt(this.r * this.r + this.i * this.i);
+}
+
+function argumentoComplejo() {
+    return Math.atan2(this.i, this. r);
+}
+
+function construirComplejo(real, imag) {
+    return {
+        r : real,
+        i : imag,
+        modulo: moduloComplejo,
+        argumento: argumentoComplejo
+    }
+}
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <img src="images/03/DosComplejosComparten.svg" style="width:95%; border:none">
+                </section>
+                
+                <section>
+                    <p>Añadimos un método nuevo a <code>c1</code>:</p>
+                    <pre><code data-trim class="javascript">
+var c1 = construirComplejo(-3, 0);
+var c2 = construirComplejo(1, 1);
+
+// ...
+
+c1.coordenadasPolares = function() {
+    console.log("(" + this.modulo() + ", " 
+                    + this.argumento() + ")");
+}
+                    </code></pre>
+                    <p>Este método existe solamente dentro de <code>c1</code>.</p>
+                    <div style="background-color: #F0D0D0">
+                    <p>¿Existe alguna manera de añadir un método simultáneamente a todos los objetos que hubiesen sido creados mediante <code>construirComplejo</code>?</p>
+                    <p>Sí. Se puede hacer mediante <strong>prototipos</strong>.</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h4>Prototipo de un objeto</h4>
+                </section>
             </section>
 
         </div>
