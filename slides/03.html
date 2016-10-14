@@ -2020,7 +2020,7 @@ console.log(x instanceof Number);   // &rarr; false
             <section>
                 <section>
                     <div class="bloquetitulo" style="padding:20px">
-                        <h3><span class="titulo_rareza">Rareza 8</span><span style="display:none">:</span><br>Los arrays tienen poco de arrays, y mucho de objetos</h3>
+                        <h3><span class="titulo_rareza">Rareza 8</span><span style="display:none">:</span><br>Los arrays también son objetos</h3>
                     </div>
                 </section>
                 
@@ -2284,10 +2284,525 @@ console.log(
                 <section>
                     <p><img src="images/03/Reduce1.svg" style="width:100%; border:none; box-shadow:none"></p>
                 </section>
-            
+                
+                <section>
+                    <h4>Otros ejemplos</h4>
+                    <p>Suma de los elementos de un array</p>
+                    <pre><code data-trim class="javascript">
+[1, 5, 7, 4].reduce(function(ac, n) { return ac + n; }, 0)
+                    </code></pre>
+                    <img src="images/03/Reduce2.svg" style="width:80%;border:none; box-shadow:none">
+                </section>
+                
+                <section>
+                    <h4>Otros ejemplos</h4>
+                    <p>Multiplicación de los elementos de un array</p>
+                    <pre><code data-trim class="javascript">
+[1, 5, 7, 4].reduce(function(ac, n) { return ac * n; }, 1)
+                    </code></pre>
+                    
+                    <p>Máximo de los elementos de un array</p>
+                    <pre><code data-trim class="javascript">
+[6, 1, 4, 3, 7].reduce(
+    function(acum, x) { 
+        return Math.max(acum, x);
+    },
+    -Infinity
+) 
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Variantes</h4>
+                    <p><code>reduce(f, [ini])</code></p>
+                    <p>Si no se indica valor inicial, se supone que es el primer elemento del array.</p>
+                    <pre><code data-trim class="javascript">
+[1, 5, 7, 4].reduce(function(acum, x) { return acum + x; })
+                    </code></pre>
+                    <img src="images/03/Reduce3.svg" style="width:80%;border:none; box-shadow:none">
+                </section>
+
+                <section>
+                    <h4>Variantes</h4>
+                    <p><code>reduce(f, [ini])</code></p>
+                    <p>La función f puede recibir hasta cuatro parámetros:</p>
+                    <ol>
+                        <li>Valor acmulado hasta el momento.</li>
+                        <li>Elemento actual del array.</li>
+                        <li>Índice actual del array.</li>
+                        <li>Array sobre el que se está haciendo el <code>reduce</code>.</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h4>Variantes</h4>
+                    <p><code>reduceRight(f, [ini])</code></p>
+                    <p>Realiza lo mismo que <code>reduce</code>, pero recorriendo el vector de derecha a izquierda.</p>
+                </section>
+                
             </section>
             
+            <section>
+                <section>
+                    <div class="bloquetitulo" style="padding:20px">
+                        <h3><span class="titulo_rareza">Rareza 10</span><span style="display:none">:</span><br>El objeto <span style="font-family:monospace; text-transform:none">this</span> es de quita y pon</h3>
+                    </div>
+                </section>
+                
+                <section>
+                    <p>Partimos del siguiente código:</p>
+                    <pre><code data-trim class="javascript">
+var a = {
+    nombre : "Alberto",
+    saludar : function() { console.log("Hola, " + this.nombre); }
+}
 
+a.saludar();    // &rarr; Hola, Alberto
+                    </code></pre>
+                    <p>Cuando llamamos a <code>saludar</code>, la variable <code>this</code> toma el valor <code>a</code>, que es quién realiza la llamada.</p>
+                    <p>Podemos llamar al método <code>a.saludar</code> utilizando otro objeto cualquiera como <code>this</code>. Esto se realiza mediante la función <code>call</code>:</p>
+                    <pre><code data-trim class="javascript">
+var b = { nombre: "Elvira" };
+a.saludar.call(b);  // &rarr; Hola, Elvira
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>La función <code>call</code> es útil para modelizar la herencia de clases. (Ver ejercicios)</p>
+                    <p><code>call(objetoThis, arg1, arg2, ...)</code></p>
+                    <p>La función <code>apply</code> se comporta de modo similar, pero recibe un array de argumentos:</p>
+                    <p><code>apply(objetoThis, [arg1, arg2, ...])</code></p>
+                </section>
+                
+                <section>
+                    <pre><code data-trim class="javascript">
+var a = {
+    nombre: "Manuel",
+    saludar: function(numVeces) {
+        for (int i = 0; i &lt; numVeces; i++) {
+            console.log("Hola ", this.name);
+        }
+    }
+};
+
+a.saludar(3);
+a.saludar.call(a, 3);    // equivale a lo anterior
+a.saludar.apply(a, [3]); // idem
+
+a.saludar.call( { nombre: "Olivia" }, 4);
+a.saludar.apply( { nombre: "Olivia" }, [4]);
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>La función <code style="text-transform:none">bind</code></h4>
+                    <p><code>f.bind(objetoThis, arg1, arg2, ...)</code></p>
+                    <p>Devuelve una función que cuando sea llamada ejecutará el código de <code>f</code>, asignando la variable <code>this</code> al <code>objetoThis</code> pasado como parámetro, y pasando los parámetros <code>arg1</code>, <code>arg2</code>, etc.</p>
+                    <p>La función devuelta puede recibir parámetros adicionales que serán concatenados con los <code>arg1</code>, <code>arg2</code>, etc. pasados previamente a <code>bind</code>.</p>
+                </section>
+                
+                <section>
+                    <h4>Ejemplo</h4>
+                    <pre><code data-trim class="javascript">
+/*
+    Llama a la función f() la cantidad de veces indicada
+    en el primer parámetro.
+*/
+function repetir(numVeces, f) {
+    for (var i = 0; i &lt; numVeces; i++) {
+        f();
+    }
+}
+
+repetir(3, function() { console.log("¡Hola!"); });
+                    </code></pre>
+                    <p>¿Qué ocurre al ejecutar el siguiente código?</p>
+                    <pre><code data-trim class="javascript">
+var a = {
+    nombre: "Manuel",
+    saludar: function() {
+        console.log("Hola, " + this.nombre);
+    }
+}
+
+repetir(3, a.saludar);
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>El objeto <code>this</code> se ha &laquo;perdido&raquo; al asignar <code>a.saludar</code> al parámetro <code>f</code>. Por tanto, la llamada <code>f()</code> se realiza con un <code>this</code> que es <code>undefined</code>.
+                    
+                    <pre><code data-trim class="javascript">
+var f = a.saludar;
+f();    // this = 'undefined'
+                    </code></pre>
+                    Sin embargo, podemos hacer:
+                    <pre><code data-trim class="javascript">
+var f = a.saludar.bind(a);
+f();    // this = a
+                    </code></pre>
+                    <p>Por tanto, arreglamos el problema anterior mediante:</p>
+                    <pre><code data-trim class="javascript">
+repetir(3, a.saludar.bind(a));
+                    </code></pre>
+                    
+                </section>
+                
+                <section>
+                    <h4>Aplicaciones parciales</h4>
+                    <p>
+                        La función <code>bind</code> también puede utilizarse para preasignar algunos de los parámetros de una función.
+                    </p>
+                    <pre><code data-trim class="javascript">
+function suma(x, y, z) {
+    return x + y + z;
+}
+
+var g = suma.bind(null, 4, 5); 
+    // Utilizamos null como objeto 'this', porque no se utiliza
+    // dentro de la función 'suma'.
+                    </code></pre>
+                    <p>
+                    </p>
+                    <p><code>suma.bind(null, 4, 5)</code> representa una llamada &laquo;a medias&raquo;, en la que solamente se han pasado dos parámetros. Devuelve una función <code>g</code> que espera el parámetro que falta:</p>
+                    <pre><code data-trim class="javascript">
+console.log(g(6)) // &rarr; 15
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>Otro ejemplo de <code>bind</code>:</p>
+                    <pre><code data-trim class="javascript">
+var g = suma.bind(null, 5);
+    // Ahora g espera los dos parámetros restantes:
+console.log(g(1, 1)); // &rarr; 7
+ 
+var h = suma.bind(null, 1, 2, 3);
+    // He pasado todos los parámetros de 'suma',
+    // pero aún sigue siendo una llamada latente.
+    // Tengo que llamar a 'h' para que se realice la suma.
+console.log(h());   // &rarr; 6
+                    </code></pre>
+                </section>
+            </section>
+            
+            <section>
+                <section>
+                    <div class="bloquetitulo" style="padding:20px">
+                        <h3><span class="titulo_rareza">Rareza 11</span><span style="display:none">:</span><br>los módulos de javascript</h3>
+                    </div>
+                    <p>(o, más bien, la ausencia de módulos en Javascript)</p>
+                </section>
+                <section>
+                    <p>
+                        Hasta la versión 6 de ECMAScript no se ha proporcionado ningún sistema para dividir los programas Javascript en módulos.
+                    </p>
+                    <p>
+                        No obstante, los módulos en Javascript pueden simularse mediante los mecanismos disponibles en el lenguaje.
+                    </p>
+                    <p>
+                        Actualmente existen dos enfoques populares para simular módulos en Javascript:
+                    </p>
+                    <ul>
+                        <li><strong>CommonJS</strong></li>
+                        <li><strong>AMD</strong> (<em>Asynchronous Module  Definition</em>)</li>
+                    </ul>
+                    <p>Ambas se detallarán en temas posteriores.</p>
+                </section>
+                
+                <section>
+                    <h4>CommonJS</h4>
+                    <p>Utilizado principalmente en <strong>Node</strong></p>
+                    <p>Se basa en asignar a una variable especial <code>module.exports</code> el objeto que se desea exportar.</p>
+                    <pre><code data-trim class="javascript">
+function func1() {
+    ...
+}
+
+function func2() {
+    ...
+}
+
+function funcInterna() {  // Función privada. No exportar
+    ...
+}
+
+module.exports = {
+    func1 : func1,
+    func2 : func2
+}
+                    </code></pre>
+                </section>
+                <section>
+                    <h4>AMD (Asynchronous module definition)</h4>
+                    <p>Utilizado principalmente en los <strong>navegadores</strong></p>
+                    <p>Se basa en definir una función que devuelva el objeto a exportar, y pasarla a la función <code>define</code>.</p>
+                    <pre><code data-trim class="javascript">
+define(["dep1", "dep2", ...], function(dep1, dep2, ...) {
+    return {
+        func1: function() {
+            ...
+        },
+        
+        func2: function() {
+            ...
+        }
+    }
+});
+                    </code></pre>
+                </section>
+            </section>
+            
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p4">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline">Primeros programas</a></li>
+                    <li><a href="#/p2" class="outline">Javascript es como Java...</a></li>
+                    <li><a href="#/p3" class="outline">...pero no es como Java</a></li>
+                    <li><a href="#/p4" class="outline current">Clases estándar</a></li>
+                    <li><a href="#/p5" class="outline">Herramientas</a></li>
+                    <li><a href="#/p6" class="outline">ECMAscript 6</a></li>
+                    <li><a href="#/p7" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
+            <section>
+                <h2>Clases estándar</h2>
+                <p>Javascript proporciona las siguientes clases en todas sus implementaciones<br>(tanto en Node como en los navegadores)</p>
+                <ul>
+                    <li>Manejo de expresiones regulares</li>
+                    <li>Manejo de fichas</li>
+                    <li>Trazas y <em>logging</em></li>
+                    <li>Utilidades varias</li>
+                    
+                </ul>
+            </section>
+            
+            <section>
+                <h3>Expresiones regulares</h3>
+                <p>Una expresión regular es un patrón que representa una o varias cadenas de texto.</p>
+                <p>Por ejemplo, la expresión <code>[A-Z][0-9]{3}</code> denota el conjunto de cadenas que comienzan por una letra mayúscula y van seguidas por tres dígitos</p>
+                <p style="font-size:80%">Ejs: <code>A324</code>, <code>F983</code>, etc.</p>
+                <p>Ver: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Lenguaje de expresiones regulares</a></p>
+            </section>
+            
+            <section>
+                <p>En Javascript denotamos las expresiones regulares delimitadas por el símbolo <code>/</code></p>
+                <pre><code data-trim class="javascript">
+var expr = /[A-Z][0-9]{3}/;
+                </code></pre>
+                <p>Las expresiones regulares son objetos. Métodos:</p>
+                <ul>
+                    <li>
+                        <code>test(str)</code>: Devuelve <code>true</code> si en la cadena <code>str</code> existe una subcadena que encaja con la expresión, o <code>false</code> en caso contrario.
+                    </li>
+                    <li>
+                        <code>exec(str)</code>: También comprueba el ajuste de alguna subcadena de <code>str</code> con el patrón, pero devuelve más información sobre el ajuste producido (o <code>null</code> si no hay ajuste).
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h4>Método <code style="text-transform:none">test</code></h4>
+                <pre><code data-trim class="javascript">
+/[A-Z][0-9]{3}/.test("A655");
+    // &rarr; true
+/[A-Z][0-9]{3}/.test("Otra cosa");
+    // &rarr; false
+
+/el|la|los|las/.test("Esta frase tiene un artículo"); 
+    // &rarr; false
+/el|la|los|las/.test("Esta clase tiene un artículo");
+    // &rarr; true
+/\b(el|la|los|las)\b/.test("Esta clase tiene un artículo");
+    // &rarr; false            
+            </code></pre>
+                <p>El símbolo <code>\b</code> representa el límite de una palabra.</p>
+            </section>
+            
+            <section>
+                <h4>Método <code style="text-transform:none">exec</code></h4>
+                <p>A veces podemos dividir la expresión regular en varios grupos, con el fin de saber qué parte de la cadena capturada corresponde a cada grupo.</p>
+                <p>Cada grupo va delimitado entre paréntesis <code>(</code>, <code>)</code></p>
+                <p>La función <code>test</code> nos permite desglosar cualquier cadena que ajuste con el patrón en sus distintos grupos.</p>
+            </section>
+            
+            <section>
+                <p>Por ejemplo, la siguiente expresión:</p>
+                <code>\d{4}\-[A-Z]{3}</code>
+                <p>ajusta con la secuencia de cuatro dígitos (<code>\d</code> = digito) seguida de un guión (<code>\-</code>), seguida de tres letras mayúsculas.</p>
+                <p style="font-size:80%">Ejs: <code>0249-GSW</code>, <code>1934-HHG</code>, etc.</p>
+                <p>Si queremos poder separar la secuencia de dígitos de la de letras utilizamos dos grupos:</p>
+                <code>(<span style="background-color:#FFFF70;border-radius:10px">\d{4}</span>)\-(<span style="background-color:#A0FFFF;border-radius:10px">[A-Z]{3}</span>)</code>
+            </section>
+            
+            <section>
+                <pre><code data-trim class="javascript">
+var regexp = /(\d{4})\-([A-Z]{3})/;
+var result = regexp.exec("Mi matrícula de coche es 8367-AWD");
+                </code></pre>
+                <p>La subcadena <code><span style="background-color:#FFFF70;border-radius:10px">8367</span>-<span style="background-color:#A0FFFF;border-radius:10px">AWD</span></code> ajusta con el patrón <code>regexp</code>, pero <code>exec</code> nos permite saber qué fragmento de ésta ajusta con cada grupo</p>
+                <pre><code data-trim class="javascript">
+
+result[0] // &rarr; "8367-AWD" (Cadena completa)
+result[1] // &rarr; "8367"     (Primer grupo de captura)
+result[2] // &rarr; "AWD"      (Segundo grupo de captura)
+
+result.index // &rarr; 25   (Posición del ajuste dentro de la cadena)
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>Modificadores de expresiones regulares</h4>
+                <p>Se colocan tras el delimitador <code>/</code> final de la expresión.</p>
+                <table style="border:1px solid black">
+                    <tr>
+                        <td><code>i</code></td>
+                        <td>No distingue entre mayúsculas y minúsculas.</td>
+                    </tr>
+                    <tr>
+                        <td><code>g</code></td>
+                        <td>Ajuste global.<br>
+                            Permite encontrar varias ocurrencias en la misma cadena.</td>
+                    </tr>
+                    <tr>
+                        <td><code>m</code></td>
+                        <td>Buscar a lo largo de varias líneas.<br>
+                            Varía el comportamiento de <code>^</code> y <code>$</code>.
+                        </td>
+                    </tr>
+                </table>
+            </section>
+            
+            <section>
+                <h4>Ejemplos</h4>
+                <pre><code data-trim class="javascript">
+var r1 = /Hola/i;
+r1.test("hola") // &rarr; true
+
+var str = "Hola, hola\nHola caracola";
+
+str.match(/hola/);
+    // &rarr; [ 'hola', index: 6, ... ]
+str.match(/hola/i);
+    // &rarr; [ 'Hola', index: 0, ... ]
+    
+// La búsqueda global encuentra todos los resultados    
+str.match(/hola/gi);
+    // &rarr; [ 'Hola', 'hola', 'Hola' ]
+    
+// El carácter ^ significa 'principio de cadena'
+str.match(/^Hola/g);
+    // &rarr; [ 'Hola' ]
+
+// Pero con el modificador 'm' significa 'principio de línea'
+str.match(/^Hola/gm);
+    // &rarr; [ 'Hola', 'Hola' ]
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>Métodos de cadenas relacionados con expresiones regulares</h4>
+                <ul>
+                    <li><code>match(regexp)</code><br>
+                        Devuelve todas las subcadenas que ajustan con la expresión regular <code>regexp</code> (si ésta contiene el modificador <code>g</code>) o solamente la primera (en caso contrario).
+                    </li>
+                    <li><code>search(regexp)</code><br>
+                        Devuelve el índice de la primera subcadena que ajuste con <code>regexp</code>, o -1 si no hay ninguna.
+                    </li>
+                    <li><code>replace(regexp, nuevaCadena)</code>
+                        Reemplaza las subcadenas que ajusten con <code>regexp</code>.
+                    </li>
+                    <li><code>split(regexp)</code>
+                        Divide la cadena en fragmentos, utilizando <code>regexp</code> como separador.
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h4>Sobre la función <code style="text-transform:none">replace</code></h4>
+                <p><code>replace(regexp, nuevaCadena)</code></p>
+                <p>La cadena de reemplazo (<code>nuevaCadena</code>) puede hacer referencia a los grupos de captura de la expresión regular.</p>
+                <pre><code data-trim class="javascript">
+var r = /(\d{4})\-([A-Z]{3})/;
+var str = "Mi número de matrícula es 9483-GSD";
+
+str.replace(r, "$2/$1");
+    // &rarr; "Mi número de matrícula es GSD/9483"
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>Los objetos <code style="text-transform:none">Date</code></h3>
+                <p>Sirven para realizar operaciones con fechas y horas.</p>
+                <pre><code data-trim class="javascript">
+var ahora = new Date();
+ahora.toString();
+    // &rarr; 'Fri Oct 14 2016 14:37:56 GMT+0200 (CEST)'
+ahora.getFullYear();
+    // &rarr; 2016
+ahora.getMonth();
+    // &rarr; 9
+ahora.getSeconds();
+    // &rarr; 56
+
+var fechaInicio = new Date(2016, 09, 26);
+fechaInicio.toString();
+    // &rarr; 'Wed Oct 26 2016 00:00:00 GMT+0200 (CEST)'
+                </code></pre>
+                <p>Más información: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">[+]</a></p>
+            </section>
+            
+            <section>
+                <h3>El objeto <code style="text-transform:none">Math</code></h3>
+                <p>Utilidades matemáticas varias:</p>
+                <ul>
+                    <li>Constantes: <code>E</code>, <code>LN2</code>, <code>PI</code>, etc.
+                    </li>
+                    <li>Máximos y mínimos: <code>max</code>, <code>min</code>.</li>
+                    <li>Números aleatorios: <code>random</code>.</li>
+                    <li>Redondeo: <code>ceil</code>, <code>floor</code>, <code>trunc</code>, <code>round</code>, etc.</li>
+                    <li>Potencias: <code>pow</code>, <code>sqrt</code>, <code>cbrt</code>, etc.</li>
+                    <li>Trigonométricas: <code>sin</code>, <code>sinh</code>, <code>cos</code>, etc.</li>
+                    <li>Exponenciales y logarítmicas: <code>exp</code>, <code>log</code>, <code>log10</code>, etc.</li>
+                </ul>
+
+            </section>
+            
+            <section>
+                <h3>El objeto <code style="text-transform:none">console</code></h3>
+                <p>Tiene, entre otros, los métodos:</p>
+                <ul>
+                    <li><code>log(str)</code><br>
+                        Muestra mensajes de depuración.
+                    </li>
+                    <li><code>warn(str)</code><br>
+                        Muestra mensajes de aviso.
+                    </li>
+                    <li><code>error(str)</code><br>
+                        Muestra mensajes de error.
+                    </li>
+                    <li><code>assert(cond, str)</code><br>
+                        Lanza un <code>AssertionError(str)</code> si <code>cond</code> no se cumple.
+                    </li>
+                    <li><code>time(id)</code> / <code>timeEnd(id)</code><br>
+                        Permite medir tiempos de ejecución.
+                        </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h4>Ejemplo</h4>
+                <pre><code data-trim class="javascript">
+console.time("mi-temporizador");
+
+// ...
+// ...
+// ...
+
+console.timeEnd("mi-temporizador");
+    // &rarr; Imprime: "mi-temporizador: 5663.947ms"
+                </code></pre>
+            </section>
         </div>
 
     </div>
