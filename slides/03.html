@@ -2803,6 +2803,476 @@ console.timeEnd("mi-temporizador");
     // &rarr; Imprime: "mi-temporizador: 5663.947ms"
                 </code></pre>
             </section>
+            
+            
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p5">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline">Primeros programas</a></li>
+                    <li><a href="#/p2" class="outline">Javascript es como Java...</a></li>
+                    <li><a href="#/p3" class="outline">...pero no es como Java</a></li>
+                    <li><a href="#/p4" class="outline">Clases estándar</a></li>
+                    <li><a href="#/p5" class="outline current">Herramientas</a></li>
+                    <li><a href="#/p6" class="outline">ECMAscript 6</a></li>
+                    <li><a href="#/p7" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
+            <section>
+                <h2>Utilidades y herramientas</h2>
+                <ul>
+                    <li>JSDoc<br>
+                        <a href="http://usejsdoc.org/">http://usejsdoc.org/</a>                        
+                    </li>
+                    <li>JSLint<br>
+                        <a href="http://www.jslint.com/">http://www.jslint.com/</a>     
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h3>JSDoc</h3>
+                <p>Herramienta de generación de documentación, al estilo de <em>Javadoc</em></p>
+                <pre><code data-trim class="javascript">
+/**
+ * Representa un número complejo representado en forma rectangular
+ * (parte real + parte imaginaria).
+ *
+ * Puede construirse un número a partir de su forma polar mediante
+ * la función {@link Complejo.desdePolar} 
+ *
+ * @constructor
+ * @param {number} real - Componente real.
+ * @param {number} imag - Componente imaginaria.
+ */  
+function Complejo(real, imag) {
+    this.r = real;
+    this.i = imag;
+}
+...
+                </code></pre>
+            </section>
+
+            <section>
+                <img src="images/03/JSDoc.png" style="width:80%;border:none">
+            </section>
+            
+            <section>
+                <h3>JSLint</h3>
+                <p>Herramienta que detecta la existencia de problemas en el código contenido en un fichero de Javascript.</p>
+                <ul>
+                    <li>
+                        <strong>Problemas de estilo:</strong> nombres correctos de constructoras (<code>EstiloCamelCase</code>), variables, espacios en blanco, etc.
+                    </li>
+                    <li>
+                        <strong>Problemas de seguridad en el código:</strong> llamadas a funciones constructoras sin <code>new</code>, uso de estructuras desaconsejables (<code>for...in</code>, <code>with</code>), etc.
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h4>Ejemplo</h4>
+                <p>Fichero <code>complex_lint.js</code></p>
+                <pre><code data-trim class="javascript">
+/* Constructora de números complejos complejos */
+
+function complejo (real, imag) {
+    this.r = real;
+    this.i = imag;
+}                
+                </code></pre>
+                <p>Ejecutando <code>lint complex_lint.js</code>:</p>
+                <pre><code data-trim class="no-highlight">
+#1 Unexpected space between 'complejo' and '('.
+    function complejo (real, imag) { // Line 14, Pos 19
+#2 A constructor name 'complejo' should start with an uppercase
+   letter.
+    return new complejo(real, imag); // Line 48, Pos 16                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Corregimos los errores detectados:</p>
+                <pre><code data-trim class="javascript">
+/* Constructora de números complejos complejos */
+
+function Complejo(real, imag) {
+    this.r = real;
+    this.i = imag;
+}                
+                </code></pre>
+                <pre><code data-trim class="no-highlight">
+complex_lint.js is OK.                
+                </code></pre>
+            </section>
+            
+            <section>
+                <h2>Depuradores</h2>
+                <p>Existen herramientas de depuración incorporadas, tanto en el entorno del cliente como en el del servidor.</p>
+                <ul>
+                    <li><strong>Lado del servidor</strong> (Node)<br>
+                        La depuración se realiza mediante un <em>shell</em> lanzado desde la línea de comandos.
+                    </li>
+                    <li><strong>Lado del cliente</strong> (Navegador)<br>
+                        Las herramientas para desarrolladores integradas en Firefox y Chrome proporcionan un depurador.
+                        
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <p>En cualquiera de los dos entornos puede introducirse un punto de ruptura mediante la siguiente sentencia:</p>
+                <pre><code data-trim class="javascript">
+debugger;                
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>Ejemplo</h4>
+                <pre><code data-trim class="javascript">
+// sum_square.js
+// -------------
+// Este programa calcula la suma de cuadrados
+// del array 'arr'.
+
+var sum = 0;
+var arr = [1, 4, 8, 1, 3];
+
+debugger; // Punto de ruptura
+
+for (var i = 0; i &lt; array.length; i++) {
+    sum += arr[i] * arr[i];
+}
+
+console.log(sum);                
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>Iniciar depuración con Node</h4>
+                <pre><code data-trim class="no-highlight">                
+node debug sum_squares.js            
+                </code></pre>
+                <h4>Comandos</h4>
+                <table>
+                    <tr>
+                        <td><code>cont</code></td>
+                        <td>Salta al siguiente punto de ruptura</td>
+                    </tr>
+                    <tr>
+                        <td><code>step</code></td>
+                        <td rowspan="2" style="vertical-align:middle">Avanzar paso</td>
+                    </tr>
+                    <tr>
+                        <td><code>next</code></td>                    
+                    </tr>
+                    <tr>
+                        <td><code>repl</code></td>
+                        <td>Arrancar <em>shell</em> para evaluar expresiones</td>
+                    </tr>
+                    <tr>
+                        <td><code>watch("..")</code></td>
+                        <td>Visualizar expresión en cada paso de ejecución</td>
+                    </tr>
+                </table>
+
+            </section>
+
+            <section>
+                <h4>Depuración con Node</h4>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/tckK4F38FaU" frameborder="0" allowfullscreen></iframe>
+            </section>
+
+            <section>
+                <h4>Depuración con Firefox</h4>
+                <p><em>Desarrollador</em> &rarr; <em>Depurador</em> (Ctrl+Mayús+S)</p>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/fxU3ByrhSmc" frameborder="0" allowfullscreen></iframe>
+            </section>
+            
+            <section>
+                <h3>Frameworks de testing</h3>
+                <ul>
+                    <li><strong>Jasmine</strong><br>
+                        <a href="http://jasmine.github.io/">http://jasmine.github.io/</a>
+                    </li>
+                    <li><strong>Mocha</strong><br>
+                        <a href="https://mochajs.org/">https://mochajs.org/</a>
+                    </li>
+                    <li><strong>Chai</strong><br>
+                        <a href="http://chaijs.com/">http://chaijs.com/</a>
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h4>Ejemplo: Jasmine</h4>
+                <p>El siguiente módulo contiene un error en la función <code>insert</code></p>
+                <pre><code data-trim data-noescape class="javascript">
+/* Inserta el elemento arr[i] en la porción del array comprendida
+   entre los índices 0 y i-1, suponiendo que dicha porción está
+   ordenada */
+function insert(i, arr) {
+    var j = i;
+    while (j > 1 &amp;&amp; arr[j] &lt; arr[j - 1]) {  <span class="arrow_box_left caja_codigo">¡error!</span>
+        swap(arr, j, j - 1);
+        j = j - 1;
+    }
+}
+
+/* Implementación del algoritmo de ordenación por inserción */
+function insertionSort(arr) {
+    for (var i = 1; i &lt; arr.length; i++) {
+        insert(i, arr);
+    }
+}
+
+module.exports = {
+    insertionSort : insertionSort,
+    insert        : insert
+}                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Inicializamos <em>Jasmine</em> en el proyecto actual</p>
+                <pre><code data-trim class="no-highlight">
+jasmine init                    
+                </code></pre>
+                <p>Esto crea una carpeta <code>spec</code>, donde el programador coloca sus módulos de test.</p>
+            </section>
+            
+            <section>
+                <p>Creamos la especificación en <code>spec/insert_spec.js</code></p>
+                <pre><code data-trim class="javascript">
+//...
+describe("Prueba de ordenación por inserción", function() {
+    it("Ordenación de array ascendente", function() {
+        var arr = [1, 2, 3, 4];
+        insertModule.insertionSort(arr);
+        expect(arr).toEqual([1, 2, 3, 4]);
+    });
+
+    it("Ordenación de array descendente", function() {
+        var arr = [8, 4, 2];
+        insertModule.insertionSort(arr);
+        expect(arr).toEqual([2, 4, 8]);
+    });
+    
+    it("Inserción en array desordenado", function() {
+        var arr = [3, 2];
+        insertModule.insert(1, arr);
+        expect(arr).toEqual([2, 3]);
+    });
+
+});                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Ejecutamos los casos de prueba:</p>
+                <pre><code data-trim data-noescape class="no-highlight">
+# <span style="background-color:#C0C0FF">jasmine</span>
+...
+Failures:
+1) Prueba de ordenación por inserción
+   Ordenación de array descendente
+  Message:
+    <span style="background-color:#FFC0C0">Expected [ 8, 2, 4 ] to equal [ 2, 4, 8 ].</span>
+  Stack:
+    Error: Expected [ 8, 2, 4 ] to equal [ 2, 4, 8 ].
+        at Object.&lt;anonymous&gt; (/home/.../debugger_spec.js:16:21)
+
+2) Prueba de ordenación por inserción
+   Inserción en array desordenado
+  Message:
+    <span style="background-color:#FFC0C0">Expected [ 3, 2 ] to equal [ 2, 3 ].</span>
+  Stack:
+    Error: Expected [ 3, 2 ] to equal [ 2, 3 ].
+        at Object.&lt;anonymous&gt; (/home/.../debugger_spec.js:22:21)
+
+3 specs, <span style="background-color:#FFC0C0">2 failures</span>
+Finished in 0.01 seconds
+                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Tras corregir el error:</p>
+                <pre><code data-trim data-noescape class="javascript">
+function insert(i, arr) {
+    ...
+    while (j > 0 &amp;&amp; arr[j] &lt; arr[j - 1]) { 
+    ...
+}
+                </code></pre>
+                <pre><code data-trim data-noescape class="no-highlight">
+# <span style="background-color:#C0C0FF">jasmine</span>
+Started
+...
+
+
+ <span style="background-color:#C0FFC0">3 specs, 0 failures</span>
+Finished in 0.005 seconds                
+                </code></pre>
+            </section>
+
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p6">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline">Primeros programas</a></li>
+                    <li><a href="#/p2" class="outline">Javascript es como Java...</a></li>
+                    <li><a href="#/p3" class="outline">...pero no es como Java</a></li>
+                    <li><a href="#/p4" class="outline">Clases estándar</a></li>
+                    <li><a href="#/p5" class="outline">Herramientas</a></li>
+                    <li><a href="#/p6" class="outline current">ECMAscript 6</a></li>
+                    <li><a href="#/p7" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
+            <section>
+                <h2>ECMAScript 6</h2>
+                <p>En junio de 2015 se definió la versión 6 de ECMAScript.</p>
+                <p>Esta nueva versión introdujo importantes mejoras sintácticas. Entre ellas:</p>
+                <ul>
+                    <li>Declaraciones <code>const</code> y <code>let</code>.</li>
+                    <li>Notación funcional.</li>
+                    <li>Parámetros por defecto.</li>
+                    <li>Interpolación de cadenas.</li>
+                    <li>Definiciones de clases.</li>
+                </ul>
+                <p>Más información: <a href="http://es6-features.org/">http://es6-features.org/</a></p>
+                <p>Compatibilidad con navegadores: <a href="http://kangax.github.io/compat-table/es6/">[+]</a></p>
+            </section>
+            
+            <section>
+                <h3>Definición de constantes</h3>
+                <pre><code data-trim class="javascript">
+const EXEC_NAME = "program.exe"
+                </code></pre>
+                <p>Las constantes se definen como propiedades de sólo lectura</p>
+            </section>
+            
+            <section>
+                <h3>Variables de bloque</h3>
+                <p>Solamente hay dos ámbitos para las declaraciones <code>var</code>: bloque y función.</p>
+                <pre><code data-trim class="javascript">
+for (var i = 0; i &lt; a.length; i++) {
+    var z = ...;
+}
+// 'i' y 'z' siguen en ámbito tras salir del bucle
+                </code></pre>
+                <p>Mediante declaraciones <code>let</code> podemos definir variables cuyo ámbito se extiende solamente al bloque en el que son declaradas:</p>
+                <pre><code data-trim class="javascript">
+for (let i = 0; i &lt; a.length; i++) {
+    let z = ...;
+}
+// 'i' y 'z' ya no están en ámbito aquí
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>Expresiones funcionales (arrows)</h3>
+                <p>Las expresiones funcionales pueden simplificarse utilizando la notación <code>=&gt;</code></p>
+                <pre><code data-trim class="javascript">
+var f = function(s) { console.log("¡Hola " + s + "!"); };
+                </code></pre>
+                <p>equivale a:</p>
+                <pre><code data-trim class="javascript">
+var f = s => { console.log("¡Hola " + s + "!"); };
+                </code></pre>
+                <p>Si el cuerpo de la función es de la forma <code>return exp</code>, puede simplificarse aún más:</p>
+                <pre><code data-trim class="javascript">
+arr.map(function(x) { return x * 2; });
+//equivale a:
+arr.map(x => x * 2);
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>Parámetros por defecto</h3>
+                <p>La versión 6 de ECMAScript permite declarar valores por defecto para los parámetros que no son especificados al llamar a la función.</p>
+                <pre><code data-trim data-noescape class="javascript">
+function incrementar(x, incremento <span style="background-color:#FFFFA0">= 1</span>) {
+    return x + incremento;
+}
+
+console.log(incrementar(6));      // &rarr; 7
+console.log(incrementar(6, 4));   // &rarr; 10
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>Interpolación de cadenas</h3>
+                <p>Nuevo tipo de cadenas delimitadas por símbolo <code>`</code><br>(acento grave)</p>
+                <p>Pueden incluir expresiones Javascript en su interior:</p>
+                <pre><code data-trim class="javascript">
+var x = 3;
+var p = { nombre: "Ximena", edad: 36 };
+var s = `La programadora ${p.nombre} establece la variable a ${x}`;
+console.log(s);
+    // &rarr; La programadora Ximena establece la variable a 3
+
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>Definiciones de clases</h3>
+                <p>Esta característica permite definir clases en un estilo más familiar para programadores/as de otros lenguajes.</p>
+                <pre><code data-trim class="javascript">
+"use strict";
+
+const EPSILON = 0.0001
+
+class Complejo {
+    constructor(real, imag) {
+        this.r = real;
+        this.i = imag;
+    }
+    
+    modulo() {
+        return Math.sqrt(this.r * this.r + this.i * this.i);
+    }
+    
+    argumento() {
+        return Math.atan2(this.i, this.r);
+    }
+    ...
+                </code></pre>
+                
+            </section>
+            
+            <section>
+                <pre><code class="javascript">    ...
+    static desdePolar(mod, arg) {
+        var real = mod * Math.cos(arg),
+            imag = mod * Math.sin(arg);
+        return new Complejo(real, imag);
+    }
+    
+    static iguales(c1, c2) {
+        return (Math.abs(c1.r - c2.r) < Complejo.EPSILON)
+            && (Math.abs(c1.i - c2.i) < Complejo.EPSILON);
+    }    
+}</code></pre>
+                <p>Esta sintaxis se traduce internamente a los mecanismos vistos anteriormente: funciones constructoras, métodos en <code>Complejo.prototype</code>, etc.</p>
+                <pre><code data-trim class="javascript">
+typeof(Complejo)    // &rarr; 'function'
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Este nuevo estilo también soporta herencia:</p>
+                <pre><code data-trim data-noescape class="javascript">
+class A {
+    constructor(x) { ... }
+}
+
+class B extends A {
+    constructor(x, y) { 
+        super(x);        <span class="arrow_box_left caja_codigo">Llamada a la constructora de A</span>
+        ...
+    }
+}
+                </code></pre>
+            </section>
         </div>
 
     </div>
