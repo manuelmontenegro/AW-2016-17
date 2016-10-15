@@ -58,7 +58,7 @@
 
             <section data-background-image="images/RedBackground.jpg" data-background-transition="fade" id="p1">
                 <ol class="contenidos" style="width:13em">
-                    <li><a href="#/p1" class="outline fragment highlight-orange">Primeros programas</a></li>
+                    <li><a href="#/p1" class="outline fragment highlight-orange">Un primer programa</a></li>
                     <li><a href="#/p2" class="outline">Javascript es como Java...</a></li>
                     <li><a href="#/p3" class="outline">...pero no es como Java</a></li>
                     <li><a href="#/p4" class="outline">Clases estándar</a></li>
@@ -67,10 +67,127 @@
                     <li><a href="#/p7" class="outline">Bibliografía</a></li>
                 </ol>
             </section>
+            
+            <section>
+                <h2>El lenguaje Javascript</h2>
+                <p>Javascript fue creado por Brendan Eich en 1995, para ser incluido en el navegador <em>Netscape</em>.</p>
+                <p>Dado que en ese momento <em>Netscape</em> colaboraba con la empresa <em>Sun Microsystems</em>, desarrolladora del lenguaje Java, se decidió adoptar la sintaxis de este último.</p>
+                <p>Concebido inicialmente como un <strong>lenguaje &laquo;pegamento&raquo;</strong>, para integrar los distintos componentes de las páginas web: applets, plugins, etc.</p>
+                <p></p>
+            </section>
+            
+            <section>
+                <h3>Principales hitos en la historia de Javascript</h3>
+                <ul>
+                    <li>1997 - <strong>HTML Dinámico</strong><br/>
+                        Permite a los programas modificar dinámicamente la estructura de un documento HTML, mediante la manipulación del DOM.
+                    </li>
+                    <li>2005 - <strong>AJAX</strong><br>
+                        Permite realizar peticiones al servidor desde Javascript, lo que impulsó el paradigma de aplicaciones web de una sola página (SPA).
+                    </li>
+                    <li>
+                        2009 - <strong>Node.js</strong><br>
+                        Permite utilizar Javascript en el lado del servidor.
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h3>Javascript y ECMAScript</h3>
+                <p>En el año 1996 Netscape decidió estandarizar Javascript.</p>
+                <p>El estándar fue publicado por la organización de estándares <em>Ecma International</em>. El nombre del estándar era <strong>ECMAScript</strong>.</p>
+                <p>La versión actual del estándar es ECMAScript 7, publicada en junio de 2016.</p>
+                
+            </section>
+
+            <section>
+                <h3>Javascript en el navegador</h3>
+                <p>Los principales navegadores contienen un intérprete de Javascript, que permite ejecutar los programas Javascript incluidos en las páginas web.</p>
+                <p>El componente del navegador encargado de esto recibe el nombre de <strong>motor Javascript</strong>.</p>
+                <p>Motores Javascript más conocidos:</p>
+                <ul>
+                    <li><strong>SpiderMonkey</strong>, utilizado en Firefox.</li>
+                    <li><strong>V8</strong>, utilizado en Chrome.</li>
+                    <li><strong>Chakra</strong>, utilizado en Edge.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>¿Y Node.js?</h3>
+                <p>Es un intérprete del lenguaje Javascript, pensado para ejecutarse <strong>fuera del navegador</strong>.</p>
+                <p>Su implementación está basada en el motor <strong>V8</strong> de Chrome.</p>
+                <p>Se utiliza principalmente para implementar las funcionalidades del lado del servidor.</p>
+                <img src="images/intro/nodejs.png" style="width:30%; border:none; box-shadow:none">
+            </section>
+            
+            <section>
+                <h3>Javascript más allá de la web</h3>
+                <ul>
+                    <li><strong>Aplicaciones de escritorio</strong>, mediante Node.js y Electron.<br>
+                        Ejemplos: Atom, Visual Studio Code, etc.
+                    </li>
+                    <li><strong>Aplicaciones móviles</strong>, mediante Apache Cordova.</li>
+                    <li><strong>Extensiones de entornos de escritorio</strong>, como GNOME Shell o Windows 10.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h3>Un programa de ejemplo</h3>
+                <pre><code data-trim class="javascript">
+// planets.js
+// ----------
+
+"use strict";
+
+var planetas = [
+    "Mercurio", "Venus", "Tierra",
+    "Marte", "Júpiter", "Saturno",
+    "Urano", "Neptuno"
+    ];
+    
+planetas.forEach(function(p) {
+    console.log("¡Hola, " + p + "!");
+});                
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>Ejecución desde Node</h3>
+                <p>Si se tiene Node instalado, basta con ejecutar desde una línea de comandos:</p>
+                <pre><code data-trim class="no-highlight">
+node planets.js                
+                </code></pre>
+                <img src="images/03/NodeExec.png" style="width:60%; border:none">
+            </section>
+            
+            <section>
+                <h3>Ejecución desde un navegador</h3>
+                <p>Para ejecutar un programa desde el navegador, ha de importarse el fichero <em>Javascript</em> desde un documento HTML, y abrir éste último desde el navegador.</p>
+                <pre><code data-trim class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;script src=&quot;planets.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        Abre las herramientas del desarrollador y recarga la p&aacute;gina
+        para visualizar el resultado del programa.
+    &lt;/body&gt;
+&lt;/html&gt;                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Una vez cargada la página en el navegador, abrir la consola de Javascript.</p>
+                <p>En Firefox: <em>Desarrollador &rarr; Consola Web</em> (Ctrl + Mayús + K)</p>
+                <img src="images/03/NavegadorExec.png" style="width:60%;border:none">
+            </section>
+            
 
             <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p2">
                 <ol class="contenidos" style="width:13em">
-                    <li><a href="#/p1" class="outline">Primeros programas</a></li>
+                    <li><a href="#/p1" class="outline">Un primer programa</a></li>
                     <li><a href="#/p2" class="outline current">Javascript es como Java...</a></li>
                     <li><a href="#/p3" class="outline">...pero no es como Java</a></li>
                     <li><a href="#/p4" class="outline">Clases estándar</a></li>
@@ -355,7 +472,7 @@ m.length  // &rarr; 3
 
             <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p3">
                 <ol class="contenidos" style="width:13em">
-                    <li><a href="#/p1" class="outline">Primeros programas</a></li>
+                    <li><a href="#/p1" class="outline">Un primer programa</a></li>
                     <li><a href="#/p2" class="outline">Javascript es como Java...</a></li>
                     <li><a href="#/p3" class="outline current">...pero no es como Java</a></li>
                     <li><a href="#/p4" class="outline">Clases estándar</a></li>
@@ -2555,7 +2672,7 @@ define(["dep1", "dep2", ...], function(dep1, dep2, ...) {
             
             <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p4">
                 <ol class="contenidos" style="width:13em">
-                    <li><a href="#/p1" class="outline">Primeros programas</a></li>
+                    <li><a href="#/p1" class="outline">Un primer programa</a></li>
                     <li><a href="#/p2" class="outline">Javascript es como Java...</a></li>
                     <li><a href="#/p3" class="outline">...pero no es como Java</a></li>
                     <li><a href="#/p4" class="outline current">Clases estándar</a></li>
@@ -2807,7 +2924,7 @@ console.timeEnd("mi-temporizador");
             
             <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p5">
                 <ol class="contenidos" style="width:13em">
-                    <li><a href="#/p1" class="outline">Primeros programas</a></li>
+                    <li><a href="#/p1" class="outline">Un primer programa</a></li>
                     <li><a href="#/p2" class="outline">Javascript es como Java...</a></li>
                     <li><a href="#/p3" class="outline">...pero no es como Java</a></li>
                     <li><a href="#/p4" class="outline">Clases estándar</a></li>
@@ -3117,7 +3234,7 @@ Finished in 0.005 seconds
 
             <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p6">
                 <ol class="contenidos" style="width:13em">
-                    <li><a href="#/p1" class="outline">Primeros programas</a></li>
+                    <li><a href="#/p1" class="outline">Un primer programa</a></li>
                     <li><a href="#/p2" class="outline">Javascript es como Java...</a></li>
                     <li><a href="#/p3" class="outline">...pero no es como Java</a></li>
                     <li><a href="#/p4" class="outline">Clases estándar</a></li>
@@ -3273,6 +3390,47 @@ class B extends A {
 }
                 </code></pre>
             </section>
+            
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p7">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline">Un primer programa</a></li>
+                    <li><a href="#/p2" class="outline">Javascript es como Java...</a></li>
+                    <li><a href="#/p3" class="outline">...pero no es como Java</a></li>
+                    <li><a href="#/p4" class="outline">Clases estándar</a></li>
+                    <li><a href="#/p5" class="outline">Herramientas</a></li>
+                    <li><a href="#/p6" class="outline">ECMAscript 6</a></li>
+                    <li><a href="#/p7" class="outline current">Bibliografía</a></li>
+                </ol>
+            </section>
+            
+                        <section>
+                <h2>Bibliografía</h2>
+                <div style="float:left; width:70%">
+                    <ul>
+                        <li>A. Rauschmayer
+                            <br>
+                            <a href="http://cisne.sim.ucm.es/record=b3513723~S6*spi">Speaking Javascript</a>
+                            <br> O'Reilly (2014)
+                        </li>
+                        <li>E. Brown
+                            <br>
+                            <a href="http://cisne.sim.ucm.es/record=b3579629~S6*spi">Learning Javascript, 3rd edition</a>
+                            <br> O'Reilly (2016)
+                        </li>
+                        <li>
+                            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference">Javascript Reference</a><br>MDN - Mozilla Developer Network
+                            <br><span style="font-size:50%">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference</span>
+                        </li>
+                    </ul>
+                </div>
+                <div style="float:right; width: 30%">
+                    <img src="http://speakingjs.com/speakingjs_cover.jpg" style="width:50%; border:none">
+                    <img src="http://akamaicovers.oreilly.com/images/0636920035534/cat.gif" style="width:50%; border:none">
+                </div>
+                            
+            </section>
+
+            
         </div>
 
     </div>
