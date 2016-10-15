@@ -692,21 +692,25 @@ console.log(typeof(null));                      // &rarr; object
                 </section>
 
                 <section>
-                    <h4>El valor indefinido (<code style="text-transform:none">undefined</code>)</h4>
-                    <p>Se utiliza para las variables no inicializadas y para atributos no existentes dentro de objetos.</p>
-                    <pre><code data-trim class="javascript">
+                    <div>
+                        <h4>El valor indefinido (<code style="text-transform:none">undefined</code>)</h4>
+                        <p>Se utiliza para las variables no inicializadas y para atributos no existentes dentro de objetos.</p>
+                        <pre><code data-trim class="javascript">
 var coordenadas = { x: 5, y: 6 };
 var v;
 console.log(v);                 // &rarr; undefined
 console.log(coordenadas.z);     // &rarr; undefined
-                    </code></pre>
-                    <h4>El valor nulo (<code style="text-transform:none">null</code>)</h4>
-                    <p>Se utiliza para denotar una referencia a objeto nula.</p>
-                    <pre><code data-trim class="javascript">
+                        </code></pre>
+                    </div>
+                    <div class="fragment">
+                        <h4>El valor nulo (<code style="text-transform:none">null</code>)</h4>
+                        <p>Se utiliza para denotar una referencia a objeto nula.</p>
+                        <pre><code data-trim class="javascript">
 var x = null;   // La variable 'x' esta inicializada, pero a una
                 // referencia nula.
 console.log(x); // &rarr; null
-                    </code></pre>
+                        </code></pre>
+                    </div>
                 </section>
 
                 <section>
@@ -715,24 +719,29 @@ console.log(x); // &rarr; null
                     <pre><code data-trim class="javascript">
 Math.log(-2)    // &rarr; NaN
                     </code></pre>
-                    <p><code>Infinity</code> y <code>-Infinity</code> se utilizan para desbordamientos, o para operaciones que devuelven &plusmn;&infin;</p>
-                    <pre><code data-trim class="javascript">
+                    <div class="fragment">
+                        <h4>Los valores infinitos</h4>
+                        <p><code>Infinity</code> y <code>-Infinity</code> se utilizan para desbordamientos, o para operaciones que devuelven &plusmn;&infin;</p>
+                        <pre><code data-trim class="javascript">
 Math.pow(2, 10000)  // &rarr; Infinity
 Math.log(0)         // &rarr; -Infinity
-                    </code></pre>
+                        </code></pre>
+                    </div>
                 </section>
 
                 <section>
                     <p>¡Cuidado con las comparaciones de <code>NaN</code>!</p>
-                    <pre><code data-trim class="javascript">
-Math.log(-3) === NaN // &rarr; false
-NaN === NaN          // &rarr; false
+                    <pre><code data-trim data-noescape class="javascript">
+Math.log(-3) === NaN <span class="fragment">// &rarr; false</span>
+NaN === NaN          <span class="fragment">// &rarr; false</span>
                     </code></pre>
-                    <p>Si se quiere determinar si una operación ha dado <code>NaN</code> como resultado, debe utilizarse la función <code>isNaN</code></p>
-                    <pre><code data-trim class="javascript">
+                    <div class="fragment">
+                        <p>Si se quiere determinar si una operación ha dado <code>NaN</code> como resultado, debe utilizarse la función <code>isNaN</code></p>
+                        <pre><code data-trim class="javascript">
 isNaN(NaN)          // &rarr; true
 isNaN(Math.log(-3)) // &rarr; true
                     </code></pre>
+                    </div>
                 </section>
 
             </section>
@@ -747,32 +756,32 @@ isNaN(Math.log(-3)) // &rarr; true
                 <section>
                     <h4>Conversiones Javascript</h4>
                     <p>¿A qué valor se evalúan las siguientes expresiones?</p>
-                    <pre><code data-trim class="javascript">
-3 * 4               // &rarr; 12
-"3" * 4             // &rarr; 12
-"3" * "4"           // &rarr; 12
-"3" * "pepe"        // &rarr; NaN
-"12" + "20"         // &rarr; 1220
-"12" + 20           // &rarr; 1220
-12 + "20"           // &rarr; 1220
-Math.log10("1000")  // &rarr; 3
-"10" &lt; "2"          // &rarr; true
-"10" &lt; 2            // &rarr; false
+                    <pre><code data-trim data-noescape class="javascript">
+"3" * 4             <span class="fragment">// &rarr; 12</span>
+3 * 4               <span class="fragment">// &rarr; 12</span>
+"3" * "4"           <span class="fragment">// &rarr; 12</span>
+"3" * "pepe"        <span class="fragment">// &rarr; NaN</span>
+"12" + "20"         <span class="fragment">// &rarr; 1220</span>
+"12" + 20           <span class="fragment">// &rarr; 1220</span>
+12 + "20"           <span class="fragment">// &rarr; 1220</span>
+Math.log10("1000")  <span class="fragment">// &rarr; 3</span>
+"10" &lt; "2"          <span class="fragment">// &rarr; true</span>
+"10" &lt; 2            <span class="fragment">// &rarr; false</span>
                     </code></pre>
                 </section>
 
                 <section>
                     <p>¿En qué casos se cumple la condición del <code>if</code>?</p>
-                    <pre><code data-trim class="javascript">
-if (23) { .... }            // &rarr; se cumple
-if (-1) { .... }            // &rarr; se cumple
-if (0) { .... }             // &rarr; no se cumple
-if ("Pepe") { .... }        // &rarr; se cumple
-if ("") { .... }            // &rarr; no se cumple
-if ([1, 3]) { .... }        // &rarr; se cumple
-if ([]) { .... }            // &rarr; se cumple
-if (null) { .... }          // &rarr; no se cumple
-if (undefined) { .... }     // &rarr; no se cumple
+                    <pre><code data-trim data-noescape class="javascript">
+if (23) { .... }            <span class="fragment">// &rarr; se cumple</span>
+if (-1) { .... }            <span class="fragment">// &rarr; se cumple</span>
+if (0) { .... }             <span class="fragment">// &rarr; no se cumple</span>
+if ("Pepe") { .... }        <span class="fragment">// &rarr; se cumple</span>
+if ("") { .... }            <span class="fragment">// &rarr; no se cumple</span>
+if ([1, 3]) { .... }        <span class="fragment">// &rarr; se cumple</span>
+if ([]) { .... }            <span class="fragment">// &rarr; se cumple</span>
+if (null) { .... }          <span class="fragment">// &rarr; no se cumple</span>
+if (undefined) { .... }     <span class="fragment">// &rarr; no se cumple</span>
                     </code></pre>
                 </section>
 
@@ -780,10 +789,10 @@ if (undefined) { .... }     // &rarr; no se cumple
                     <h4>Cómo evitar confusiones</h4>
                     <p>Con este panorama, hay dos alternativas:</p>
                     <ol>
-                        <li>Aprenderse concienzudamente las reglas de conversión de Javascript:
+                        <li class="fragment">Aprenderse concienzudamente las reglas de conversión de Javascript:
                             <p>Información: <a href="http://webreflection.blogspot.com.es/2010/10/javascript-coercion-demystified.html">http://webreflection.blogspot.com.es/2010/10/javascript-coercion-demystified.html</a></p>
                         </li>
-                        <li>
+                        <li class="fragment">
                             <strong>[Recomendado]</strong> Hacer las conversiones explícitamente, en caso de no estar seguro/a del tipo de una expresión
                             <p>Funciones <code>Number(...)</code>, <code>String(...)</code>, <code>Boolean(...)</code></p>
                         </li>
@@ -794,13 +803,13 @@ if (undefined) { .... }     // &rarr; no se cumple
                     <h4>Funciones de conversión</h4>
                     <p>La función <code>Number()</code></p>
                     <pre><code data-trim data-noescape class="javascript">
-Number("32")        // &rarr; 32
-Number("2f3")       // &rarr; NaN
-Number(true)        // &rarr; 1
-Number(false)       // &rarr; 0
-Number(undefined)   // &rarr; NaN
-Number(null)        // &rarr; 0
-Number(new Date())  // &rarr; 1476191814528 (depende de fecha y hora)
+Number("32")        <span class="fragment">// &rarr; 32</span>
+Number("2f3")       <span class="fragment">// &rarr; NaN</span>
+Number(true)        <span class="fragment">// &rarr; 1</span>
+Number(false)       <span class="fragment">// &rarr; 0</span>
+Number(undefined)   <span class="fragment">// &rarr; NaN</span>
+Number(null)        <span class="fragment">// &rarr; 0</span>
+Number(new Date())  <span class="fragment">// &rarr; 1476191814528 (depende de fecha y hora)</span>
                     </code></pre>
                     <p>Cuando la función <code>Number</code> se llama sobre un objeto <code>x</code>, se devuelve <code>x.valueOf()</code>.</p>
                     <p>Ver también: <code>parseInt</code> <a href="http://www.w3schools.com/jsref/jsref_parseint.asp">[+]</a></p>
@@ -809,11 +818,11 @@ Number(new Date())  // &rarr; 1476191814528 (depende de fecha y hora)
 
                 <section>
                     <p>La función <code>String()</code></p>
-                    <pre><code data-trim class="javascript">
-String(true)       // &rarr; "true"
-String(undefined)  // &rarr; "undefined"
-String(32)         // &rarr; "32"
-String(new Date()) // &rarr; "Tue Oct 11 2016 15:23:02 GMT+0200 (CEST)"
+                    <pre><code data-trim data-noescape class="javascript">
+String(true)       <span class="fragment">// &rarr; "true"</span>
+String(undefined)  <span class="fragment">// &rarr; "undefined"</span>
+String(32)         <span class="fragment">// &rarr; "32"</span>
+String(new Date()) <span class="fragment">// &rarr; "Tue Oct 11 2016 15:23:02 GMT+0200 (CEST)"</span>
                     </code></pre>
 
                     <p>La función <code>String</code> aplicada sobre un objeto <code>x</code> llama al método <code>x.toString()</code></p>
@@ -826,9 +835,9 @@ String(new Date()) // &rarr; "Tue Oct 11 2016 15:23:02 GMT+0200 (CEST)"
                         <li>Valores ciertos: el resto.</li>
                     </ul>
 
-                    <pre><code data-trim class="javascript">
-Boolean("")         // &rarr; true
-Boolean(34)         // &rarr; false
+                    <pre><code data-trim data-noescape class="javascript">
+Boolean("")         <span class="fragment">// &rarr; true</span>
+Boolean(34)         <span class="fragment">// &rarr; false</span>
                     </code></pre>
                 </section>
 
@@ -841,18 +850,18 @@ Boolean(34)         // &rarr; false
                         <dt><code>x == y</code> - Igualdad flexible</dt>
                         <dd><code>x</code> e <code>y</code> pueden convertirse al mismo tipo, de modo que tras hacer la conversión tienen el mismo valor.</dd>
                     </dl>
-
-                    <pre><code data-trim class="javascript">
-"25" == 25      // &rarr; true
-"25" === 25     // &rarr; false
-false == 0      // &rarr; true
-"" == 0         // &rarr; true
-2.0 === 2       // &rarr; true (recuerda: no se distingue entre tipo
-                //         de enteros y de coma flotante)
+                    <div class="fragment">
+                        <pre><code data-trim data-noescape class="javascript">
+"25" == 25      <span class="fragment">// &rarr; true</span>
+"25" === 25     <span class="fragment">// &rarr; false</span>
+false == 0      <span class="fragment">// &rarr; true</span>
+"" == 0         <span class="fragment">// &rarr; true</span>
+2.0 === 2       <span class="fragment">// &rarr; true (recuerda: no se distingue entre tipo
+                //         de enteros y de coma flotante)</span>
 
                     </code></pre>
-
-                    <p>También se definen <code>!=</code> y <code>!==</code> como la negación de <code>==</code> y <code>===</code> respectivamente.</p>
+                    </div>
+                    <p class="fragment">También se definen <code>!=</code> y <code>!==</code> como la negación de <code>==</code> y <code>===</code> respectivamente.</p>
                 </section>
 
                 <section>
@@ -880,22 +889,26 @@ function imprime_args(p1, p2, p3) {
 }
 
                     </code></pre>
-                    <h4>Llamada a una función</h4>
-                    <pre><code data-trim class="javascript">
+                    <div class="fragment">
+                        <h4>Llamada a una función</h4>
+                        <pre><code data-trim class="javascript">
 imprime_args(1, "bar", true);
                     </code></pre>
+                    </div>
+                    <div class="fragment">
                     <p>Resultado:</p>
                     <pre>
 p1: 1
 p2: bar
-p3: true</pre>
+p3: true</pre></div>
                 </section>
+
 
                 <section>
                     <p>El número de argumentos en la llamada a la función no ha de coincidir necesariamente con el número de parámetros en la definición</p>
 
                     <ul>
-                        <li>Si se proporcionan argumentos &laquo;de más&raquo; se ignoran los sobrantes:
+                        <li class="fragment">Si se proporcionan argumentos &laquo;de más&raquo; se ignoran los sobrantes:
                             <pre><code data-trim class="javascript">
 imprime_args("uno", "dos", "tres", "cuatro");
                         </code></pre>
@@ -904,7 +917,7 @@ p1: uno
 p2: dos
 p3: tres</pre>
                         </li>
-                        <li>
+                        <li class="fragment">
                             Si faltan argumentos, los parámetros correspondientes tomarán el valor <code>undefined</code>
                             <pre><code data-trim class="">
 imprime_args("uno", "dos");
@@ -918,7 +931,7 @@ p3: undefined</pre>
                 </section>
 
                 <section>
-                    <p>Lo anterior permite definir funciones con parámetros opcionales.</p>
+                    <p>Esto nos permite definir funciones con parámetros opcionales.</p>
                     <pre><code data-trim class="javascript">
 /*
     El parámetro 'color' es opcional. Su valor por defecto
@@ -957,7 +970,7 @@ function pintar_circulo(x, y, color, trazo) {
                 " y trazo de grosor " + trazo);
 }
                    </code></pre>
-                    <p>¿Es correcta?</p>
+                    <p class="fragment" style="color:blue">¿Es correcta?</p>
                 </section>
 
                 <section>
@@ -978,7 +991,8 @@ function suma() {
     return result;
 }
                     </code></pre>
-                    <pre><code data-trim class="javascript">
+
+                    <pre class="fragment"><code data-trim class="javascript">
 suma(3, 4, "foo", 9)    // &rarr; 16
                     </code></pre>
                 </section>
