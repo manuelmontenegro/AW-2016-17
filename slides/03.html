@@ -67,7 +67,7 @@
                     <li><a href="#/p7" class="outline">Bibliografía</a></li>
                 </ol>
             </section>
-            
+
             <section>
                 <h2>El lenguaje Javascript</h2>
                 <p>Javascript fue creado por Brendan Eich en 1995, para ser incluido en el navegador <em>Netscape</em>.</p>
@@ -75,29 +75,29 @@
                 <p>Concebido inicialmente como un <strong>lenguaje &laquo;pegamento&raquo;</strong>, para integrar los distintos componentes de las páginas web: applets, plugins, etc.</p>
                 <p></p>
             </section>
-            
+
             <section>
                 <h3>Principales hitos en la historia de Javascript</h3>
                 <ul>
-                    <li>1997 - <strong>HTML Dinámico</strong><br/>
-                        Permite a los programas modificar dinámicamente la estructura de un documento HTML, mediante la manipulación del DOM.
+                    <li>1997 - <strong>HTML Dinámico</strong>
+                        <br/> Permite a los programas modificar dinámicamente la estructura de un documento HTML, mediante la manipulación del DOM.
                     </li>
-                    <li>2005 - <strong>AJAX</strong><br>
-                        Permite realizar peticiones al servidor desde Javascript, lo que impulsó el paradigma de aplicaciones web de una sola página (SPA).
+                    <li>2005 - <strong>AJAX</strong>
+                        <br> Permite realizar peticiones al servidor desde Javascript, lo que impulsó el paradigma de aplicaciones web de una sola página (SPA).
                     </li>
                     <li>
-                        2009 - <strong>Node.js</strong><br>
-                        Permite utilizar Javascript en el lado del servidor.
+                        2009 - <strong>Node.js</strong>
+                        <br> Permite utilizar Javascript en el lado del servidor.
                     </li>
                 </ul>
             </section>
-            
+
             <section>
                 <h3>Javascript y ECMAScript</h3>
                 <p>En el año 1996 Netscape decidió estandarizar Javascript.</p>
                 <p>El estándar fue publicado por la organización de estándares <em>Ecma International</em>. El nombre del estándar era <strong>ECMAScript</strong>.</p>
                 <p>La versión actual del estándar es ECMAScript 7, publicada en junio de 2016.</p>
-                
+
             </section>
 
             <section>
@@ -119,18 +119,18 @@
                 <p>Se utiliza principalmente para implementar las funcionalidades del lado del servidor.</p>
                 <img src="images/intro/nodejs.png" style="width:30%; border:none; box-shadow:none">
             </section>
-            
+
             <section>
                 <h3>Javascript más allá de la web</h3>
                 <ul>
-                    <li><strong>Aplicaciones de escritorio</strong>, mediante Node.js y Electron.<br>
-                        Ejemplos: Atom, Visual Studio Code, etc.
+                    <li><strong>Aplicaciones de escritorio</strong>, mediante Node.js y Electron.
+                        <br> Ejemplos: Atom, Visual Studio Code, etc.
                     </li>
                     <li><strong>Aplicaciones móviles</strong>, mediante Apache Cordova.</li>
                     <li><strong>Extensiones de entornos de escritorio</strong>, como GNOME Shell o Windows 10.</li>
                 </ul>
             </section>
-            
+
             <section>
                 <h3>Un programa de ejemplo</h3>
                 <pre><code data-trim class="javascript">
@@ -144,22 +144,22 @@ var planetas = [
     "Marte", "Júpiter", "Saturno",
     "Urano", "Neptuno"
     ];
-    
+
 planetas.forEach(function(p) {
     console.log("¡Hola, " + p + "!");
-});                
+});
                 </code></pre>
             </section>
-            
+
             <section>
                 <h3>Ejecución desde Node</h3>
                 <p>Si se tiene Node instalado, basta con ejecutar desde una línea de comandos:</p>
                 <pre><code data-trim class="no-highlight">
-node planets.js                
+node planets.js
                 </code></pre>
                 <img src="images/03/NodeExec.png" style="width:60%; border:none">
             </section>
-            
+
             <section>
                 <h3>Ejecución desde un navegador</h3>
                 <p>Para ejecutar un programa desde el navegador, ha de importarse el fichero <em>Javascript</em> desde un documento HTML, y abrir éste último desde el navegador.</p>
@@ -174,16 +174,16 @@ node planets.js
         Abre las herramientas del desarrollador y recarga la p&aacute;gina
         para visualizar el resultado del programa.
     &lt;/body&gt;
-&lt;/html&gt;                
+&lt;/html&gt;
                 </code></pre>
             </section>
-            
+
             <section>
                 <p>Una vez cargada la página en el navegador, abrir la consola de Javascript.</p>
                 <p>En Firefox: <em>Desarrollador &rarr; Consola Web</em> (Ctrl + Mayús + K)</p>
                 <img src="images/03/NavegadorExec.png" style="width:60%;border:none">
             </section>
-            
+
 
             <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p2">
                 <ol class="contenidos" style="width:13em">
@@ -196,7 +196,7 @@ node planets.js
                     <li><a href="#/p7" class="outline">Bibliografía</a></li>
                 </ol>
             </section>
-            
+
 
             <section>
                 <h2>El &laquo;Java&raquo; en Javascript</h2>
@@ -213,22 +213,22 @@ node planets.js
                         </code></pre>
                     </li>
                     <li>Declaraciones de variables y asignaciones:
-                    <pre><code data-trim class="javascript">
+                        <pre><code data-trim class="javascript">
 var x = 3;
 var y = y + 1;
 y += 3;
                     </code></pre>
                     </li>
                     <li>Pre/postincremento, pre/postdecremento:
-                    <pre><code data-trim class="javascript">
+                        <pre><code data-trim class="javascript">
 z = x++;
 --x;
                     </code></pre>
                     </li>
-                    
+
                 </ul>
             </section>
-            
+
             <section>
                 <h3>Sentencias condicionales</h3>
                 <ul style="width:20em">
@@ -239,7 +239,7 @@ if (x &lt; y) {
     return x;
 } else {
     return y;
-}                         
+}
                         </code></pre>
                     </li>
                     <li>
@@ -257,12 +257,12 @@ switch(day) {
                     </li>
                 </ul>
             </section>
-            
+
             <section>
                 <h3>Bucles</h3>
                 <ul style="width:20em">
                     <li>Bucle while
-                    <pre><code data-trim class="javascript">
+                        <pre><code data-trim class="javascript">
 while (x &lt;= 0) {
     n = n * x;
     x--;
@@ -270,7 +270,7 @@ while (x &lt;= 0) {
                     </code></pre>
                     </li>
                     <li>Bucle do-while:
-                    <pre><code data-trim class="javascript">
+                        <pre><code data-trim class="javascript">
 do {
     mult *= a[x];
     x++:
@@ -287,7 +287,7 @@ for (var i = 0; i &lt; b.length; i++) {
                     </li>
                 </ul>
             </section>
-            
+
             <section>
                 <ul style="width:20em">
                     <li>
@@ -304,12 +304,12 @@ while (i &lt; x.length) {
     if (x[i] === ".") break;
     i++;
 }
-                        
+
                         </code></pre>
                     </li>
                 </ul>
             </section>
-            
+
             <section>
                 <h3>Funciones</h3>
                 <pre><code data-trim class="javascript">
@@ -326,12 +326,12 @@ function abs(x) {
                         Llamadas a funciones y métodos:
                     </li>
                 </ul>
-<pre><code data-trim class="javascript">
+                <pre><code data-trim class="javascript">
 x = abs(-3);
 console.log("El valor absoluto de x es " + x);
-</code></pre>                        
+</code></pre>
             </section>
-            
+
             <section>
                 <h3>Manejo de excepciones</h3>
                 <ul style="width:100%">
@@ -354,7 +354,7 @@ throw new Error("Fichero no encontrado");
                         </code></pre>
                     </li>
                     <li>
-                    Atributos de <code>Error</code>:
+                        Atributos de <code>Error</code>:
                         <ul>
                             <li><code>Error.message</code>: mensaje de error.</li>
                             <li><code>Error.stack</code>: pila de ejecución.</li>
@@ -363,35 +363,34 @@ throw new Error("Fichero no encontrado");
                     </li>
                 </ul>
             </section>
-            
+
             <section>
                 <h3>Cadenas de texto</h3>
                 <ul style="float:left; width:45%">
                     <li>Inicialización:
-                    <pre><code data-trim class="javascript">
+                        <pre><code data-trim class="javascript">
 var str = "Esto es una cadena";
-                    </code></pre>
-                        o bien
-                    <pre><code data-trim class="javascript">
+                    </code></pre> o bien
+                        <pre><code data-trim class="javascript">
 var str = 'Esto es una cadena';
                     </code></pre>
                     </li>
                     <li>
                         Acceso al carácter i-ésimo:
                         <pre><code data-trim data-noescape class="javascript">
-str[2]  <span class="no_arrow_box caja_codigo fragment">!</span> // &rarr; "t" 
+str[2]  <span class="no_arrow_box caja_codigo fragment">!</span> // &rarr; "t"
                         </code></pre>
                     </li>
                 </ul>
                 <ul style="float:right; width:45%">
                     <li>Métodos:
-                    <pre><code data-trim class="javascript">
-str.slice(2, 5); 
+                        <pre><code data-trim class="javascript">
+str.slice(2, 5);
     // &rarr; "to es"
 "  vale ".trim();
     // &rarr; "vale"
 str.split(" ");
-    // &rarr; ["Esto", "es", 
+    // &rarr; ["Esto", "es",
     //    "una", "cadena"]
 str.toUpperCase();
     // &rarr; "ESTO ES UNA CADENA"
@@ -406,26 +405,24 @@ str.startsWith("Est");
                 </ul>
                 <div style="clear:both"></div>
             </section>
-            
+
             <section>
                 <h3>Operadores</h3>
                 <ul style="position:relative; top: 1em">
                     <li>Relacionales:
-                        <code>==</code>, <code>===</code>, 
+                        <code>==</code>, <code>===</code>,
                         <code>&lt;</code>, <code>&lt;=</code>,
                         <code>&gt;</code>, <code>&gt;=</code>
-                                                <span class="no_arrow_box caja_codigo fragment"
-                              style="position:relative; top:-1.3em;left:-6.4em"
-                              >!</span>
+                        <span class="no_arrow_box caja_codigo fragment" style="position:relative; top:-1.3em;left:-6.4em">!</span>
 
                     </li>
-                    
+
                     <li>
                         Aritméticos:
                         <code>+</code>, <code>-</code>, <code>*</code>,
                         <code>/</code>, <code>%</code>
                     </li>
-                    
+
                     <li>
                         Lógicos:
                         <code>&amp;&amp;</code>, <code>||</code>, <code>!</code>
@@ -436,16 +433,16 @@ str.startsWith("Est");
                         <code>&gt;&gt;</code>, <code>&lt;&lt;</code>,
                         <code>&lt;&lt;&lt;</code>
                     </li>
-                    
+
                 </ul>
             </section>
-            
-            
+
+
             <section>
                 <h3>Arrays</h3>
                 <ul style="width:100%">
                     <li>Inicialización:
-                    <pre><code data-trim data-noescape class="javascript">
+                        <pre><code data-trim data-noescape class="javascript">
 var x = [4, 6, "pepe", 1, 3]; <span class="arrow_box_left caja_codigo fragment">Corchetes en lugar de { }</span>
 
 var z = []; <span class="arrow_box_left caja_codigo fragment" style="position:relative;">Vector vacío</span>
@@ -481,7 +478,7 @@ m.length  // &rarr; 3
                     <li><a href="#/p7" class="outline">Bibliografía</a></li>
                 </ol>
             </section>
-            
+
             <section>
                 <h2>Las 10 rarezas de Javascript</h2>
                 <p><strong>(según un programador/a Java)</strong></p>
@@ -493,14 +490,14 @@ m.length  // &rarr; 3
                     <li>Las funciones son ciudadanos de primera clase.</li>
                 </ol>
             </section>
-            
+
             <section>
                 <section>
                     <div class="bloquetitulo" style="padding:20px">
                         <h3><span class="titulo_rareza">Rareza 1</span><span style="display:none">:</span><br>Javascript es un lenguaje dinámicamente tipado</h3>
                     </div>
                 </section>
-                
+
                 <section>
                     <h3>declaraciones de tipo</h3>
                     <p>En Java es necesario declarar el tipo de una variable antes de su primer uso:</p>
@@ -509,19 +506,19 @@ int x;
 String z = "It's something";
 List&lt;Integer&gt; lista;
                     </code></pre>
-                    
+
                     <p>En Javascript no se indica el tipo de la variable a declarar. Se utiliza siempre la palabra reservada <code>var</code>.</p>
                     <pre><code data-trim class="javascript">
 var x;
 var z = "It's something";
 var lista;
                     </code></pre>
-                    
+
                     <div class="fragment" style="color:blue">
                         ¿Qué ventajas e inconvenientes tiene indicar el tipo de las variables en el programa?
                     </div>
                 </section>
-                
+
                 <section>
                     <h4>Lenguajes <strong>estáticamente tipados</strong></h4>
                     <ul>
@@ -529,7 +526,7 @@ var lista;
                             <p>El compilador detecta <strong>en tiempo de compilación</strong> que las operaciones se realizan sobre argumentos del tipo correcto.</p>
                             <p>Por ejemplo, el compilador avisa de cosas como:</p>
                             <pre><code data-trim class="javascript">
-"pepe" * 24                            
+"pepe" * 24
                             </code></pre>
                         </li>
                         <li>
@@ -542,7 +539,7 @@ var lista;
                         </li>
                     </ul>
                 </section>
-                
+
                 <section>
                     <h4>Lenguajes <strong>dinámicamente</strong> tipados</h4>
                     <ul>
@@ -556,13 +553,14 @@ if (...) {
                             </code></pre>
                             <p>El error debido a la expresión <code>3 * "foo"</code> solamente se manifestará si la condición del <code>if</code> se cumple.</p>
                         </li>
-                        
+
                     </ul>
                 </section>
                 <section>
                     <h4>Ejemplos</h4>
                     <ul>
-                        <li><p><strong>Lenguajes sin tipos</strong></p>
+                        <li>
+                            <p><strong>Lenguajes sin tipos</strong></p>
                             <p style="font-size:70%">Son poco usuales: Tcl, ensamblador, etc.</p>
                         </li>
                         <li>
@@ -584,38 +582,45 @@ if (...) {
                     <ul>
                         <li>Tipo del valor indefinido (<code>undefined</code>)</li>
                         <li>Tipo del puntero nulo (<code>null</code>)</li>
-                        <li><p>Tipo numérico (<code>number</code>).</p><p style="font-size:70%">El sistema de tipos no distingue entre enteros y coma flotante.</p></li>
-                        <li>Tipo booleano (<code>boolean</code>).<p  style="font-size:70%">Incluye los valores <code>true</code> y <code>false</code>.</p></li>
+                        <li>
+                            <p>Tipo numérico (<code>number</code>).</p>
+                            <p style="font-size:70%">El sistema de tipos no distingue entre enteros y coma flotante.</p>
+                        </li>
+                        <li>Tipo booleano (<code>boolean</code>).
+                            <p style="font-size:70%">Incluye los valores <code>true</code> y <code>false</code>.</p>
+                        </li>
                         <li>Tipo cadena (<code>string</code>).</li>
                         <li>Tipo objeto (<code>object</code>).
                             <p style="font-size:70%">Incluye también a arrays, funciones y expresiones regulares.</p>
                         </li>
-                        
+
                     </ul>
                 </section>
-                
+
                 <section>
                     <h4>Tipos primitivos vs tipos objeto</h4>
                     <div style="width:80%;margin-left:auto;margin-right:auto">
-                    <ul style="float:left">
-                        <li>Tipos primitivos:
-                            <ul>
-                                <li>Indefinido</li>
-                                <li>Nulo</li>
-                                <li>Numérico</li>
-                                <li>Booleano</li>
-                                <li>Cadena</li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li>Tipos objeto:
-                            <ul><li>Objeto</li></ul>
-                        </li>
-                    </ul>
+                        <ul style="float:left">
+                            <li>Tipos primitivos:
+                                <ul>
+                                    <li>Indefinido</li>
+                                    <li>Nulo</li>
+                                    <li>Numérico</li>
+                                    <li>Booleano</li>
+                                    <li>Cadena</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>Tipos objeto:
+                                <ul>
+                                    <li>Objeto</li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                     <div style="clear:both"></div>
-                </section>                
+                </section>
                 <section>
                     <p>Los tipos primitivos son <strong>inmutables</strong></p>
                     <pre><code data-trim data-noescape class="javascript">
@@ -634,17 +639,15 @@ str1 === str2;  // &rarr; true
 str1 != str3    // &rarr; true
 str1 !== str3   // &rarr; true
                     </code></pre>
-                    <p>En Java <code>str1 == str2</code> devuelve <code>false</code>, pues son
-                    objetos distintos. En cambio, <code>str1.equals(str2)</code> devuelve <code>true</code>.</p>
+                    <p>En Java <code>str1 == str2</code> devuelve <code>false</code>, pues son objetos distintos. En cambio, <code>str1.equals(str2)</code> devuelve <code>true</code>.</p>
                 </section>
-                
+
                 <section>
-                    <p>Las cadenas pueden compararse lexicográficamente mediante los operadores
-                    relacionales <code>&lt;=</code>, <code>&lt;</code>, <code>&gt;=</code> y
-                    <code>&gt;</code>:</p>
+                    <p>Las cadenas pueden compararse lexicográficamente mediante los operadores relacionales <code>&lt;=</code>, <code>&lt;</code>, <code>&gt;=</code> y
+                        <code>&gt;</code>:</p>
                     <pre><code data-trim class="javascript">
 "Pablo" &lt; "Diana"    // &rarr; true
-"Pablo" &lt; "Paolo"    // &rarr; true 
+"Pablo" &lt; "Paolo"    // &rarr; true
 "alma" &lt;= "Pablo"    // &rarr; false
 "Águeda" &lt; "Pablo"   // &rarr; false
                     </code></pre>
@@ -655,7 +658,7 @@ str1 !== str3   // &rarr; true
 "Sergio".localeCompare("Sergio");   // &rarr; 0  (iguales)
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <h4>Comprobación de tipos</h4>
                     <p>La función <code>typeof</code> permite obtener el tipo de un elemento. Devuelve una cadena con el nombre del tipo.</p>
@@ -668,19 +671,18 @@ console.log(typeof(2 &lt; 9));                     // &rarr; boolean
 console.log(typeof([1, 3, 5]));                 // &rarr; object
 console.log(typeof(null));                      // &rarr; object
                     </code></pre>
-                    <p>Aunque <code>null</code> es un tipo básico, <code>typeof(null)</code>
-                        devuelve <code>"object"</code>.
+                    <p>Aunque <code>null</code> es un tipo básico, <code>typeof(null)</code> devuelve <code>"object"</code>.
                     </p>
                 </section>
             </section>
-            
+
             <section>
                 <section>
                     <div class="bloquetitulo" style="padding:20px">
                         <h3><span class="titulo_rareza">Rareza 2</span><span style="display:none">:</span><br>Valores indefinidos, nulos, y <span style="text-transform:none">NaN</span></h3>
                     </div>
                 </section>
-                
+
                 <section>
                     <h4>El valor indefinido (<code style="text-transform:none">undefined</code>)</h4>
                     <p>Se utiliza para las variables no inicializadas y para atributos no existentes dentro de objetos.</p>
@@ -695,10 +697,10 @@ console.log(coordenadas.z);     // &rarr; undefined
                     <pre><code data-trim class="javascript">
 var x = null;   // La variable 'x' esta inicializada, pero a una
                 // referencia nula.
-console.log(x); // &rarr; null                
+console.log(x); // &rarr; null
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <h4>El valor Not-a-Number (<code style="text-transform:none">NaN</code>)</h4>
                     <p>Se devuelve como resultado de operaciones aritméticas incorrectas:</p>
@@ -711,7 +713,7 @@ Math.pow(2, 10000)  // &rarr; Infinity
 Math.log(0)         // &rarr; -Infinity
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <p>¡Cuidado con las comparaciones de <code>NaN</code>!</p>
                     <pre><code data-trim class="javascript">
@@ -724,16 +726,16 @@ isNaN(NaN)          // &rarr; true
 isNaN(Math.log(-3)) // &rarr; true
                     </code></pre>
                 </section>
-                
+
             </section>
-            
+
             <section>
                 <section>
                     <div class="bloquetitulo" style="padding:20px">
                         <h3><span class="titulo_rareza">Rareza 3</span><span style="display:none">:</span><br>Las conversiones invisibles</h3>
                     </div>
                 </section>
-                
+
                 <section>
                     <h4>Conversiones Javascript</h4>
                     <p>¿A qué valor se evalúan las siguientes expresiones?</p>
@@ -750,7 +752,7 @@ Math.log10("1000")  // &rarr; 3
 "10" &lt; 2            // &rarr; false
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <p>¿En qué casos se cumple la condición del <code>if</code>?</p>
                     <pre><code data-trim class="javascript">
@@ -765,7 +767,7 @@ if (null) { .... }          // &rarr; no se cumple
 if (undefined) { .... }     // &rarr; no se cumple
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <h4>Cómo evitar confusiones</h4>
                     <p>Con este panorama, hay dos alternativas:</p>
@@ -779,7 +781,7 @@ if (undefined) { .... }     // &rarr; no se cumple
                         </li>
                     </ol>
                 </section>
-                
+
                 <section>
                     <h4>Funciones de conversión</h4>
                     <p>La función <code>Number()</code></p>
@@ -794,9 +796,9 @@ Number(new Date())  // &rarr; 1476191814528 (depende de fecha y hora)
                     </code></pre>
                     <p>Cuando la función <code>Number</code> se llama sobre un objeto <code>x</code>, se devuelve <code>x.valueOf()</code>.</p>
                     <p>Ver también: <code>parseInt</code> <a href="http://www.w3schools.com/jsref/jsref_parseint.asp">[+]</a></p>
-                    
+
                 </section>
-                
+
                 <section>
                     <p>La función <code>String()</code></p>
                     <pre><code data-trim class="javascript">
@@ -805,25 +807,24 @@ String(undefined)  // &rarr; "undefined"
 String(32)         // &rarr; "32"
 String(new Date()) // &rarr; "Tue Oct 11 2016 15:23:02 GMT+0200 (CEST)"
                     </code></pre>
-                    
-                    <p>La función <code>String</code> aplicada sobre un objeto <code>x</code>
-                    llama al método <code>x.toString()</code></p>
+
+                    <p>La función <code>String</code> aplicada sobre un objeto <code>x</code> llama al método <code>x.toString()</code></p>
                 </section>
-                
+
                 <section>
                     <p>La función <code>Boolean()</code></p>
                     <ul>
                         <li>Valores falsos: <code>undefined</code>, <code>null</code>, <code>false</code>, <code>0</code>, <code>NaN</code>, <code>""</code>.</li>
                         <li>Valores ciertos: el resto.</li>
                     </ul>
-                    
+
                     <pre><code data-trim class="javascript">
 Boolean("")         // &rarr; true
 Boolean(34)         // &rarr; false
                     </code></pre>
                 </section>
-                
-                
+
+
                 <section>
                     <h4>Operadores de igualdad</h4>
                     <dl>
@@ -832,7 +833,7 @@ Boolean(34)         // &rarr; false
                         <dt><code>x == y</code> - Igualdad flexible</dt>
                         <dd><code>x</code> e <code>y</code> pueden convertirse al mismo tipo, de modo que tras hacer la conversión tienen el mismo valor.</dd>
                     </dl>
-                    
+
                     <pre><code data-trim class="javascript">
 "25" == 25      // &rarr; true
 "25" === 25     // &rarr; false
@@ -842,25 +843,25 @@ false == 0      // &rarr; true
                 //         de enteros y de coma flotante)
 
                     </code></pre>
-                    
+
                     <p>También se definen <code>!=</code> y <code>!==</code> como la negación de <code>==</code> y <code>===</code> respectivamente.</p>
                 </section>
-                
+
                 <section>
                     <h4>Moraleja</h4>
                     <p style="background-color:#007000; color:white; padding: 80px 20px; font-size: 200%">Utiliza siempre
-                    <span style="font-family: monospace">===</span> y <span style="font-family: monospace">!==</span></p>
+                        <span style="font-family: monospace">===</span> y <span style="font-family: monospace">!==</span></p>
                 </section>
-                
+
             </section>
-            
+
             <section>
                 <section>
                     <div class="bloquetitulo" style="padding:20px">
                         <h3><span class="titulo_rareza">Rareza 4</span><span style="display:none">:</span><br>Argumentos que sobran y faltan</h3>
                     </div>
                 </section>
-                
+
                 <section>
                     <h4>Definición de una función</h4>
                     <pre><code data-trim class="javascript">
@@ -881,16 +882,16 @@ p1: 1
 p2: bar
 p3: true</pre>
                 </section>
-                
+
                 <section>
                     <p>El número de argumentos en la llamada a la función no ha de coincidir necesariamente con el número de parámetros en la definición</p>
-                    
+
                     <ul>
                         <li>Si se proporcionan argumentos &laquo;de más&raquo; se ignoran los sobrantes:
-                        <pre><code data-trim class="javascript">
+                            <pre><code data-trim class="javascript">
 imprime_args("uno", "dos", "tres", "cuatro");
                         </code></pre>
-                        <pre>
+                            <pre>
 p1: uno
 p2: dos
 p3: tres</pre>
@@ -900,61 +901,60 @@ p3: tres</pre>
                             <pre><code data-trim class="">
 imprime_args("uno", "dos");
                             </code></pre>
-                        <pre>
+                            <pre>
 p1: uno
 p2: dos
-p3: undefined</pre>                           
+p3: undefined</pre>
                         </li>
                     </ul>
                 </section>
-                
+
                 <section>
                     <p>Lo anterior permite definir funciones con parámetros opcionales.</p>
                     <pre><code data-trim class="javascript">
 /*
     El parámetro 'color' es opcional. Su valor por defecto
     es 'negro'.
-    
+
     El parámetro 'trazo' especifica el grosor del trazo y
     también es opcional. Su valor por defecto es 1.
 */
 function pintar_circulo(x, y, color, trazo) {
     if (color === undefined) color = "negro";
     if (trazo === undefined) trazo = 1;
-    
+
     console.log("Pintar círculo en (" + x + ", " + y + ")" +
-                " con color " + color + 
+                " con color " + color +
                 " y trazo de grosor " + trazo);
 }
                    </code></pre>
                 </section>
-                
+
                 <section>
                     <p>Implementación alternativa:</p>
                     <pre><code data-trim class="javascript">
 /*
     El parámetro 'color' es opcional. Su valor por defecto
     es 'negro'.
-    
+
     El parámetro 'trazo' especifica el grosor del trazo y
     también es opcional. Su valor por defecto es 1.
 */
 function pintar_circulo(x, y, color, trazo) {
     color = color || "negro";
     trazo = trazo || 1;
-    
+
     console.log("Pintar círculo en (" + x + ", " + y + ")" +
-                " con color " + color + 
+                " con color " + color +
                 " y trazo de grosor " + trazo);
 }
                    </code></pre>
                     <p>¿Es correcta?</p>
                 </section>
-                
+
                 <section>
                     <h4>Número variable de parámetros</h4>
-                    <p>La variable especial <code>arguments</code> contiene la lista
-                    de argumentos recibidos por la función</p>
+                    <p>La variable especial <code>arguments</code> contiene la lista de argumentos recibidos por la función</p>
                     <pre><code data-trim class="javascript">
 /*
     Devuelve el resultado de sumar los números pasados como
@@ -974,22 +974,23 @@ function suma() {
 suma(3, 4, "foo", 9)    // &rarr; 16
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <h4>Parámetros nominales</h4>
                     <p>Utilizando objetos podemos simular el paso de parámetros nominales.</p>
-                    <p>Por ejemplo, supongamos una función <code>abrir_fichero</code> que espera
-                    un nombre de fichero y, opcionalmente:</p>
+                    <p>Por ejemplo, supongamos una función <code>abrir_fichero</code> que espera un nombre de fichero y, opcionalmente:</p>
                     <ul>
-                        <li><p>Un parámetro <code>solo_lectura</code> que indica si el fichero se abre en modo lectura o en modo lectura/escritura.</p>
+                        <li>
+                            <p>Un parámetro <code>solo_lectura</code> que indica si el fichero se abre en modo lectura o en modo lectura/escritura.</p>
                             <p>Valor por defecto: <code>true</code></p>
                         </li>
-                        <li><p>Un parámetro <code>binario</code> que indica si el fichero es binario o no.</p>
+                        <li>
+                            <p>Un parámetro <code>binario</code> que indica si el fichero es binario o no.</p>
                             <p>Valor por defecto: <code>false</code></p>
                         </li>
                     </ul>
                 </section>
-                
+
                 <section>
                     <p>Ejemplos de llamadas</p>
                     <pre><code data-trim class="javascript">
@@ -1009,7 +1010,7 @@ abrir_fichero("mio.txt", { solo_lectura: true, binario: false });
 // Abriendo fichero mio.txt en modo lectura
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <p>Implementación:</p>
                     <pre><code data-trim class="javascript">
@@ -1022,30 +1023,30 @@ function abrir_fichero(nombre, ops) {
     // 'ops' habrá tomado el valor undefined. Lo inicializamos
     // al objeto vacío.
     if (ops === undefined) ops = {};
-    
+
     // Inicialización de los parámetros opcionales no pasados
     if (ops.solo_lectura === undefined) ops.solo_lectura = true;
     if (ops.binario      === undefined) ops.binario      = false;
-    
+
     // Cuerpo de la función
     console.log("Abriendo fichero "
         + (ops.binario ? "binario " : "")
         + nombre + " en modo "
         + (ops.solo_lectura ? "lectura" : "lectura/escritura"));
-        
-}                    
+
+}
                     </code></pre>
                 </section>
-            
+
             </section>
-            
+
             <section>
                 <section>
                     <div class="bloquetitulo" style="padding:20px">
                         <h3><span class="titulo_rareza">Rareza 5</span><span style="display:none">:</span><br>Las funciones son ciudadanos de primera clase</h3>
                     </div>
                 </section>
-                
+
                 <section>
                     <h4>¿Qué significa eso?</h4>
                     <p>Que las funciones son tratadas como objetos.</p>
@@ -1055,11 +1056,11 @@ function abrir_fichero(nombre, ops) {
                         <li>Pueden pasarse funciones como parámetros.</li>
                         <li>Pueden recibirse funciones como resultados.</li>
                     </ul>
-                    
+
                     <p>Esta característica es compartida por muchos lenguajes funcionales e imperativos:</p>
                     <p>Haskell, Scala, Erlang, C, C++, Java 8, etc.</p>
                 </section>
-                
+
                 <section>
                     <p>Partimos de las siguientes definiciones:</p>
                     <pre><code data-trim class="javascript">
@@ -1084,7 +1085,7 @@ function factorial(n) {
 }
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <p>Asignamos algunas de estas funciones a la variable <code>f</code>:</p>
                     <pre><code data-trim class="">
@@ -1096,7 +1097,7 @@ f = factorial;
 console.log(f(10));
 // Imprime: 3628800
                     </code></pre>
-                    
+
                     <p>¡Cuidado con los paréntesis!</p>
                     <pre><code data-trim class="">
 var f = incrementar();  // INCORRECTO
@@ -1107,12 +1108,10 @@ console.log(f(5));
 // ERROR: f no es una función
                     </code></pre>
                 </section>
-                
-                
+
+
                 <section>
-                    <p>La siguiente función recibe una lista de funciones y un valor. Aplica
-                    cada una de las funciones de la lista al valor dado y muestra los resultados
-                    por consola:</p>
+                    <p>La siguiente función recibe una lista de funciones y un valor. Aplica cada una de las funciones de la lista al valor dado y muestra los resultados por consola:</p>
                     <pre><code data-trim class="javascript">
 function aplicar_funciones(funs, z) {
     for (var i = 0; i &lt; funs.length; i++) {
@@ -1131,7 +1130,7 @@ Aplicar función 1 pasando 5: 10
 Aplicar función 2 pasando 5: 25
 Aplicar función 3 pasando 5: 120</pre>
                 </section>
-                
+
                 <section>
                     <p>De igual modo, se puede devolver una función como resultado:</p>
                     <pre><code data-trim class="javascript">
@@ -1149,12 +1148,12 @@ function buscar_por_nombre(nombre) {
                     <p>Ejemplo:</p>
                     <pre><code data-trim class="javascript">
 var g = buscar_por_nombre("INC");
-console.log(g(10));                    
+console.log(g(10));
                     </code></pre>
                     <pre>
 11</pre>
                 </section>
-                
+
                 <section>
                     <h4>Funciones como expresiones</h4>
                     <p>Se puede utilizar una definición de función en cualquier sitio donde se espere una expresión.</p>
@@ -1167,7 +1166,7 @@ var g = function(x, y) { return x + y; };
 console.log(g(3, 5));
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <p>En el ejemplo anterior:</p>
                     <pre><code data-trim class="javascript">
@@ -1175,18 +1174,17 @@ aplicar_funciones(
     [ function(x) { return x - 3; },
       function(x) { return Math.sqrt(x); },
       factorial,
-      function(z) { return Math.log(z); }  ], 2);                    
+      function(z) { return Math.log(z); }  ], 2);
                     </code></pre>
                     <pre>
 Aplicar función 0 pasando 2: -1
 Aplicar función 1 pasando 2: 1.4142135623730951
 Aplicar función 2 pasando 2: 2
 Aplicar función 3 pasando 2: 0.6931471805599453</pre>
-                    
-                    <p>¿Puede reemplazarse la referencia a <code>factorial</code> 
-                        por otra función anónima?</p>
+
+                    <p>¿Puede reemplazarse la referencia a <code>factorial</code> por otra función anónima?</p>
                 </section>
-                
+
                 <section>
                     <h4>Ámbito de variables</h4>
                     <p>Las variables declaradas dentro de una función tienen como ámbito dicha función:</p>
@@ -1199,7 +1197,7 @@ function f(n) {
 // aquí x está fuera de ámbito
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <p><strong>Solamente las funciones definen ámbitos</strong></p>
                     <p>El resto de bloques no.</p>
@@ -1219,7 +1217,7 @@ for (var x = 0; x &lt; 10; x++) {
                     </code></pre>
                     <p>Puede arreglarse mediante <em>expresiones funcionales invocadas inmediatamente</em> (IIFE) <a href="https://en.wikipedia.org/wiki/Immediately-invoked_function_expression">[+]</a></p>
                 </section>
-                
+
                 <section>
                     <h4>Clausuras</h4>
                     <p>Una función puede hacer referencia a variables declaradas en un ámbito superior</p>
@@ -1240,7 +1238,7 @@ console.log(f(2));
 // Imprime: 11
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <h4>Más difícil todavía</h4>
                     <p>Supongamos el siguiente caso</p>
@@ -1257,9 +1255,10 @@ g();
                     </code></pre>
                     <p>¿Qué imprime <code>g()</code>?</p>
                     <pre>8   // es decir: 7 + 1</pre>
-                    <p>En la expresión <code>z + x</code> dentro de la definición de <code>f</code>, la aparición de <code>z</code> se liga a la variable <code>z</code> definida dentro de <code>g</code>, que es la que está en ámbito en el momento de crear la función <code>f</code>. </p>
+                    <p>En la expresión <code>z + x</code> dentro de la definición de <code>f</code>, la aparición de <code>z</code> se liga a la variable <code>z</code> definida dentro de <code>g</code>, que es la que está en ámbito en el momento de crear
+                        la función <code>f</code>. </p>
                 </section>
-                
+
                 <section>
                     <h4>Y aún más difícil</h4>
                     <p>Ahora &laquo;sacamos&raquo; la función <code>f</code> del ámbito <code>g</code> devolviéndola como resultado:</p>
@@ -1276,12 +1275,12 @@ function g() {
 var h = g();
 
 // ¿Qué imprime esto? ¿3 + 5? ¿7 + 5?
-console.log(h(5));                    
+console.log(h(5));
                     </code></pre>
                     <p>Resultado:</p>
                     <pre>12</pre>
                 </section>
-                
+
                 <section>
                     <pre><code data-trim class="javascript">
 function g() {
@@ -1289,23 +1288,24 @@ function g() {
     return function(x) { return z + x; };
 }
                     </code></pre>
-                    <p>En la expresión <code>function(x) { return z + x; }</code>, la aparición de <code>z</code> queda ligada a la variable <code>z</code> local en <code>g</code>, que es la que está en ámbito en el momento de crear la función. Este vínculo es <strong>permamente</strong>.
+                    <p>En la expresión <code>function(x) { return z + x; }</code>, la aparición de <code>z</code> queda ligada a la variable <code>z</code> local en <code>g</code>, que es la que está en ámbito en el momento de crear la función. Este vínculo
+                        es <strong>permamente</strong>.
                     </p>
-                    <p>Tras crear la función anónima, cualquier llamada  la misma utilizará siempre esta variable <code>z</code>, ¡aunque ya esté fuera de ámbito en el momento de realizar la llamada!</p>
+                    <p>Tras crear la función anónima, cualquier llamada la misma utilizará siempre esta variable <code>z</code>, ¡aunque ya esté fuera de ámbito en el momento de realizar la llamada!</p>
                 </section>
-                
+
                 <section>
                     <div style="background-color:#F0BfDf; padding: 20px 20px">
                         Cuando se crea una función que hace referencia a nombres de variables externas, esos nombres siempre referenciarán a las variables que estuviesen en ámbito <strong>en el momento de crear la función</strong>.
                     </div>
                 </section>
-                
+
                 <section>
                     <h4>Ejemplo: incrementador</h4>
                     <pre><code data-trim class="javascript">
 function incrementador(n) {
     return function(x) { return x + n; };
-}                    
+}
                     </code></pre>
                     <pre><code data-trim class="javascript">
 var inc1 = incrementador(1);
@@ -1315,32 +1315,30 @@ console.log(inc1(9)); // &rarr; 10
                     <pre><code data-trim class="javascript">
 var inc3 = incrementador(3);
 console.log(inc3(5)); // &rarr; 8
-console.log(inc3(9)); // &rarr; 12        
+console.log(inc3(9)); // &rarr; 12
                     </code></pre>
                 </section>
-                
-                <section  data-transition="slide-in fade-out">
+
+                <section data-transition="slide-in fade-out">
                     <img src="images/03/Inc1.svg" style="width:100%; border:none">
                     <p>Al comenzar la llamada a <code>incrementador(1)</code> se crea un entorno con el valor de la variable local <code>n = 1</code> </p>
                 </section>
 
                 <section data-transition="fade-in fade-out">
                     <img src="images/03/Inc2.svg" style="width:100%; border:none">
-                    <p>La llamada a <code>incrementador(1)</code> devuelve una función en la que
-                    la <code>n</code> está ligada al entorno correspondiente.</p>
-                </section>                
+                    <p>La llamada a <code>incrementador(1)</code> devuelve una función en la que la <code>n</code> está ligada al entorno correspondiente.</p>
+                </section>
 
                 <section data-transition="fade-in fade-out">
                     <img src="images/03/Inc3.svg" style="width:100%; border:none">
                     <p>Al llamar a <code>incrementador(3)</code> se crea otro entorno distinto en el que <code>n = 3</code>.</p>
                 </section>
-                
+
                 <section data-transition="fade-in slide-out">
                     <img src="images/03/Inc4.svg" style="width:100%; border:none">
-                    <p>La función creada en esta llamada tiene la variable <code>n</code> ligada
-                    a la  <code>n</code> de este último entorno.</p>
+                    <p>La función creada en esta llamada tiene la variable <code>n</code> ligada a la <code>n</code> de este último entorno.</p>
                 </section>
-                
+
                 <section>
                     <h4>Ejemplo: contador</h4>
                     <pre><code data-trim class="javascript">
@@ -1363,30 +1361,30 @@ console.log(c1());  // &rarr; 4
                     </code></pre>
                 </section>
             </section>
-            
+
             <section>
                 <section>
                     <div class="bloquetitulo" style="padding:20px">
                         <h3><span class="titulo_rareza">Rareza 6</span><span style="display:none">:</span><br>Javascript tiene objetos,<br> pero no clases</h3>
                     </div>
                 </section>
-                
+
                 <section>
                     <h4>Objetos</h4>
-                    <p>Un <strong>objeto</strong> es una colección de <strong style="color:#5050FF">atributos</strong>, cada uno de ellos  asociado a un <strong style="color:#5050FF">valor</strong>.</p>
+                    <p>Un <strong>objeto</strong> es una colección de <strong style="color:#5050FF">atributos</strong>, cada uno de ellos asociado a un <strong style="color:#5050FF">valor</strong>.</p>
                     <pre><code data-trim class="javascript">
 var x = {
     nombre: "Ana María",
     apellidos: "Gamboa Esteban",
     edad: 54
-};                    
+};
                    </code></pre>
                     <p>El literal <code>{}</code> representa un objeto vacío (sin atributos)</p>
                     <pre><code data-trim class="javascript">
-var y = {};                    
+var y = {};
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <p>El acceso a los atributos de un objeto se realiza mediante:</p>
                     <ul style="width: 100%">
@@ -1397,7 +1395,7 @@ x.apellidos // &rarr; "Gamboa Esteban"
                         </li>
                         <li>o bien, el operador corchete
                             <pre><code data-trim class="javascript">
-x["apellidos"] // &rarr; "Gamboa Esteban"                            
+x["apellidos"] // &rarr; "Gamboa Esteban"
                             </code></pre>
                             <pre><code data-trim class="javascript">
 var atrib = "nombre";
@@ -1411,7 +1409,7 @@ x.noexiste  // &rarr; undefined
 y.nombre    // &rarr; undefined
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <p>Modificación de atributos:</p>
                     <pre><code data-trim class="javascript">
@@ -1436,7 +1434,7 @@ console.log(x);
 
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <p>Los nombres de atributos no han de ser necesariamente identificadores válidos de Javascript. Los nombres especiales han de ir entre comillas:</p>
                     <pre><code data-trim class="javascript">
@@ -1451,9 +1449,9 @@ var z = {
 z["Atributo con espacios"] = 22;
                     </code></pre>
                 </section>
-                
+
                 <section>
-                    <p>La función <code>Object.keys()</code> devuelve un array con las  claves de un objeto:</p>
+                    <p>La función <code>Object.keys()</code> devuelve un array con las claves de un objeto:</p>
                     <pre><code data-trim class="javascript">
 var x = {
     nombre: "Ana María",
@@ -1468,10 +1466,10 @@ console.log(Object.keys(x));
                     <pre><code data-trim class="javascript">
 if ("edad" in x) {
     console.log("x tiene un atributo llamado 'edad'");
-}                    
+}
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <h4>Igualdad de objetos</h4>
                     <p>Cuando se aplica el operador <code>==</code> o <code>===</code> sobre objetos, se comprueba que los objetos a ambos lados del operador son el mismo (igualdad al estilo de Java)</p>
@@ -1482,13 +1480,13 @@ var coords3 = coords1;
 
 console.log(coords1 === coords2);
     // &rarr; false
-    
+
 console.log(coords1 === coords3);
     // &rarr; true
                     </code></pre>
                     <p><strong>Recuerda:</strong> en Javascript, las cadenas no son objetos; son tipos básicos.</p>
                 </section>
-                
+
                 <section>
                     <h4>Funciones dentro de objetos</h4>
                     <p>Como las funciones son ciudadanos de primera clase, pueden ser asignadas a los atributos de un objeto:</p>
@@ -1504,14 +1502,14 @@ empleado.saludar();
     // &rarr; ¡Hola!
                     </code></pre>
                     <p>Este tipo de funciones reciben el nombre de <strong>métodos</strong>.</p>
-                    <p>Se puede añadir métodos a un  objeto ya construido:</p>
+                    <p>Se puede añadir métodos a un objeto ya construido:</p>
                     <pre><code data-trim class="javascript">
 empleado.despedir = function() { console.log("¡Adios!"); };
 empleado.despedir();
-                    
+
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <h4>El objeto <code style="text-transform:none">this</code></h4>
                     <p style="font-family:monospace">
@@ -1523,38 +1521,37 @@ empleado.despedir();
                         <li>Argumentos (ninguno, en este caso)</li>
                         <li>Objeto sobre el que se realiza la llamada: <span style="background-color:#A4A430; padding:2px; border-radius: 6px; font-family:monospace">empleado</span></li>
                     </ul>
-                    <p>Cuando llamamos a un método, éste recibe, además de los correspondientes
-                    argumentos, una variable especial (<code>this</code>) que contiene una referencia al objeto sobre el que se realiza la llamada.</p>
+                    <p>Cuando llamamos a un método, éste recibe, además de los correspondientes argumentos, una variable especial (<code>this</code>) que contiene una referencia al objeto sobre el que se realiza la llamada.</p>
                 </section>
-                
+
                 <section>
                     Ejemplo:
                     <pre><code data-trim data-noescape class="javascript">
 var empleado = {
     nombre: "Manuel",
-    
+
     saludar: function() {
         console.log("¡Hola, " + <span style="background-color:#D4D430; padding:2px; border-radius: 6px">this</span>.nombre + "!");
     }
-    
+
     cambiarNombre: function(nuevoNombre) {
         <span style="background-color:#D4D430; padding:2px; border-radius: 6px">this</span>.nombre = nuevoNombre;
     }
 };
                     </code></pre>
-                    
+
                     <pre><code data-trim class="javascript">
 empleado.saludar();
     // &rarr; ¡Hola, Manuel!
-    
+
 empleado.cambiarNombre("Irene");
 
 empleado.saludar();
     // &rarr; ¡Hola, Irene!
                     </code></pre>
-                    
+
                 </section>
-                
+
                 <section>
                     <p>Pueden transferirse métodos entre distintos objetos: </p>
                     <pre><code data-trim data-noescape class="javascript">
@@ -1567,14 +1564,14 @@ var otro_empleado = {
     // &rarr; ¡Hola, <span style="background-color:#D4D430; padding:2px; border-radius: 6px">David</span>!
                     </code></pre>
                     <p>Se imprime el nombre de <code>otro_empleado</code>, porque es el objeto que recibe la llamada, aunque se llame a un método proveniente de otro objeto.</p>
-                    
+
                     <p>¿Qué ocurre al ejecutar el siguiente código?</p>
                     <pre><code data-trim class="javascript">
 var f = empleado.saludar;
 f();
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <p>Podemos encapsular la creación de objetos mediante funciones constructoras:</p>
                     <pre><code data-trim class="javascript">
@@ -1582,15 +1579,15 @@ function construirComplejo(real, imag) {
     return {
         r : real,
         i : imag,
-        
+
         modulo: function() {
             return Math.sqrt(this.r * this.r + this.i * this.i);
         },
-        
+
         argumento: function() {
             return Math.atan2(this.i, this. r);
         }
-        
+
     }
 }
 
@@ -1601,13 +1598,13 @@ console.log(c2.modulo());     // &rarr; 1.4142135623730951
                     </code></pre>
                     <p style="font-size:60%">(Más adelante veremos otra forma de crear funciones constructoras)</p>
                 </section>
-                
+
                 <section>
                     <p>Problema: duplicidad de objetos función para cada objeto.</p>
                     <img src="images/03/DosComplejos.svg" style="height:100%; border:none">
                     <p>¿No podrían <code>c1</code> y <code>c2</code> compartir los métodos?</p>
                 </section>
-                
+
                 <section>
                     <p>Posible solución:</p>
                     <pre><code data-trim class="javascript">
@@ -1629,11 +1626,11 @@ function construirComplejo(real, imag) {
 }
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <img src="images/03/DosComplejosComparten.svg" style="width:95%; border:none">
                 </section>
-                
+
                 <section>
                     <p>Añadimos un método nuevo a <code>c1</code>:</p>
                     <pre><code data-trim class="javascript">
@@ -1643,17 +1640,17 @@ var c2 = construirComplejo(1, 1);
 // ...
 
 c1.coordenadasPolares = function() {
-    console.log("(" + this.modulo() + ", " 
+    console.log("(" + this.modulo() + ", "
                     + this.argumento() + ")");
 }
                     </code></pre>
                     <p>Este método existe solamente dentro de <code>c1</code>.</p>
                     <div style="background-color: #F0D0D0">
-                    <p>¿Existe alguna manera de añadir un método simultáneamente a todos los objetos que hubiesen sido creados mediante <code>construirComplejo</code>?</p>
-                    <p>Sí. Se puede hacer mediante <strong>prototipos</strong>.</p>
+                        <p>¿Existe alguna manera de añadir un método simultáneamente a todos los objetos que hubiesen sido creados mediante <code>construirComplejo</code>?</p>
+                        <p>Sí. Se puede hacer mediante <strong>prototipos</strong>.</p>
                     </div>
                 </section>
-                
+
                 <section>
                     <h4>Prototipo de un objeto</h4>
                     <p>Todo objeto en Javascript tiene un puntero &laquo;secreto&raquo; que puede apuntar a otro objeto:</p>
@@ -1661,24 +1658,24 @@ c1.coordenadasPolares = function() {
                     <p>... o puede ser un puntero nulo:</p>
                     <img src="images/03/ComplejoPrototipo2.svg" style="width:23%;border:none;box-shadow:none">
                 </section>
-                
+
                 <section>
                     <img src="images/03/CadenaPrototipos1.svg" style="width:50%;border:none;box-shadow:none">
                     <p>En el primer caso decimos que el objeto apuntado es <strong>prototipo</strong> de <code>c1</code>.</p>
                 </section>
-                
+
                 <section>
                     <p>A su vez, <code>c2</code> puede tener otro prototipo:</p>
                     <img src="images/03/CadenaPrototipos2.svg" style="width:80%;border:none;box-shadow:none">
                     <p>De este modo tenemos una <strong>cadena de prototipos</strong>, que acabará en un objeto que tenga el puntero &laquo;oculto&raquo; a <code>null</code>.</p>
                 </section>
-                
+
                 <section>
                     <h4>Búsqueda de atributos</h4>
                     <p>¿Qué ocurre cuando se accede al atributo de un objeto?</p>
                     <p>Supongamos la expresión <code>c1.nombre</code></p>
                 </section>
-                
+
                 <section>
                     <p><code>c1.nombre</code></p>
                     <img src="images/03/CadenaPrototipos3.svg" style="width:80%;border:none;box-shadow:none">
@@ -1690,19 +1687,18 @@ c1.coordenadasPolares = function() {
                     <img src="images/03/CadenaPrototipos4.svg" style="width:80%;border:none;box-shadow:none">
                     <p>Si no se encuentra en <code>c1</code>, se busca el atributo dentro del prototipo de <code>c1</code>.</p>
                 </section>
-                
+
                 <section>
                     <img src="images/03/CadenaPrototipos5.svg" style="width:80%;border:none;box-shadow:none">
-                    <p>Si no se encuentra en el prototipo de <code>c1</code>, se busca el dentro del prototipo del prototipo de <code>c1</code>.
-                        Si no se encuentra allí, la búsqueda continúa por la cadena de prototipos hasta que:
+                    <p>Si no se encuentra en el prototipo de <code>c1</code>, se busca el dentro del prototipo del prototipo de <code>c1</code>. Si no se encuentra allí, la búsqueda continúa por la cadena de prototipos hasta que:
                     </p>
                     <ul>
                         <li>Se encuentre el atributo en la cadena.</li>
                         <li>Se llegue al final de la cadena. En este caso la expresión <code>c1.nombre</code> se evalúa a <code>undefined</code>.</li>
                     </ul>
-                    
+
                 </section>
-                
+
                 <section>
                     <h4>Crear objetos a partir de un prototipo</h4>
                     <p>Se utiliza la función <code>Object.create()</code></p>
@@ -1713,7 +1709,7 @@ var y = Object.create(x);
                     <p>crea un objeto <code>y</code> que tiene a <code>x</code> como prototipo:</p>
                     <img src="images/03/PrototiposXY.svg" style="width:50%;border:none;box-shadow:none">
                 </section>
-                
+
                 <section>
                     Ejemplo:
                     <pre><code data-trim class="javascript">
@@ -1729,16 +1725,16 @@ circulo_verde.color = "verde";
 var circulo_rojo = Object.create(circulo);
 circulo_rojo.color = "rojo";
                     </code></pre>
-                    
+
                     <pre><code data-trim class="javascript">
 console.log(circulo_rojo.color);        // &rarr; "rojo"
 console.log(circulo_verde.radio);       // &rarr; 5
 console.log(circulo_verde.centro.x);    // &rarr; 10
 console.log(circulo_rojo.centro);       // &rarr; { x: 10, y: 20 }
                     </code></pre>
-                    
+
                 </section>
-                
+
                 <section>
                     <h4>Cambiar y añadir atributos al prototipo</h4>
                     <p>Añadimos lo siguiente al ejemplo anterior:</p>
@@ -1756,10 +1752,10 @@ console.log(circulo_verde.grosorBorde);     // &rarr; 2
 circulo.radio = 6;
 
 console.log(circulo_rojo.radio);    // &rarr; 6
-console.log(circulo_verde.radio);   // &rarr; 6      
+console.log(circulo_verde.radio);   // &rarr; 6
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <h4>Sobreescritura de atributos</h4>
                     <p>Un objeto puede sobreescribir cualquier atributo heredado de su prototipo:</p>
@@ -1772,23 +1768,23 @@ console.log(circulo_verde.radio);   // &rarr; 6
                     </code></pre>
                     <p>El atributo sobreescrito no afecta a los demás objetos que tengan el mismo protoipo.</p>
                 </section>
-                
+
                 <section>
                     <p><code>circulo_rojo.radio = 3;</code></p>
                     <img src="images/03/CirculosRojoyVerde.svg" style="width:60%;border:none;box-shadow:none">
-                    
+
                     <p>¿Qué ocurre con lo siguiente?</p>
                     <pre><code data-trim class="javascript">
 circulo_rojo.centro.x = 15;
 console.log(circulo_verde.centro.x);
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <p>Volviendo al ejemplo de los números complejos</p>
                     <img src="images/03/DosComplejosComparten.svg" style="width:95%; border:none">
                 </section>
-                
+
                 <section>
                     <pre><code data-trim class="javascript">
 var prototipoComplejo = {
@@ -1806,15 +1802,15 @@ function construirComplejo(real, imag) {
     resultado.r = real;
     resultado.i = imag;
     return resultado;
-}                    
+}
                     </code></pre>
                     <pre><code data-trim class="javascript">
 var c1 = construirComplejo(-3, 0);
-var c2 = construirComplejo(1, 1);                    
+var c2 = construirComplejo(1, 1);
                     </code></pre>
                 </section>
-                
-                
+
+
                 <section>
                     <p>Todas las funciones que se añadan al prototipo estarán disponibles automáticamente para todos los objetos que hayan sido creados previamente por <code>construirComplejo</code></p>
                     <pre><code data-trim class="javascript">
@@ -1826,12 +1822,12 @@ prototipoComplejo.coordenadasPolares = function() {
 
 c1.coordenadasPolares();
     // &rarr; (3, 3.141592653589793)
-    
+
 c2.coordenadasPolares();
     // &rarr; (1.4142135623730951, 0.7853981633974483)
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <h4>El objeto <code style="text-transform:none">Object.prototype</code></h4>
                     <p>Salvo que haya sido creado mediante <code>Object.create</code>, un objeto tiene como prototipo <code>Object.prototype</code>.</p>
@@ -1865,7 +1861,7 @@ console.log(prototipoComplejo.isPrototypeOf(c3));
     // &rarr; true
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <h4>Evitar la herencia de  <code style="text-transform:none">Object.prototype</code></h4>
                     <p>Basta con crear un objeto mediante <code>Object.create</code> pasando <code>null</code> como prototipo.</p>
@@ -1874,7 +1870,7 @@ var objeto_vacio = Object.create(null);
 objeto_vacio.toString();    // ERROR
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <p>El operador <code>in</code> tiene en cuenta tanto los atributos propios como los heredados:</p>
                     <pre><code data-trim class="javascript">
@@ -1888,7 +1884,7 @@ console.log(c4.hasOwnProperty("r"));        // &rarr; true
 console.log(c4.hasOwnProperty("modulo"));   // &rarr; false
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <h4>Descriptores de objeto</h4>
                     <p>Hasta ahora todos los atributos de un objeto permiten la lectura y escritura de su valor asociado.</p>
@@ -1905,7 +1901,7 @@ console.log(x.ancho);
 x.ancho = 20; // ERROR
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <p>Esto permite encapsular el acceso a un atributo:</p>
                     <pre><code data-trim class="javascript">
@@ -1933,44 +1929,44 @@ console.log(x.alto);    // &rarr; 0
 x.alto = 21;
 console.log(x.alto);    // &rarr; 21
 
-                    
+
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <p>La función <code>defineProperty()</code> recibe un objeto como tercer parámetro que define las propiedades del atributo:</p>
                     <ul>
                         <li>
-                            <code>writable: true | false</code><br>
-                            Control de acceso a escritura.
+                            <code>writable: true | false</code>
+                            <br> Control de acceso a escritura.
                         </li>
                         <li>
-                            <code>value</code><br>
-                            Valor por defecto.
+                            <code>value</code>
+                            <br> Valor por defecto.
                         </li>
                         <li>
-                            <code>get: function() { ... }</code><br>
-                            Método de acceso.
+                            <code>get: function() { ... }</code>
+                            <br> Método de acceso.
                         </li>
                         <li>
-                            <code>set: function(newValue) { ... }</code><br>
-                            Método de modificación.
+                            <code>set: function(newValue) { ... }</code>
+                            <br> Método de modificación.
                         </li>
                         <li>
-                            <code>enumerable: true | false</code><br>
-                            La propiedad aparecerá en el listado devuelto por <code>Object.keys()</code>.
+                            <code>enumerable: true | false</code>
+                            <br> La propiedad aparecerá en el listado devuelto por <code>Object.keys()</code>.
                         </li>
                     </ul>
                 </section>
             </section>
-            
+
             <section>
                 <section>
                     <div class="bloquetitulo" style="padding:20px">
                         <h3><span class="titulo_rareza">Rareza 7</span><span style="display:none">:</span><br>Las funciones constructoras y el operador <span style="font-family:monospace; text-transform:none">new</span></h3>
                     </div>
                 </section>
-                
+
                 <section>
                     <h4>Atributos de funciones</h4>
                     <p>Las funciones de Javascript también son objetos.</p>
@@ -1985,25 +1981,25 @@ saludar.numeroParametros = 0;
                     </code></pre>
                     <img src="images/03/SaludarFun.svg" style="width:60%;border:none;box-shadow:none">
                 </section>
-                
+
                 <section>
                     <p>De hecho, las funciones tienen algunos atributos predefinidos:</p>
                     <pre><code data-trim class="javascript">
 console.log(saludar.name)   // &rarr; "saludar"
 console.log(saludar.length) // &rarr; 0  (nº de argumentos)
                     </code></pre>
-                    <p>Entre estos atributos predefinidos existe uno llamado <code>prototype</code>, que inicialmente apunta  un objeto vacío.</p>
+                    <p>Entre estos atributos predefinidos existe uno llamado <code>prototype</code>, que inicialmente apunta un objeto vacío.</p>
                     <pre><code data-trim class="javascript">
 console.log(saludar.prototype); // &rarr; { }
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <p>¡No confundir la propiedad <code>prototype</code> con el prototipo del objeto función!</p>
                     <img src="images/03/SaludarFunPrototype.svg" style="width:90%;border:none;box-shadow:none">
                     <p>El atributo <code>prototype</code> juega un papel esencial en las funciones constructoras.</p>
                 </section>
-                
+
                 <section>
                     <h4>Funciones constructoras</h4>
                     <p>Una función constructora se encarga de inicializar los atributos del objeto que se encuentra en la variable <code>this</code>.</p>
@@ -2016,7 +2012,7 @@ function Complejo(real, imag) {
                     <p>Los nombres de las funciones constructoras suelen comenzar con letra mayúscula.</p>
                     <p>Una función constructora es el equivalente a una <em>clase</em> Java.</p>
                 </section>
-                
+
                 <section>
                     <p>El atributo <code>prototype</code> de las funciones constructoras sirve para almacenar los métodos comunes a la &laquo;clase&raquo;.</p>
                     <pre><code data-trim class="javascript">
@@ -2029,29 +2025,29 @@ Complejo.prototype.argumento = function() {
 }
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <h4>El operador <code style="text-transform:none">new</code></h4>
                     <p>Se puede invocar a una constructora utilizando el operador <code>new</code>:</p>
                     <pre><code data-trim class="javascript">
-var x = new Complejo(-3, 0);                    
+var x = new Complejo(-3, 0);
                     </code></pre>
                     <p>A continuación se describe el funcionamiento de <code>new</code>.</p>
                 </section>
-                
+
                 <section data-transition="slide-in fade-out">
                     <pre><code data-trim class="javascript">
-var x = new Complejo(-3, 0);                    
+var x = new Complejo(-3, 0);
                     </code></pre>
                     <img src="images/03/ComplejoConstructora1.svg" style="width:70%;border:none">
                     <ol style="height:3em; width:90%">
-                        
+
                     </ol>
                 </section>
 
                 <section data-transition="fade-in fade-out">
                     <pre><code data-trim class="javascript">
-var x = new Complejo(-3, 0);                    
+var x = new Complejo(-3, 0);
                     </code></pre>
                     <img src="images/03/ComplejoConstructora2.svg" style="width:70%;border:none">
                     <ol style="height:3em; width:90%">
@@ -2061,7 +2057,7 @@ var x = new Complejo(-3, 0);
 
                 <section data-transition="fade-in fade-out">
                     <pre><code data-trim class="javascript">
-var x = new Complejo(-3, 0);                    
+var x = new Complejo(-3, 0);
                     </code></pre>
                     <img src="images/03/ComplejoConstructora3.svg" style="width:70%;border:none">
                     <ol style="height:3em; width:90%" start="2">
@@ -2071,7 +2067,7 @@ var x = new Complejo(-3, 0);
 
                 <section data-transition="fade-in fade-out">
                     <pre><code data-trim class="javascript">
-var x = new Complejo(-3, 0);                    
+var x = new Complejo(-3, 0);
                     </code></pre>
                     <img src="images/03/ComplejoConstructora4.svg" style="width:70%;border:none">
                     <ol style="height:3em; width:90%" start="3">
@@ -2081,14 +2077,14 @@ var x = new Complejo(-3, 0);
 
                 <section data-transition="fade-in slide-out">
                     <pre><code data-trim class="javascript">
-var x = new Complejo(-3, 0);                    
+var x = new Complejo(-3, 0);
                     </code></pre>
                     <img src="images/03/ComplejoConstructora5.svg" style="width:70%;border:none">
                     <ol style="height:3em; width:90%" start="4">
                         <li>Se asigna la variable <code>x</code> el objeto resultante.</li>
                     </ol>
                 </section>
-                
+
                 <section>
                     <h4>Resultado</h4>
                     <pre><code data-trim class="javascript">
@@ -2110,7 +2106,7 @@ console.log(x.modulo());     // &rarr; 3
 console.log(x.argumento());  // &rarr; 3.141592653589793
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <h4>Resumen</h4>
                     <p>La expresión <code>new C(...)</code> se evalúa del siguiente modo:</p>
@@ -2120,7 +2116,7 @@ console.log(x.argumento());  // &rarr; 3.141592653589793
                         <li>Se llama a la función <code>C</code>, utilizando el nuevo objeto como <code>this</code>.</li>
                     </ol>
                 </section>
-                
+
                 <section>
                     <h4>El operador <code style="text-transform:none">instanceof</code></h4>
                     <p>La expresión <code>x instanceof C</code> se evalúa a <code>true</code> si el objeto <code>C.prototype</code> es alcanzable siguiendo ascendiendo desde <code>x</code> en la cadena de prototipos:</p>
@@ -2133,14 +2129,14 @@ console.log(x instanceof Number);   // &rarr; false
                     </code></pre>
                 </section>
             </section>
-            
+
             <section>
                 <section>
                     <div class="bloquetitulo" style="padding:20px">
                         <h3><span class="titulo_rareza">Rareza 8</span><span style="display:none">:</span><br>Los arrays también son objetos</h3>
                     </div>
                 </section>
-                
+
                 <section>
                     <h4>Inicialización de arrays</h4>
                     <p>
@@ -2155,7 +2151,7 @@ var b = new Array(10);
 // Todos los elementos están a 'undefined'
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <h4>Los arrays son objetos</h4>
                     <p>Es posible asignar propiedades arbitrarias a un array.</p>
@@ -2166,10 +2162,10 @@ a.estaOrdenado = false;
 console.log(a);
     // &rarr; [ 1, 5, 3, 5, 4, esta_ordenado: false ]
                     </code></pre>
-                    
+
                     <p>Todos los arrays tienen como prototipo el objeto <code>Array.prototype</code>, que contiene algunos métodos de utilidad sobre arrays. <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/prototype">[+]</a></p>
                 </section>
-                
+
                 <section>
                     <h4>Los arrays son flexibles y pueden tener &laquo;huecos&raquo;</h4>
                     <p>Puede variarse la longitud de un array en tiempo de ejecución. Basta con modificar la propiedad <code>length</code>:</p>
@@ -2189,33 +2185,32 @@ a[5] = 32;
 console.log(a); // &rarr; [ 23, 12, 69, , , 32 ]
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <p>Métodos para modificar el tamaño del array:</p>
                     <ul>
                         <li>
-                            <code>push(x)</code><br>
-                            Inserta <code>x</code> al final del array.
+                            <code>push(x)</code>
+                            <br> Inserta <code>x</code> al final del array.
                         </li>
                         <li>
-                            <code>pop()</code><br>
-                            Elimina y devuelve el último elemento del array.
+                            <code>pop()</code>
+                            <br> Elimina y devuelve el último elemento del array.
                         </li>
                         <li>
-                            <code>unshift(x)</code><br>
-                            Añade <code>x</code> al principio del array, desplazando los restantes elementos.
+                            <code>unshift(x)</code>
+                            <br> Añade <code>x</code> al principio del array, desplazando los restantes elementos.
                         </li>
                         <li>
-                            <code>shift()</code><br>
-                            Elimina el primer elemento del array, desplazando los restantes elementos.
+                            <code>shift()</code>
+                            <br> Elimina el primer elemento del array, desplazando los restantes elementos.
                         </li>
                         <li>
-                            <code>splice(ini, num)</code>
-                            Partiendo del elemento en la posición <code>ini</code>, elimina <code>num</code> elementos.
+                            <code>splice(ini, num)</code> Partiendo del elemento en la posición <code>ini</code>, elimina <code>num</code> elementos.
                         </li>
                     </ul>
                 </section>
-                
+
                 <section>
                     <p>Ejemplo:</p>
                     <pre><code data-trim class="javascript">
@@ -2238,25 +2233,25 @@ a.splice(2, 2); // &rarr; [3, 4]
     // a = [1, 2, 5];
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <p>Otras operaciones destructivas:</p>
                     <pre><code data-trim class="javascript">
 a = [4, 7, 4, 1, 3, 5];
 a.sort();
     // a = [1, 3, 4, 4, 5, 7]
-    
+
 a.reverse();
     // a = [7, 5, 4, 4, 3, 1]
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <p>Operaciones no destructivas:</p>
                     <ul>
                         <li>
-                            <code>concat(arr_1, ..., arr_n)</code><br>
-                            Añade los arrays pasados como argumento y devuelve el resultado.
+                            <code>concat(arr_1, ..., arr_n)</code>
+                            <br> Añade los arrays pasados como argumento y devuelve el resultado.
                             <pre><code data-trim class="javascript">
 [1, 2, 3].concat([4, 5], [6, 7, 8]);
     // &rarr; [1, 2, 3, 4, 5, 6, 7, 8]
@@ -2264,8 +2259,8 @@ a.reverse();
                             </code></pre>
                         </li>
                         <li>
-                            <code>slice(ini, fin)</code><br>
-                            Devuelve el segmento <code>[ini, fin)</code> del array.
+                            <code>slice(ini, fin)</code>
+                            <br> Devuelve el segmento <code>[ini, fin)</code> del array.
                             <pre><code data-trim class="javascript">
 ["a", "b", "c", "d", "e", "f", "g"].slice(2, 5);
     // &rarr; ["c", "d", "e"]
@@ -2273,12 +2268,12 @@ a.reverse();
                         </li>
                     </ul>
                 </section>
-                
+
                 <section>
                     <ul>
                         <li>
-                            <code>join(sep)</code><br>
-                            Concatena los elementos del array intercalando
+                            <code>join(sep)</code>
+                            <br> Concatena los elementos del array intercalando
                             <code>sep</code> como separador:
                             <pre><code data-trim class="javascript">
 ["Esto", "no", "me", "gusta"].join(" - ");
@@ -2287,7 +2282,7 @@ a.reverse();
                         </li>
                     </ul>
                 </section>
-                
+
                 <section>
                     <p>Búsqueda de valores:</p>
                     <ul>
@@ -2295,54 +2290,54 @@ a.reverse();
                             <p>Devuelve el índice de la última aparición de <code>elem</code> en el array, o -1 si no se encuentra.</p>
                         </li>
                         <li><code>lastIndexOf(elem)</code>
-                            <p>Devuelve el índice de la última aparición de <code>elem</code> en el array, o  -1 si no se encuentra.</p>
+                            <p>Devuelve el índice de la última aparición de <code>elem</code> en el array, o -1 si no se encuentra.</p>
                         </li>
                     </ul>
                 </section>
-                
+
             </section>
-            
+
             <section>
                 <section>
                     <div class="bloquetitulo" style="padding:20px">
                         <h3><span class="titulo_rareza">Rareza 9</span><span style="display:none">:</span><br>Las funciones de orden superior sobre arrays</h3>
                     </div>
                 </section>
-                
+
                 <section>
                     <h4>Funciones de orden superior</h4>
                     <p>Una función de <strong>orden superior</strong> es una función que recibe funciones como parámetro y/o devuelve funciones.</p>
                     <p>Javascript proporciona varios métodos de orden superior para arrays que son muy útiles en la práctica.</p>
                 </section>
-                
+
                 <section>
                     <h4>Iteración: método <code style="text-transform:none">forEach</code></h4>
                     <ul>
                         <li>
-                            <code>forEach(f)</code><br>
-                            Aplica la función <code>f</code> sobre todos los elementos del array.
+                            <code>forEach(f)</code>
+                            <br> Aplica la función <code>f</code> sobre todos los elementos del array.
                         </li>
                         <pre><code data-trim class="javascript">
-var personas = [ { nombre: "Ricardo", edad: 45}, 
-                 { nombre: "Julia", edad: 24 }, 
+var personas = [ { nombre: "Ricardo", edad: 45},
+                 { nombre: "Julia", edad: 24 },
                  { nombre: "Ashley", edad: 28 } ];
 
 personas.forEach(function(p) {
-    console.log("Hola, me llamo " + p.nombre 
+    console.log("Hola, me llamo " + p.nombre
                 + " y tengo " + p.edad + " años");
-})                 
-                        
+})
+
                         </code></pre>
                     </ul>
                 </section>
-                
-                
+
+
                 <section>
                     <h4>Funciones de transformación</h4>
                     <ul>
                         <li>
-                            <code>map(f)</code><br>
-                            Aplica la función <code>f</code> a cada elemento del array, devolviendo otro array con los resultados.
+                            <code>map(f)</code>
+                            <br> Aplica la función <code>f</code> a cada elemento del array, devolviendo otro array con los resultados.
                             <pre><code data-trim class="javascript">
 var a = [1, 3, 5, 2, 4];
 var dobles = a.map(function(n) {
@@ -2352,8 +2347,8 @@ console.log(dobles); // [2, 6, 10, 4, 8]
                             </code></pre>
                         </li>
                         <li>
-                            <code>filter(f)</code><br>
-                            Selecciona los elementos <code>x</code> del array tales que <code>f(x)</code> devuelve <code>true</code>.
+                            <code>filter(f)</code>
+                            <br> Selecciona los elementos <code>x</code> del array tales que <code>f(x)</code> devuelve <code>true</code>.
                             <pre><code data-trim class="javascript">
 var pares = a.filter(function(n) {
     return n % 2 === 0;
@@ -2362,19 +2357,19 @@ console.log(pares); // [2, 4]
                             </code></pre>
                         </li>
                     </ul>
-                    
+
                 </section>
-                
+
                 <section>
                     <h4>Funciones de reducción (I)</h4>
                     <ul>
                         <li>
-                            <code>every(f)</code><br>
-                            Devuelve <code>true</code> si para <em>todo</em> elemento <code>x</code> del array, <code>f(x)</code> devuelve <code>true</code>.
+                            <code>every(f)</code>
+                            <br> Devuelve <code>true</code> si para <em>todo</em> elemento <code>x</code> del array, <code>f(x)</code> devuelve <code>true</code>.
                         </li>
                         <li>
-                            <code>some(f)</code><br>
-                            Devuelve <code>true</code> si <em>existe</em> un elemento <code>x</code> en el array tal que <code>f(x)</code> devuelva <code>true</code>.
+                            <code>some(f)</code>
+                            <br> Devuelve <code>true</code> si <em>existe</em> un elemento <code>x</code> en el array tal que <code>f(x)</code> devuelva <code>true</code>.
                         </li>
                     </ul>
                 </section>
@@ -2383,8 +2378,8 @@ console.log(pares); // [2, 4]
                     <h4>Funciones de reducción (II)</h4>
                     <ul>
                         <li>
-                            <code>reduce(f, [elemInicial])</code><br>
-                            Recorre el array de izquierda a derecha, acumulando un valor durante el recorrido.
+                            <code>reduce(f, [elemInicial])</code>
+                            <br> Recorre el array de izquierda a derecha, acumulando un valor durante el recorrido.
                         </li>
                         <pre><code data-trim class="javascript">
 var a = [2, 6, 9, 1];
@@ -2393,15 +2388,15 @@ console.log(
     "Valor final: " +
     a.reduce(function(acum, n) { return 2 * acum +  n; }, 7)
 );  // &rarr; 171
-    
+
                         </code></pre>
                     </ul>
                 </section>
-                
+
                 <section>
                     <p><img src="images/03/Reduce1.svg" style="width:100%; border:none; box-shadow:none"></p>
                 </section>
-                
+
                 <section>
                     <h4>Otros ejemplos</h4>
                     <p>Suma de los elementos de un array</p>
@@ -2410,25 +2405,25 @@ console.log(
                     </code></pre>
                     <img src="images/03/Reduce2.svg" style="width:80%;border:none; box-shadow:none">
                 </section>
-                
+
                 <section>
                     <h4>Otros ejemplos</h4>
                     <p>Multiplicación de los elementos de un array</p>
                     <pre><code data-trim class="javascript">
 [1, 5, 7, 4].reduce(function(ac, n) { return ac * n; }, 1)
                     </code></pre>
-                    
+
                     <p>Máximo de los elementos de un array</p>
                     <pre><code data-trim class="javascript">
 [6, 1, 4, 3, 7].reduce(
-    function(acum, x) { 
+    function(acum, x) {
         return Math.max(acum, x);
     },
     -Infinity
-) 
+)
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <h4>Variantes</h4>
                     <p><code>reduce(f, [ini])</code></p>
@@ -2450,22 +2445,22 @@ console.log(
                         <li>Array sobre el que se está haciendo el <code>reduce</code>.</li>
                     </ol>
                 </section>
-                
+
                 <section>
                     <h4>Variantes</h4>
                     <p><code>reduceRight(f, [ini])</code></p>
                     <p>Realiza lo mismo que <code>reduce</code>, pero recorriendo el vector de derecha a izquierda.</p>
                 </section>
-                
+
             </section>
-            
+
             <section>
                 <section>
                     <div class="bloquetitulo" style="padding:20px">
                         <h3><span class="titulo_rareza">Rareza 10</span><span style="display:none">:</span><br>El objeto <span style="font-family:monospace; text-transform:none">this</span> es de quita y pon</h3>
                     </div>
                 </section>
-                
+
                 <section>
                     <p>Partimos del siguiente código:</p>
                     <pre><code data-trim class="javascript">
@@ -2483,14 +2478,14 @@ var b = { nombre: "Elvira" };
 a.saludar.call(b);  // &rarr; Hola, Elvira
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <p>La función <code>call</code> es útil para modelizar la herencia de clases. (Ver ejercicios)</p>
                     <p><code>call(objetoThis, arg1, arg2, ...)</code></p>
                     <p>La función <code>apply</code> se comporta de modo similar, pero recibe un array de argumentos:</p>
                     <p><code>apply(objetoThis, [arg1, arg2, ...])</code></p>
                 </section>
-                
+
                 <section>
                     <pre><code data-trim class="javascript">
 var a = {
@@ -2510,14 +2505,15 @@ a.saludar.call( { nombre: "Olivia" }, 4);
 a.saludar.apply( { nombre: "Olivia" }, [4]);
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <h4>La función <code style="text-transform:none">bind</code></h4>
                     <p><code>f.bind(objetoThis, arg1, arg2, ...)</code></p>
-                    <p>Devuelve una función que cuando sea llamada ejecutará el código de <code>f</code>, asignando la variable <code>this</code> al <code>objetoThis</code> pasado como parámetro, y pasando los parámetros <code>arg1</code>, <code>arg2</code>, etc.</p>
+                    <p>Devuelve una función que cuando sea llamada ejecutará el código de <code>f</code>, asignando la variable <code>this</code> al <code>objetoThis</code> pasado como parámetro, y pasando los parámetros <code>arg1</code>, <code>arg2</code>,
+                        etc.</p>
                     <p>La función devuelta puede recibir parámetros adicionales que serán concatenados con los <code>arg1</code>, <code>arg2</code>, etc. pasados previamente a <code>bind</code>.</p>
                 </section>
-                
+
                 <section>
                     <h4>Ejemplo</h4>
                     <pre><code data-trim class="javascript">
@@ -2545,26 +2541,25 @@ var a = {
 repetir(3, a.saludar);
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <p>El objeto <code>this</code> se ha &laquo;perdido&raquo; al asignar <code>a.saludar</code> al parámetro <code>f</code>. Por tanto, la llamada <code>f()</code> se realiza con un <code>this</code> que es <code>undefined</code>.
-                    
-                    <pre><code data-trim class="javascript">
+
+                        <pre><code data-trim class="javascript">
 var f = a.saludar;
 f();    // this = 'undefined'
-                    </code></pre>
-                    Sin embargo, podemos hacer:
-                    <pre><code data-trim class="javascript">
+                    </code></pre> Sin embargo, podemos hacer:
+                        <pre><code data-trim class="javascript">
 var f = a.saludar.bind(a);
 f();    // this = a
                     </code></pre>
-                    <p>Por tanto, arreglamos el problema anterior mediante:</p>
-                    <pre><code data-trim class="javascript">
+                        <p>Por tanto, arreglamos el problema anterior mediante:</p>
+                        <pre><code data-trim class="javascript">
 repetir(3, a.saludar.bind(a));
                     </code></pre>
-                    
+
                 </section>
-                
+
                 <section>
                     <h4>Aplicaciones parciales</h4>
                     <p>
@@ -2575,7 +2570,7 @@ function suma(x, y, z) {
     return x + y + z;
 }
 
-var g = suma.bind(null, 4, 5); 
+var g = suma.bind(null, 4, 5);
     // Utilizamos null como objeto 'this', porque no se utiliza
     // dentro de la función 'suma'.
                     </code></pre>
@@ -2586,14 +2581,14 @@ var g = suma.bind(null, 4, 5);
 console.log(g(6)) // &rarr; 15
                     </code></pre>
                 </section>
-                
+
                 <section>
                     <p>Otro ejemplo de <code>bind</code>:</p>
                     <pre><code data-trim class="javascript">
 var g = suma.bind(null, 5);
     // Ahora g espera los dos parámetros restantes:
 console.log(g(1, 1)); // &rarr; 7
- 
+
 var h = suma.bind(null, 1, 2, 3);
     // He pasado todos los parámetros de 'suma',
     // pero aún sigue siendo una llamada latente.
@@ -2602,7 +2597,7 @@ console.log(h());   // &rarr; 6
                     </code></pre>
                 </section>
             </section>
-            
+
             <section>
                 <section>
                     <div class="bloquetitulo" style="padding:20px">
@@ -2626,7 +2621,7 @@ console.log(h());   // &rarr; 6
                     </ul>
                     <p>Ambas se detallarán en temas posteriores.</p>
                 </section>
-                
+
                 <section>
                     <h4>CommonJS</h4>
                     <p>Utilizado principalmente en <strong>Node</strong></p>
@@ -2660,7 +2655,7 @@ define(["dep1", "dep2", ...], function(dep1, dep2, ...) {
         func1: function() {
             ...
         },
-        
+
         func2: function() {
             ...
         }
@@ -2669,7 +2664,7 @@ define(["dep1", "dep2", ...], function(dep1, dep2, ...) {
                     </code></pre>
                 </section>
             </section>
-            
+
             <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p4">
                 <ol class="contenidos" style="width:13em">
                     <li><a href="#/p1" class="outline">Un primer programa</a></li>
@@ -2681,19 +2676,20 @@ define(["dep1", "dep2", ...], function(dep1, dep2, ...) {
                     <li><a href="#/p7" class="outline">Bibliografía</a></li>
                 </ol>
             </section>
-            
+
             <section>
                 <h2>Clases estándar</h2>
-                <p>Javascript proporciona las siguientes clases en todas sus implementaciones<br>(tanto en Node como en los navegadores)</p>
+                <p>Javascript proporciona las siguientes clases en todas sus implementaciones
+                    <br>(tanto en Node como en los navegadores)</p>
                 <ul>
                     <li>Manejo de expresiones regulares</li>
                     <li>Manejo de fichas</li>
                     <li>Trazas y <em>logging</em></li>
                     <li>Utilidades varias</li>
-                    
+
                 </ul>
             </section>
-            
+
             <section>
                 <h3>Expresiones regulares</h3>
                 <p>Una expresión regular es un patrón que representa una o varias cadenas de texto.</p>
@@ -2701,7 +2697,7 @@ define(["dep1", "dep2", ...], function(dep1, dep2, ...) {
                 <p style="font-size:80%">Ejs: <code>A324</code>, <code>F983</code>, etc.</p>
                 <p>Ver: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Lenguaje de expresiones regulares</a></p>
             </section>
-            
+
             <section>
                 <p>En Javascript denotamos las expresiones regulares delimitadas por el símbolo <code>/</code></p>
                 <pre><code data-trim class="javascript">
@@ -2717,7 +2713,7 @@ var expr = /[A-Z][0-9]{3}/;
                     </li>
                 </ul>
             </section>
-            
+
             <section>
                 <h4>Método <code style="text-transform:none">test</code></h4>
                 <pre><code data-trim class="javascript">
@@ -2726,23 +2722,23 @@ var expr = /[A-Z][0-9]{3}/;
 /[A-Z][0-9]{3}/.test("Otra cosa");
     // &rarr; false
 
-/el|la|los|las/.test("Esta frase tiene un artículo"); 
+/el|la|los|las/.test("Esta frase tiene un artículo");
     // &rarr; false
 /el|la|los|las/.test("Esta clase tiene un artículo");
     // &rarr; true
 /\b(el|la|los|las)\b/.test("Esta clase tiene un artículo");
-    // &rarr; false            
+    // &rarr; false
             </code></pre>
                 <p>El símbolo <code>\b</code> representa el límite de una palabra.</p>
             </section>
-            
+
             <section>
                 <h4>Método <code style="text-transform:none">exec</code></h4>
                 <p>A veces podemos dividir la expresión regular en varios grupos, con el fin de saber qué parte de la cadena capturada corresponde a cada grupo.</p>
                 <p>Cada grupo va delimitado entre paréntesis <code>(</code>, <code>)</code></p>
                 <p>La función <code>test</code> nos permite desglosar cualquier cadena que ajuste con el patrón en sus distintos grupos.</p>
             </section>
-            
+
             <section>
                 <p>Por ejemplo, la siguiente expresión:</p>
                 <code>\d{4}\-[A-Z]{3}</code>
@@ -2751,13 +2747,14 @@ var expr = /[A-Z][0-9]{3}/;
                 <p>Si queremos poder separar la secuencia de dígitos de la de letras utilizamos dos grupos:</p>
                 <code>(<span style="background-color:#FFFF70;border-radius:10px">\d{4}</span>)\-(<span style="background-color:#A0FFFF;border-radius:10px">[A-Z]{3}</span>)</code>
             </section>
-            
+
             <section>
                 <pre><code data-trim class="javascript">
 var regexp = /(\d{4})\-([A-Z]{3})/;
 var result = regexp.exec("Mi matrícula de coche es 8367-AWD");
                 </code></pre>
-                <p>La subcadena <code><span style="background-color:#FFFF70;border-radius:10px">8367</span>-<span style="background-color:#A0FFFF;border-radius:10px">AWD</span></code> ajusta con el patrón <code>regexp</code>, pero <code>exec</code> nos permite saber qué fragmento de ésta ajusta con cada grupo</p>
+                <p>La subcadena <code><span style="background-color:#FFFF70;border-radius:10px">8367</span>-<span style="background-color:#A0FFFF;border-radius:10px">AWD</span></code> ajusta con el patrón <code>regexp</code>, pero <code>exec</code> nos permite
+                    saber qué fragmento de ésta ajusta con cada grupo</p>
                 <pre><code data-trim class="javascript">
 
 result[0] // &rarr; "8367-AWD" (Cadena completa)
@@ -2767,7 +2764,7 @@ result[2] // &rarr; "AWD"      (Segundo grupo de captura)
 result.index // &rarr; 25   (Posición del ajuste dentro de la cadena)
                 </code></pre>
             </section>
-            
+
             <section>
                 <h4>Modificadores de expresiones regulares</h4>
                 <p>Se colocan tras el delimitador <code>/</code> final de la expresión.</p>
@@ -2778,18 +2775,18 @@ result.index // &rarr; 25   (Posición del ajuste dentro de la cadena)
                     </tr>
                     <tr>
                         <td><code>g</code></td>
-                        <td>Ajuste global.<br>
-                            Permite encontrar varias ocurrencias en la misma cadena.</td>
+                        <td>Ajuste global.
+                            <br> Permite encontrar varias ocurrencias en la misma cadena.</td>
                     </tr>
                     <tr>
                         <td><code>m</code></td>
-                        <td>Buscar a lo largo de varias líneas.<br>
-                            Varía el comportamiento de <code>^</code> y <code>$</code>.
+                        <td>Buscar a lo largo de varias líneas.
+                            <br> Varía el comportamiento de <code>^</code> y <code>$</code>.
                         </td>
                     </tr>
                 </table>
             </section>
-            
+
             <section>
                 <h4>Ejemplos</h4>
                 <pre><code data-trim class="javascript">
@@ -2802,11 +2799,11 @@ str.match(/hola/);
     // &rarr; [ 'hola', index: 6, ... ]
 str.match(/hola/i);
     // &rarr; [ 'Hola', index: 0, ... ]
-    
-// La búsqueda global encuentra todos los resultados    
+
+// La búsqueda global encuentra todos los resultados
 str.match(/hola/gi);
     // &rarr; [ 'Hola', 'hola', 'Hola' ]
-    
+
 // El carácter ^ significa 'principio de cadena'
 str.match(/^Hola/g);
     // &rarr; [ 'Hola' ]
@@ -2816,25 +2813,23 @@ str.match(/^Hola/gm);
     // &rarr; [ 'Hola', 'Hola' ]
                 </code></pre>
             </section>
-            
+
             <section>
                 <h4>Métodos de cadenas relacionados con expresiones regulares</h4>
                 <ul>
-                    <li><code>match(regexp)</code><br>
-                        Devuelve todas las subcadenas que ajustan con la expresión regular <code>regexp</code> (si ésta contiene el modificador <code>g</code>) o solamente la primera (en caso contrario).
+                    <li><code>match(regexp)</code>
+                        <br> Devuelve todas las subcadenas que ajustan con la expresión regular <code>regexp</code> (si ésta contiene el modificador <code>g</code>) o solamente la primera (en caso contrario).
                     </li>
-                    <li><code>search(regexp)</code><br>
-                        Devuelve el índice de la primera subcadena que ajuste con <code>regexp</code>, o -1 si no hay ninguna.
+                    <li><code>search(regexp)</code>
+                        <br> Devuelve el índice de la primera subcadena que ajuste con <code>regexp</code>, o -1 si no hay ninguna.
                     </li>
-                    <li><code>replace(regexp, nuevaCadena)</code>
-                        Reemplaza las subcadenas que ajusten con <code>regexp</code>.
+                    <li><code>replace(regexp, nuevaCadena)</code> Reemplaza las subcadenas que ajusten con <code>regexp</code>.
                     </li>
-                    <li><code>split(regexp)</code>
-                        Divide la cadena en fragmentos, utilizando <code>regexp</code> como separador.
+                    <li><code>split(regexp)</code> Divide la cadena en fragmentos, utilizando <code>regexp</code> como separador.
                     </li>
                 </ul>
             </section>
-            
+
             <section>
                 <h4>Sobre la función <code style="text-transform:none">replace</code></h4>
                 <p><code>replace(regexp, nuevaCadena)</code></p>
@@ -2847,7 +2842,7 @@ str.replace(r, "$2/$1");
     // &rarr; "Mi número de matrícula es GSD/9483"
                 </code></pre>
             </section>
-            
+
             <section>
                 <h3>Los objetos <code style="text-transform:none">Date</code></h3>
                 <p>Sirven para realizar operaciones con fechas y horas.</p>
@@ -2868,7 +2863,7 @@ fechaInicio.toString();
                 </code></pre>
                 <p>Más información: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">[+]</a></p>
             </section>
-            
+
             <section>
                 <h3>El objeto <code style="text-transform:none">Math</code></h3>
                 <p>Utilidades matemáticas varias:</p>
@@ -2884,29 +2879,29 @@ fechaInicio.toString();
                 </ul>
 
             </section>
-            
+
             <section>
                 <h3>El objeto <code style="text-transform:none">console</code></h3>
                 <p>Tiene, entre otros, los métodos:</p>
                 <ul>
-                    <li><code>log(str)</code><br>
-                        Muestra mensajes de depuración.
+                    <li><code>log(str)</code>
+                        <br> Muestra mensajes de depuración.
                     </li>
-                    <li><code>warn(str)</code><br>
-                        Muestra mensajes de aviso.
+                    <li><code>warn(str)</code>
+                        <br> Muestra mensajes de aviso.
                     </li>
-                    <li><code>error(str)</code><br>
-                        Muestra mensajes de error.
+                    <li><code>error(str)</code>
+                        <br> Muestra mensajes de error.
                     </li>
-                    <li><code>assert(cond, str)</code><br>
-                        Lanza un <code>AssertionError(str)</code> si <code>cond</code> no se cumple.
+                    <li><code>assert(cond, str)</code>
+                        <br> Lanza un <code>AssertionError(str)</code> si <code>cond</code> no se cumple.
                     </li>
-                    <li><code>time(id)</code> / <code>timeEnd(id)</code><br>
-                        Permite medir tiempos de ejecución.
-                        </li>
+                    <li><code>time(id)</code> / <code>timeEnd(id)</code>
+                        <br> Permite medir tiempos de ejecución.
+                    </li>
                 </ul>
             </section>
-            
+
             <section>
                 <h4>Ejemplo</h4>
                 <pre><code data-trim class="javascript">
@@ -2920,8 +2915,8 @@ console.timeEnd("mi-temporizador");
     // &rarr; Imprime: "mi-temporizador: 5663.947ms"
                 </code></pre>
             </section>
-            
-            
+
+
             <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p5">
                 <ol class="contenidos" style="width:13em">
                     <li><a href="#/p1" class="outline">Un primer programa</a></li>
@@ -2933,19 +2928,21 @@ console.timeEnd("mi-temporizador");
                     <li><a href="#/p7" class="outline">Bibliografía</a></li>
                 </ol>
             </section>
-            
+
             <section>
                 <h2>Utilidades y herramientas</h2>
                 <ul>
-                    <li>JSDoc<br>
-                        <a href="http://usejsdoc.org/">http://usejsdoc.org/</a>                        
+                    <li>JSDoc
+                        <br>
+                        <a href="http://usejsdoc.org/">http://usejsdoc.org/</a>
                     </li>
-                    <li>JSLint<br>
-                        <a href="http://www.jslint.com/">http://www.jslint.com/</a>     
+                    <li>JSLint
+                        <br>
+                        <a href="http://www.jslint.com/">http://www.jslint.com/</a>
                     </li>
                 </ul>
             </section>
-            
+
             <section>
                 <h3>JSDoc</h3>
                 <p>Herramienta de generación de documentación, al estilo de <em>Javadoc</em></p>
@@ -2955,12 +2952,12 @@ console.timeEnd("mi-temporizador");
  * (parte real + parte imaginaria).
  *
  * Puede construirse un número a partir de su forma polar mediante
- * la función {@link Complejo.desdePolar} 
+ * la función {@link Complejo.desdePolar}
  *
  * @constructor
  * @param {number} real - Componente real.
  * @param {number} imag - Componente imaginaria.
- */  
+ */
 function Complejo(real, imag) {
     this.r = real;
     this.i = imag;
@@ -2972,7 +2969,7 @@ function Complejo(real, imag) {
             <section>
                 <img src="images/03/JSDoc.png" style="width:80%;border:none">
             </section>
-            
+
             <section>
                 <h3>JSLint</h3>
                 <p>Herramienta que detecta la existencia de problemas en el código contenido en un fichero de Javascript.</p>
@@ -2985,7 +2982,7 @@ function Complejo(real, imag) {
                     </li>
                 </ul>
             </section>
-            
+
             <section>
                 <h4>Ejemplo</h4>
                 <p>Fichero <code>complex_lint.js</code></p>
@@ -2995,7 +2992,7 @@ function Complejo(real, imag) {
 function complejo (real, imag) {
     this.r = real;
     this.i = imag;
-}                
+}
                 </code></pre>
                 <p>Ejecutando <code>lint complex_lint.js</code>:</p>
                 <pre><code data-trim class="no-highlight">
@@ -3003,10 +3000,10 @@ function complejo (real, imag) {
     function complejo (real, imag) { // Line 14, Pos 19
 #2 A constructor name 'complejo' should start with an uppercase
    letter.
-    return new complejo(real, imag); // Line 48, Pos 16                
+    return new complejo(real, imag); // Line 48, Pos 16
                 </code></pre>
             </section>
-            
+
             <section>
                 <p>Corregimos los errores detectados:</p>
                 <pre><code data-trim class="javascript">
@@ -3015,34 +3012,34 @@ function complejo (real, imag) {
 function Complejo(real, imag) {
     this.r = real;
     this.i = imag;
-}                
+}
                 </code></pre>
                 <pre><code data-trim class="no-highlight">
-complex_lint.js is OK.                
+complex_lint.js is OK.
                 </code></pre>
             </section>
-            
+
             <section>
                 <h2>Depuradores</h2>
                 <p>Existen herramientas de depuración incorporadas, tanto en el entorno del cliente como en el del servidor.</p>
                 <ul>
-                    <li><strong>Lado del servidor</strong> (Node)<br>
-                        La depuración se realiza mediante un <em>shell</em> lanzado desde la línea de comandos.
+                    <li><strong>Lado del servidor</strong> (Node)
+                        <br> La depuración se realiza mediante un <em>shell</em> lanzado desde la línea de comandos.
                     </li>
-                    <li><strong>Lado del cliente</strong> (Navegador)<br>
-                        Las herramientas para desarrolladores integradas en Firefox y Chrome proporcionan un depurador.
-                        
+                    <li><strong>Lado del cliente</strong> (Navegador)
+                        <br> Las herramientas para desarrolladores integradas en Firefox y Chrome proporcionan un depurador.
+
                     </li>
                 </ul>
             </section>
-            
+
             <section>
                 <p>En cualquiera de los dos entornos puede introducirse un punto de ruptura mediante la siguiente sentencia:</p>
                 <pre><code data-trim class="javascript">
-debugger;                
+debugger;
                 </code></pre>
             </section>
-            
+
             <section>
                 <h4>Ejemplo</h4>
                 <pre><code data-trim class="javascript">
@@ -3060,14 +3057,14 @@ for (var i = 0; i &lt; array.length; i++) {
     sum += arr[i] * arr[i];
 }
 
-console.log(sum);                
+console.log(sum);
                 </code></pre>
             </section>
-            
+
             <section>
                 <h4>Iniciar depuración con Node</h4>
-                <pre><code data-trim class="no-highlight">                
-node debug sum_squares.js            
+                <pre><code data-trim class="no-highlight">
+node debug sum_squares.js
                 </code></pre>
                 <h4>Comandos</h4>
                 <table>
@@ -3080,7 +3077,7 @@ node debug sum_squares.js
                         <td rowspan="2" style="vertical-align:middle">Avanzar paso</td>
                     </tr>
                     <tr>
-                        <td><code>next</code></td>                    
+                        <td><code>next</code></td>
                     </tr>
                     <tr>
                         <td><code>repl</code></td>
@@ -3104,22 +3101,25 @@ node debug sum_squares.js
                 <p><em>Desarrollador</em> &rarr; <em>Depurador</em> (Ctrl+Mayús+S)</p>
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/fxU3ByrhSmc" frameborder="0" allowfullscreen></iframe>
             </section>
-            
+
             <section>
                 <h3>Frameworks de testing</h3>
                 <ul>
-                    <li><strong>Jasmine</strong><br>
+                    <li><strong>Jasmine</strong>
+                        <br>
                         <a href="http://jasmine.github.io/">http://jasmine.github.io/</a>
                     </li>
-                    <li><strong>Mocha</strong><br>
+                    <li><strong>Mocha</strong>
+                        <br>
                         <a href="https://mochajs.org/">https://mochajs.org/</a>
                     </li>
-                    <li><strong>Chai</strong><br>
+                    <li><strong>Chai</strong>
+                        <br>
                         <a href="http://chaijs.com/">http://chaijs.com/</a>
                     </li>
                 </ul>
             </section>
-            
+
             <section>
                 <h4>Ejemplo: Jasmine</h4>
                 <p>El siguiente módulo contiene un error en la función <code>insert</code></p>
@@ -3145,18 +3145,18 @@ function insertionSort(arr) {
 module.exports = {
     insertionSort : insertionSort,
     insert        : insert
-}                
+}
                 </code></pre>
             </section>
-            
+
             <section>
                 <p>Inicializamos <em>Jasmine</em> en el proyecto actual</p>
                 <pre><code data-trim class="no-highlight">
-jasmine init                    
+jasmine init
                 </code></pre>
                 <p>Esto crea una carpeta <code>spec</code>, donde el programador coloca sus módulos de test.</p>
             </section>
-            
+
             <section>
                 <p>Creamos la especificación en <code>spec/insert_spec.js</code></p>
                 <pre><code data-trim class="javascript">
@@ -3173,17 +3173,17 @@ describe("Prueba de ordenación por inserción", function() {
         insertModule.insertionSort(arr);
         expect(arr).toEqual([2, 4, 8]);
     });
-    
+
     it("Inserción en array desordenado", function() {
         var arr = [3, 2];
         insertModule.insert(1, arr);
         expect(arr).toEqual([2, 3]);
     });
 
-});                
+});
                 </code></pre>
             </section>
-            
+
             <section>
                 <p>Ejecutamos los casos de prueba:</p>
                 <pre><code data-trim data-noescape class="no-highlight">
@@ -3208,16 +3208,16 @@ Failures:
 
 3 specs, <span style="background-color:#FFC0C0">2 failures</span>
 Finished in 0.01 seconds
-                
+
                 </code></pre>
             </section>
-            
+
             <section>
                 <p>Tras corregir el error:</p>
                 <pre><code data-trim data-noescape class="javascript">
 function insert(i, arr) {
     ...
-    while (j > 0 &amp;&amp; arr[j] &lt; arr[j - 1]) { 
+    while (j > 0 &amp;&amp; arr[j] &lt; arr[j - 1]) {
     ...
 }
                 </code></pre>
@@ -3228,7 +3228,7 @@ Started
 
 
  <span style="background-color:#C0FFC0">3 specs, 0 failures</span>
-Finished in 0.005 seconds                
+Finished in 0.005 seconds
                 </code></pre>
             </section>
 
@@ -3243,7 +3243,7 @@ Finished in 0.005 seconds
                     <li><a href="#/p7" class="outline">Bibliografía</a></li>
                 </ol>
             </section>
-            
+
             <section>
                 <h2>ECMAScript 6</h2>
                 <p>En junio de 2015 se definió la versión 6 de ECMAScript.</p>
@@ -3258,7 +3258,7 @@ Finished in 0.005 seconds
                 <p>Más información: <a href="http://es6-features.org/">http://es6-features.org/</a></p>
                 <p>Compatibilidad con navegadores: <a href="http://kangax.github.io/compat-table/es6/">[+]</a></p>
             </section>
-            
+
             <section>
                 <h3>Definición de constantes</h3>
                 <pre><code data-trim class="javascript">
@@ -3266,7 +3266,7 @@ const EXEC_NAME = "program.exe"
                 </code></pre>
                 <p>Las constantes se definen como propiedades de sólo lectura</p>
             </section>
-            
+
             <section>
                 <h3>Variables de bloque</h3>
                 <p>Solamente hay dos ámbitos para las declaraciones <code>var</code>: bloque y función.</p>
@@ -3284,7 +3284,7 @@ for (let i = 0; i &lt; a.length; i++) {
 // 'i' y 'z' ya no están en ámbito aquí
                 </code></pre>
             </section>
-            
+
             <section>
                 <h3>Expresiones funcionales (arrows)</h3>
                 <p>Las expresiones funcionales pueden simplificarse utilizando la notación <code>=&gt;</code></p>
@@ -3302,7 +3302,7 @@ arr.map(function(x) { return x * 2; });
 arr.map(x => x * 2);
                 </code></pre>
             </section>
-            
+
             <section>
                 <h3>Parámetros por defecto</h3>
                 <p>La versión 6 de ECMAScript permite declarar valores por defecto para los parámetros que no son especificados al llamar a la función.</p>
@@ -3315,10 +3315,11 @@ console.log(incrementar(6));      // &rarr; 7
 console.log(incrementar(6, 4));   // &rarr; 10
                 </code></pre>
             </section>
-            
+
             <section>
                 <h3>Interpolación de cadenas</h3>
-                <p>Nuevo tipo de cadenas delimitadas por símbolo <code>`</code><br>(acento grave)</p>
+                <p>Nuevo tipo de cadenas delimitadas por símbolo <code>`</code>
+                    <br>(acento grave)</p>
                 <p>Pueden incluir expresiones Javascript en su interior:</p>
                 <pre><code data-trim class="javascript">
 var x = 3;
@@ -3329,7 +3330,7 @@ console.log(s);
 
                 </code></pre>
             </section>
-            
+
             <section>
                 <h3>Definiciones de clases</h3>
                 <p>Esta característica permite definir clases en un estilo más familiar para programadores/as de otros lenguajes.</p>
@@ -3343,19 +3344,19 @@ class Complejo {
         this.r = real;
         this.i = imag;
     }
-    
+
     modulo() {
         return Math.sqrt(this.r * this.r + this.i * this.i);
     }
-    
+
     argumento() {
         return Math.atan2(this.i, this.r);
     }
     ...
                 </code></pre>
-                
+
             </section>
-            
+
             <section>
                 <pre><code class="javascript">    ...
     static desdePolar(mod, arg) {
@@ -3363,18 +3364,18 @@ class Complejo {
             imag = mod * Math.sin(arg);
         return new Complejo(real, imag);
     }
-    
+
     static iguales(c1, c2) {
         return (Math.abs(c1.r - c2.r) < Complejo.EPSILON)
             && (Math.abs(c1.i - c2.i) < Complejo.EPSILON);
-    }    
+    }
 }</code></pre>
                 <p>Esta sintaxis se traduce internamente a los mecanismos vistos anteriormente: funciones constructoras, métodos en <code>Complejo.prototype</code>, etc.</p>
                 <pre><code data-trim class="javascript">
 typeof(Complejo)    // &rarr; 'function'
                 </code></pre>
             </section>
-            
+
             <section>
                 <p>Este nuevo estilo también soporta herencia:</p>
                 <pre><code data-trim data-noescape class="javascript">
@@ -3383,14 +3384,14 @@ class A {
 }
 
 class B extends A {
-    constructor(x, y) { 
+    constructor(x, y) {
         super(x);        <span class="arrow_box_left caja_codigo">Llamada a la constructora de A</span>
         ...
     }
 }
                 </code></pre>
             </section>
-            
+
             <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p7">
                 <ol class="contenidos" style="width:13em">
                     <li><a href="#/p1" class="outline">Un primer programa</a></li>
@@ -3402,8 +3403,8 @@ class B extends A {
                     <li><a href="#/p7" class="outline current">Bibliografía</a></li>
                 </ol>
             </section>
-            
-                        <section>
+
+            <section>
                 <h2>Bibliografía</h2>
                 <div style="float:left; width:70%">
                     <ul>
@@ -3418,7 +3419,8 @@ class B extends A {
                             <br> O'Reilly (2016)
                         </li>
                         <li>
-                            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference">Javascript Reference</a><br>MDN - Mozilla Developer Network
+                            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference">Javascript Reference</a>
+                            <br>MDN - Mozilla Developer Network
                             <br><span style="font-size:50%">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference</span>
                         </li>
                     </ul>
@@ -3427,10 +3429,10 @@ class B extends A {
                     <img src="http://speakingjs.com/speakingjs_cover.jpg" style="width:50%; border:none">
                     <img src="http://akamaicovers.oreilly.com/images/0636920035534/cat.gif" style="width:50%; border:none">
                 </div>
-                            
+
             </section>
 
-            
+
         </div>
 
     </div>
