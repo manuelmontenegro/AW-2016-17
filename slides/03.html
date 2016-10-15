@@ -527,18 +527,18 @@ var lista;
                     <h4>Lenguajes <strong>estáticamente tipados</strong></h4>
                     <ul>
                         <li>
-                            <p>El compilador detecta <strong>en tiempo de compilación</strong> que las operaciones se realizan sobre argumentos del tipo correcto.</p>
-                            <p>Por ejemplo, el compilador avisa de cosas como:</p>
+                            <p>Se detecta <strong>en tiempo de compilación</strong> que las operaciones se realizan sobre argumentos del tipo correcto.</p>
+                            <p>Por ejemplo, el compilador avisa de errores como:</p>
                             <pre><code data-trim class="javascript">
 "pepe" * 24
                             </code></pre>
                         </li>
                         <li>
-                            <p>Pueden requerir declaraciones de tipos por parte del programador.</p>
+                            <p>Estos lenguajes pueden requerir declaraciones de tipos por parte del programador.</p>
                             <p>Por ejemplo: Java, C, etc.</p>
                         </li>
                         <li>
-                            <p>En algunos casos <strong>infieren</strong> información de tipos</p>
+                            <p>En algunos lenguajes el compilador <strong>infiere</strong> los tipos.</p>
                             <p>Por ejemplo: Haskell, C++, etc.</p>
                         </li>
                     </ul>
@@ -549,13 +549,15 @@ var lista;
                     <ul>
                         <li>
                             <p>Se comprueba <strong>durante la ejecución del programa</strong> que las operaciones se realizan sobre argumentos de tipo correcto.</p>
-                            <p>Por ejemplo, en Javascript:</p>
-                            <pre><code data-trim class="javascript">
+                            <div class="fragment">
+                                <p>Por ejemplo, en Javascript:</p>
+                                <pre><code data-trim class="javascript">
 if (...) {
     y = 3 * "foo";
 }
                             </code></pre>
-                            <p>El error debido a la expresión <code>3 * "foo"</code> solamente se manifestará si la condición del <code>if</code> se cumple.</p>
+                                <p>El error debido a la expresión <code>3 * "foo"</code> solamente se manifestará si la condición del <code>if</code> se cumple.</p>
+                            </div>
                         </li>
 
                     </ul>
@@ -567,15 +569,15 @@ if (...) {
                             <p><strong>Lenguajes sin tipos</strong></p>
                             <p style="font-size:70%">Son poco usuales: Tcl, ensamblador, etc.</p>
                         </li>
-                        <li>
+                        <li class="fragment">
                             <p><strong>Lenguajes estáticamente tipados, no dinámicamente</strong></p>
                             <p style="font-size:70%">C, Haskell, etc.</p>
                         </li>
-                        <li>
+                        <li class="fragment">
                             <p><strong>Lenguajes dinámicamente tipados, no estáticamente</strong></p>
-                            <p style="font-size:70%">Python, Javascript, PHP, etc.</p>
+                            <p style="font-size:70%">Python, <span style="background-color:#C0FFC0; padding:0px 10px">Javascript</span>, PHP, etc.</p>
                         </li>
-                        <li>
+                        <li class="fragment">
                             <p><strong>Lenguajes estáticamente y dinámicamente tipados</strong></p>
                             <p style="font-size:70%">Java, C++, C#, etc.</p>
                         </li>
@@ -604,8 +606,8 @@ if (...) {
                 <section>
                     <h4>Tipos primitivos vs tipos objeto</h4>
                     <div style="width:80%;margin-left:auto;margin-right:auto">
-                        <ul style="float:left">
-                            <li>Tipos primitivos:
+                        <ul style="float:left" class="fragment">
+                            <li><span style="color:#3080B0; font-weight:bold">Tipos primitivos</span>
                                 <ul>
                                     <li>Indefinido</li>
                                     <li>Nulo</li>
@@ -615,8 +617,8 @@ if (...) {
                                 </ul>
                             </li>
                         </ul>
-                        <ul>
-                            <li>Tipos objeto:
+                        <ul class="fragment">
+                            <li><span style="color:#3080B0; font-weight:bold">Tipos objeto</span>
                                 <ul>
                                     <li>Objeto</li>
                                 </ul>
@@ -633,8 +635,9 @@ var str2 = str1.slice(0, 3);      <span class="arrow_box_left caja_codigo">No mo
 console.log(str1);  // &rarr; Cadena1
 console.log(str2);  // &rarr; Cad
                     </code></pre>
-                    <p>Las comparaciones entre tipos primitivos se hacen por <strong>valor</strong>, no por referencia</p>
-                    <pre><code data-trim data-noescape class="javascript">
+                    <div class="fragment">
+                        <p>Las comparaciones entre tipos primitivos se hacen por <strong>valor</strong>, no por referencia</p>
+                        <pre><code data-trim data-noescape class="javascript">
 var str1 = "Cadena";
 var str2 = "Cadena";
 var str3 = "Otra cadena";
@@ -643,7 +646,8 @@ str1 === str2;  // &rarr; true
 str1 != str3    // &rarr; true
 str1 !== str3   // &rarr; true
                     </code></pre>
-                    <p>En Java <code>str1 == str2</code> devuelve <code>false</code>, pues son objetos distintos. En cambio, <code>str1.equals(str2)</code> devuelve <code>true</code>.</p>
+                        <p>En Java <code>str1 == str2</code> devuelve <code>false</code>, pues son objetos distintos. En cambio, <code>str1.equals(str2)</code> devuelve <code>true</code>.</p>
+                    </div>
                 </section>
 
                 <section>
