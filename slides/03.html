@@ -71,8 +71,8 @@
             <section>
                 <h2>El lenguaje Javascript</h2>
                 <p>Javascript fue creado por Brendan Eich en 1995, para ser incluido en el navegador <em>Netscape</em>.</p>
-                <p>Dado que en ese momento <em>Netscape</em> colaboraba con la empresa <em>Sun Microsystems</em>, desarrolladora del lenguaje Java, se decidió adoptar la sintaxis de este último.</p>
-                <p>Concebido inicialmente como un <strong>lenguaje &laquo;pegamento&raquo;</strong>, para integrar los distintos componentes de las páginas web: applets, plugins, etc.</p>
+                <p><em>Netscape</em> colaboraba en aquel momento con la empresa <em>Sun Microsystems</em>, propietaria por entonces del lenguaje Java.</p>
+                <p>Concebido inicialmente como un <strong>lenguaje &laquo;pegamento&raquo;</strong>, destinado a integrar los distintos componentes de las páginas web: applets, plugins, etc.</p>
                 <p></p>
             </section>
 
@@ -80,12 +80,12 @@
                 <h3>Principales hitos en la historia de Javascript</h3>
                 <ul>
                     <li>1997 - <strong>HTML Dinámico</strong>
-                        <br/> Permite a los programas modificar dinámicamente la estructura de un documento HTML, mediante la manipulación del DOM.
+                        <br/> Los programas modifican dinámicamente la estructura de un documento HTML mediante la manipulación de su DOM.
                     </li>
-                    <li>2005 - <strong>AJAX</strong>
-                        <br> Permite realizar peticiones al servidor desde Javascript, lo que impulsó el paradigma de aplicaciones web de una sola página (SPA).
+                    <li class="fragment">2005 - <strong>AJAX</strong>
+                        <br> Los programas pueden realizar peticiones al servidor desde Javascript, lo que impulsó el paradigma de aplicaciones web de una sola página (SPA).
                     </li>
-                    <li>
+                    <li class="fragment">
                         2009 - <strong>Node.js</strong>
                         <br> Permite utilizar Javascript en el lado del servidor.
                     </li>
@@ -95,35 +95,37 @@
             <section>
                 <h3>Javascript y ECMAScript</h3>
                 <p>En el año 1996 Netscape decidió estandarizar Javascript.</p>
-                <p>El estándar fue publicado por la organización de estándares <em>Ecma International</em>. El nombre del estándar era <strong>ECMAScript</strong>.</p>
-                <p>La versión actual del estándar es ECMAScript 7, publicada en junio de 2016.</p>
+                <p>El estándar fue publicado por la organización <em>Ecma International</em>. El nombre del estándar era <strong>ECMAScript</strong>.</p>
+                <p>La versión actual del estándar es ECMAScript 7 y fue publicada en junio de 2016.</p>
 
             </section>
 
             <section>
                 <h3>Javascript en el navegador</h3>
-                <p>Los principales navegadores contienen un intérprete de Javascript, que permite ejecutar los programas Javascript incluidos en las páginas web.</p>
+                <p>Los principales navegadores contienen un <strong>intérprete</strong> que permite ejecutar los programas Javascript incluidos en las páginas web.</p>
                 <p>El componente del navegador encargado de esto recibe el nombre de <strong>motor Javascript</strong>.</p>
-                <p>Motores Javascript más conocidos:</p>
-                <ul>
-                    <li><strong>SpiderMonkey</strong>, utilizado en Firefox.</li>
-                    <li><strong>V8</strong>, utilizado en Chrome.</li>
-                    <li><strong>Chakra</strong>, utilizado en Edge.</li>
-                </ul>
+                <div class="fragment">
+                    <p>Motores Javascript más conocidos:</p>
+                    <ul>
+                        <li><strong>SpiderMonkey</strong>, utilizado en Firefox.</li>
+                        <li><strong>V8</strong>, utilizado en Chrome.</li>
+                        <li><strong>Chakra</strong>, utilizado en Edge.</li>
+                    </ul>
+                </div>
             </section>
 
             <section>
                 <h3>¿Y Node.js?</h3>
-                <p>Es un intérprete del lenguaje Javascript, pensado para ejecutarse <strong>fuera del navegador</strong>.</p>
+                <p>Es un intérprete del lenguaje Javascript, pensado para ejecutarse <strong>fuera de un navegador</strong>.</p>
                 <p>Su implementación está basada en el motor <strong>V8</strong> de Chrome.</p>
-                <p>Se utiliza principalmente para implementar las funcionalidades del lado del servidor.</p>
+                <p>Se utiliza principalmente para implementar las funcionalidades del lado del servidor en aplicaciones web.</p>
                 <img src="images/intro/nodejs.png" style="width:30%; border:none; box-shadow:none">
             </section>
 
             <section>
                 <h3>Javascript más allá de la web</h3>
                 <ul>
-                    <li><strong>Aplicaciones de escritorio</strong>, mediante Node.js y Electron.
+                    <li><strong>Aplicaciones de escritorio</strong>, mediante Node y Electron.
                         <br> Ejemplos: Atom, Visual Studio Code, etc.
                     </li>
                     <li><strong>Aplicaciones móviles</strong>, mediante Apache Cordova.</li>
@@ -162,7 +164,7 @@ node planets.js
 
             <section>
                 <h3>Ejecución desde un navegador</h3>
-                <p>Para ejecutar un programa desde el navegador, ha de importarse el fichero <em>Javascript</em> desde un documento HTML, y abrir éste último desde el navegador.</p>
+                <p>Si, alternativamente, se quiere ejecutar un programa desde el navegador, ha de importarse el fichero <em>Javascript</em> desde un documento HTML, y abrir éste último desde el navegador.</p>
                 <pre><code data-trim class="html">
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -201,10 +203,10 @@ node planets.js
             <section>
                 <h2>El &laquo;Java&raquo; en Javascript</h2>
                 <p>
-                    La sintaxis de Javascript está inspirada, en gran medida, por la de Java.
+                    La sintaxis de Javascript está inspirada en la de Java.
                 </p>
                 <ul>
-                    <li>
+                    <li class="fragment">
                         Comentarios:
                         <pre><code data-trim class="javascript">
 // Comentario de una línea
@@ -212,14 +214,14 @@ node planets.js
    líneas */
                         </code></pre>
                     </li>
-                    <li>Declaraciones de variables y asignaciones:
+                    <li class="fragment">Declaraciones de variables y asignaciones:
                         <pre><code data-trim class="javascript">
 var x = 3;
 var y = y + 1;
 y += 3;
                     </code></pre>
                     </li>
-                    <li>Pre/postincremento, pre/postdecremento:
+                    <li class="fragment">Pre/postincremento, pre/postdecremento:
                         <pre><code data-trim class="javascript">
 z = x++;
 --x;
@@ -232,7 +234,7 @@ z = x++;
             <section>
                 <h3>Sentencias condicionales</h3>
                 <ul style="width:20em">
-                    <li>
+                    <li class="fragment">
                         If-then-else:
                         <pre><code data-trim class="javascript">
 if (x &lt; y) {
@@ -242,7 +244,7 @@ if (x &lt; y) {
 }
                         </code></pre>
                     </li>
-                    <li>
+                    <li class="fragment">
                         Switch:
                         <pre><code data-trim class="javascript">
 switch(day) {
@@ -261,7 +263,7 @@ switch(day) {
             <section>
                 <h3>Bucles</h3>
                 <ul style="width:20em">
-                    <li>Bucle while
+                    <li class="fragment">Bucle while:
                         <pre><code data-trim class="javascript">
 while (x &lt;= 0) {
     n = n * x;
@@ -269,7 +271,7 @@ while (x &lt;= 0) {
 }
                     </code></pre>
                     </li>
-                    <li>Bucle do-while:
+                    <li class="fragment">Bucle do-while:
                         <pre><code data-trim class="javascript">
 do {
     mult *= a[x];
@@ -277,7 +279,7 @@ do {
 } while (a[x] === 0)
                     </code></pre>
                     </li>
-                    <li>
+                    <li class="fragment">
                         Bucles for:
                         <pre><code data-trim class="javascript">
 for (var i = 0; i &lt; b.length; i++) {
@@ -293,18 +295,18 @@ for (var i = 0; i &lt; b.length; i++) {
                     <li>
                         break y continue:
                         <pre><code data-trim class="javascript">
-for (var i = 0; i &lt; x.length; i++) {
-    if (x[i] % 2 === 0)
-        continue;
-    z *= x[i];
-}
-                        </code></pre>
-                        <pre><code data-trim class="javascript">
 while (i &lt; x.length) {
     if (x[i] === ".") break;
     i++;
 }
 
+                        </code></pre>
+                        <pre><code data-trim class="javascript">
+for (var i = 0; i &lt; x.length; i++) {
+    if (x[i] % 2 === 0)
+        continue;
+    z *= x[i];
+}
                         </code></pre>
                     </li>
                 </ul>
@@ -312,31 +314,33 @@ while (i &lt; x.length) {
 
             <section>
                 <h3>Funciones</h3>
-                <pre><code data-trim class="javascript">
-function abs(x) {
-    if (x &lt; 0) {
-        return x;
-    } else {
-        return -x;
-    }
-}
-                </code></pre>
                 <ul style="width: 100%">
-                    <li>
-                        Llamadas a funciones y métodos:
+                    <li class="fragment">Definición de funciones:
+                        <pre><code data-trim class="javascript">
+    function abs(x) {
+        if (x &lt; 0) {
+            return x;
+        } else {
+            return -x;
+        }
+    }
+                    </code></pre>
                     </li>
-                </ul>
-                <pre><code data-trim class="javascript">
+                    <li class="fragment">
+                        Llamadas a funciones y métodos:
+                        <pre><code data-trim class="javascript">
 x = abs(-3);
 console.log("El valor absoluto de x es " + x);
-</code></pre>
+                </code></pre>
+                    </li>
+                </ul>
             </section>
 
             <section>
                 <h3>Manejo de excepciones</h3>
                 <ul style="width:100%">
-                    <li>
-                        Bloques try-catch-finally:
+                    <li class="fragment">
+                        Bloques try-catch o try-catch-finally:
                         <pre><code data-trim data-noescape class="javascript">
 try {
    funcion_no_existe();
@@ -347,13 +351,13 @@ try {
 }
                         </code></pre>
                     </li>
-                    <li>
+                    <li class="fragment">
                         Lanzamiento de excepciones:
                         <pre><code data-trim class="javascript">
 throw new Error("Fichero no encontrado");
                         </code></pre>
                     </li>
-                    <li>
+                    <li class="fragment">
                         Atributos de <code>Error</code>:
                         <ul>
                             <li><code>Error.message</code>: mensaje de error.</li>
@@ -382,7 +386,7 @@ str[2]  <span class="no_arrow_box caja_codigo fragment">!</span> // &rarr; "t"
                         </code></pre>
                     </li>
                 </ul>
-                <ul style="float:right; width:45%">
+                <ul style="float:right; width:45%" class="fragment">
                     <li>Métodos:
                         <pre><code data-trim class="javascript">
 str.slice(2, 5);
@@ -443,20 +447,20 @@ str.startsWith("Est");
                 <ul style="width:100%">
                     <li>Inicialización:
                         <pre><code data-trim data-noescape class="javascript">
-var x = [4, 6, "pepe", 1, 3]; <span class="arrow_box_left caja_codigo fragment">Corchetes en lugar de { }</span>
+var x = [4, 6, "pepe", 1, 3];   <span class="arrow_box_left caja_codigo fragment">Corchetes en lugar de { }</span>
 
-var z = []; <span class="arrow_box_left caja_codigo fragment" style="position:relative;">Vector vacío</span>
+var z = [];   <span class="arrow_box_left caja_codigo fragment" style="position:relative;">Vector vacío</span>
 
 var m = new Array(3);
                     </code></pre>
                     </li>
-                    <li>Acceso:
+                    <li class="fragment">Acceso:
                         <pre><code data-trim class="javascript">
 console.log(x[3]);  // &rarr; 1
 m[2] = "Elemento nuevo";
                         </code></pre>
                     </li>
-                    <li>
+                    <li class="fragment">
                         Longitud:
                         <pre><code data-trim class="javascript">
 x.length  // &rarr; 5
@@ -481,7 +485,7 @@ m.length  // &rarr; 3
 
             <section>
                 <h2>Las 10 rarezas de Javascript</h2>
-                <p><strong>(según un programador/a Java)</strong></p>
+                <p><strong>(para un programador/a Java)</strong></p>
                 <ol>
                     <li>Javascript es dinámicamente tipado.</li>
                     <li>Valores indefinidos, nulos y NaN.</li>
@@ -2510,7 +2514,8 @@ a.saludar.apply( { nombre: "Olivia" }, [4]);
                     <h4>La función <code style="text-transform:none">bind</code></h4>
                     <p><code>f.bind(objetoThis, arg1, arg2, ...)</code></p>
                     <p>Devuelve una función que cuando sea llamada ejecutará el código de <code>f</code>, asignando la variable <code>this</code> al <code>objetoThis</code> pasado como parámetro, y pasando los parámetros <code>arg1</code>, <code>arg2</code>,
-                        etc.</p>
+                        etc.
+                    </p>
                     <p>La función devuelta puede recibir parámetros adicionales que serán concatenados con los <code>arg1</code>, <code>arg2</code>, etc. pasados previamente a <code>bind</code>.</p>
                 </section>
 
