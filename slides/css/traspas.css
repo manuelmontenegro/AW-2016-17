@@ -50,7 +50,7 @@ td.http_code {
 }
 
 .arrow_box_left:after {
-	right: 100%;
+	right: 99%;
 	top: 50%;
 	border: solid transparent;
 	content: " ";
@@ -150,4 +150,17 @@ th.noborder code.black {
     color: black;
     background: white;
     font-weight: normal;
+}
+
+.bloquetitulo {
+    background-color: #B71234;
+    color: white;
+}
+
+.bloquetitulo h3 {
+    color: white;
+}
+
+.bloquetitulo .titulo_rareza {
+    font-size: 150%;
 }
