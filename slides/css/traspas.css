@@ -164,3 +164,9 @@ th.noborder code.black {
 .bloquetitulo .titulo_rareza {
     font-size: 150%;
 }
+
+span.hl {
+    background-color: lightgoldenrodyellow;
+    padding: 0px 3px;
+    border-radius: 5px;
+}

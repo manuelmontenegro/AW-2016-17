@@ -189,9 +189,9 @@ node planets.js
             <section>
               <h3>¿<code style="text-transform:none">"use strict"</code>?</h3>
               <p>Javascript es un lenguaje muy flexible.</p>
-              <p>...pero esto conlleva una gran responsabilidad.</p>
-              <p>Javascript tiene algunas características que hacen que el lenguaje sea, a veces, <strong>demasiado permisivo</strong>.</p>
-              <p>Esto hacía que programar en Javascript fuese una tarea propensa a errores.</p>
+              <p class="fragment">...pero esto conlleva una gran responsabilidad.</p>
+              <p class="fragment">Javascript tiene algunas características que hacen que el lenguaje sea, a veces, <strong>demasiado permisivo</strong>.</p>
+              <p class="fragment">Esto hacía que programar en Javascript fuese una tarea propensa a errores.</p>
             </section>
 
             <section>
@@ -200,7 +200,7 @@ node planets.js
               <p>Este modo hace que el compilador detecte y prohíba el uso de características demasiado permisivas del lenguaje:</p>
               <ul>
                 <li>Utilizar variables sin declararlas.</li>
-                <li>Borrar una variable mediante <code>delete</code></li>
+                <li>Borrar una variable mediante <code>delete</code>.</li>
                 <li>Duplicidades en nombres de atributos y parámetros.</li>
                 <li>Estructuras poco recomendables: <code>with</code>.</li>
               </ul>
@@ -237,7 +237,7 @@ node planets.js
                     <li class="fragment">Declaraciones de variables y asignaciones:
                         <pre><code data-trim class="javascript">
 var x = 3;
-var y = y + 1;
+y = y + 1;
 y += 3;
                     </code></pre>
                     </li>
@@ -455,7 +455,7 @@ str.startsWith("Est");
                         A nivel de bit:
                         <code>&amp;</code>, <code>|</code>, <code>^</code>,
                         <code>&gt;&gt;</code>, <code>&lt;&lt;</code>,
-                        <code>&lt;&lt;&lt;</code>
+                        <code>&gt;&gt;&gt;</code>
                     </li>
 
                 </ul>
@@ -744,6 +744,7 @@ console.log(x); // &rarr; null
                     <p>Se devuelve como resultado de operaciones aritméticas incorrectas:</p>
                     <pre><code data-trim class="javascript">
 Math.log(-2)    // &rarr; NaN
+parseInt("x2d") // &rarr; NaN
                     </code></pre>
                     <div class="fragment">
                         <h4>Los valores infinitos</h4>
@@ -1186,7 +1187,7 @@ Aplicar función 3 pasando 5: 120</pre>
 
                 <section>
                     <p>De igual modo, se puede devolver una función como resultado:</p>
-                    <pre><code data-trim class="javascript">
+                    <pre><code data-trim data-noescape class="javascript">
 function buscar_por_nombre(nombre) {
     switch(nombre) {
         case "INC": return incrementar;
@@ -1194,8 +1195,8 @@ function buscar_por_nombre(nombre) {
         case "SQR": return cuadrado;
         case "FCT": return factorial;
     }
-    // Si la función termina sin alcanzar un return,
-    // se considera que devuelve undefined
+    <span class="fragment">// Si la función termina sin alcanzar un return,
+    // se considera que devuelve undefined</span>
 }
                     </code></pre>
                     <div class="fragment">
@@ -1486,7 +1487,8 @@ x.direccion = "Calle Bautista, 25";
 y.nombre = "Javier";
 
 console.log(x);
- // { nombre: 'Ana Josefa', apellidos: 'Gamboa Esteban', edad: 55 }
+ // { nombre: 'Ana Josefa', apellidos: 'Gamboa Esteban', edad: 55,
+ //   direccion: "Calle Bautista, 25" }
 console.log(y);
  // { nombre: 'Javier' }
                     </code></pre>

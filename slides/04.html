@@ -1,0 +1,837 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tema 4 - Node.js</title>
+
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/aw.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/magula.css">
+
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <link rel="stylesheet" href="css/traspas.css" />
+</head>
+
+<body>
+    <svg width="0" height="0" style="float:left">
+        <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth" style="display:float">
+                <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+            </marker>
+        </defs>
+    </svg>
+    <div class="reveal">
+        <div class="slides">
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="fade">
+                <div class="headerlesson">Tema 4</div>
+                <h1 style="height:3em;position:relative;top:0.3em">Javascript en el servidor: Node.js</h1>
+                <div class="headerlesson">
+                    Aplicaciones Web - GIS - Curso 2016/17
+                </div>
+                <div class="author">
+                    <span class="myname">Manuel Montenegro</span> [<a href="mailto:montenegro@fdi.ucm.es" style="color:white">montenegro@fdi.ucm.es</a>]
+                    <br/> Dpto de Sistemas Informáticos y Computación
+                    <br/> Facultad de Informática
+                    <br/> Universidad Complutense de Madrid
+                </div>
+                <div class="cc">
+                    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+                    <br/> Esta obra está bajo una
+                    <br/><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="color:white">Licencia CC BY-NC-SA 4.0 Internacional</a>.
+                </div>
+                <div style="clear:left;font-size:15px"></div>
+            </section>
+
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="fade" id="p1">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline fragment highlight-orange">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Javascript es como Java...</a></li>
+                    <li><a href="#/p3" class="outline">...pero no es como Java</a></li>
+                    <li><a href="#/p4" class="outline">Clases estándar</a></li>
+                    <li><a href="#/p5" class="outline">Herramientas</a></li>
+                    <li><a href="#/p6" class="outline">ECMAscript 6</a></li>
+                    <li><a href="#/p7" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Módulos en Node</h2>
+                <p>Además de poder dividir el código en fragmentos, favorecen la reutilización de código.</p>
+                <p>Un buen sistema de módulos debe proporcionar:</p>
+                <ul>
+                    <li>Algún mecanismo para <strong>evitar conflictos de nombres</strong> entre distintos módulos.
+                        <p style="color:#009893">Ejemplo: Espacios de nombres (C++), paquetes (Java), etc.</p>
+                    </li>
+                    <li>
+                        Mecanismos para <strong>separar interfaz de implementación</strong>.
+                        <p style="color:#009893">Ejemplo: listas de funciones exportadas (Haskell), privacidad de atributos (Java, C++, etc).</p>
+                    </li>
+                </ul>
+                
+            </section>
+            
+            <section>
+                <h3>Tipos de módulos</h3>
+                <ol>
+                    <li>Módulos <strong>basados en ficheros</strong>.<br>
+                        Están contenidos en un único fichero. Se importan por separado en el proyecto.
+                    </li>
+                    <li>Módulos <strong>core</strong>.<br>
+                        Vienen incluidos con Node. Proporcionan operaciones básicas (ficheros, servidores web, sistema operativo).
+                    </li>
+                    <li>Módulos de tipo <strong>paquete</strong>.<br>
+                        Librerías externas, gestionadas por <em>npm</em>.
+                    </li>
+                    
+                </ol>
+                
+            </section>
+            
+            <section>
+                <h3>Crear un módulo de fichero con una única función</h3>
+                <p>Se crea un fichero Javascript con la función a definir y ésta se asigna a la variable <code>module.exports</code>:</p>
+                <pre><code data-trim data-noescape class="javascript">
+function fibAux(n) {
+    if (n === 0) {
+        return 0;
+    } else if (n === 1) {
+        return 1;
+    } else {
+        return fib(n-1) + fib(n-2);
+    }
+}
+
+function fib(n) {
+    console.assert(typeof(n) === "number", `${n} is not a number`);
+    return fibAux(n);
+}
+
+<span class="hl">module.exports = fib;</span>
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Suponemos que el código anterior está contenido en un fichero <code>moduloFib.hs</code>.</p>
+                <p>Ahora hacemos uso de la función <code>fib</code> desde otro fichero:</p>
+                <pre><code data-trim data-noescape class="javascript">
+// testModules.js
+// --------------
+
+var fib = require("./moduloFib.js");
+
+console.log(fib(10));                
+                </code></pre>
+                <p>Imprime:</p>
+                <pre>55</pre>
+            </section>
+            
+            <section>
+                <div style="background-color:#B0F0B0; padding:10px 10px 25px  15px">
+                    <p>La función <code>require</code>:</p>
+                    <ol>
+                        <li>Ejecuta el script contenido en el fichero pasado como parámetro.</li>
+                        <li>Devuelve el objeto asignado a <code>module.exports</code> (en este caso, la función <code>fib</code>)</li>
+                    </ol>
+                </div>
+            </section>
+            
+            <section>
+                <p>El objeto devuelto por <code>require</code> se guarda en una variable que no tiene por qué ser igual que el nombre de la función exportada.</p>
+                <pre><code data-trim data-noescape class="javascript">
+var <span class="hl">myFib</span> = require("./moduloFib.js");
+
+console.log(<span class="hl">myFib</span>(10));                
+                </code></pre>
+                <p>Esto es útil para prevenir conflictos de nombres entre los distintos módulos. Supongamos otro módulo <code>otroModuloFib.hs</code> que también exporta una función <code>fib</code>:</p>
+                <pre><code data-trim data-noescape class="javascript">
+var <span class="hl">myFib</span> = require("./moduloFib.js");
+var <span class="hl">otroFib</span> = require("./otroModuloFib.js");
+
+console.log(myFib(10));
+console.log(otroFib(10));
+                </code></pre>
+                
+            </section>
+            
+            <section>
+                <h3>Exportar más de una función</h3>
+                <p>
+                    Hasta ahora hemos asignado una función a la variable <code>module.exports</code>.
+                </p>
+                <p>Pero puede asignarse cualquier otro tipo de valor: enteros, arrays, objetos, etc.</p>
+                <p>Lo más frecuente es querer exportar varias funciones en un módulo. Para ello se exporta un único <strong>objeto</strong> que contenga todas las funciones. </p>
+            </section>
+            
+            <section>
+                <p>Ejemplo: <code>geometria.js</code></p>
+                <pre><code data-trim class="javascript">
+function areaCuadrado(lado) {
+    return lado * lado;
+}
+
+function areaCirculo(radio) {
+    return Math.PI * radio * radio;
+}
+
+function perimetroCuadrado(lado) {
+    return 4 * lado;
+}
+
+function perimetroCirculo(radio) {
+    return 2 * Math.PI * radio;
+}
+
+module.exports = {
+    areaCuadrado: areaCuadrado,
+    areaCirculo: areaCirculo,
+    perimetroCuadrado: perimetroCuadrado,
+    perimetroCirculo: perimetroCirculo
+}                
+                </code></pre>
+            </section>
+            
+            <section>
+                <pre><code data-trim class="javascript">
+...
+module.exports = {
+    areaCuadrado: areaCuadrado,
+    areaCirculo: areaCirculo,
+    perimetroCuadrado: perimetroCuadrado,
+    perimetroCirculo: perimetroCirculo
+}                
+                </code></pre>
+                <p>El objeto exportado contiene cuatro atributos, cada uno asociado a su función correspondiente.</p>
+                <p>Los nombres de estos atributos serán los que se utilicen cuando se haga uso de este módulo.</p>
+            </section>
+            
+            <section>
+                <p>Ejemplo de uso:</p>
+                <pre><code data-trim data-noescape class="javascript">
+var <span class="hl">geometria</span> = require("./geometria.js");
+
+console.log(<span class="hl">geometria</span>.areaCuadrado(10));
+console.log(<span class="hl">geometria</span>.areaCirculo(10));                
+                </code></pre>
+                
+                <p>De nuevo, el nombre de la variable devuelta por el <code>require</code> puede ser cualquiera:</p>
+                <pre><code data-trim data-noescape class="javascript">
+var <span class="hl">g</span> = require("./geometria.js");
+
+console.log(<span class="hl">g</span>.areaCuadrado(10));
+console.log(<span class="hl">g</span>.areaCirculo(10));             
+                </code></pre>
+            <p>Aunque por convenio suele utilizarse el mismo nombre para la variable y el módulo (es decir, <code>geometria</code>)</p>
+            </section>
+            
+            <section>
+                <p>Otra posible forma de definir un módulo: definir las funciones en el objeto asignado a <code>module.exports</code>.</p>
+                <pre><code data-trim class="javascript">
+module.exports = {
+    areaCuadrado: function(lado) {
+        return lado * lado;
+    },
+
+    areaCirculo: function(radio) {
+        return Math.PI * radio * radio;
+    },
+
+    perimetroCuadrado: function(lado) {
+        return 4 * lado;
+    },
+    
+    perimetroCirculo: function(radio) {
+        return 2 * Math.PI * radio;
+    }
+}                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Otra forma más:</p>
+                <pre><code data-trim class="javascript">
+module.exports.areaCuadrado = function(lado) {
+    return lado * lado;
+};
+
+module.exports.areaCirculo = function(radio) {
+    return Math.PI * radio * radio;
+};
+
+module.exports.perimetroCuadrado = function(lado) {
+    return 4 * lado;
+};
+
+module.exports.perimetroCirculo = function(radio) {
+    return 2 * Math.PI * radio;
+};                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Lo que no se exporte dentro de un módulo se considera privado al mismo. Esto nos permite modificar la implementación sin alterar la interfaz.</p>
+                <pre><code data-trim class="javascript">
+// moduloFib.js
+// ------------
+
+var PHI = (1 + Math.sqrt(5)) / 2;
+
+// Cambio la función fibAux por esta:
+function fibMasEficiente(n) {
+    var p1 = Math.pow(PHI, n);
+    var p2 = Math.pow(1 - PHI, n);
+    return Math.round((p1 - p2) / Math.sqrt(5));
+}
+
+function fib(n) {
+    console.assert(typeof(n) === "number",
+        `fib: ${n} is not a number`);
+    return fibMasEficiente(n);
+}
+
+module.exports = fib;                
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>Importante</h3>
+                <p>A la hora de importar un módulo de tipo fichero mediante <code>require</code>, es necesario indicar el <strong>path</strong> del fichero que se importa,  <strong>aunque se encuentre en el mismo directorio</strong>.</p>
+                <pre><code data-trim data-noescape class="javascript">
+// Correcto:
+var geometria = require("<span class="hl">./</span>geometria.js");
+
+// Correcto:
+var geometria = require("<span class="hl">./aw/librerias/</span>geometria.js");
+
+// Correcto:
+var geometria = require("<span class="hl">../</span>geometria.js");
+
+// Incorrecto:
+var geometria = require("<span class="hl" style="background-color:#FBB">geometria.js</span>");
+                </code></pre>
+                
+                <p>No obstante, puede omitirse la extensión <code>.js</code></p>
+                <pre><code data-trim class="javascript">
+// Correcto:
+var geometria = require("./geometria");
+                </code></pre>
+            </section>
+            
+            <section>
+                <pre><code data-trim data-noescape class="javascript">
+// Incorrecto:
+var geometria = require("<span class="hl" style="background-color:#FBB">geometria.js</span>");                
+                </code></pre>
+                <p>Si no se especifica un <em>path</em>, Node entiende que se quiere importar un módulo de otro tipo:</p>
+                <ul>
+                    <li>Módulo core.</li>
+                    <li>Módulo de tipo paquete.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h3>Sentencias en un módulo</h3>
+                <p>Además de declaraciones de funciones, un módulo puede contener cualquier tipo de sentencia. Estas sentencias serán ejecutadas al cargar el módulo.</p>
+                <pre><code data-trim data-noescape class="javascript">
+<span class="hl">console.log("Cargando módulo " + module.filename);</span>
+
+function areaCuadrado(lado) { ... }
+
+function areaCirculo(radio) { ... }
+
+function perimetroCuadrado(lado) { ... }
+
+function perimetroCirculo(radio) { ... }
+
+module.exports = {
+    areaCuadrado: areaCuadrado,
+    areaCirculo: areaCirculo,
+    perimetroCuadrado: perimetroCuadrado,
+    perimetroCirculo: perimetroCirculo
+}                
+                </code></pre>
+            </section>
+            
+            
+            <section>
+                <h3>El objeto <code style="text-transform:none">module</code></h4>
+                <p>Contiene información sobre el módulo que se está ejecutando actualmente <a href="https://nodejs.org/api/modules.html#modules_the_module_object">[+]</a></p>
+                
+                <p>La variable especial <code>require.main</code> contiene el nombre del módulo que se ha cargado desde el intéprete de línea de comandos.</p>
+                <p>Esto nos permite saber si un módulo está siendo ejecutado directamente por Node, o si está siendo importado desde otro módulo.</p>
+            </section>
+            
+            <section>
+                <p>Ejemplo: <code>moduloFib.js</code></p>
+                <pre><code data-trim class="javascript">
+// ...
+function fib(n) {
+    // ...
+}
+
+module.exports = fib;
+
+if (require.main === module) {
+    console.log("Sucesión de Fibonacci");
+    for (var i = 0; i &lt; 10; i++) {
+        console.log(`fib(i) = ${fib(i)}`);
+    }
+}                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Al ejecutarlo desde la línea de comandos:</p>
+                <pre><code data-trim data-noescape class="no-highlight">
+# <span class="hl">node moduloFib.js</span>
+Sucesión de Fibonacci
+fib(i) = 0
+fib(i) = 1
+fib(i) = 1
+fib(i) = 2
+fib(i) = 3
+fib(i) = 5
+fib(i) = 8
+fib(i) = 13
+fib(i) = 21
+fib(i) = 34
+                </code></pre>
+                
+                <p>Al importarlo desde otro módulo:</p>
+                <pre><code data-trim class="javascript">
+var fib = require("./moduloFib"); // No imprime nada
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>Los módulos se &laquo;cachean&raquo;</h3>
+                <p>Cuando un módulo se importa varias veces mediante <code>require</code> a lo largo de la ejecución de un programa, el módulo cargado solo se ejecuta la primera vez.</p>
+                <p>El resto de veces, <code>require</code> no vuelve a ejecutar el módulo. Se limita devuelve el contenido del <code>module.exports</code> que se definió en el módulo la primera vez que se cargó.</p>
+                <p>En el ejemplo <code>geometria.js</code>:</p>
+                <pre><code data-trim class="javascript">
+var g1 = require("./geometria");
+// Imprime: "Cargando módulo geometría.js"
+
+...
+var g2 = require("./geometria");
+// No se imprime nada, porque el módulo ha sido cargado
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>¡Cuidado con las variables globales en el módulo!</p>
+                <pre><code data-trim class="javascript">
+// bd.js
+// -----
+var bd = {
+    "50382322X" : { nombre: "Francisco Martín", 
+                    fecha: new Date(1978, 04, 04) },
+    "46854322V" : { nombre: "Estela Lucas",
+                    fecha: new Date(1979, 03, 15) }
+};
+
+function obtenerPersona(dni) { return bd[dni]; }
+
+function numeroPersonas() {
+    return Object.getOwnPropertyNames(bd).length;
+}
+
+function añadirPersona(dni, nomb, fechaNac) {
+    bd[dni] = { nombre: nomb, fecha: fechaNac };
+}
+
+module.exports = {
+    obtenerPersona: obtenerPersona,
+    numeroPersonas: numeroPersonas,
+    añadirPersona: añadirPersona
+};
+                </code></pre>
+                
+            </section>
+            
+            <section>
+                <pre><code data-trim class="javascript">
+// En un punto del programa:
+
+var bd1 = require("./bd");
+bd1.añadirPersona("11111111V", "Fátima", new Date());
+console.log(bd1.numeroPersonas());  // &rarr; 3
+
+// ...
+
+// En otro punto del programa:
+
+var bd2 = require("./bd");
+console.log(bd2.numeroPersonas());  // &rarr; 3   
+                </code></pre>
+                
+                <p>Tanto <code>bd1</code> como <code>bd2</code> hacen referencia a la misma base de datos, ya que al hacer <code>require</code> por segunda vez se reutiliza el mismo módulo que se cargó la primera vez.</p>
+            </section>
+            
+            <section>
+                <h3>Módulos Core</h3>
+                <p>Forman parte de la distribución de Node.</p>
+                <p>También se importan mediante <code>require</code>, pero sin indicar un path relativo.</p>
+                <pre><code data-trim class="javascript">
+var os = require("os");
+console.log(`Nombre del host: ${os.hostname()}`);
+console.log(`Directorio personal: ${os.homedir()}`);
+
+var util = require("util");
+var mensaje = util.format("Tienes %d años", 45);
+                </code></pre>
+                <p>Nombres de módulos core: <code>os</code>, <code>fs</code>, <code>path</code>, <code>http</code>, <code>util</code>, etc.</p>
+            </section>
+            
+            <section>
+                <h3>Módulos de tipo paquete</h3>
+                <p>Son módulos pensados para ser reutilizados e incorporados a otros proyectos.</p>
+                <p>Están contenidos en una carpeta llamada <code>node_modules</code>.</p>
+                <p>Se importan con <code>require</code> y, al igual que los módulos core, no se indica el path relativo.</p>
+            </section>
+            
+            <section>
+                <h3>Búsqueda de un módulo de tipo paquete</h3>
+                <pre><code data-trim class="javascript">
+var foo = require("foo");
+                </code></pre>
+                <p>Se busca <code>foo</code> en los siguientes directorios:</p>
+                <ul>
+                    <li><code>node_modules/foo.js</code></li>
+                    <li><code>../node_modules/foo.js</code></li>
+                    <li><code>../../node_modules/foo.js</code></li>
+                    <li><code>../../../node_modules/foo.js</code></li>
+                    <li>y así sucesivamente, hasta llegar al directorio raíz</li>
+                </ul>
+            </section>
+            
+            <section>
+                <p>Por ejemplo, supongamos que en el fichero <code>/home/manuel/aw/ejemplo.js</code><br>buscamos el siguiente paquete:</p>
+                <pre><code data-trim class="javascript">
+var mimodulo = require("mimodulo");
+                </code></pre>
+                <p>Se buscará en los siguientes directorios:</p>
+                <ul>
+                    <li><code>/home/manuel/aw/node_modules/mimodulo.js</code></li>
+                    <li><code>/home/manuel/node_modules/mimodulo.js</code></li>
+                    <li><code>/home/node_modules/mimodulo.js</code></li>
+                    <li><code>/node_modules/mimodulo.js</code></li>
+                </ul>
+            </section>
+            
+            <section>
+                <h3>Paquetes con varios módulos</h3>
+                <p>Un paquete puede contener más de un fichero <code>.js</code></p>
+                <p>En este caso han de agruparse todos los <code>.js</code> en la misma carpeta, y guardar en esta carpeta un módulo <code>index.js</code> que exporte las funciones necesarias de cada uno de los módulos del paquete.</p>
+                <p>Para importar este paquete mediante <code>require</code> se debe indicar el nombre de la carpeta.</p>
+            </section>
+            
+            <section>
+                <p>Partimos de esta estructura de directorios:</p>
+                <p><img src="images/04/FolderStructure.svg" style="border:none;width:30%;box-shadow:none"></p>
+            </section>
+
+            <section>
+                <p style="float:left;width:30%"><img src="images/04/FolderStructure.svg" style="border:none;width:100%;box-shadow:none"></p>
+                <div style="width:70%;float:right;">
+                    <p><code>fib.js</code></p>
+                    <pre><code data-trim class="javascript">
+"use strict";
+
+function fib(n) { ... }
+
+module.exports = fib;                    
+                    </code></pre>
+                    <p><code>fact.js</code></p>
+                    <pre><code data-trim class="javascript">
+"use strict";
+
+function fact(n) { ... }
+
+module.exports = fact;
+                    </code></pre>
+                </div>
+                <div style="clear:both"></div>
+                
+            </section>
+            
+            <section>
+                <p style="float:left;width:30%"><img src="images/04/FolderStructure.svg" style="border:none;width:100%;box-shadow:none"></p>
+                <div style="width:70%;float:right;">
+                    <p><code>index.js</code></p>
+                    <pre><code data-trim class="javascript">
+"use strict";
+
+module.exports = {
+    fib: require("./fib"),
+    fact: require("./fact")
+}
+                    </code></pre>
+                </div>
+                <div style="clear:both"></div>
+                
+            </section>
+
+            <section>
+                <p style="float:left;width:30%"><img src="images/04/FolderStructure.svg" style="border:none;width:100%;box-shadow:none"></p>
+                <div style="width:70%;float:right;">
+                    <p><code>ejemplo.js</code></p>
+                    <pre><code data-trim data-noescape class="javascript">
+"use strict";
+
+<span class="hl">var math = require("math");</span>
+
+console.log(`fib(6) = ${math.fib(6)}`);
+console.log(`fact(6) = ${math.fact(6)}`);                    </code></pre>
+                </div>
+                <p style="clear:both">Resultado:</p>
+                <pre><code data-trim data-noescape class="no-highlight">
+$ <span class="hl">node ejemplo.js</span>
+fib(6) = 8
+fact(6) = 720
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>Aplicaciones del sistema de paquetes</h3>
+                <p>
+                    Compartición de paquetes entre proyectos:
+                </p>
+                <img src="images/04/Subproyectos.svg" style="width:70%; border:none; box-shadow:none">
+            </section>
+            
+            <section>
+                <p>Convivencia de distintas versiones de un mismo paquete:</p>
+                <img src="images/04/VersionesPaquete.svg" style="width:55%; border:none; box-shadow:none">                
+            </section>
+            
+            <section>
+                <h3>Árbol de dependencias</h3>
+                <p>A menudo, la implementación de un proyecto Node requiere la instalación de unos determinados paquetes.</p>
+                <p>Cada uno de estos últimos pueden requerir la instalación de otros paquetes que, a su vez, requieren de otros paquetes.</p>
+                <p>Cuando la presencia del paquete X es un requisito para el funcionamiento del paquete Y, decimos que <strong>Y depende de X</strong>.</p>
+                <p>La relación de dependencia entre paquetes es transitiva, de modo que se tiene un <strong>árbol de dependencias</strong>.</p>
+            </section>
+            
+            <section>
+                <h4>Ejemplo</h4>
+                <img src="images/04/Depende.svg" style="width:90%;border:none;box-shadow:none">
+            </section>
+            
+            <section>
+                <h3>Instalar dependencias con <code>npm</code></h3>
+                <p>La herramienta <code>npm</code> permite gestionar las dependencias de un proyecto. De hecho, <code>npm</code> fue inicialmente concebido como un instalador de paquetes.</p>
+                <p>Esta herramienta puede descargar paquetes desde un depósito de paquetes, e incorporarlos en nuestro proyecto. <a href="">http://foo.com</a></p>
+            </section>
+            
+            <section>
+                <p>Para descargar e instalar un paquete en un proyecto, ejecutar lo siguiente desde el directorio raíz del mismo.</p>
+                <pre><code data-trim data-noescape class="no-highlight">
+# npm install <em>nombre_paquete</em> 
+                </code></pre>
+                <p>Por ejemplo, para incorporar el paquete <code>underscore</code> en nuestro proyecto:</p>
+                <pre><code data-trim class="no-highlight">
+# npm install underscore
+                </code></pre>
+                <p>Descargará la versión más reciente del paquete desde el depósito <code>npm</code> y lo instalará bajo la carpeta <code>node_modules</code> del proyecto (creándola si es necesario)</p>
+            </section>
+
+            <section>
+                <p>El comando <code>npm install</code> no solo instala el paquete especificado, sino también sus dependencias.</p>
+                <p>Por ejemplo al instalar <code>express</code>:</p>
+                <pre><code data-trim data-noescape class="no-highlight">
+# npm install express
+                </code></pre>
+                <p>Se instala el paquete <code>express</code> y todo su árbol de dependencias bajo la carpeta <code>node_modules</code>:</p>
+                <pre><code data-trim class="no-highlight" style="background:#F0F0F0;color:blue">
+node_modules
+├── express
+├── accepts
+├── array-flatten
+├── content-disposition
+├── content-type
+├── cookie
+...                
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>Incluir dependencias en <code>package.json</code></h4>
+                <p>El fichero <code>package.json</code> de un proyecto permite especificar las dependencias del mismo mediante la propiedad <code>dependencies</code>:</p>
+                <pre><code data-trim data-noescape class="json">
+{
+  "name": "mi_proyecto",
+  "version": "1.0.0",
+  "description": "Prueba de uso de paquetes",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Manuel Montenegro",
+  "license": "ISC",
+  "dependencies": {
+    <span class="hl">"underscore": "^1.8.3"</span>,
+    <span class="hl">"express": "^4.14.0"</span>
+  },
+  "private": true
+}                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Por defecto, <code>npm</code> no modifica el fichero <code>package.json</code> tras añadir un paquete a nuestro proyecto.</p>
+                <p>No obstante, al instalar un paquete podemos indicar a <code>npm</code> que añada la dependencia correspondiente a <code>package.json</code>. Esto se hace mediante la opción <code>--save</code>.</p>
+                <pre><code data-trim class="no-highlight">
+# npm install underscore --save
+# npm install express --save
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>Instalación global de paquetes</h4>
+                <p>Es posible instalar los paquetes en el directorio de Node, en lugar del directorio del proyecto. Los paquetes instalados allí estarán disponibles para todos los proyectos.</p>
+                <p>Esto resulta útil cuando un paquete incorpora ficheros ejecutables para ser utilizados en cualquier proyecto del sistema (<code>grunt</code>, <code>jshint</code>, etc.)</p>
+                <p>Los paquetes globales se instalan en <code>${prefix}/lib/node_modules</code>, donde <code>${prefix}</code> representa el directorio de instalación de Node. La instalación puede requerir <strong>derechos de administrador</strong>.</p>
+            </section>
+            
+            <section>
+                <p>Para instalar un paquete de manera global, se ha de especificar la opción <code>-g</code> a <code>npm</code>.</p>
+                <p>Por ejemplo:</p>
+                <pre><code data-trim class="no-highlight">
+# npm install -g jshint                
+                </code></pre>
+                <p>Además del paquete correspondiente, instalará el ejecutable <code>jshint</code> en la carpeta <code>${prefix}/bin</code>.</p>
+            </section>
+            
+            <section>
+                <h3>Distribución de un proyecto</h3>
+                <p>
+                    Cuando se quiere distribuir un proyecto o publicar en un repositorio (p.ej. <em>GitHub</em>), <strong>no es necesario</strong> incluir las dependencias obtenidas mediante <code>npm</code>.
+                </p>
+                <p>
+                    Basta con indicar las dependencias en el <code>package.json</code>, y distribuir este último junto con el proyecto.
+                </p>
+                <p>Mediante el comando:</p>
+                <pre><code data-trim class="no-highlight">
+# npm install
+                </code></pre>
+                <p>se reconstruirá la carpeta <code>node_modules</code> a partir de la información contenida en <code>package.json</code>, descargando los paquetes que sean necesarios.</p>
+            </section>
+            
+            <section>
+                <h3>Otras opciones de <code>npm</code></h3>
+                <ul>
+                    <li>
+                        <code>npm ls</code><br>
+                        Muestra el árbol de dependencias del proyecto actual.
+                    </li>
+                    <li>
+                        <code>npm search <em>term</em></code><br>
+                        Busca los paquetes del repositorio <em>node</em> cuyo nombre contenga <code>term</code>.
+                    </li>
+                    <li>
+                        <code>npm update <em>nombre_paquete</em></code><br>
+                        Actualiza un paquete a la útima versión disponible.
+                    </li>
+                    <li>
+                        <code>npm dedupe</code><br>
+                        Reorganiza la carpeta <code>node_modules</code> para evitar duplicidades.
+                    </li>
+                    <li>
+                        <code>npm publish</code><br>
+                        Sube el proyecto actual al <em>npm registy</em>.
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h4>Ejemplo: listar árbol de dependencias</h4>
+                <pre><code data-trim data-noescape class="no-highlight">
+# <span class="hl">npm ls</span>
+mimodulo@1.0.0
+├─┬ express@4.14.0
+│ ├─┬ accepts@1.3.3
+│ │ ├─┬ mime-types@2.1.12
+│ │ │ └── mime-db@1.24.0
+│ │ └── negotiator@0.6.1
+│ ├── array-flatten@1.1.1
+│ ├── content-disposition@0.5.1
+│ ├── content-type@1.0.2
+│ ├── cookie@0.3.1
+│ ├── cookie-signature@1.0.6
+│ ├─┬ debug@2.2.0
+│ │ └── ms@0.7.1
+│ ├── depd@1.1.0
+│ ├── encodeurl@1.0.1
+│ ├── escape-html@1.0.3
+│ ...
+└── underscore@1.8.3
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>Números de versión</h3>
+                <p>Los paquetes y programas escritos en <em>Node</em> utilizan el convenio <em>semantic versioning</em> para numerar las versiones.</p>
+                <p>Más información: <a href="http://semver.org/">http://semver.org/</a></p>
+                <p>Una versión se identifica mediante tres números:</p>
+                <img src="images/04/Versiones.svg" style="width:80%;border:none;box-shadow:none">
+            </section>
+            
+            <section>
+                <img src="images/04/Versiones.svg" style="width:3en cualquier 0%;border:none;box-shadow:none">
+                <p>Al liberar una nueva versión:</p>
+                <ul>
+                    <li><strong>MAJOR</strong>: Se aumenta si los cambios introducidos rompen la compatibilidad con versiones anteriores.</li>
+                    <li><strong>MINOR</strong>: Se aumenta si los cambios introducidos no rompen la compatibilidad con versiones anteriores, pero añaden nueva funcionalidad.</li>
+                    <li><strong>PATCH</strong>: Se aumenta si no hay funcionalidad nueva, pero sí correcciones de <em>bugs</em>.</li>
+                </ul>
+                <p>Excepción: versiones 0.x.x, cuya API es inestable.</p>
+                
+            </section>
+        
+        </div>
+
+    </div>
+
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            history: true,
+
+            // More info https://github.com/hakimel/reveal.js#dependencies
+            dependencies: [{
+                src: 'plugin/markdown/marked.js'
+            }, {
+                src: 'plugin/markdown/markdown.js'
+            }, {
+                src: 'plugin/notes/notes.js',
+                async: true
+            }, {
+                src: 'plugin/highlight/highlight.js',
+                async: true,
+                callback: function() {
+                    hljs.initHighlightingOnLoad();
+                }
+            }]
+        });
+    </script>
+</body>
+
+</html>
