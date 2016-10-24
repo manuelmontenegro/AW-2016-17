@@ -3125,7 +3125,8 @@ complex_lint.js is OK.
                 <p>Existen herramientas de depuración incorporadas, tanto en el entorno del cliente como en el del servidor.</p>
                 <ul>
                     <li><strong>Lado del servidor</strong> (Node)
-                        <br> La depuración se realiza mediante un <em>shell</em> lanzado desde la línea de comandos.
+                        <br> La depuración se realiza mediante un <em>shell</em> lanzado desde la línea de comandos, o bien con  <em>node-inspector</em>, que proporciona una interfaz gráfica:<br> <a href="https://www.npmjs.com/package/node-inspector">https://www.npmjs.com/package/node-inspector</a>
+                        
                     </li>
                     <li><strong>Lado del cliente</strong> (Navegador)
                         <br> Las herramientas para desarrolladores integradas en Firefox y Chrome proporcionan un depurador.
@@ -3196,6 +3197,24 @@ node debug sum_squares.js
             <section>
                 <h4>Depuración con Node</h4>
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/tckK4F38FaU" frameborder="0" allowfullscreen></iframe>
+            </section>
+            
+            <section>
+                <h4>Depuración con Node-inspector</h4>
+                Requiere instalación previa mediante la herramienta <code>npm</code>, distribuida junto con Node (ver Tema 4).
+                <pre><code data-trim class="no-highlight">
+npm install -g node-inspector
+                </code></pre>
+                Tras la instalación ejecutar:
+                <pre><code data-trim data-noescape class="no-highlight">
+node-debug <em>fichero.js</em>
+                </code></pre>
+                y se abrirá un navegador con una interfaz gráfica de depuración.
+            </section>
+            
+            <section>
+                <p>Ejemplo:</p>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/CGGBUdnM3G0" frameborder="0" allowfullscreen></iframe>
             </section>
 
             <section>
