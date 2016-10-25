@@ -69,6 +69,254 @@
             </section>
 
             <section>
+                <h2>Introducción</h2>
+                <p>Node.js (o simplemente Node) es un entorno de ejecución que permite ejecutar programas <strong>Javascript</strong>.</p>
+                <p><a href="https://nodejs.org/">https://nodejs.org/</a></p>
+                <p>Principalmente dirigido a servidores web, pero puede utilizarse para implementar cualquier tipo de aplicación.</p>
+                <p>En este curso utilizaremos Node para implementar la funcionalidad del <strong>lado del servidor</strong> en las aplicaciones web.</p>
+                <p>Se distribuye bajo una <a href="https://es.wikipedia.org/wiki/Licencia_MIT">licencia MIT</a>.</p>
+            </section>
+            
+            <section>
+                <h3>Versiones</h3>
+                <ul>
+                    <li><strong>v4.6.1 LTS</strong>, que utilizaremos en este curso.</li>
+                    <li><strong>v6.9.1 LTS</strong>, que pasó a ser LTS en octubre de 2016.</li>
+                </ul>
+                <p>LTS = <em>Long Term Support</em></p>
+                <p>Las versiones LTS tienen suporte garantizado durante 18 meses a partir del momento en el que se convierten en LTS.</p>
+                <p>Las versiones 6.x.x rompen la compatibilidad con las 4.x.x. Algunos programas escritos en Node 4 pueden requerir modificaciones para ejecutarse bajo Node 6.</p>
+            </section>
+            
+            <section>
+                <h3>Instalación</h3>
+                <p>Puede descargarse desde:</p>
+                <p><a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></p>
+                <p>En las versiones para Windows y Mac incluye un instalador.</p>
+                <p>Desde GNU/Linux se puede:</p>
+                <ul>
+                    <li>Descargar los binarios desde la página anterior.</li>
+                    <li>Utilizar el gestor de paquetes de la distribución.</li>
+                    <li>Utilizar <strong>nvm</strong> (<a href="http://nvm.sh">http://nvm.sh</a>), que permite mantener varias versiones de Node en un mismo sistema.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h3>Ejecución de un script</h3>
+                <p>Basta con teclear:</p>
+                <pre><code data-trim data-noescape class="no-highlight">
+# node <em>nombre_script.js</em>
+                </code></pre>
+                <p>Si se desea ejecutar el intérprete (REPL):</p>
+                <pre><code data-trim data-noescape class="no-highlight">
+# node
+                </code></pre>
+                <p>REPL = <em>Read-Eval-Print Loop</em></p>
+                <p>El intérprete permite evaluar las expresiones Node que se introduzcan por teclado.</p>
+            </section>
+            
+            <section>
+                <h4>Ejemplo de sesión con el intérprete</h4>
+                <pre><code data-trim data-noescape class="no-highlight">
+# <span class="hl">node</span>
+> <span style="color:#720">5 + 6</span>
+11
+> <span style="color:#720">var x = 4 + 5</span>
+undefined
+> <span style="color:#720">console.log("Hola");</span>
+Hola
+undefined
+> <span style="color:#720">x</span>
+9
+> <span style="color:#720">function suma(x,y) {</span>
+..... <span style="color:#720">return x + y;</span>
+..... <span style="color:#720">}</span>
+undefined
+> <span style="color:#720">suma(4, 5)</span>
+9
+> <span style="color:#720">.exit</span>
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>Comandos del intérprete</h4>
+                <ul>
+                    <li>
+                        <code>.exit</code><br>
+                        Sale del intérprete.
+                    </li>
+                    <li>
+                        <code>.load <em>script.js</em></code><br>
+                        Ejecuta las sentencias del fichero dado.
+                    </li>
+                    <li>
+                        <code>.save <em>script.js</em></code><br>
+                        Guarda todas las expresiones evaluadas en un fichero.
+                    </li>
+                    <li>
+                        <code>.break</code><br>
+                        Cancelar introducción de expresión actual. Útil cuando se queda algún paréntesis abierto en la entrada.
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h3>Proyectos Node</h3>
+                <p>
+                   La gestión de proyectos de cierta envergadura utilizando el ejecutable <code>node</code> resulta algo tediosa, porque involucra:
+                </p>
+                <ul>
+                    <li>Gestión de dependencias (librerías externas).</li>
+                    <li>Arranque y parada del sistema.</li>
+                    <li>etc.</li>
+                </ul>
+                <p>Podemos gestionar los proyectos:</p>
+                <ul>
+                    <li>Desde la línea de comandos: <code>npm</code>.</li>
+                    <li>Desde un IDE: <em>Netbeans</em>.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h3>NPM (Node Package Manager)</h3>
+                <p>
+                    Es una herramienta que se incluye con la distribución de Node. Permite:
+                </p>
+                <ul>
+                    <li>Crear proyectos vacíos.</li>
+                    <li>Gestionar las librerías de las que hace uso un proyecto, bajándoselas desde un repositorio oficial (<a href="https://registry.npmjs.org/">NPM Registry</a>).</li>
+                    <li>Gestionar <em>scripts</em>: arranque del sistema, parada, ejecución de tests, etc.</li>
+                </ul>
+                <p>
+                    Más información: <a href="https://www.npmjs.com/">https://www.npmjs.com/</a>
+                </p>
+            </section>
+            
+            <section>
+                <h3>Creación de un proyecto con <code>npm</code>:</h3>
+                <p>Ejecutar desde la línea de comandos:</p>
+                <pre><code data-trim class="no-highlight">
+# npm init
+                </code></pre>
+                <p>Se solicitará información sobre los datos del proyecto:</p>
+                <pre><code data-trim data-noescape class="no-highlight">
+...
+
+name: (project-test) <span class="hl" style="color:#20A">miproyecto</span>
+version: (1.0.0) <span class="hl" style="color:#20A">&#x21b2; (Pulsar intro)</span>
+description: <span class="hl" style="color:#20A">Esto es un proyecto de prueba</span>
+entry point: (index.js) <span class="hl" style="color:#20A">app.js</span>
+test command: <span class="hl" style="color:#20A">&#x21b2;</span>
+git repository: <span class="hl" style="color:#20A">&#x21b2;</span>
+keywords: <span class="hl" style="color:#20A">node proyecto aw prueba</span>
+author: <span class="hl" style="color:#20A">Manuel Montenegro</span>
+license: (ISC) <span class="hl" style="color:#20A">MIT</span>
+About to write to /home/manuel/Docencia/AW/Pruebas/project-test
+/package.json:
+...
+Is this ok? (yes) <span class="hl" style="color:#20A">yes</span>
+
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Se creará un fichero <code>package.json</code> con el siguiente contenido:</p>
+                <pre><code data-trim class="json">
+{
+  "name": "miproyecto",
+  "version": "1.0.0",
+  "description": "Esto es un proyecto de prueba",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "proyecto",
+    "aw",
+    "prueba"
+  ],
+  "author": "Manuel Montenegro",
+  "license": "MIT"
+}
+                </code></pre>
+            </section>
+            
+            <section>
+                <ul>
+                    <li>
+                    Atributo <code>scripts</code>: permite añadir comandos para arrancar el programa, detenerlo, etc.<br>
+                    Por ejemplo, podemos añadir:
+                        <pre><code data-trim data-noescape class="json">
+...
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"<span class="hl">,</span>
+    <span class="hl">"start": "node app.js"</span>
+  }, 
+...
+                        </code></pre>
+                        para poder arrancar el sistema mediante
+                        <pre><code data-trim class="no-highlight">
+# npm start                        
+                        </code></pre>
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <p>Si no se introduce un nombre para repositorio Git, es posible declarar el paquete como privado, mediante la opción <code>private</code>:</p>
+                <pre><code data-trim data-noescape class="json">
+{ 
+  ...
+  "author": "Manuel Montenegro",
+  "license": "MIT",
+  <span class="hl">"private": true</span>
+}
+                </code></pre>
+                <p>De este modo evitaremos <em>warnings</em> sobre la ausencia de un repositorio.</p>
+            </section>
+            
+            <section>
+                <h3>Uso de Netbeans</h3>
+                <p>Netbeans dispone un <em>plugin</em> para Node.</p>
+                <p>Se requiere Netbeans 8.1 o posterior.</p>
+                <p>Al descargarlo de la página web <a href="https://netbeans.org">https://netbeans.org</a> es necesario seleccionar la versión <em>HTML5/Javascript</em> o <em>All</em>.</p>
+            </section>
+            
+            <section>
+                <img src="images/04/NetbeansDownload.png" style="width:80%">
+            </section>
+            
+            
+            <section>
+                <h4>Configuración de Netbeans</h4>
+                <p>Antes de utilizar el <em>plugin</em> de Netbeans es necesario indicar el directorio en el que se encuentran los ejecutables de Node: <code>node</code>, <code>npm</code>, etc. </p>
+                <p>Menú <em>Tools</em> &rarr; <em>Options</em> &rarr; Pestaña <em>HTML/JS</em> &rarr; Pestaña <em>Node</em></p>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/CSh2Whhcnms" frameborder="0" allowfullscreen></iframe>
+            </section>
+            
+            <section>
+                <img src="images/04/NetbeansOptions.png" style="width:90%">
+            </section>
+            
+            <section>
+                <h4>Crear un proyecto en Netbeans</h4>
+                <p><em>File</em> &rarr; <em>New Project...</em></p>
+                <p>Seleccionar categoría <em>HTML5/Javascript</em> y tipo de aplicación <em>Node.js application</em>.</p>
+                <img src="images/04/NewProject.png" style="width:60%"> 
+            </section>
+            
+            <section>
+                <p>Especificar nombre de proyecto y pulsar <em>Next &gt;</em></p>
+                <img src="images/04/ProjectName.png" style="width:80%">
+            </section>
+            
+            <section>
+                <p>Aceptar opciones por defecto y pulsar <em>Finish</em></p>
+                <img src="images/04/ProjectOptions.png" style="width:80%">
+            </section>
+            
+            <section>
                 <h2>Módulos en Node</h2>
                 <p>Además de poder dividir el código en fragmentos, favorecen la reutilización de código.</p>
                 <p>Un buen sistema de módulos debe proporcionar:</p>
@@ -81,8 +329,10 @@
                         <p style="color:#009893">Ejemplo: listas de funciones exportadas (Haskell), privacidad de atributos (Java, C++, etc).</p>
                     </li>
                 </ul>
-                
             </section>
+            
+            
+            
             
             <section>
                 <h3>Tipos de módulos</h3>
@@ -799,8 +1049,357 @@ mimodulo@1.0.0
                     <li><strong>PATCH</strong>: Se aumenta si no hay funcionalidad nueva, pero sí correcciones de <em>bugs</em>.</li>
                 </ul>
                 <p>Excepción: versiones 0.x.x, cuya API es inestable.</p>
-                
             </section>
+            
+            <section>
+                <h4>Rangos de versión en <code>package.json</code></h4>
+                <p>¿Qué significa el símbolo <code>^</code> en el número de versión?</p>
+                <pre><code data-trim data-noescape class="json">
+{
+  ...
+  "dependencies": {
+    "underscore": "<span class="hl">^</span>1.8.3",
+    "express": "<span class="hl">^</span>4.14.0"
+  },
+  "private": true
+}                
+                </code></pre>
+                <p>En el caso de <code>underscore</code> significa que se admite otra versión distinta de la especificada, siempre que preserve la compatibilidad de la API (es decir, versiones 1.x.x).</p>
+                <p>Lo mismo se aplica a <code>express</code>.</p>
+            </section>
+            
+            <section>
+                <p>Posibles especificaciones:</p>
+                <ul>
+                    <li><code>1.8.3</code> La versión debe ser exactamente la especificada.</li>
+                    <li><code>&gt;=1.8.3</code> Se admite cualquier versión mayor o igual.</li>
+                    <li><code>&lt;=1.8.3</code> Se admite cualquier versión menor o igual.</li>
+                    <li><code>~1.8.3</code> Se admiten versiones 1.8.x.</li>
+                    <li><code>^1.8.3</code> Se admiten versiones 1.x.x.</li>
+                    <li><code>*</code> Se admite cualquier versión.</li>
+                    <li><code>1.8.3 - 2.5.1</code> Rango permitido.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h2>Modelo asíncrono</h2>
+                <p>Node utiliza un modelo de entradas y salidas <strong>asíncronas</strong> con el fin de permitir el desarrollo de aplicaciones altamente concurrentes.</p>
+                <p>Este modelo resulta muy útil en un contexto de aplicaciones web, donde un servidor web ha de procesar miles de peticiones por segundo.</p>
+            </section>
+            
+            <section>
+                <h3>Modelos síncrono vs asíncrono</h3>
+                <p>
+                    Cuando ejecutamos una operación <strong>síncrona</strong>, la ejecución del programa <strong>se detiene</strong> hasta que dicha operación haya terminado.
+                </p>
+                <p>Ej: Lectura de fichero síncrona</p>
+                <img src="images/04/Sincrona.svg" width="80%" style="border:none;box-shadow:none">
+            </section>
+
+            <section>
+                <p>
+                    Cuando ejecutamos una operación <strong>asíncrona</strong>, la ejecución del programa <strong>continúa</strong>, mientras la operación se realiza de manera <strong>concurrente</strong>.
+                </p>
+                <p>Ej: Lectura de fichero asíncrona</p>
+                <img src="images/04/Asincrona.svg" width="80%" style="border:none;box-shadow:none">
+            </section>
+            
+            <section>
+                <h3>Un ejemplo: lectura de fichero</h3>
+                <p>El módulo core <code>fs</code> proporciona operaciones para manejar ficheros.</p>
+                <p>Dentro de este módulo hay una función para obtener el contenido de un fichero, pero esta función tiene dos variantes:</p>
+                <ul>
+                    <li><code>readFileSync(fichero, opcs)</code><br>
+                        Lectura síncrona.</li>
+                    <li><code>readFile(fichero, opcs, callback)</code><br>
+                        Lectura asíncrona.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h4>Lectura síncrona</h4>
+                <pre><code data-trim class="javascript">
+"use strict";
+
+var fs = require("fs");
+
+try {
+    var contenido = fs.readFileSync("FichTexto.txt", 
+                                    { encoding: "utf-8" });
+    console.log("Fichero leído correctamente:");
+    console.log(contenido);
+} catch (err) {
+    console.log("Se ha producido un error:");
+    console.log(err.message);
+}
+                </code></pre>
+            </section>
+            
+            <section>
+                    <p>Las operaciones de lectura síncrona:</p>
+                <div style="background:#EDF; padding:20px 2px 20px 20px">
+                    <ul>
+                        <li>Bloquean la ejecución del programa mientras se realizan.</li>
+                        <li><strong>Devuelven</strong> el resultado de la operación.</li>
+                        <li>En caso de error, lanzan <strong>excepciones</strong>.</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section>
+                <h4>Lectura asíncrona</h4>
+                <img src="images/04/Asincrona.svg" width="80%" style="border:none;box-shadow:none">
+                <p>Si la operación de lectura asíncrona se realiza de manera ajena al hilo de ejecución principal del programa, ¿cómo sabemos cuándo ha finalizado?
+                </p>
+                <p>Mediante el uso de funciones <strong>callback</strong>.</p>
+            </section>
+            
+            <section>
+                <h4>Funciones callback</h4>
+                <p>Una función <strong>callback</strong> es una función definida por el programador, pero que no está pensada para ser llamada directamente por este, sino por otro componente del sistema.</p>
+            </section>
+            
+            <section>
+                <h4>Funciones callback: <code>readFile</code></h4>
+                <p>La función <code>readFile</code>, además de recibir el nombre del fichero y las opciones de lectura, recibe un tercer parámetro, que es una función.</p>
+                <p>Esta función será definida por el programador.</p>
+                <p>Sin embargo, será llamada por <code>readFile</code>.</p>
+                <p>Es, por tanto, una función callback.</p>
+            </section>
+            
+            <section>
+                <p>La función callback recibe dos parámetros:</p>
+                <ul>
+                    <li>Un objeto de la clase <code>Error</code>, en el caso en que la lectura haya fallado.<br>
+                        <span style="font-size:70%">Si no ha fallado, toma el valor <code>null</code>.</span>
+                    </li>
+                    <li>El contenido del fichero leído, en el caso en que se haya leído correctamente.<br>
+                        <span style="font-size:70%">Si ha fallado, toma el valor <code>undefined</code>.</span></li>
+                </ul>
+            </section>
+            
+            <section>
+                <pre><code data-trim data-noescape class="javascript">
+"use strict";
+
+var fs = require("fs");
+
+fs.readFile("FichTexto.txt", { encoding:"utf-8" }, <span class="hl">ficheroLeido</span>);
+
+// Función callback
+function <span class="hl">ficheroLeido</span>(err, contenido) {
+    if (err) {
+        console.log("Se ha producido un error:");
+        console.log(err.message);
+    } else {
+        console.log("Fichero leído correctamente:");
+        console.log(contenido);
+    }
+}
+                </code></pre>
+                <p>Tras la lectura, <code>readFile</code> llamará a la función <code>ficheroLeido</code>.</p>
+            </section>
+            
+            <section>
+                <p>Las funciones callback suelen definirse directamente como funciones anónimas en la llamada a <code>readFile</code>.</p>
+                <pre><code data-trim class="javascript">
+"use strict";
+
+var fs = require("fs");
+
+fs.readFile("FichTexto.txt", 
+            { encoding: "utf-8" },
+            function(err, contenido) {
+                if (err) {
+                    console.log("Se ha producido un error:");
+                    console.log(err.message);
+                } else {
+                    console.log("Fichero leído correctamente:");
+                    console.log(contenido);
+                }        
+            }
+);                
+                </code></pre>    
+            </section>
+
+            <section>
+                    <p>Las operaciones de lectura síncrona:</p>
+                <div style="background:#EDF; padding:20px 2px 20px 20px">
+                    <ul>
+                        <li><strong>No bloquean</strong> la ejecución del programa.<br>
+                            <span style="font-size:60%">Porque se ejecutan de manera concurrente.</span>
+                        </li>
+                        <li><strong>No devuelven</strong> el resultado de la operación.<br>
+                            <span style="font-size:60%">El resultado de la lectura se pasa como parámetro a la función <em>callback</em>.</span>
+                        </li>
+                        <li><strong>No</strong> lanzan <strong>excepciones</strong>.<br>
+                            <span style="font-size:60%">En caso de error, es la función <em>callback</em> quien recibe la excepción como primer parámetro.</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section>
+                <h3>Error frecuente</h3>
+                <p>¡Cuidado con el siguiente código!</p>
+                <pre><code data-trim class="javascript">
+var contenidoFichero;
+
+fs.readFile("FichTexto.txt", 
+            { encoding: "utf-8" },
+            function(err, contenido) {
+                if (!err) {
+                    // Asignamos el contenido a la variable
+                    // externa
+                    contenidoFichero = contenido;
+                }        
+            });
+
+console.log(contenidoFichero); // ¿Qué se imprime aquí?               
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>En el mejor de los casos, la última línea se ejecutaría después de que la lectura haya finalizado.</p>
+                <img src="images/04/AsincronaBien.svg" style="width:80%; border:none">
+            </section>
+
+            <section>
+                <p>Pero también podría ejecutarse antes de que la lectura termine:</p>
+                <img src="images/04/AsincronaMal.svg" style="width:75%; border:none">
+                <p>En este caso se imprimiría <code>undefined</code>, ya que <code>contenidoFichero</code> no habría sido inicializada en el momento de ejecutar <code>console.log</code>.</p>
+            </section>
+            
+            <section>
+                <p>Si un fragmento del programa depende del resultado de una llamada asíncrona, no debe ir tras dicha llamada:</p>
+                <pre><code data-trim data-noescape class="javascript">
+fs.readFile("fich.txt", function(err, contenido) {
+    ...
+});
+<span class="hl" style="background-color:#FBB">// hacer algo con el contenido</span>
+                </code></pre>
+                Debe ir dentro de la función callback:
+                <pre><code data-trim data-noescape class="javascript">
+fs.readFile("fich.txt", function(err, contenido) {
+    <span class="hl" style="background-color:#BFB">// hacer algo con el contenido</span>
+    ...
+});
+
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>¿Por qué un modelo asíncrono?</h3>
+                <p>Node está pensado para aplicaciones con una alta capacidad de respuesta como, por ejemplo, servidores web.</p>
+                <p>La funcionalidad de la mayoría de aplicaciones web está basada en accesos a disco, u otra fuente de datos (p.ej. bases de datos), operaciones <strong>relativamente lentas</strong>.</p>
+                <p>Para que un servidor web pueda atender a varios clientes, ha de gestionar adecuadamente estas operaciones de entrada y salida.</p>
+            </section>
+            
+            <section>
+                <h4>Modelos de servidores web</h4>
+                <ol>
+                    <li>Modelo tradicional: un proceso por petición.</li>
+                    <li>Modelo tradicional: pool de hebras de ejecución.</li>
+                    <li>NGINX Process Model (Node).</li>
+                </ol>
+            </section>
+            
+            <section>
+                <h4>Un proceso por petición</h4>
+                <img src="images/04/ServidorProcesos.svg" width="80%" style="border:none;box-shadow:none">
+            </section>
+            
+            <section>
+                <p>Se crea un proceso del sistema operativo por cada petición que se realice.</p>
+                <p><strong>Inconveniente:</strong> coste de la creación de procesos.</p>
+            </section>
+
+            <section>
+                <h4>Pool de hebras de ejecución</h4>
+                <img src="images/04/ServidorHilos.svg" width="80%" style="border:none;box-shadow:none">
+            </section>
+            
+            <section>
+                <p>Al arrancar el servidor se crea un conjunto de hebras, inicialmente sin tarea asignada.</p>
+                <p>Cuando llega una petición al servidor, una de las hebras se encarga de atenderla.</p>
+                <p>Con esto nos ahorramos el coste de creación y liberación de hebras a medida que van llegando peticiones.</p>
+                <p><strong>Inconveniente:</strong> el cambio del contexto de ejecución entre hebras conlleva un coste.</p>
+            </section>
+            
+            <section>
+                <h4>Modelo NGINX / Node</h4>
+                <img src="images/04/ServidorNGINX.svg" width="90%" style="border:none;box-shadow:none">
+            </section>
+            
+            <section>
+                <p>Existe <strong>un único hilo</strong> en ejecución</p>
+                <p>Este hilo se encarga de atender a todas las peticiones.</p>
+        
+                <p>Cuando se requiere realizar una operación con coste elevado en tiempo (acceso a disco, BD, red, etc.), se realiza en una &laquo;hebra&raquo; distinta.</p>
+                
+                <p><strong>Estas hebras son gestionadas por Node</strong>, no por el SO.</p>
+                
+                <p>&rArr; El cambio de contexto entre hebras es menos costoso.</p>
+            </section>
+            
+            <section>
+                <h4>Bucle principal de un servidor Node</h4>
+                <pre><code data-trim class="javascript">
+while (!terminado) {
+    1. Esperar petición de un cliente.
+    2. Procesar petición.
+}                
+                </code></pre>
+                <p>¿Cómo se procesa la petición?</p>
+            </section>
+            
+            <section>
+                <p>Si sólo se utilizan operaciones síncronas, el servidor no acepta otra petición hasta que la hayan terminado dichas operaciones:</p>
+                <pre><code data-trim class="javascript">
+while (!terminado) {
+    1. Esperar petición de un cliente.
+    2. Procesar petición:
+        2.1 var resultado = consultarBDSync(...);
+        2.2 Procesar resultado
+        2.3 Devolver resultado al cliente.
+}                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Por el contrario, si se realizan operaciones asíncronas, será la función callback (que se ejecuta concurrentemente) la que procesa y devuelve el resultado de la operación.</p>
+                <pre><code data-trim class="javascript">
+while (!terminado) {
+    1. Esperar petición de un cliente.
+    2. Procesar petición:
+        2.1 var resultado = consultarBDASync(..., callback);
+}                
+
+function callback(resultado) {
+    1. Procesar resultado
+    2. Devolver resultado al servidor
+}
+                </code></pre>
+            <p>Nada más lanzar la operación <code>consultarDBAsync</code>, el servidor está listo para atender otra petición.</p>
+            </section>
+            
+            <section>
+                <h4>Moraleja</h4>
+                <p>En el contexto de un servidor web con Node, todas las operaciones de E/S deben ser <strong>asíncronas</strong>, para evitar cuellos de botella en el procesamiento de las peticiones.</p>
+                
+                <p>Esto también se aplica cuando se realicen operaciones que utilicen la CPU intensivamente.</p>
+                <pre><code data-trim data-noescape class="javascript">
+while (!terminado) {
+    1. Esperar petición de un cliente.
+    2. Procesar petición (alto coste CPU). <span class="arrow_box_left caja_codigo fragment">Cuello de botella</span>
+    3. Devolver respuesta.
+}                         
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>process.nextTick</h4>
+            </section>
+                
         
         </div>
 
