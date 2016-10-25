@@ -1383,7 +1383,7 @@ function callback(resultado) {
             </section>
             
             <section>
-                <h4>Moraleja</h4>
+                <h4>Consecuencias de este modelo</h4>
                 <p>En el contexto de un servidor web con Node, todas las operaciones de E/S deben ser <strong>asíncronas</strong>, para evitar cuellos de botella en el procesamiento de las peticiones.</p>
                 
                 <p>Esto también se aplica cuando se realicen operaciones que utilicen la CPU intensivamente.</p>
@@ -1397,9 +1397,286 @@ while (!terminado) {
             </section>
             
             <section>
-                <h4>process.nextTick</h4>
-            </section>
+                <div style="background-color:#ffdddd;padding:10px;">
+                    La eficiencia de un servidor implementado en Node &laquo;flojea&raquo; cuando éste tiene que realizar operaciones que requieren <strong>un uso intenso de la CPU</strong>.
+                </div>
                 
+                <p>
+                    Si se desea realizar una operación de este tipo, el cómputo complejo deberá dividirse en cómputos más sencillos, y ejecutar cada uno de ellos en una iteración del bucle de node, de manera que se intercalen con el procesamiento de las demás peticiones al servidor.
+                </p>
+                <p>
+                    Esto se puede realizar con la función <code>process.nextTick()</code><br>
+                    <a href="https://howtonode.org/understanding-process-next-tick">Más información</a>
+                </p>
+            </section>
+            
+            <section>
+                <h2>Módulos y paquetes Node</h2>
+                <ul>
+                    <li>Variables y funciones predefinidas</li>
+                    <li>Módulos core:
+                        <ul>
+                            <li>Nombres de ficheros: <code>path</code></li>
+                            <li>Manejo de ficheros: <code>fs</code></li>
+                            <li>Eventos</li>
+                            <li>Streams</li>
+                            <li>Sistema operativo: <code>os</code></li>
+                            <li>Utilidades varias: <code>util</code></li>
+                        </ul>
+                    </li>
+                    <li>
+                        Otras librerías: <code>underscore</code>, <code>moment</code>.
+                    </li>
+                </ul>
+            </section>
+            
+            
+            <section>
+                <h3>Variables predefinidas</h3>
+                <p>Las siguientes variables son accesibles desde cualquier módulo o script, pero no desde la <em>shell</em> de Node:</p>
+                <ul>
+                    <li><code>__filename</code>: Fichero .js que se está ejecutando (incl. directorio).</li>
+                    <li><code>__dirname</code>: Directorio en el que se encuentra el fichero que se está ejecutando.</li>
+                </ul>
+                
+                <pre><code data-trim class="javascript">
+// globals.js
+// ----------
+
+console.log(__dirname);
+    // &rarr; /home/manuel/AW/core-modules/
+
+console.log(__filename);
+    // &rarr; /home/manuel/AW/core-modules/globals.js
+                </code></pre>
+                
+            </section>
+            
+            <section>
+                <h4>La variable <code>process</code></h4>
+                <p>Atributos relacionados con la ejecución del programa:</p>
+                <ul>
+                    <li><code>process.exit(code)</code><br>
+                    Finaliza la ejecución del programa.</li>
+                    <li><code>process.argv</code><br>
+                        Array con los argumentos de la línea de comandos.
+                    </li>
+                    <li><code>process.cwd()</code> / <code>process.chdir(dir)</code><br>
+                        Obtiene o cambia el directorio actual.
+                    </li>
+                    <li>
+                        <code>process.platform</code>, <code>process.version</code>, <code>process.arch</code>
+                        Información sobre el sistema operativo, versión de Node, etc.
+                    </li>
+                </ul>
+                <a href="https://nodejs.org/docs/v4.6.1/api/process.html">https://nodejs.org/docs/v4.6.1/api/process.html</a>
+            </section>
+            
+            
+            <section>
+                <h4>Ejemplo</h4>
+                <pre><code data-trim class="javascript">
+
+// Los dos primeros elementos de process.argv son el
+// nombre del ejecutable de Node, y el nombre del script
+var args = process.argv;
+
+var suma;
+if (args.length === 4) {
+    suma = Number(args[2]) + Number(args[3]);
+} else {
+    suma = "No definida";
+}
+
+console.log(`Suma: ${suma}`);
+
+console.log(`Sistema operativo: ${process.platform}`);
+console.log(`Versión de node: ${process.version}`);
+console.log(`Arquitectura: ${process.arch}`);                
+                </code></pre>
+                <pre><code data-trim data-noescape class="no-highlight">
+# <span class="hl">node process.js 5 6</span>
+Suma: 11
+Sistema operativo: linux
+Versión de node: v4.6.1
+Arquitectura: x64
+                </code></pre>
+            </section>
+            
+            <section>
+                <p><code>setTimeout(fun, time)</code></p>
+                <p>Ejecuta la función <code>fun</code> transcurrida una cantidad de milisegundos dada.</p>
+                <p>La función se ejecuta <strong>asíncronamente</strong>.</p>
+                <pre><code data-trim class="javascript">
+
+setTimeout(function() {
+    console.log("Han pasado 5 segundos");
+}, 5000);
+
+console.log("Esto se ejecuta antes");
+                </code></pre>
+                <pre><code data-trim class="no-highlight">
+Esto se ejecuta antes
+Han pasado 5 segundos                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Similarmente: <code>setInterval</code>, <code>clearInterval</code>, que
+                ejecutan la función dada periódicamente.</p>
+                <pre><code data-trim class="javascript">
+var contador = 1;
+
+// El objeto devuelto por setInterval nos sirve
+// para detener el temporizador cuando el contador llegue a 5
+var interval = setInterval(function() {
+    console.log(`Ejecutándose por ${contador}ª vez`);
+    if (contador === 5) {
+        clearInterval(interval);
+    }
+    contador++;
+}, 1000);                
+                </code></pre>
+                <p>Más información <a href="https://nodejs.org/docs/v4.6.1/api/timers.html">https://nodejs.org/docs/v4.6.1/api/timers.html</a>
+                </p>
+            </section>
+            
+            <section>
+                <h3>Módulo <code>path</code></h3>
+                <p>Contiene funciones de utilidad para trabajar con nombres de ficheros de manera independiente del SO.</p>
+                <p>Funciones más importantes:</p>
+                <ul>
+                    <li><code>path.parse(filename)</code><br>
+                        Obtiene las distintas componentes (path, fichero, extensión, etc.)
+                    </li>
+                    <li><code>path.join(dir1, dir2, ...)</code>
+                        Concatena varios directorios utilizando el separador del sistema operativo: <code>/</code> en sistemas UNIX (Linux), <code>\</code> en Windows.
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <pre><code data-trim class="javascript">
+var path = require("path");
+
+var infoFichero = path.parse(__filename);
+
+console.log(infoFichero);
+// &rarr; { root: '/',
+//     dir: '/home/manuel/AW/core-modules',
+//     base: 'paths.js',
+//     ext: '.js',
+//     name: 'paths' }
+
+var nuevoFichero = path.join(infoFichero.dir, "nuevo",
+                             infoFichero.base);
+console.log(nuevoFichero);
+// &rarr; /home/manuel/AW/core-modules/nuevo/paths.js
+                </code></pre>
+                <p>Más información: <a href="https://nodejs.org/docs/v4.6.1/api/path.html">https://nodejs.org/docs/v4.6.1/api/path.html</a></p>
+            </section>
+            
+            <section>
+                <h3>Módulo <code>fs</code></h3>
+                <p>Funciones relacionadas con el sistema de ficheros.</p>
+                <ul>
+                    <li>
+                        <code>readFile(fichero, options, callback)</code><br>
+                        Lectura asíncrona de un fichero.
+                        <p style="font-size:70%">La función callback recibe como primer parámetro un objeto <code>Error</code> (si se produce error) y como segundo parámetro el contenido del fichero.</p>
+                    </li>
+                    <li>
+                        <code>writeFile(fichero, datos, options, callback)</code><br>
+                        Escritura asíncrona de un fichero.<br>
+                        <span style="font-size:70%">La función callback recibe como primer parámetro un objeto <code>Error</code> (si se produce error).</span>
+                        
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <pre><code data-trim class="javascript">
+var fs = require("fs");
+
+var texto = "Nadi puede ser dichoso,\n" +
+            "señora, ni desdichado,\n" +
+            "sino que os haya mirado";
+
+fs.writeFile("Poema.txt", texto, {encoding: "utf-8"}, 
+    function(err) {
+        if (err) {
+            console.log("Error al escribir el fichero.");
+        } else {
+            console.log("Fichero escrito correctamente.");
+            fs.readFile("Poema.txt", {encoding: "utf-8"},
+                function(err, contenido)  {
+                    if (!err) {
+                        console.log(contenido);
+                    }
+                });
+        }
+    });                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Si no se indica la opción <code>encoding</code>, estas funciones trabajan con objetos de tipo <code>Buffer</code>, en lugar de cadenas. Un buffer representa una secuencia de bytes.</p>
+                <p>Esto sirve para trabajar con ficheros binarios.</p>
+                <pre><code data-trim class="javascript">
+var fs = require("fs");
+
+fs.readFile("thymeleaf.pdf", function(err, buffer) {
+    // Obtenemos los cuatro primeros bytes
+    var mark = buffer.slice(0, 4);
+    
+    // Y los imprimimos con la codificación ASCII
+    console.log(mark.toString("ascii"));
+});                
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>Otras funciones de <code>fs</code></h4>
+                <ul>
+                    <li>Leer y escribir de manera segmentada: <code>open</code>, <code>close</code>, <code>read</code>, <code>write</code>.</li>
+                    <li>
+                        Manejo del sistema de ficheros: <code>mkdir</code>, <code>fstat</code>, <code>rename</code>, <code>unlink</code>, etc.
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h4>Variantes síncronas</h4>
+                <p>Son bloqueantes y (posiblemente) devuelven un resultado, en lugar de utilizar funciones callback.<code></code></p>
+                <ul>
+                    <li><code>readFileSync</code>, <code>writeFileSync</code></li>
+                    <li><code>openSync</code>, <code>closeSync</code>, <code>readSync</code>, <code>writeSync</code>.</li>
+                    <li><code>mkdirSync</code>, <code>fstatSync</code>, <code>renameSync</code>, etc.</li>
+                </ul>
+                <div style="background-color:#FBB; margin-top:1em">
+                    Prohibido utilizarlas en esta asignatura
+                </div>
+            </section>
+            
+            <section>
+                <h3>Módulo <code>os</code></h3>
+                <p>Contiene utilidades relacionadas con el sistema operativo. Entre ellas:</p>
+                <ul>
+                    <li><code>homedir()</code><br>
+                        Devuelve el path del directorio de usuario.
+                    </li>
+                    <li><code>tmpdir()</code><br>
+                        Devuelve el path de un directorio para crear ficheros temporales.
+                    </li>
+                </ul>
+                <pre><code data-trim class="javascript">
+var os = require("os");
+
+console.log(os.homedir());  // &rarr; /home/manuel
+console.log(os.tmpdir());   // &rarr; /tmp
+                </code></pre>
+            </section>
+            
         
         </div>
 
