@@ -1420,12 +1420,8 @@ while (!terminado) {
                             <li>Manejo de ficheros: <code>fs</code></li>
                             <li>Eventos</li>
                             <li>Streams</li>
-                            <li>Sistema operativo: <code>os</code></li>
                             <li>Utilidades varias: <code>util</code></li>
                         </ul>
-                    </li>
-                    <li>
-                        Otras librerías: <code>underscore</code>, <code>moment</code>.
                     </li>
                 </ul>
             </section>
@@ -1677,6 +1673,363 @@ console.log(os.tmpdir());   // &rarr; /tmp
                 </code></pre>
             </section>
             
+            <section>
+                <h3>Módulo <code>util</code></h3>
+                <p>Define, entre otras, una función <code>inherits</code> que permite conectar dos clases mediante herencia.</p>
+                <p><code>inherits(Subclase, Superclase)</code></p>
+            </section>
+            
+            <section>
+                <h4>Ejemplo</h4>
+                <pre><code data-trim data-noescape class="javascript">
+"use strict";
+
+var util = require("util");
+
+function Figura(x, y) {
+    this.x = x;
+    this.y = y;
+}
+
+Figura.prototype.pintar = function() { 
+    console.log(`Pintando figura en (${this.x}, ${this.y})`);
+};
+    
+function Circulo(x, y, radio) {
+    Figura.call(this, x, y);
+    this.radio = radio;
+}
+
+<span class="hl">util.inherits(Circulo, Figura);</span>
+
+var c = new Circulo(10, 10, 3);
+c.pintar();                
+                </code></pre>
+            </section>
+            
+            <section>
+                La función <code>inherits</code> no debe aplicarse a clases creadas mediante la sintaxis <code>class</code> de ECMAScript 6.
+                <pre><code data-trim data-noescape class="javascript">
+class Figura {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+    
+    pintar() {
+        console.log(`Pintando figura en (${this.x}, ${this.y})`);
+    }
+};
+
+class Circulo extends Figura {  <span class="arrow_box_left caja_codigo">No utilizar la función <span style="font-family:monospace">inherits</span></span>
+    constructor(x, y, r) {
+        super(x, y);
+        this.r = r;
+    }
+}
+
+var c = new Circulo(20, 10, 3);
+c.pintar();                
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>Manejo de eventos</h3>
+                <p>La librería <code>events</code> permite manejar <strong>generadores</strong> y <strong>suscriptores</strong> de eventos.</p>
+                <img src="images/04/Eventos.svg" width="70%" style="border:none;box-shadow:none">
+            </section>
+            
+            <section>
+                <p>Los objetos de la clase <code>EventEmitter</code> representan generadores de eventos.</p>
+                <pre><code data-trim class="javascript">
+var events = require("events");
+var emisor = new events.EventEmitter();                
+                </code></pre>
+                <img src="images/04/Emisor1.svg" width="70%" style="border:none;box-shadow:none">
+            </section>
+            
+            <section>
+                <p>Cada tipo de evento se identifica con una cadena de texto y puede llevar asociados varios parámetros.</p>
+                <p>El método <code>on</code> registra una función callback que será llamada cuando se produzca un evento dado.</p>
+                <pre><code data-trim class="javascript">
+emisor.on("incrementado", function(valorNuevo) {
+    console.log(`Se ha incrementado el contador: ${valorNuevo}`);
+});
+                </code></pre>
+                <img src="images/04/Emisor2.svg" width="70%" style="border:none;box-shadow:none">
+            </section>
+            
+            <section>
+                <p>El emisor emite sus eventos mediante la función <code>emit</code>.</p>
+                <p>Al emitir un evento, el emisor llamará a todas las funciones que se hayan suscrito al mismo.</p>
+                <pre><code data-trim class="javascript">
+emisor.emit("incrementado", 14);
+                </code></pre>
+                <img src="images/04/Emisor3.svg" width="70%" style="border:none;box-shadow:none">
+                <pre><code data-trim class="no-highlight">
+Se ha incrementado el contador: 14                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Normalmente no se utiliza la clase <code>EventEmitter</code> directamente; son otras clases las que heredan de ella.</p>             
+                <pre><code data-trim data-noescape class="javascript">
+/*
+ * Clase Contador
+ */ 
+function Contador() {
+    this.valor = 0;
+}
+
+<span class="hl">util.inherits(Contador, events.EventEmitter);</span>
+
+Contador.prototype.incrementar = function() {
+    this.valor++;
+    this.emit("incrementado", this.valor);
+}
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Un emisor de eventos puede tener múltiples suscriptores. Al emitir el evento, los suscriptores son llamados en el orden en el que suscribieron.</p>
+                
+                <pre><code data-trim class="javascript">
+var c = new Contador();
+c.on("incrementado", function(val) { 
+    console.log(`Suscriptor 1: ${val}`);
+});
+c.on("incrementado", function(val) { 
+    console.log(`Suscriptor 2: ${val}`);
+});
+c.incrementar();
+c.incrementar();                
+                </code></pre>
+                <pre><code data-trim class="no-highlight">
+Suscriptor 1: 1
+Suscriptor 2: 1
+Suscriptor 1: 2
+Suscriptor 2: 2
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>Eventos emitidos por <code>process</code></h4>
+                <p>
+                    La variable <code>process</code> extiende a <code>EventEmitter</code>.
+                </p>
+                <p>
+                    Eventos lanzados:
+                </p>
+                <ul>
+                    <li>
+                        <code>"exit"</code>. Emitido al finalizar el programa.
+                    <pre><code data-trim class="javascript">
+process.on("exit", function(exitCode) {
+    // Liberar ficheros, volcar logs,
+    // cerrar conexiones a BDs, etc.
+});
+                    </code></pre>                        
+                    </li>
+                    <li><code>"uncaughtException"</code>. Emitido cuando se lanza una excepción que no es capturada por el programa.
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h4>Eventos emitidos por el módulo <code>fs</code></h4>
+                <ul>
+                    <li>Eventos relacionados con streams.<br>
+                        Se explicará a continuación lo que es un stream.
+                    </li>
+                    <li>Eventos relacionados con el sistema de ficheros.<br>
+                        Ver: función <code>fs.watch()</code>.
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h3>Streams</h3>
+                <p>Surgen como respuesta al problema de procesamiento de recursos de gran tamaño.</p>
+                <img src="images/04/RecursoGrande1.svg" width="90%" style="border:none;box-shadow:none">
+            </section>
+            
+            <section>
+                <div style="display:table;margin-left:auto;margin-right:auto">
+                    <div style="display:table-row">
+                        <div style="display:table-cell;color:#006647">Tiempo respuesta</div>
+                        <div style="display:table-cell; padding-left:1em">= <span style="color:#490089">Tiempo de acceso al recurso</span></div>
+                    </div>
+                    <div style="display:table-row">
+                        <div style="display:table-cell"></div>
+                        <div style="display:table-cell">+ <span style="color:#490089">Tiempo procesamiento 1</span></div>
+                    </div>
+                    <div style="display:table-row">
+                        <div style="display:table-cell"></div>
+                        <div style="display:table-cell">+ <span style="color:#490089">Tiempo procesamiento 2</span></div>
+                    </div>
+                </div>
+                
+                <p>Durante todo este tiempo el cliente no recibe respuesta.</p>
+                <p>Solamente la recibe cuando el procesamiento 2 termina.</p>
+            </section>
+            
+            <section>
+                <p>Segmentando el recurso podemos enviar la respuesta al cliente a medida que se procesa.</p>
+                <img src="images/04/RecursoGrande2.svg" width="90%" style="border:none;box-shadow:none">
+            </section>
+            
+            <section>
+                <p>Un <strong>flujo</strong> (stream) es una corriente de datos, de la que se puede extraer y/o enviar información.</p>
+                <p>Los flujos, además de permitir la segmentación, facilitan el uso de las funciones relativas a ficheros, pues permiten cambiar las llamadas asíncronas por funciones de captura de eventos.</p>
+                <p>El módulo core <code>stream</code> define varias clases relacionadas con flujos de datos.</p>
+            </section>
+            
+            <section>
+                <p>Existen cuatro tipos de flujos:</p>
+                <ul style="width:45%;float:left">
+                    <li class="fragment">Flujos de <strong>lectura</strong><br>
+                        <span style="font-size:60%">Ej: ficheros de entrada.</span><br>
+                        <img src="images/04/FlujoEntrada.svg" style="width:100%; border:none; box-shadow:none">
+                    </li>
+                    <li class="fragment">Flujos de <strong>escritura</strong><br>
+                        <span style="font-size:60%">Ej: ficheros de salida.</span><br>
+                        <img src="images/04/FlujoSalida.svg" style="width:100%; border:none; box-shadow:none">
+                    </li>
+                </ul>
+                <ul style="width:45%;float:right">
+                    <li class="fragment">Flujos <strong>dúplex</strong><br>
+                        <span style="font-size:60%">Ej: sockets.</span><br>
+                        <img src="images/04/FlujoES.svg" style="width:100%; border:none; box-shadow:none">
+                    </li>
+                    <li class="fragment">Flujos <strong>transformadores</strong><br>
+                        <span style="font-size:60%">Ej: compresores, codificadores.</span><br>
+                        <img src="images/04/FlujoTransform.svg" style="width:100%; border:none; box-shadow:none">
+                    </li>
+                </ul>
+                <div style="clear:both"></div>
+            </section>
+            
+            <section>
+                <p>Todos los flujos heredan de la clase <code>Stream.</code></p>
+                <img src="images/04/JerarquiaStreams.svg" style="width:80%;border:none;box-shadow:none">
+            </section>
+            
+            <section>
+                <h4>Flujos y ficheros</h4>
+                <p>El módulo <code>fs</code> permite obtener flujos <code>Readable</code> y <code>Writable</code> a partir de ficheros.</p>
+                <pre><code data-trim class="javascript">
+var fs = require("fs");
+var flujoEntrada = fs.createReadStream("Poema.txt");
+                </code></pre>
+                <p>Inicialmente el flujo está en estado de <code>pausa</code>. No emite ninguna información hasta que se haga explícitamente con el método <code>read()</code>.</p>
+            </section>
+            
+            <section>
+                <p>Cuando un flujo en pausa tiene información disponible para ser extraida, emite el evento <code>readable</code>.</p>
+                <pre><code data-trim class="javascript">
+flujoEntrada.on("readable", function() {
+    // Llamar a flujoEntrada.read() para obtener
+    // la información.
+});                
+                </code></pre>
+                <p>Si el fichero es grande, se emitirán sucesivamente varios eventos <code>readable</code> con cada uno de sus &laquo;fragmentos&raquo;.</p>
+                <p>Cada llamada a <code>read()</code> obtiene uno de esos fragmentos.</p>
+                <p>Cuando ya no quedan más fragmentos por leer, el flujo vuelve a emitir el evento <code>readable</code> para avisarnos, pero esta vez la función <code>read()</code> devolverá <code>null</code>.</p>
+            </section>
+            
+            <section>
+                <h4>Ejemplo</h4>
+                <pre><code data-trim class="javascript">
+var flujoEntrada = fs.createReadStream("Fichero_grande.pdf");
+
+flujoEntrada.on("readable", function() {
+  var fragmento = flujoEntrada.read();
+  if (fragmento !== null) {
+    console.log(`Leído fragmento de ${fragmento.length} bytes`);
+  } else {
+    console.log("Ya no hay más fragmentos");
+  }
+});                
+                </code></pre>
+                <pre><code data-trim class="no-highlight">
+Leído fragmento de 65536 bytes
+Leído fragmento de 65536 bytes
+Leído fragmento de 65536 bytes
+Leído fragmento de 65536 bytes
+Leído fragmento de 65536 bytes
+Leído fragmento de 65536 bytes
+Leído fragmento de 65536 bytes
+Leído fragmento de 65536 bytes
+Leído fragmento de 45245 bytes
+Ya no hay más fragmentos                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Para crear un flujo de salida hacia un fichero, se utiliza <code>createWriteStream</code>, que devuelve un <code>Writable.</code></p>
+                <p>Los objetos <code>Writable</code> tienen, entre otros, los siguientes métodos:</p>
+                <ul>
+                    <li><code>write()</code>, para enviar información al flujo.</li>
+                    <li><code>end()</code>, para enviar información al flujo, e indicar que ya no se va a enviar más información.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h4>Ejemplo</h4>
+                <pre><code data-trim class="javascript">
+var flujoSalida = fs.createWriteStream("NuevoFichero.txt", 
+                                        {encoding: "utf-8"});
+
+for (var i = 0; i &lt; 10; i++) {
+    flujoSalida.write(i + "\n");
+}
+
+flujoSalida.end("Fin!\n");                
+                </code></pre>
+            </section>
+            <section>
+                <h4>Encadenamiento de flujos</h4>
+                <p>El método <code>pipe()</code> vuelca el contenido de un flujo a otro.</p>
+                <img src="images/04/Pipe.svg" width="70%" style="border:none; box-shadow:none">
+                <p><code>flujoEntrada.pipe(flujoSalida);</code></p>
+            </section>
+            
+            <section>
+                <p>Ejemplo: copia de un fichero</p>
+                <pre><code data-trim class="javascript">
+var fs = require("fs");
+
+var flujoEntrada = fs.createReadStream("Poema.txt");
+var flujoSalida = fs.createWriteStream("PoemaCopia.txt");
+flujoEntrada.pipe(flujoSalida);                
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>El módulo <code>zlib</code></h4>
+                <p>Trabaja con distintos formatos de compresión de ficheros.</p>
+                <p>En particular, tiene un métodos <code>createGzip()</code> y <code>createGunzip()</code>. Cada uno de ellos crea un <strong>flujo transformador</strong> que comprime (o descomprime, respectivamente) la entrada.</p>
+            </section>
+            
+            <section>
+                <h4>Ejemplo: compresión de un fichero</h4>
+                <img src="images/04/Compresion.svg" width="90%" style="border:none;box-shadow:none">
+                <pre><code data-trim class="javascript">
+var fs = require("fs");
+var zlib = require("zlib");
+
+var flujoEntrada = fs.createReadStream("thymeleaf.pdf");
+var flujoCompresion = zlib.createGzip();
+var flujoSalida = fs.createWriteStream("thymeleaf.pdf.gz");
+
+flujoEntrada.pipe(flujoCompresion);
+flujoCompresion.pipe(flujoSalida);                
+                </code></pre>
+            </section>
+            
+            <section>
+                
+            </section>
         
         </div>
 
