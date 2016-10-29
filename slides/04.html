@@ -2028,9 +2028,507 @@ flujoCompresion.pipe(flujoSalida);
             </section>
             
             <section>
+                <h2>Algunos paquetes Node</h2>
+                <p>Los siguientes paquetes no forman parte de la distribución de Node y, por tanto, han de ser instalados en un proyecto utilizando la herramienta <code>npm</code>.</p>
+                <ul>
+                    <li>
+                    <strong>Underscore.js</strong> (<a href="http://underscorejs.org/">http://underscorejs.org/</a>)<br>
+                    Proporciona operaciones útiles sobre arrays y objetos.
+                        <pre><code data-trim class="no-highlight">
+npm install underscore --save                        
+                        </code></pre>
+                    </li>
+                    <li>
+                        <strong>Moment.js</strong>  (<a href="http://momentjs.com/">http://momentjs.com/</a>)<br>
+                        Permite manejar fechas. Más potente que la clase <code>Date</code>.
+                        <pre><code data-trim class="no-highlight">
+npm install moment --save                        
+                        </code></pre>
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h3>Underscore.js</h3>
+                <p>
+                    Cajón de sastre con un centenar de funciones de utilidad sobre arrays y objetos.
+                </p>
+                <p>Algunas ya conocidas:</p>
+                <ul>
+                    <li><code>pluck(arrayDeObjetos, fieldName)</code></li>
+                    <li><code>partition(arrayDeObjetos, p)</code></li>
+                    <li><code>groupBy(arrayDeObjetos, f)</code></li>
+                    <li><code>where(arrayDeObjetos, modelo)</code></li>
+                </ul>
+            </section>
+            
+            <section>
+                <p>Por costumbre, la variable que contiene el módulo <code>underscore</code> suele llamarse <code>_</code> (guión bajo).</p>
+                <pre><code data-trim class="javascript">
+var _ = require("underscore");
+                </code></pre>
+                <p>Algunas otras funciones:</p>
+                <ul>
+                    <li><code>shuffle(array)</code>: desordena un array aleatoriamente.
+                        <pre><code data-trim class="javascript">
+_.shuffle([1, 2, 3, 4, 5, 6, 7]) 
+// &rarr; [1, 6, 4, 2, 7, 3, 5]
+                        </code></pre>
+                    </li>
+                    <li><code>sample(array, n)</code>: toma <code>n</code> elementos de un array aleatoriamente.
+                        <pre><code data-trim class="javascript">
+_.shuffle([1, 2, 3, 4, 5, 6, 7]) 
+// &rarr; [6, 4, 3]
+                        </code></pre>
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <ul>
+                    <li>Operaciones conjuntistas:<br>
+                        <pre><code data-trim class="javascript">
+_.union([1, 5, 6], [1, 7, 5])
+    // &rarr; [1, 5, 6, 7]
+    
+_.intersection([1, 5, 6], [1, 7, 5])
+    // &rarr; [1, 5]
+    
+_.difference([1, 5, 6], [1, 7, 5])
+    // &rarr; [6]
+                        </code></pre>
+                    
+                    </li>
+                    <li>
+                        Eliminación de duplicados en un array (<code>uniq</code>)
+                        <pre><code data-trim class="javascript">
+_.uniq([1, 5, 1, 7, 8, 5])
+    // &rarr; [1, 5, 7, 8]
+                        </code></pre>
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <ul>
+                    <li>
+                        <code>findIndex(array, p)</code>: Devuelve el índice del primer elemento <code>x</code> de <code>array</code> tal que <code>p(x)</code> devuelve <code>true</code>.
+                        <pre><code data-trim class="javascript">
+_.findIndex(["Berta", "Beatriz", "Fabio"], function(nombre) {
+    return nombre.startsWith("F");
+})  // &rarr; 2
+                        </code></pre>
+                    </li>
+                    <li>
+                        <code>range(ini, fin[, step])</code>: Devuelve una lista ascendente desde <code>ini</code> hasta <code>fin</code>.
+                        <pre><code data-trim class="javascript">
+_.range(1, 5) // &rarr; [1, 2, 3, 4]
+                        </code></pre>
+                    </li>
+                </ul>
+                
+                <ul>
+                    <li><code>escape(cadena)</code>, <code>unescape(cadena)</code>: Sustituye los caracteres &lt;, &gt;, &quot;, etc de una cadena por sus correspondientes entidades HTML, y viceversa.</li>
+                    <pre><code data-trim class="javascript">
+_.escape("Esto es &lt;b&gt;importante&lt;/b&gt;")
+    // &rarr; Esto es &amp;lt;b&amp;gt;importante&amp;lt;/b&amp;gt;
+                    </code></pre>
+                </ul>
+            </section>
+            
+            <section>
+                <h3>Moment.js</h3>
+                <p>Funciones de manejo de fechas.</p>
+                <p>Se basa en una clase <code>Moment</code> que actúa como envoltorio de la clase <code>Date</code></p>
+                <pre><code data-trim class="javascript">
+var moment = require("moment");
+
+var hoy = moment();
+var comienzoCurso = moment(new Date(2016, 8, 26));
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Puede formatear una fecha a partir de una región.</p>
+                <pre><code data-trim class="javascript">
+var moment = require("moment");
+moment.locale('es');
+
+var hoy = moment();
+var comienzoCurso = moment(new Date(2016, 8, 26));
+
+console.log(comienzoCurso.format("MMM D"));
+    // &rarr; "sep. 26"
+    
+console.log(comienzoCurso.format("LLL"));
+    // &rarr; 26 de septiembre de 2016 0:00
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Formateado de fechas relativas:</p>
+                <pre><code data-trim class="javascript">
+console.log(comienzoCurso.fromNow());
+    // &rarr; hace un mes
+                </code></pre>
+                
+                <p>Operaciones sobre fechas:</p>
+                <pre><code data-trim class="javascript">
+var f1 = moment();
+var f2 = moment(new Date(1983, 7, 28));
+
+console.log(f1.diff(f2, 'years')); // &rarr; 33          
+                </code></pre>
+            </section>
+            
+            
+            <section>
+                <h2>Acceso a bases de datos</h2>
+                <p>Paquetes para conexión a un SGBD:</p>
+                <ul>
+                    <li>Bases de datos <strong>relacionales</strong>:
+                    <ul>
+                        <li><code>mysql</code>: MySQL, MariaDB. <span class="arrow_box_left caja_codigo fragment" style="position:relative;left:20px">Este tema</span></li>
+                        <li><code>node-oracledb</code>: Oracle.</li>
+                        <li><code>sequelize</code>: ORM para MySQL.</li>
+                    </ul>
+                    </li>
+                    <li>
+                        Bases de datos <strong>documentales</strong>:
+                        <ul>
+                            <li><code>mongodb</code>: MongoDB (JSON)</li>
+                            <li><code>mongoose</code>: ODM para MongoDB</li>
+                            <li><code>node-exist</code>: eXist-db (XML)</li>
+                            <li><code>basex</code>: BaseX (XML)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h3>Base de datos de ejemplo</h3>
+                <p>Agenda de contactos</p>
+                <img src="images/04/TelefonosER.png" width="90%" style="border:none;box-shadow:none">
+            </section>
+
+            <section>
+                <p>Tabla <code>Contacto</code></p>
+                <img src="images/04/TelefonosContactos.png" width="60%" style="border:none;box-shadow:none">
+                
+                <div style="float:left; width:45%">
+                    <p>Tabla <code>Tiene_Telefono</code></p>
+                    <img src="images/04/TelefonosTieneTelefono.png" width="50%" style="border:none;box-shadow:none">
+                </div>
+                <div style="float:right; width:45%">
+                    <p>Tabla <code>Tiene_Correo</code></p>
+                    <img src="images/04/TelefonosTieneCorreo.png" width="80%" style="border:none;box-shadow:none">
+                </div>
+                
+                <div style="clear:both"></div>
                 
             </section>
+            
+            
+            <section>
+                <h3>Paquete <code>mysql</code></h3>
+                <p>Instalación mediante <code>npm</code></p>
+                <pre><code data-trim class="no-highlight">
+npm install mysql --save                
+                </code></pre>
+                <p>Pasos para acceder a la BD:</p>
+                <ol>
+                    <li>Crear e inicializar un objeto <code>Connection</code>.</li>
+                    <li>Realizar la conexión.</li>
+                    <li>Realizar consulta o modificación.</li>
+                    <li>Cerrar la conexión.</li>
+                </ol>
+                <p>Salvo la primera, todas las operaciones son <strong>asíncronas</strong>.</p>
+            </section>
+            
+            <section>
+                <h4>Inicializar una conexión</h4>
+                <pre><code data-trim data-noescape class="javascript">
+var mysql = require("mysql");
+
+var conexion = mysql.createConnection({
+    host:  "localhost",
+    user:  "root",    <span class="arrow_box_left caja_codigo">Datos de acceso al SGBD</span>
+    password: "",
+    database: "miBD"  <span class="arrow_box_left caja_codigo">Nombre de la BD</span>
+});
+                </code></pre>
+                <p>La función <code>createConnection</code> solamente configura los atributos de una conexión. La conexión propiamente dicha no se realiza hasta que se llame a <code>connect</code>.</p>
+            </section>
+            
+            <section>
+                <h4>Realizar la conexión</h4>
+                <p>Método <code>connect(callback)</code></p>
+                <pre><code data-trim class="javascript">
+conexion.connect(function(err) {
+    if (err) {
+        console.log("Error al realizar la conexión: " + err);
+    } else {
+        // ... realizar consulta ...
+    }
+});
+                </code></pre>
+                <p>Con la conexión abierta ya pueden ejecutarse consultas y modificaciones mediante SQL.</p>
+            </section>
+            
+            <section>
+                <h4>Ejecutar consultas</h4>
+                <p>Método <code>query(consulta, callback)</code></p>
+                <p>La función callback recibe, además del objeto error, el resultado de la consulta.</p>
+                
+                <pre><code data-trim class="javascript">
+connetion.query(
+    "SELECT Nombre, Apellidos, FechaNac, Foto FROM Contactos",
+    function(err, filas) {
+        if (!err) {
+            // Recorrer y procesar las filas
+        }
+    }
+);                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>El resultado de una consulta es un array de objetos.</p>
+                <p>Cada objeto representa una fila. Los atributos de cada objeto son los nombres de las columnas sobre los que se hace el <code>SELECT</code>. Los valores asociados a cada atributo dependen del tipo de la columna correspondiente:</p>
+                <table>
+                    <tr>
+                        <th>Tipo Node</th>
+                        <th>Tipo SQL</th>
+                    </tr>
+                    <tr>
+                        <td><code>number</code></td>
+                        <td><code>INT</code>, <code>SMALLINT</code>, <code>FLOAT</code>, <code>DOUBLE</code>, ...</td>
+                    </tr>
+                    <tr>
+                        <td><code>string</code></td>
+                        <td><code>CHAR</code>, <code>VARCHAR</code>, <code>TEXT</code>, <code>ENUM</code>, ...</td>
+                    </tr>
+                    <tr>
+                        <td><code>Date</code></td>
+                        <td><code>TIMESTAMP</code>, <code>DATE</code>, <code>DATETIME</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>Buffer</code></td>
+                        <td><code>BLOB</code>, <code>BINARY</code>, <code>DATETIME</code>, ...</td>
+                    </tr>
+                </table>
+            </section>
+            
+            <section>
+                <pre><code data-trim class="javascript">
+conexion.query(
+    "SELECT Nombre, Apellidos FROM Contactos",
+    function(err, filas) {
+        if (!err) {
+            filas.forEach(function(fila) {
+                console.log(`${fila.Nombre} ${fila.Apellidos}`);
+            });
+            // ...
+        }
+    }
+);                
+                </code></pre>
+                <pre><code data-trim class="no-highlight">
+Javier Fernández Montoro
+Estela Hernández de la Fuente
+Gloria Ruiz Sánchez
+Fermín Córdoba Moreno
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Un SGBD admite un número limitado de conexiones abiertas simultáneamente.</p>
+                <p>Por tanto, conviene cerrar la conexión mediante el método <code>end()</code> una vez obtenidos los resultados de la consulta.</p>
+                <pre><code data-trim data-noescape class="javascript">
+conexion.query(
+    "SELECT Nombre, Apellidos FROM Contactos",
+    function(err, filas) {
+        if (!err) {
+            filas.forEach(function(fila) {
+                console.log(`${fila.Nombre} ${fila.Apellidos}`);
+            });
+            <span class="hl">conexion.end();</span>
+        }
+    }
+);                
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>Inserciones, borrados y actualizaciones</h3>
+                <p>Al igual que en las consultas, se utiliza <code>query()</code></p>
+                <p>En estos casos, la función callback recibe un objeto con información sobre el resultado de la operación.</p>
+                <p>Atributos del objeto resultado:</p>
+                <ul>
+                    <li><code>affectedRows</code>: número de filas insertadas, actualizadas o borradas.</li>
+                    <li><code>insertId</code>: identificador de la última fila insertada, en caso de ser de tipo <code>AUTO_INCREMENT</code>.</li>
+                </ul>
+                
+            </section>
+            
+            <section>
+                <h4>Ejemplo</h4>
+                <pre><code data-trim class="javascript">
+conexion.connect(function(err) {
+    if (err) return;
+    var sql = "INSERT INTO Contactos(Nombre, Apellidos) "
+            + "VALUES ('Diana', 'Díaz')"
+    conexion.query(sql, function(err, resultado) {
+        if (err) {
+            console.log("Error de inserción: " + err);
+        } else {
+            // Imprime el identificador de la nueva fila
+            console.log(resultado.insertId);
+            
+            // Imprime el número de filas insertadas
+            console.log(resultado.affectedRows);
+        }
+    });
+});                
+                </code></pre>
+            </section>
+            
+            
+            <section>
+                <h3>Consultas SQL paramétricas</h3>
+                <p>Realizamos una función que reciba una cadena <code>str</code>, e imprima los nombres de los usuarios cuyo nombre coincida con dicha cadena.</p>
+                <pre><code data-trim class="javascript">
+function buscarUsuario(str) {
+    conexion.connect(function(err) {
+        if (err) return;
+        var sql = "SELECT Nombre, Apellidos " +
+                  "FROM Contactos WHERE Nombre = '" + str + "'";
+        conexion.query(sql, function(err, filas) {
+            if (err) {
+                console.error(err);
+            } else {
+                filas.forEach(function(fila) {
+                   console.log(`${fila.Nombre} ${fila.Apellidos}`);
+                });
+            }
+            conexion.end();
+        });
+    });
+}
+                </code></pre>
+            </section>
+            
+            
+            <section>
+                <p>El valor del parámetro <code>str</code> puede provenir de la entrada de un usuario (por ejemplo, un formulario Web).</p>
+                <p>Supongamos la siguiente llamada:</p>
+                <pre><code data-trim class="javascript">
+buscarUsuario("Javier");
+                </code></pre>
+                <p>Se imprime el siguiente resultado:</p>
+                <pre><code data-trim class="no-highlight">
+Javier Fernández Montoro
+                </code></pre>
+                <p>¿Qué ocurre con la siguiente llamada?</p>
+                <pre><code data-trim class="javascript">
+buscarUsuario("Javier' OR '' = '");                
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>Inyección SQL</h4>
+                <img src="https://i.kinja-img.com/gawker-media/image/upload/18mpenleoksq8jpg.jpg" width="60%">
+                <p>Fuente: <a href="http://gizmodo.com/5498412/sql-injection-license-plate-hopes-to-foil-euro-traffic-cameras">http://gizmodo.com/5498412/sql-injection-license-plate-hopes-to-foil-euro-traffic-cameras</a></p>
+            </section>
         
+            <section>
+                <h4>Inyección SQL</h4>
+                <img src="https://imgs.xkcd.com/comics/exploits_of_a_mom.png" width="100%">
+                <p>Fuente: <a href="https://xkcd.com/327/">https://xkcd.com/327/</a></p>
+            </section>
+            
+            <section>
+                <p>Una <strong>consulta paramétrica</strong> es una consulta SQL con &laquo;huecos&raquo; (denominados marcadores), representados mediante el símbolo <code>?</code>.</p>
+                <p>Al rellenar los marcadores con valores concretos, estos se &laquo;escapean&raquo; de manera que se previenen los ataques de inyección SQL.</p>
+                <p>Ejemplo de consulta paramétrica:</p>
+                <pre><code data-trim data-noescape class="sql">
+INSERT INTO Contactos(Nombre, Apellidos) VALUES (<span class="hl">?</span>, <span class="hl">?</span>);
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>El método <code>query()</code> puede recibir una consulta paramétrica. En este caso, el segundo parámetro de este método recibe un array con los valores asignados a los marcadores.</p>
+                <p>Por ejemplo, si se ejecuta la consulta paramétrica,</p>
+                <pre><code data-trim data-noescape class="sql">
+SELECT Nombre, Apellidos FROM Contactos
+WHERE Nombre = <span class="hl">?</span>
+                </code></pre>
+                <p>y asignamos la cadena <code>"Javier' OR '' = '"</code> al marcador, en realidad se ejecutará la siguiente consulta:</p>
+                <pre><code data-trim data-noescape class="sql">
+SELECT Nombre, Apellidos FROM Contactos
+WHERE Nombre = <span class="hl">'Javier\' OR \'\' = \''</span>
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Se puede implementar la función <code>buscarUsuario</code> utilizando una consulta paramétrica:</p>
+                <pre><code data-trim data-noescape class="javascript">
+function buscarUsuario(str) {
+    conexion.connect(function(err) {
+        if (err) return;
+        var sql = "SELECT Nombre, Apellidos " +
+                  "FROM Contactos WHERE Nombre = <span class="hl">?</span>";
+        conexion.query(sql, [<span class="hl">str</span>], function(err, filas) {
+        
+            // ... Igual que antes ...
+            
+        });
+    });
+}
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>Pool de conexiones</h3>
+                <p>La creación de una conexión con un SGBD es una operación relativamente costosa.</p>
+                <p>Un <strong>pool de conexiones</strong> es un contenedor de conexiones a una determinada BD, pensado para que se reutilicen en sucesivas consultas a la BD.</p>
+                <p>Cuando se quiere realizar una consulta a la BD, se adquiere una conexión libre del <em>pool</em> de conexiones.</p>
+                <p>Cuando se ha terminado de trabajar con la conexión, se devuelve al <em>pool</em>, en lugar de cerrarla.</p>
+            </section>
+            
+            <section>
+                <p>El paquete <code>mysql</code> permite la creación de pools:</p>
+                <pre><code data-trim class="javascript">
+var mysql = require("mysql");
+
+var pool = mysql.createPool({
+    host:  "localhost",
+    user:  "root",
+    password: "",
+    database: "miBD"
+});
+//...                
+                </code></pre>
+                <p>Los objetos <code>Pool</code> devueltos por <code>createPool</code> permiten obtener conexiones mediante el método <code>getConnection()</code>. Esta función pasa a su callback la conexión obtenida.</p>
+            </section>
+            
+            <section>
+                <pre><code data-trim data-noescape class="javascript">
+// ...
+pool.getConnection(function(err, <span class="hl">conexion</span>) {
+    if (err) return;
+    var sql = "SELECT Nombre, Apellidos " +
+              "FROM Contactos";
+    <span class="hl">conexion</span>.query(sql, function(err, resultado) {
+        // ... Trabajar con el resultado ...
+        
+        // Devolver la conexión al pool
+        <span class="hl">conexion.release();</span>
+    });
+});
+
+                </code></pre>
+            </section>
         </div>
 
     </div>
