@@ -59,22 +59,22 @@
             <section data-background-image="images/RedBackground.jpg" data-background-transition="fade" id="p1">
                 <ol class="contenidos" style="width:13em">
                     <li><a href="#/p1" class="outline fragment highlight-orange">Introducción</a></li>
-                    <li><a href="#/p2" class="outline">Javascript es como Java...</a></li>
-                    <li><a href="#/p3" class="outline">...pero no es como Java</a></li>
-                    <li><a href="#/p4" class="outline">Clases estándar</a></li>
-                    <li><a href="#/p5" class="outline">Herramientas</a></li>
-                    <li><a href="#/p6" class="outline">ECMAscript 6</a></li>
+                    <li><a href="#/p2" class="outline">Módulos y paquetes</a></li>
+                    <li><a href="#/p3" class="outline">El modelo asíncrono</a></li>
+                    <li><a href="#/p4" class="outline">Módulos core</a></li>
+                    <li><a href="#/p5" class="outline">Acceso a bases de datos</a></li>
+                    <li><a href="#/p6" class="outline">Servidores web</a></li>
                     <li><a href="#/p7" class="outline">Bibliografía</a></li>
                 </ol>
             </section>
 
             <section>
                 <h2>Introducción</h2>
-                <p>Node.js (o simplemente Node) es un entorno de ejecución que permite ejecutar programas <strong>Javascript</strong>.</p>
+                <p>Node.js (o simplemente Node) es un entorno de ejecución que permite ejecutar <strong>Javascript</strong> fuera del navegador.</p>
                 <p><a href="https://nodejs.org/">https://nodejs.org/</a></p>
-                <p>Principalmente dirigido a servidores web, pero puede utilizarse para implementar cualquier tipo de aplicación.</p>
-                <p>En este curso utilizaremos Node para implementar la funcionalidad del <strong>lado del servidor</strong> en las aplicaciones web.</p>
                 <p>Se distribuye bajo una <a href="https://es.wikipedia.org/wiki/Licencia_MIT">licencia MIT</a>.</p>
+                <p class="fragment">Principalmente dirigido a servidores web, pero puede utilizarse para implementar cualquier tipo de aplicación.</p>
+                <p class="fragment">En este curso utilizaremos Node para implementar la funcionalidad del <strong>lado del servidor</strong> en las aplicaciones web.</p>
             </section>
             
             <section>
@@ -91,13 +91,16 @@
             <section>
                 <h3>Instalación</h3>
                 <p>Puede descargarse desde:</p>
-                <p><a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></p>
-                <p>En las versiones para Windows y Mac incluye un instalador.</p>
-                <p>Desde GNU/Linux se puede:</p>
+                <p><a href="https://nodejs.org/en/download/releases/">https://nodejs.org/en/download/releases/</a></p>
                 <ul>
-                    <li>Descargar los binarios desde la página anterior.</li>
-                    <li>Utilizar el gestor de paquetes de la distribución.</li>
-                    <li>Utilizar <strong>nvm</strong> (<a href="http://nvm.sh">http://nvm.sh</a>), que permite mantener varias versiones de Node en un mismo sistema.</li>
+                    <li class="fragment">Las versiones para Windows y Mac incluyen un instalador.</li>
+                    <li class="fragment">Desde GNU/Linux se puede:
+                        <ul>
+                            <li>Descargar los binarios desde la URL anterior.</li>
+                            <li>Utilizar el gestor de paquetes de la distribución.</li>
+                            <li>Utilizar <strong>nvm</strong> (<a href="http://nvm.sh">http://nvm.sh</a>), que permite mantener varias versiones de Node en un mismo sistema.</li>
+                        </ul>
+                    </li>
                 </ul>
             </section>
             
@@ -107,12 +110,16 @@
                 <pre><code data-trim data-noescape class="no-highlight">
 # node <em>nombre_script.js</em>
                 </code></pre>
+                <div class="fragment">
                 <p>Si se desea ejecutar el intérprete (REPL):</p>
                 <pre><code data-trim data-noescape class="no-highlight">
 # node
                 </code></pre>
+                </div>
+                <div class="fragment">
                 <p>REPL = <em>Read-Eval-Print Loop</em></p>
                 <p>El intérprete permite evaluar las expresiones Node que se introduzcan por teclado.</p>
+                </div>
             </section>
             
             <section>
@@ -163,18 +170,19 @@ undefined
             <section>
                 <h3>Proyectos Node</h3>
                 <p>
-                   La gestión de proyectos de cierta envergadura utilizando el ejecutable <code>node</code> resulta algo tediosa, porque involucra:
+                   El uso del ejecutable <code>node</code> para proyectos grandes resulta algo tediosa, porque estos requieren, entre otras cosas:
                 </p>
                 <ul>
                     <li>Gestión de dependencias (librerías externas).</li>
                     <li>Arranque y parada del sistema.</li>
-                    <li>etc.</li>
                 </ul>
-                <p>Podemos gestionar los proyectos:</p>
-                <ul>
-                    <li>Desde la línea de comandos: <code>npm</code>.</li>
-                    <li>Desde un IDE: <em>Netbeans</em>.</li>
-                </ul>
+                <div class="fragment">
+                    <h4 style="margin-top: 30px">Herramientas para gestionar proyectos</h4>
+                    <ul style="width:75%">
+                        <li>Desde la línea de comandos: <code>npm</code>.</li>
+                        <li>Desde un IDE: <em>Netbeans</em>.</li>
+                    </ul>
+                </div>
             </section>
             
             <section>
@@ -184,7 +192,7 @@ undefined
                 </p>
                 <ul>
                     <li>Crear proyectos vacíos.</li>
-                    <li>Gestionar las librerías de las que hace uso un proyecto, bajándoselas desde un repositorio oficial (<a href="https://registry.npmjs.org/">NPM Registry</a>).</li>
+                    <li>Gestionar las librerías de las que hace uso un proyecto, consultando una base de datos pública (<a href="https://registry.npmjs.org/">NPM Registry</a>) que indica desde dónde descargarlas.</li>
                     <li>Gestionar <em>scripts</em>: arranque del sistema, parada, ejecución de tests, etc.</li>
                 </ul>
                 <p>
@@ -193,7 +201,7 @@ undefined
             </section>
             
             <section>
-                <h3>Creación de un proyecto con <code>npm</code>:</h3>
+                <h3>Creación de un proyecto con <code>npm</code></h3>
                 <p>Ejecutar desde la línea de comandos:</p>
                 <pre><code data-trim class="no-highlight">
 # npm init
@@ -264,7 +272,7 @@ Is this ok? (yes) <span class="hl" style="color:#20A">yes</span>
             </section>
             
             <section>
-                <p>Si no se introduce un nombre para repositorio Git, es posible declarar el paquete como privado, mediante la opción <code>private</code>:</p>
+                <p>Si no se introduce un nombre para repositorio Git, es posible declarar el paquete como privado añadiendo:</p>
                 <pre><code data-trim data-noescape class="json">
 { 
   ...
@@ -279,7 +287,7 @@ Is this ok? (yes) <span class="hl" style="color:#20A">yes</span>
             <section>
                 <h3>Uso de Netbeans</h3>
                 <p>Netbeans dispone un <em>plugin</em> para Node.</p>
-                <p>Se requiere Netbeans 8.1 o posterior.</p>
+                <p>Se requiere Netbeans 8.1 o versión posterior.</p>
                 <p>Al descargarlo de la página web <a href="https://netbeans.org">https://netbeans.org</a> es necesario seleccionar la versión <em>HTML5/Javascript</em> o <em>All</em>.</p>
             </section>
             
@@ -290,7 +298,7 @@ Is this ok? (yes) <span class="hl" style="color:#20A">yes</span>
             
             <section>
                 <h4>Configuración de Netbeans</h4>
-                <p>Antes de utilizar el <em>plugin</em> de Netbeans es necesario indicar el directorio en el que se encuentran los ejecutables de Node: <code>node</code>, <code>npm</code>, etc. </p>
+                <p>Para utilizar el <em>plugin</em> de Netbeans es necesario indicar el directorio de los ejecutables de Node, NPM, etc. </p>
                 <p>Menú <em>Tools</em> &rarr; <em>Options</em> &rarr; Pestaña <em>HTML/JS</em> &rarr; Pestaña <em>Node</em></p>
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/CSh2Whhcnms" frameborder="0" allowfullscreen></iframe>
             </section>
@@ -303,7 +311,7 @@ Is this ok? (yes) <span class="hl" style="color:#20A">yes</span>
                 <h4>Crear un proyecto en Netbeans</h4>
                 <p><em>File</em> &rarr; <em>New Project...</em></p>
                 <p>Seleccionar categoría <em>HTML5/Javascript</em> y tipo de aplicación <em>Node.js application</em>.</p>
-                <img src="images/04/NewProject.png" style="width:60%"> 
+                <img src="images/04/NewProject.png" style="width:50%"> 
             </section>
             
             <section>
@@ -316,34 +324,32 @@ Is this ok? (yes) <span class="hl" style="color:#20A">yes</span>
                 <img src="images/04/ProjectOptions.png" style="width:80%">
             </section>
             
-            <section>
-                <h2>Módulos en Node</h2>
-                <p>Además de poder dividir el código en fragmentos, favorecen la reutilización de código.</p>
-                <p>Un buen sistema de módulos debe proporcionar:</p>
-                <ul>
-                    <li>Algún mecanismo para <strong>evitar conflictos de nombres</strong> entre distintos módulos.
-                        <p style="color:#009893">Ejemplo: Espacios de nombres (C++), paquetes (Java), etc.</p>
-                    </li>
-                    <li>
-                        Mecanismos para <strong>separar interfaz de implementación</strong>.
-                        <p style="color:#009893">Ejemplo: listas de funciones exportadas (Haskell), privacidad de atributos (Java, C++, etc).</p>
-                    </li>
-                </ul>
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p2">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline current">Módulos y paquetes</a></li>
+                    <li><a href="#/p3" class="outline">El modelo asíncrono</a></li>
+                    <li><a href="#/p4" class="outline">Módulos core</a></li>
+                    <li><a href="#/p5" class="outline">Acceso a bases de datos</a></li>
+                    <li><a href="#/p6" class="outline">Servidores web</a></li>
+                    <li><a href="#/p7" class="outline">Bibliografía</a></li>
+                </ol>
             </section>
             
             
             
             
             <section>
-                <h3>Tipos de módulos</h3>
+                <h2>Módulos en Node</h2>
+                <p>Existen tres tipos de módulos:</p>
                 <ol>
-                    <li>Módulos <strong>basados en ficheros</strong>.<br>
-                        Están contenidos en un único fichero. Se importan por separado en el proyecto.
+                    <li class="fragment">Módulos <strong>basados en ficheros</strong>.<br>
+                        Forman parte de un proyecto, pero no están pensados para ser reutilizados como librerías.
                     </li>
-                    <li>Módulos <strong>core</strong>.<br>
-                        Vienen incluidos con Node. Proporcionan operaciones básicas (ficheros, servidores web, sistema operativo).
+                    <li class="fragment">Módulos <strong>core</strong>.<br>
+                        Vienen incluidos con Node. Proporcionan operaciones básicas (ficheros, servidores web, sistema operativo, etc.).
                     </li>
-                    <li>Módulos de tipo <strong>paquete</strong>.<br>
+                    <li class="fragment">Módulos de tipo <strong>paquete</strong>.<br>
                         Librerías externas, gestionadas por <em>npm</em>.
                     </li>
                     
@@ -385,8 +391,10 @@ var fib = require("./moduloFib.js");
 
 console.log(fib(10));                
                 </code></pre>
+                <div class="fragment">
                 <p>Imprime:</p>
                 <pre>55</pre>
+                    </div>
             </section>
             
             <section>
@@ -400,12 +408,13 @@ console.log(fib(10));
             </section>
             
             <section>
-                <p>El objeto devuelto por <code>require</code> se guarda en una variable que no tiene por qué ser igual que el nombre de la función exportada.</p>
+                <p>El objeto devuelto por <code>require</code> se guarda en una variable que no ha de coincidir necesariamente con el nombre de la función exportada.</p>
                 <pre><code data-trim data-noescape class="javascript">
 var <span class="hl">myFib</span> = require("./moduloFib.js");
 
 console.log(<span class="hl">myFib</span>(10));                
                 </code></pre>
+                <div class="fragment">
                 <p>Esto es útil para prevenir conflictos de nombres entre los distintos módulos. Supongamos otro módulo <code>otroModuloFib.hs</code> que también exporta una función <code>fib</code>:</p>
                 <pre><code data-trim data-noescape class="javascript">
 var <span class="hl">myFib</span> = require("./moduloFib.js");
@@ -414,6 +423,7 @@ var <span class="hl">otroFib</span> = require("./otroModuloFib.js");
 console.log(myFib(10));
 console.log(otroFib(10));
                 </code></pre>
+                </div>
                 
             </section>
             
@@ -476,7 +486,7 @@ var <span class="hl">geometria</span> = require("./geometria.js");
 console.log(<span class="hl">geometria</span>.areaCuadrado(10));
 console.log(<span class="hl">geometria</span>.areaCirculo(10));                
                 </code></pre>
-                
+                <div class="fragment">
                 <p>De nuevo, el nombre de la variable devuelta por el <code>require</code> puede ser cualquiera:</p>
                 <pre><code data-trim data-noescape class="javascript">
 var <span class="hl">g</span> = require("./geometria.js");
@@ -484,11 +494,12 @@ var <span class="hl">g</span> = require("./geometria.js");
 console.log(<span class="hl">g</span>.areaCuadrado(10));
 console.log(<span class="hl">g</span>.areaCirculo(10));             
                 </code></pre>
-            <p>Aunque por convenio suele utilizarse el mismo nombre para la variable y el módulo (es decir, <code>geometria</code>)</p>
+                </div>
+            <p class="fragment">Aunque por convenio suele utilizarse el mismo nombre para la variable y el módulo (es decir, <code>geometria</code>)</p>
             </section>
             
             <section>
-                <p>Otra posible forma de definir un módulo: definir las funciones en el objeto asignado a <code>module.exports</code>.</p>
+                <p>Otra posible forma de definir un módulo: definir directamente las funciones en el objeto asignado a <code>module.exports</code>.</p>
                 <pre><code data-trim class="javascript">
 module.exports = {
     areaCuadrado: function(lado) {
@@ -510,26 +521,6 @@ module.exports = {
                 </code></pre>
             </section>
             
-            <section>
-                <p>Otra forma más:</p>
-                <pre><code data-trim class="javascript">
-module.exports.areaCuadrado = function(lado) {
-    return lado * lado;
-};
-
-module.exports.areaCirculo = function(radio) {
-    return Math.PI * radio * radio;
-};
-
-module.exports.perimetroCuadrado = function(lado) {
-    return 4 * lado;
-};
-
-module.exports.perimetroCirculo = function(radio) {
-    return 2 * Math.PI * radio;
-};                
-                </code></pre>
-            </section>
             
             <section>
                 <p>Lo que no se exporte dentro de un módulo se considera privado al mismo. Esto nos permite modificar la implementación sin alterar la interfaz.</p>
@@ -557,7 +548,7 @@ module.exports = fib;
             </section>
             
             <section>
-                <h3>Importante</h3>
+                <h4>Importante</h4>
                 <p>A la hora de importar un módulo de tipo fichero mediante <code>require</code>, es necesario indicar el <strong>path</strong> del fichero que se importa,  <strong>aunque se encuentre en el mismo directorio</strong>.</p>
                 <pre><code data-trim data-noescape class="javascript">
 // Correcto:
@@ -573,11 +564,13 @@ var geometria = require("<span class="hl">../</span>geometria.js");
 var geometria = require("<span class="hl" style="background-color:#FBB">geometria.js</span>");
                 </code></pre>
                 
+                <div class="fragment">
                 <p>No obstante, puede omitirse la extensión <code>.js</code></p>
                 <pre><code data-trim class="javascript">
 // Correcto:
 var geometria = require("./geometria");
                 </code></pre>
+                </div>
             </section>
             
             <section>
@@ -585,151 +578,13 @@ var geometria = require("./geometria");
 // Incorrecto:
 var geometria = require("<span class="hl" style="background-color:#FBB">geometria.js</span>");                
                 </code></pre>
-                <p>Si no se especifica un <em>path</em>, Node entiende que se quiere importar un módulo de otro tipo:</p>
+                <p>Si no se especifica un <em>path</em> Node entiende que se quiere importar un módulo de otro tipo:</p>
                 <ul>
                     <li>Módulo core.</li>
                     <li>Módulo de tipo paquete.</li>
                 </ul>
             </section>
             
-            <section>
-                <h3>Sentencias en un módulo</h3>
-                <p>Además de declaraciones de funciones, un módulo puede contener cualquier tipo de sentencia. Estas sentencias serán ejecutadas al cargar el módulo.</p>
-                <pre><code data-trim data-noescape class="javascript">
-<span class="hl">console.log("Cargando módulo " + module.filename);</span>
-
-function areaCuadrado(lado) { ... }
-
-function areaCirculo(radio) { ... }
-
-function perimetroCuadrado(lado) { ... }
-
-function perimetroCirculo(radio) { ... }
-
-module.exports = {
-    areaCuadrado: areaCuadrado,
-    areaCirculo: areaCirculo,
-    perimetroCuadrado: perimetroCuadrado,
-    perimetroCirculo: perimetroCirculo
-}                
-                </code></pre>
-            </section>
-            
-            
-            <section>
-                <h3>El objeto <code style="text-transform:none">module</code></h4>
-                <p>Contiene información sobre el módulo que se está ejecutando actualmente <a href="https://nodejs.org/api/modules.html#modules_the_module_object">[+]</a></p>
-                
-                <p>La variable especial <code>require.main</code> contiene el nombre del módulo que se ha cargado desde el intéprete de línea de comandos.</p>
-                <p>Esto nos permite saber si un módulo está siendo ejecutado directamente por Node, o si está siendo importado desde otro módulo.</p>
-            </section>
-            
-            <section>
-                <p>Ejemplo: <code>moduloFib.js</code></p>
-                <pre><code data-trim class="javascript">
-// ...
-function fib(n) {
-    // ...
-}
-
-module.exports = fib;
-
-if (require.main === module) {
-    console.log("Sucesión de Fibonacci");
-    for (var i = 0; i &lt; 10; i++) {
-        console.log(`fib(i) = ${fib(i)}`);
-    }
-}                
-                </code></pre>
-            </section>
-            
-            <section>
-                <p>Al ejecutarlo desde la línea de comandos:</p>
-                <pre><code data-trim data-noescape class="no-highlight">
-# <span class="hl">node moduloFib.js</span>
-Sucesión de Fibonacci
-fib(i) = 0
-fib(i) = 1
-fib(i) = 1
-fib(i) = 2
-fib(i) = 3
-fib(i) = 5
-fib(i) = 8
-fib(i) = 13
-fib(i) = 21
-fib(i) = 34
-                </code></pre>
-                
-                <p>Al importarlo desde otro módulo:</p>
-                <pre><code data-trim class="javascript">
-var fib = require("./moduloFib"); // No imprime nada
-                </code></pre>
-            </section>
-            
-            <section>
-                <h3>Los módulos se &laquo;cachean&raquo;</h3>
-                <p>Cuando un módulo se importa varias veces mediante <code>require</code> a lo largo de la ejecución de un programa, el módulo cargado solo se ejecuta la primera vez.</p>
-                <p>El resto de veces, <code>require</code> no vuelve a ejecutar el módulo. Se limita devuelve el contenido del <code>module.exports</code> que se definió en el módulo la primera vez que se cargó.</p>
-                <p>En el ejemplo <code>geometria.js</code>:</p>
-                <pre><code data-trim class="javascript">
-var g1 = require("./geometria");
-// Imprime: "Cargando módulo geometría.js"
-
-...
-var g2 = require("./geometria");
-// No se imprime nada, porque el módulo ha sido cargado
-                </code></pre>
-            </section>
-            
-            <section>
-                <p>¡Cuidado con las variables globales en el módulo!</p>
-                <pre><code data-trim class="javascript">
-// bd.js
-// -----
-var bd = {
-    "50382322X" : { nombre: "Francisco Martín", 
-                    fecha: new Date(1978, 04, 04) },
-    "46854322V" : { nombre: "Estela Lucas",
-                    fecha: new Date(1979, 03, 15) }
-};
-
-function obtenerPersona(dni) { return bd[dni]; }
-
-function numeroPersonas() {
-    return Object.getOwnPropertyNames(bd).length;
-}
-
-function añadirPersona(dni, nomb, fechaNac) {
-    bd[dni] = { nombre: nomb, fecha: fechaNac };
-}
-
-module.exports = {
-    obtenerPersona: obtenerPersona,
-    numeroPersonas: numeroPersonas,
-    añadirPersona: añadirPersona
-};
-                </code></pre>
-                
-            </section>
-            
-            <section>
-                <pre><code data-trim class="javascript">
-// En un punto del programa:
-
-var bd1 = require("./bd");
-bd1.añadirPersona("11111111V", "Fátima", new Date());
-console.log(bd1.numeroPersonas());  // &rarr; 3
-
-// ...
-
-// En otro punto del programa:
-
-var bd2 = require("./bd");
-console.log(bd2.numeroPersonas());  // &rarr; 3   
-                </code></pre>
-                
-                <p>Tanto <code>bd1</code> como <code>bd2</code> hacen referencia a la misma base de datos, ya que al hacer <code>require</code> por segunda vez se reutiliza el mismo módulo que se cargó la primera vez.</p>
-            </section>
             
             <section>
                 <h3>Módulos Core</h3>
@@ -749,7 +604,8 @@ var mensaje = util.format("Tienes %d años", 45);
             <section>
                 <h3>Módulos de tipo paquete</h3>
                 <p>Son módulos pensados para ser reutilizados e incorporados a otros proyectos.</p>
-                <p>Están contenidos en una carpeta llamada <code>node_modules</code>.</p>
+                <p>Se instalan dentro la propia carpeta del proyecto, en una subcarpeta llamada <code>node_modules</code>.</p>
+                <p>La información de la mayoría de ellos se encuentra en una base de datos pública: <em>NPM Registry</em>.</p>
                 <p>Se importan con <code>require</code> y, al igual que los módulos core, no se indica el path relativo.</p>
             </section>
             
@@ -758,6 +614,7 @@ var mensaje = util.format("Tienes %d años", 45);
                 <pre><code data-trim class="javascript">
 var foo = require("foo");
                 </code></pre>
+                <div class="fragment">
                 <p>Se busca <code>foo</code> en los siguientes directorios:</p>
                 <ul>
                     <li><code>node_modules/foo.js</code></li>
@@ -766,6 +623,7 @@ var foo = require("foo");
                     <li><code>../../../node_modules/foo.js</code></li>
                     <li>y así sucesivamente, hasta llegar al directorio raíz</li>
                 </ul>
+                </div>
             </section>
             
             <section>
@@ -773,13 +631,15 @@ var foo = require("foo");
                 <pre><code data-trim class="javascript">
 var mimodulo = require("mimodulo");
                 </code></pre>
+                <div class="fragment">
                 <p>Se buscará en los siguientes directorios:</p>
                 <ul>
-                    <li><code>/home/manuel/aw/node_modules/mimodulo.js</code></li>
-                    <li><code>/home/manuel/node_modules/mimodulo.js</code></li>
-                    <li><code>/home/node_modules/mimodulo.js</code></li>
-                    <li><code>/node_modules/mimodulo.js</code></li>
+                    <li class="fragment"><code>/home/manuel/aw/node_modules/mimodulo.js</code></li>
+                    <li class="fragment"><code>/home/manuel/node_modules/mimodulo.js</code></li>
+                    <li class="fragment"><code>/home/node_modules/mimodulo.js</code></li>
+                    <li class="fragment"><code>/node_modules/mimodulo.js</code></li>
                 </ul>
+                </div>
             </section>
             
             <section>
@@ -855,25 +715,13 @@ fact(6) = 720
                 </code></pre>
             </section>
             
-            <section>
-                <h3>Aplicaciones del sistema de paquetes</h3>
-                <p>
-                    Compartición de paquetes entre proyectos:
-                </p>
-                <img src="images/04/Subproyectos.svg" style="width:70%; border:none; box-shadow:none">
-            </section>
-            
-            <section>
-                <p>Convivencia de distintas versiones de un mismo paquete:</p>
-                <img src="images/04/VersionesPaquete.svg" style="width:55%; border:none; box-shadow:none">                
-            </section>
             
             <section>
                 <h3>Árbol de dependencias</h3>
                 <p>A menudo, la implementación de un proyecto Node requiere la instalación de unos determinados paquetes.</p>
-                <p>Cada uno de estos últimos pueden requerir la instalación de otros paquetes que, a su vez, requieren de otros paquetes.</p>
-                <p>Cuando la presencia del paquete X es un requisito para el funcionamiento del paquete Y, decimos que <strong>Y depende de X</strong>.</p>
-                <p>La relación de dependencia entre paquetes es transitiva, de modo que se tiene un <strong>árbol de dependencias</strong>.</p>
+                <p class="fragment">Cada uno de estos últimos pueden requerir la instalación de otros paquetes que, a su vez, requieren de otros paquetes.</p>
+                <p class="fragment">Cuando la presencia del paquete X es un requisito para el funcionamiento del paquete Y, decimos que <strong>Y depende de X</strong>.</p>
+                <p class="fragment">La relación de dependencia entre paquetes es transitiva, de modo que se tiene un <strong>árbol de dependencias</strong>.</p>
             </section>
             
             <section>
@@ -884,23 +732,26 @@ fact(6) = 720
             <section>
                 <h3>Instalar dependencias con <code>npm</code></h3>
                 <p>La herramienta <code>npm</code> permite gestionar las dependencias de un proyecto. De hecho, <code>npm</code> fue inicialmente concebido como un instalador de paquetes.</p>
-                <p>Esta herramienta puede descargar paquetes desde un depósito de paquetes, e incorporarlos en nuestro proyecto. <a href="">http://foo.com</a></p>
+                <p>Esta herramienta puede descargar paquetes desde un repositorio, e incorporarlos en nuestro proyecto. <a href="https://www.npmjs.com/">https://www.npmjs.com/</a></p>
             </section>
             
             <section>
-                <p>Para descargar e instalar un paquete en un proyecto, ejecutar lo siguiente desde el directorio raíz del mismo.</p>
+                <p>Para descargar e instalar un paquete en un proyecto, ejecutar lo siguiente desde el directorio raíz del proyecto:</p>
                 <pre><code data-trim data-noescape class="no-highlight">
 # npm install <em>nombre_paquete</em> 
                 </code></pre>
+                <div class="fragment">
                 <p>Por ejemplo, para incorporar el paquete <code>underscore</code> en nuestro proyecto:</p>
                 <pre><code data-trim class="no-highlight">
 # npm install underscore
                 </code></pre>
-                <p>Descargará la versión más reciente del paquete desde el depósito <code>npm</code> y lo instalará bajo la carpeta <code>node_modules</code> del proyecto (creándola si es necesario)</p>
+                </div>
+                <p class="fragment">Descargará la versión más reciente del paquete y la instalará bajo la carpeta <code>node_modules</code> del proyecto (creándola si es necesario)</p>
             </section>
 
             <section>
                 <p>El comando <code>npm install</code> no solo instala el paquete especificado, sino también sus dependencias.</p>
+                <div class="fragment">
                 <p>Por ejemplo al instalar <code>express</code>:</p>
                 <pre><code data-trim data-noescape class="no-highlight">
 # npm install express
@@ -916,6 +767,7 @@ node_modules
 ├── cookie
 ...                
                 </code></pre>
+                </div>
             </section>
             
             <section>
@@ -952,13 +804,13 @@ node_modules
             
             <section>
                 <h4>Instalación global de paquetes</h4>
-                <p>Es posible instalar los paquetes en el directorio de Node, en lugar del directorio del proyecto. Los paquetes instalados allí estarán disponibles para todos los proyectos.</p>
-                <p>Esto resulta útil cuando un paquete incorpora ficheros ejecutables para ser utilizados en cualquier proyecto del sistema (<code>grunt</code>, <code>jshint</code>, etc.)</p>
-                <p>Los paquetes globales se instalan en <code>${prefix}/lib/node_modules</code>, donde <code>${prefix}</code> representa el directorio de instalación de Node. La instalación puede requerir <strong>derechos de administrador</strong>.</p>
+                <p>A veces un paquete incorpora ficheros ejecutables diseñados para su uso en cualquier proyecto del sistema (<code>grunt</code>, <code>jshint</code>, etc.)</p>
+                <p>Para poder ser invocados desde cualquier proyecto, estos ejeutables han de instalarse de manera global.</p>
+                <p>La instalación de un paquete de forma global puede requerir <strong>permisos de administrador</strong> en el sistema.</p>
             </section>
             
             <section>
-                <p>Para instalar un paquete de manera global, se ha de especificar la opción <code>-g</code> a <code>npm</code>.</p>
+                <p>Para instalar un paquete de manera global se ha de especificar la opción <code>-g</code> a <code>npm</code>.</p>
                 <p>Por ejemplo:</p>
                 <pre><code data-trim class="no-highlight">
 # npm install -g jshint                
@@ -974,11 +826,13 @@ node_modules
                 <p>
                     Basta con indicar las dependencias en el <code>package.json</code>, y distribuir este último junto con el proyecto.
                 </p>
+                <div class="fragment">
                 <p>Mediante el comando:</p>
                 <pre><code data-trim class="no-highlight">
 # npm install
                 </code></pre>
                 <p>se reconstruirá la carpeta <code>node_modules</code> a partir de la información contenida en <code>package.json</code>, descargando los paquetes que sean necesarios.</p>
+                </div>
             </section>
             
             <section>
@@ -1002,7 +856,7 @@ node_modules
                     </li>
                     <li>
                         <code>npm publish</code><br>
-                        Sube el proyecto actual al <em>npm registy</em>.
+                        Sube los datos del proyecto actual en el <em>NPM Registry</em>.
                     </li>
                 </ul>
             </section>
@@ -1032,53 +886,16 @@ mimodulo@1.0.0
                 </code></pre>
             </section>
             
-            <section>
-                <h3>Números de versión</h3>
-                <p>Los paquetes y programas escritos en <em>Node</em> utilizan el convenio <em>semantic versioning</em> para numerar las versiones.</p>
-                <p>Más información: <a href="http://semver.org/">http://semver.org/</a></p>
-                <p>Una versión se identifica mediante tres números:</p>
-                <img src="images/04/Versiones.svg" style="width:80%;border:none;box-shadow:none">
-            </section>
-            
-            <section>
-                <img src="images/04/Versiones.svg" style="width:3en cualquier 0%;border:none;box-shadow:none">
-                <p>Al liberar una nueva versión:</p>
-                <ul>
-                    <li><strong>MAJOR</strong>: Se aumenta si los cambios introducidos rompen la compatibilidad con versiones anteriores.</li>
-                    <li><strong>MINOR</strong>: Se aumenta si los cambios introducidos no rompen la compatibilidad con versiones anteriores, pero añaden nueva funcionalidad.</li>
-                    <li><strong>PATCH</strong>: Se aumenta si no hay funcionalidad nueva, pero sí correcciones de <em>bugs</em>.</li>
-                </ul>
-                <p>Excepción: versiones 0.x.x, cuya API es inestable.</p>
-            </section>
-            
-            <section>
-                <h4>Rangos de versión en <code>package.json</code></h4>
-                <p>¿Qué significa el símbolo <code>^</code> en el número de versión?</p>
-                <pre><code data-trim data-noescape class="json">
-{
-  ...
-  "dependencies": {
-    "underscore": "<span class="hl">^</span>1.8.3",
-    "express": "<span class="hl">^</span>4.14.0"
-  },
-  "private": true
-}                
-                </code></pre>
-                <p>En el caso de <code>underscore</code> significa que se admite otra versión distinta de la especificada, siempre que preserve la compatibilidad de la API (es decir, versiones 1.x.x).</p>
-                <p>Lo mismo se aplica a <code>express</code>.</p>
-            </section>
-            
-            <section>
-                <p>Posibles especificaciones:</p>
-                <ul>
-                    <li><code>1.8.3</code> La versión debe ser exactamente la especificada.</li>
-                    <li><code>&gt;=1.8.3</code> Se admite cualquier versión mayor o igual.</li>
-                    <li><code>&lt;=1.8.3</code> Se admite cualquier versión menor o igual.</li>
-                    <li><code>~1.8.3</code> Se admiten versiones 1.8.x.</li>
-                    <li><code>^1.8.3</code> Se admiten versiones 1.x.x.</li>
-                    <li><code>*</code> Se admite cualquier versión.</li>
-                    <li><code>1.8.3 - 2.5.1</code> Rango permitido.</li>
-                </ul>
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p3">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Módulos y paquetes</a></li>
+                    <li><a href="#/p3" class="outline current">El modelo asíncrono</a></li>
+                    <li><a href="#/p4" class="outline">Módulos core</a></li>
+                    <li><a href="#/p5" class="outline">Acceso a bases de datos</a></li>
+                    <li><a href="#/p6" class="outline">Servidores web</a></li>
+                    <li><a href="#/p7" class="outline">Bibliografía</a></li>
+                </ol>
             </section>
             
             <section>
@@ -1098,7 +915,7 @@ mimodulo@1.0.0
 
             <section>
                 <p>
-                    Cuando ejecutamos una operación <strong>asíncrona</strong>, la ejecución del programa <strong>continúa</strong>, mientras la operación se realiza de manera <strong>concurrente</strong>.
+                    Cuando ejecutamos una operación <strong>asíncrona</strong>, la ejecución del programa <strong>continúa</strong>, mientras la operación se realiza de manera &laquo;<strong>concurrente</strong>&raquo;.
                 </p>
                 <p>Ej: Lectura de fichero asíncrona</p>
                 <img src="images/04/Asincrona.svg" width="80%" style="border:none;box-shadow:none">
@@ -1106,8 +923,7 @@ mimodulo@1.0.0
             
             <section>
                 <h3>Un ejemplo: lectura de fichero</h3>
-                <p>El módulo core <code>fs</code> proporciona operaciones para manejar ficheros.</p>
-                <p>Dentro de este módulo hay una función para obtener el contenido de un fichero, pero esta función tiene dos variantes:</p>
+                <p>El módulo core <code>fs</code> proporciona operaciones para manejar ficheros. Dentro de este módulo hay dos funciones para leer el contenido de un fichero:</p>
                 <ul>
                     <li><code>readFileSync(fichero, opcs)</code><br>
                         Lectura síncrona.</li>
@@ -1136,7 +952,7 @@ try {
             </section>
             
             <section>
-                    <p>Las operaciones de lectura síncrona:</p>
+                    <p>Las operaciones síncronas:</p>
                 <div style="background:#EDF; padding:20px 2px 20px 20px">
                     <ul>
                         <li>Bloquean la ejecución del programa mientras se realizan.</li>
@@ -1151,17 +967,17 @@ try {
                 <img src="images/04/Asincrona.svg" width="80%" style="border:none;box-shadow:none">
                 <p>Si la operación de lectura asíncrona se realiza de manera ajena al hilo de ejecución principal del programa, ¿cómo sabemos cuándo ha finalizado?
                 </p>
-                <p>Mediante el uso de funciones <strong>callback</strong>.</p>
+                <p class="fragment">Mediante el uso de funciones <strong>callback</strong>.</p>
             </section>
             
             <section>
                 <h4>Funciones callback</h4>
-                <p>Una función <strong>callback</strong> es una función definida por el programador, pero que no está pensada para ser llamada directamente por este, sino por otro componente del sistema.</p>
+                <p style="background: #AFA; padding:20px 2px 20px 20px">Una función <strong>callback</strong> es una función definida por el programador, pero que no está pensada para ser llamada directamente por este, sino por otro componente del sistema.</p>
             </section>
             
             <section>
                 <h4>Funciones callback: <code>readFile</code></h4>
-                <p>La función <code>readFile</code>, además de recibir el nombre del fichero y las opciones de lectura, recibe un tercer parámetro, que es una función.</p>
+                <p>La función <code>readFile</code> (módulo <code>fs</code>), además de recibir el nombre del fichero y las opciones de lectura, recibe un tercer parámetro, que es una función.</p>
                 <p>Esta función será definida por el programador.</p>
                 <p>Sin embargo, será llamada por <code>readFile</code>.</p>
                 <p>Es, por tanto, una función callback.</p>
@@ -1265,8 +1081,8 @@ console.log(contenidoFichero); // ¿Qué se imprime aquí?
 
             <section>
                 <p>Pero también podría ejecutarse antes de que la lectura termine:</p>
-                <img src="images/04/AsincronaMal.svg" style="width:75%; border:none">
-                <p>En este caso se imprimiría <code>undefined</code>, ya que <code>contenidoFichero</code> no habría sido inicializada en el momento de ejecutar <code>console.log</code>.</p>
+                <img src="images/04/AsincronaMal.svg" style="width:70%; border:none">
+                <p class="fragment">En este caso se imprimiría <code>undefined</code>, ya que <code>contenidoFichero</code> no habría sido inicializada en el momento de ejecutar <code>console.log</code>.</p>
             </section>
             
             <section>
@@ -1277,6 +1093,7 @@ fs.readFile("fich.txt", function(err, contenido) {
 });
 <span class="hl" style="background-color:#FBB">// hacer algo con el contenido</span>
                 </code></pre>
+                <div class="fragment">
                 Debe ir dentro de la función callback:
                 <pre><code data-trim data-noescape class="javascript">
 fs.readFile("fich.txt", function(err, contenido) {
@@ -1285,144 +1102,27 @@ fs.readFile("fich.txt", function(err, contenido) {
 });
 
                 </code></pre>
+                    </div>
             </section>
             
-            <section>
-                <h3>¿Por qué un modelo asíncrono?</h3>
-                <p>Node está pensado para aplicaciones con una alta capacidad de respuesta como, por ejemplo, servidores web.</p>
-                <p>La funcionalidad de la mayoría de aplicaciones web está basada en accesos a disco, u otra fuente de datos (p.ej. bases de datos), operaciones <strong>relativamente lentas</strong>.</p>
-                <p>Para que un servidor web pueda atender a varios clientes, ha de gestionar adecuadamente estas operaciones de entrada y salida.</p>
-            </section>
-            
-            <section>
-                <h4>Modelos de servidores web</h4>
-                <ol>
-                    <li>Modelo tradicional: un proceso por petición.</li>
-                    <li>Modelo tradicional: pool de hebras de ejecución.</li>
-                    <li>NGINX Process Model (Node).</li>
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p4">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Módulos y paquetes</a></li>
+                    <li><a href="#/p3" class="outline">El modelo asíncrono</a></li>
+                    <li><a href="#/p4" class="outline current">Módulos core</a></li>
+                    <li><a href="#/p5" class="outline">Acceso a bases de datos</a></li>
+                    <li><a href="#/p6" class="outline">Servidores web</a></li>
+                    <li><a href="#/p7" class="outline">Bibliografía</a></li>
                 </ol>
             </section>
             
             <section>
-                <h4>Un proceso por petición</h4>
-                <img src="images/04/ServidorProcesos.svg" width="80%" style="border:none;box-shadow:none">
-            </section>
-            
-            <section>
-                <p>Se crea un proceso del sistema operativo por cada petición que se realice.</p>
-                <p><strong>Inconveniente:</strong> coste de la creación de procesos.</p>
-            </section>
-
-            <section>
-                <h4>Pool de hebras de ejecución</h4>
-                <img src="images/04/ServidorHilos.svg" width="80%" style="border:none;box-shadow:none">
-            </section>
-            
-            <section>
-                <p>Al arrancar el servidor se crea un conjunto de hebras, inicialmente sin tarea asignada.</p>
-                <p>Cuando llega una petición al servidor, una de las hebras se encarga de atenderla.</p>
-                <p>Con esto nos ahorramos el coste de creación y liberación de hebras a medida que van llegando peticiones.</p>
-                <p><strong>Inconveniente:</strong> el cambio del contexto de ejecución entre hebras conlleva un coste.</p>
-            </section>
-            
-            <section>
-                <h4>Modelo NGINX / Node</h4>
-                <img src="images/04/ServidorNGINX.svg" width="90%" style="border:none;box-shadow:none">
-            </section>
-            
-            <section>
-                <p>Existe <strong>un único hilo</strong> en ejecución</p>
-                <p>Este hilo se encarga de atender a todas las peticiones.</p>
-        
-                <p>Cuando se requiere realizar una operación con coste elevado en tiempo (acceso a disco, BD, red, etc.), se realiza en una &laquo;hebra&raquo; distinta.</p>
-                
-                <p><strong>Estas hebras son gestionadas por Node</strong>, no por el SO.</p>
-                
-                <p>&rArr; El cambio de contexto entre hebras es menos costoso.</p>
-            </section>
-            
-            <section>
-                <h4>Bucle principal de un servidor Node</h4>
-                <pre><code data-trim class="javascript">
-while (!terminado) {
-    1. Esperar petición de un cliente.
-    2. Procesar petición.
-}                
-                </code></pre>
-                <p>¿Cómo se procesa la petición?</p>
-            </section>
-            
-            <section>
-                <p>Si sólo se utilizan operaciones síncronas, el servidor no acepta otra petición hasta que la hayan terminado dichas operaciones:</p>
-                <pre><code data-trim class="javascript">
-while (!terminado) {
-    1. Esperar petición de un cliente.
-    2. Procesar petición:
-        2.1 var resultado = consultarBDSync(...);
-        2.2 Procesar resultado
-        2.3 Devolver resultado al cliente.
-}                
-                </code></pre>
-            </section>
-            
-            <section>
-                <p>Por el contrario, si se realizan operaciones asíncronas, será la función callback (que se ejecuta concurrentemente) la que procesa y devuelve el resultado de la operación.</p>
-                <pre><code data-trim class="javascript">
-while (!terminado) {
-    1. Esperar petición de un cliente.
-    2. Procesar petición:
-        2.1 var resultado = consultarBDASync(..., callback);
-}                
-
-function callback(resultado) {
-    1. Procesar resultado
-    2. Devolver resultado al servidor
-}
-                </code></pre>
-            <p>Nada más lanzar la operación <code>consultarDBAsync</code>, el servidor está listo para atender otra petición.</p>
-            </section>
-            
-            <section>
-                <h4>Consecuencias de este modelo</h4>
-                <p>En el contexto de un servidor web con Node, todas las operaciones de E/S deben ser <strong>asíncronas</strong>, para evitar cuellos de botella en el procesamiento de las peticiones.</p>
-                
-                <p>Esto también se aplica cuando se realicen operaciones que utilicen la CPU intensivamente.</p>
-                <pre><code data-trim data-noescape class="javascript">
-while (!terminado) {
-    1. Esperar petición de un cliente.
-    2. Procesar petición (alto coste CPU). <span class="arrow_box_left caja_codigo fragment">Cuello de botella</span>
-    3. Devolver respuesta.
-}                         
-                </code></pre>
-            </section>
-            
-            <section>
-                <div style="background-color:#ffdddd;padding:10px;">
-                    La eficiencia de un servidor implementado en Node &laquo;flojea&raquo; cuando éste tiene que realizar operaciones que requieren <strong>un uso intenso de la CPU</strong>.
-                </div>
-                
-                <p>
-                    Si se desea realizar una operación de este tipo, el cómputo complejo deberá dividirse en cómputos más sencillos, y ejecutar cada uno de ellos en una iteración del bucle de node, de manera que se intercalen con el procesamiento de las demás peticiones al servidor.
-                </p>
-                <p>
-                    Esto se puede realizar con la función <code>process.nextTick()</code><br>
-                    <a href="https://howtonode.org/understanding-process-next-tick">Más información</a>
-                </p>
-            </section>
-            
-            <section>
-                <h2>Módulos y paquetes Node</h2>
+                <h2>Módulos core</h2>
                 <ul>
                     <li>Variables y funciones predefinidas</li>
-                    <li>Módulos core:
-                        <ul>
-                            <li>Nombres de ficheros: <code>path</code></li>
-                            <li>Manejo de ficheros: <code>fs</code></li>
-                            <li>Eventos</li>
-                            <li>Streams</li>
-                            <li>Utilidades varias: <code>util</code></li>
-                        </ul>
-                    </li>
+                    <li>Nombres de ficheros: módulo <code>path</code></li>
+                    <li>Manejo de ficheros: módulo <code>fs</code></li>
                 </ul>
             </section>
             
@@ -1448,94 +1148,7 @@ console.log(__filename);
                 
             </section>
             
-            <section>
-                <h4>La variable <code>process</code></h4>
-                <p>Atributos relacionados con la ejecución del programa:</p>
-                <ul>
-                    <li><code>process.exit(code)</code><br>
-                    Finaliza la ejecución del programa.</li>
-                    <li><code>process.argv</code><br>
-                        Array con los argumentos de la línea de comandos.
-                    </li>
-                    <li><code>process.cwd()</code> / <code>process.chdir(dir)</code><br>
-                        Obtiene o cambia el directorio actual.
-                    </li>
-                    <li>
-                        <code>process.platform</code>, <code>process.version</code>, <code>process.arch</code>
-                        Información sobre el sistema operativo, versión de Node, etc.
-                    </li>
-                </ul>
-                <a href="https://nodejs.org/docs/v4.6.1/api/process.html">https://nodejs.org/docs/v4.6.1/api/process.html</a>
-            </section>
             
-            
-            <section>
-                <h4>Ejemplo</h4>
-                <pre><code data-trim class="javascript">
-
-// Los dos primeros elementos de process.argv son el
-// nombre del ejecutable de Node, y el nombre del script
-var args = process.argv;
-
-var suma;
-if (args.length === 4) {
-    suma = Number(args[2]) + Number(args[3]);
-} else {
-    suma = "No definida";
-}
-
-console.log(`Suma: ${suma}`);
-
-console.log(`Sistema operativo: ${process.platform}`);
-console.log(`Versión de node: ${process.version}`);
-console.log(`Arquitectura: ${process.arch}`);                
-                </code></pre>
-                <pre><code data-trim data-noescape class="no-highlight">
-# <span class="hl">node process.js 5 6</span>
-Suma: 11
-Sistema operativo: linux
-Versión de node: v4.6.1
-Arquitectura: x64
-                </code></pre>
-            </section>
-            
-            <section>
-                <p><code>setTimeout(fun, time)</code></p>
-                <p>Ejecuta la función <code>fun</code> transcurrida una cantidad de milisegundos dada.</p>
-                <p>La función se ejecuta <strong>asíncronamente</strong>.</p>
-                <pre><code data-trim class="javascript">
-
-setTimeout(function() {
-    console.log("Han pasado 5 segundos");
-}, 5000);
-
-console.log("Esto se ejecuta antes");
-                </code></pre>
-                <pre><code data-trim class="no-highlight">
-Esto se ejecuta antes
-Han pasado 5 segundos                
-                </code></pre>
-            </section>
-            
-            <section>
-                <p>Similarmente: <code>setInterval</code>, <code>clearInterval</code>, que
-                ejecutan la función dada periódicamente.</p>
-                <pre><code data-trim class="javascript">
-var contador = 1;
-
-// El objeto devuelto por setInterval nos sirve
-// para detener el temporizador cuando el contador llegue a 5
-var interval = setInterval(function() {
-    console.log(`Ejecutándose por ${contador}ª vez`);
-    if (contador === 5) {
-        clearInterval(interval);
-    }
-    contador++;
-}, 1000);                
-                </code></pre>
-                <p>Más información <a href="https://nodejs.org/docs/v4.6.1/api/timers.html">https://nodejs.org/docs/v4.6.1/api/timers.html</a>
-                </p>
-            </section>
             
             <section>
                 <h3>Módulo <code>path</code></h3>
@@ -1654,531 +1267,16 @@ fs.readFile("thymeleaf.pdf", function(err, buffer) {
                 </div>
             </section>
             
-            <section>
-                <h3>Módulo <code>os</code></h3>
-                <p>Contiene utilidades relacionadas con el sistema operativo. Entre ellas:</p>
-                <ul>
-                    <li><code>homedir()</code><br>
-                        Devuelve el path del directorio de usuario.
-                    </li>
-                    <li><code>tmpdir()</code><br>
-                        Devuelve el path de un directorio para crear ficheros temporales.
-                    </li>
-                </ul>
-                <pre><code data-trim class="javascript">
-var os = require("os");
-
-console.log(os.homedir());  // &rarr; /home/manuel
-console.log(os.tmpdir());   // &rarr; /tmp
-                </code></pre>
-            </section>
-            
-            <section>
-                <h3>Módulo <code>util</code></h3>
-                <p>Define, entre otras, una función <code>inherits</code> que permite conectar dos clases mediante herencia.</p>
-                <p><code>inherits(Subclase, Superclase)</code></p>
-            </section>
-            
-            <section>
-                <h4>Ejemplo</h4>
-                <pre><code data-trim data-noescape class="javascript">
-"use strict";
-
-var util = require("util");
-
-function Figura(x, y) {
-    this.x = x;
-    this.y = y;
-}
-
-Figura.prototype.pintar = function() { 
-    console.log(`Pintando figura en (${this.x}, ${this.y})`);
-};
-    
-function Circulo(x, y, radio) {
-    Figura.call(this, x, y);
-    this.radio = radio;
-}
-
-<span class="hl">util.inherits(Circulo, Figura);</span>
-
-var c = new Circulo(10, 10, 3);
-c.pintar();                
-                </code></pre>
-            </section>
-            
-            <section>
-                La función <code>inherits</code> no debe aplicarse a clases creadas mediante la sintaxis <code>class</code> de ECMAScript 6.
-                <pre><code data-trim data-noescape class="javascript">
-class Figura {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-    }
-    
-    pintar() {
-        console.log(`Pintando figura en (${this.x}, ${this.y})`);
-    }
-};
-
-class Circulo extends Figura {  <span class="arrow_box_left caja_codigo">No utilizar la función <span style="font-family:monospace">inherits</span></span>
-    constructor(x, y, r) {
-        super(x, y);
-        this.r = r;
-    }
-}
-
-var c = new Circulo(20, 10, 3);
-c.pintar();                
-                </code></pre>
-            </section>
-            
-            <section>
-                <h3>Manejo de eventos</h3>
-                <p>La librería <code>events</code> permite manejar <strong>generadores</strong> y <strong>suscriptores</strong> de eventos.</p>
-                <img src="images/04/Eventos.svg" width="70%" style="border:none;box-shadow:none">
-            </section>
-            
-            <section>
-                <p>Los objetos de la clase <code>EventEmitter</code> representan generadores de eventos.</p>
-                <pre><code data-trim class="javascript">
-var events = require("events");
-var emisor = new events.EventEmitter();                
-                </code></pre>
-                <img src="images/04/Emisor1.svg" width="70%" style="border:none;box-shadow:none">
-            </section>
-            
-            <section>
-                <p>Cada tipo de evento se identifica con una cadena de texto y puede llevar asociados varios parámetros.</p>
-                <p>El método <code>on</code> registra una función callback que será llamada cuando se produzca un evento dado.</p>
-                <pre><code data-trim class="javascript">
-emisor.on("incrementado", function(valorNuevo) {
-    console.log(`Se ha incrementado el contador: ${valorNuevo}`);
-});
-                </code></pre>
-                <img src="images/04/Emisor2.svg" width="70%" style="border:none;box-shadow:none">
-            </section>
-            
-            <section>
-                <p>El emisor emite sus eventos mediante la función <code>emit</code>.</p>
-                <p>Al emitir un evento, el emisor llamará a todas las funciones que se hayan suscrito al mismo.</p>
-                <pre><code data-trim class="javascript">
-emisor.emit("incrementado", 14);
-                </code></pre>
-                <img src="images/04/Emisor3.svg" width="70%" style="border:none;box-shadow:none">
-                <pre><code data-trim class="no-highlight">
-Se ha incrementado el contador: 14                
-                </code></pre>
-            </section>
-            
-            <section>
-                <p>Normalmente no se utiliza la clase <code>EventEmitter</code> directamente; son otras clases las que heredan de ella.</p>             
-                <pre><code data-trim data-noescape class="javascript">
-/*
- * Clase Contador
- */ 
-function Contador() {
-    this.valor = 0;
-}
-
-<span class="hl">util.inherits(Contador, events.EventEmitter);</span>
-
-Contador.prototype.incrementar = function() {
-    this.valor++;
-    this.emit("incrementado", this.valor);
-}
-                </code></pre>
-            </section>
-            
-            <section>
-                <p>Un emisor de eventos puede tener múltiples suscriptores. Al emitir el evento, los suscriptores son llamados en el orden en el que suscribieron.</p>
-                
-                <pre><code data-trim class="javascript">
-var c = new Contador();
-c.on("incrementado", function(val) { 
-    console.log(`Suscriptor 1: ${val}`);
-});
-c.on("incrementado", function(val) { 
-    console.log(`Suscriptor 2: ${val}`);
-});
-c.incrementar();
-c.incrementar();                
-                </code></pre>
-                <pre><code data-trim class="no-highlight">
-Suscriptor 1: 1
-Suscriptor 2: 1
-Suscriptor 1: 2
-Suscriptor 2: 2
-                </code></pre>
-            </section>
-            
-            <section>
-                <h4>Eventos emitidos por <code>process</code></h4>
-                <p>
-                    La variable <code>process</code> extiende a <code>EventEmitter</code>.
-                </p>
-                <p>
-                    Eventos lanzados:
-                </p>
-                <ul>
-                    <li>
-                        <code>"exit"</code>. Emitido al finalizar el programa.
-                    <pre><code data-trim class="javascript">
-process.on("exit", function(exitCode) {
-    // Liberar ficheros, volcar logs,
-    // cerrar conexiones a BDs, etc.
-});
-                    </code></pre>                        
-                    </li>
-                    <li><code>"uncaughtException"</code>. Emitido cuando se lanza una excepción que no es capturada por el programa.
-                    </li>
-                </ul>
-            </section>
-            
-            <section>
-                <h4>Eventos emitidos por el módulo <code>fs</code></h4>
-                <ul>
-                    <li>Eventos relacionados con streams.<br>
-                        Se explicará a continuación lo que es un stream.
-                    </li>
-                    <li>Eventos relacionados con el sistema de ficheros.<br>
-                        Ver: función <code>fs.watch()</code>.
-                    </li>
-                </ul>
-            </section>
-            
-            <section>
-                <h3>Streams</h3>
-                <p>Surgen como respuesta al problema de procesamiento de recursos de gran tamaño.</p>
-                <img src="images/04/RecursoGrande1.svg" width="90%" style="border:none;box-shadow:none">
-            </section>
-            
-            <section>
-                <div style="display:table;margin-left:auto;margin-right:auto">
-                    <div style="display:table-row">
-                        <div style="display:table-cell;color:#006647">Tiempo respuesta</div>
-                        <div style="display:table-cell; padding-left:1em">= <span style="color:#490089">Tiempo de acceso al recurso</span></div>
-                    </div>
-                    <div style="display:table-row">
-                        <div style="display:table-cell"></div>
-                        <div style="display:table-cell">+ <span style="color:#490089">Tiempo procesamiento 1</span></div>
-                    </div>
-                    <div style="display:table-row">
-                        <div style="display:table-cell"></div>
-                        <div style="display:table-cell">+ <span style="color:#490089">Tiempo procesamiento 2</span></div>
-                    </div>
-                </div>
-                
-                <p>Durante todo este tiempo el cliente no recibe respuesta.</p>
-                <p>Solamente la recibe cuando el procesamiento 2 termina.</p>
-            </section>
-            
-            <section>
-                <p>Segmentando el recurso podemos enviar la respuesta al cliente a medida que se procesa.</p>
-                <img src="images/04/RecursoGrande2.svg" width="90%" style="border:none;box-shadow:none">
-            </section>
-            
-            <section>
-                <p>Un <strong>flujo</strong> (stream) es una corriente de datos, de la que se puede extraer y/o enviar información.</p>
-                <p>Los flujos, además de permitir la segmentación, facilitan el uso de las funciones relativas a ficheros, pues permiten cambiar las llamadas asíncronas por funciones de captura de eventos.</p>
-                <p>El módulo core <code>stream</code> define varias clases relacionadas con flujos de datos.</p>
-            </section>
-            
-            <section>
-                <p>Existen cuatro tipos de flujos:</p>
-                <ul style="width:45%;float:left">
-                    <li class="fragment">Flujos de <strong>lectura</strong><br>
-                        <span style="font-size:60%">Ej: ficheros de entrada.</span><br>
-                        <img src="images/04/FlujoEntrada.svg" style="width:100%; border:none; box-shadow:none">
-                    </li>
-                    <li class="fragment">Flujos de <strong>escritura</strong><br>
-                        <span style="font-size:60%">Ej: ficheros de salida.</span><br>
-                        <img src="images/04/FlujoSalida.svg" style="width:100%; border:none; box-shadow:none">
-                    </li>
-                </ul>
-                <ul style="width:45%;float:right">
-                    <li class="fragment">Flujos <strong>dúplex</strong><br>
-                        <span style="font-size:60%">Ej: sockets.</span><br>
-                        <img src="images/04/FlujoES.svg" style="width:100%; border:none; box-shadow:none">
-                    </li>
-                    <li class="fragment">Flujos <strong>transformadores</strong><br>
-                        <span style="font-size:60%">Ej: compresores, codificadores.</span><br>
-                        <img src="images/04/FlujoTransform.svg" style="width:100%; border:none; box-shadow:none">
-                    </li>
-                </ul>
-                <div style="clear:both"></div>
-            </section>
-            
-            <section>
-                <p>Todos los flujos heredan de la clase <code>Stream.</code></p>
-                <img src="images/04/JerarquiaStreams.svg" style="width:80%;border:none;box-shadow:none">
-            </section>
-            
-            <section>
-                <h4>Flujos y ficheros</h4>
-                <p>El módulo <code>fs</code> permite obtener flujos <code>Readable</code> y <code>Writable</code> a partir de ficheros.</p>
-                <pre><code data-trim class="javascript">
-var fs = require("fs");
-var flujoEntrada = fs.createReadStream("Poema.txt");
-                </code></pre>
-                <p>Inicialmente el flujo está en estado de <code>pausa</code>. No emite ninguna información hasta que se haga explícitamente con el método <code>read()</code>.</p>
-            </section>
-            
-            <section>
-                <p>Cuando un flujo en pausa tiene información disponible para ser extraida, emite el evento <code>readable</code>.</p>
-                <pre><code data-trim class="javascript">
-flujoEntrada.on("readable", function() {
-    // Llamar a flujoEntrada.read() para obtener
-    // la información.
-});                
-                </code></pre>
-                <p>Si el fichero es grande, se emitirán sucesivamente varios eventos <code>readable</code> con cada uno de sus &laquo;fragmentos&raquo;.</p>
-                <p>Cada llamada a <code>read()</code> obtiene uno de esos fragmentos.</p>
-                <p>Cuando ya no quedan más fragmentos por leer, el flujo vuelve a emitir el evento <code>readable</code> para avisarnos, pero esta vez la función <code>read()</code> devolverá <code>null</code>.</p>
-            </section>
-            
-            <section>
-                <h4>Ejemplo</h4>
-                <pre><code data-trim class="javascript">
-var flujoEntrada = fs.createReadStream("Fichero_grande.pdf");
-
-flujoEntrada.on("readable", function() {
-  var fragmento = flujoEntrada.read();
-  if (fragmento !== null) {
-    console.log(`Leído fragmento de ${fragmento.length} bytes`);
-  } else {
-    console.log("Ya no hay más fragmentos");
-  }
-});                
-                </code></pre>
-                <pre><code data-trim class="no-highlight">
-Leído fragmento de 65536 bytes
-Leído fragmento de 65536 bytes
-Leído fragmento de 65536 bytes
-Leído fragmento de 65536 bytes
-Leído fragmento de 65536 bytes
-Leído fragmento de 65536 bytes
-Leído fragmento de 65536 bytes
-Leído fragmento de 65536 bytes
-Leído fragmento de 45245 bytes
-Ya no hay más fragmentos                
-                </code></pre>
-            </section>
-            
-            <section>
-                <p>Para crear un flujo de salida hacia un fichero, se utiliza <code>createWriteStream</code>, que devuelve un <code>Writable.</code></p>
-                <p>Los objetos <code>Writable</code> tienen, entre otros, los siguientes métodos:</p>
-                <ul>
-                    <li><code>write()</code>, para enviar información al flujo.</li>
-                    <li><code>end()</code>, para enviar información al flujo, e indicar que ya no se va a enviar más información.</li>
-                </ul>
-            </section>
-            
-            <section>
-                <h4>Ejemplo</h4>
-                <pre><code data-trim class="javascript">
-var flujoSalida = fs.createWriteStream("NuevoFichero.txt", 
-                                        {encoding: "utf-8"});
-
-for (var i = 0; i &lt; 10; i++) {
-    flujoSalida.write(i + "\n");
-}
-
-flujoSalida.end("Fin!\n");                
-                </code></pre>
-            </section>
-            <section>
-                <h4>Encadenamiento de flujos</h4>
-                <p>El método <code>pipe()</code> vuelca el contenido de un flujo a otro.</p>
-                <img src="images/04/Pipe.svg" width="70%" style="border:none; box-shadow:none">
-                <p><code>flujoEntrada.pipe(flujoSalida);</code></p>
-            </section>
-            
-            <section>
-                <p>Ejemplo: copia de un fichero</p>
-                <pre><code data-trim class="javascript">
-var fs = require("fs");
-
-var flujoEntrada = fs.createReadStream("Poema.txt");
-var flujoSalida = fs.createWriteStream("PoemaCopia.txt");
-flujoEntrada.pipe(flujoSalida);                
-                </code></pre>
-            </section>
-            
-            <section>
-                <h4>El módulo <code>zlib</code></h4>
-                <p>Trabaja con distintos formatos de compresión de ficheros.</p>
-                <p>En particular, tiene un métodos <code>createGzip()</code> y <code>createGunzip()</code>. Cada uno de ellos crea un <strong>flujo transformador</strong> que comprime (o descomprime, respectivamente) la entrada.</p>
-            </section>
-            
-            <section>
-                <h4>Ejemplo: compresión de un fichero</h4>
-                <img src="images/04/Compresion.svg" width="90%" style="border:none;box-shadow:none">
-                <pre><code data-trim class="javascript">
-var fs = require("fs");
-var zlib = require("zlib");
-
-var flujoEntrada = fs.createReadStream("thymeleaf.pdf");
-var flujoCompresion = zlib.createGzip();
-var flujoSalida = fs.createWriteStream("thymeleaf.pdf.gz");
-
-flujoEntrada.pipe(flujoCompresion);
-flujoCompresion.pipe(flujoSalida);                
-                </code></pre>
-            </section>
-            
-            <section>
-                <h2>Algunos paquetes Node</h2>
-                <p>Los siguientes paquetes no forman parte de la distribución de Node y, por tanto, han de ser instalados en un proyecto utilizando la herramienta <code>npm</code>.</p>
-                <ul>
-                    <li>
-                    <strong>Underscore.js</strong> (<a href="http://underscorejs.org/">http://underscorejs.org/</a>)<br>
-                    Proporciona operaciones útiles sobre arrays y objetos.
-                        <pre><code data-trim class="no-highlight">
-npm install underscore --save                        
-                        </code></pre>
-                    </li>
-                    <li>
-                        <strong>Moment.js</strong>  (<a href="http://momentjs.com/">http://momentjs.com/</a>)<br>
-                        Permite manejar fechas. Más potente que la clase <code>Date</code>.
-                        <pre><code data-trim class="no-highlight">
-npm install moment --save                        
-                        </code></pre>
-                    </li>
-                </ul>
-            </section>
-            
-            <section>
-                <h3>Underscore.js</h3>
-                <p>
-                    Cajón de sastre con un centenar de funciones de utilidad sobre arrays y objetos.
-                </p>
-                <p>Algunas ya conocidas:</p>
-                <ul>
-                    <li><code>pluck(arrayDeObjetos, fieldName)</code></li>
-                    <li><code>partition(arrayDeObjetos, p)</code></li>
-                    <li><code>groupBy(arrayDeObjetos, f)</code></li>
-                    <li><code>where(arrayDeObjetos, modelo)</code></li>
-                </ul>
-            </section>
-            
-            <section>
-                <p>Por costumbre, la variable que contiene el módulo <code>underscore</code> suele llamarse <code>_</code> (guión bajo).</p>
-                <pre><code data-trim class="javascript">
-var _ = require("underscore");
-                </code></pre>
-                <p>Algunas otras funciones:</p>
-                <ul>
-                    <li><code>shuffle(array)</code>: desordena un array aleatoriamente.
-                        <pre><code data-trim class="javascript">
-_.shuffle([1, 2, 3, 4, 5, 6, 7]) 
-// &rarr; [1, 6, 4, 2, 7, 3, 5]
-                        </code></pre>
-                    </li>
-                    <li><code>sample(array, n)</code>: toma <code>n</code> elementos de un array aleatoriamente.
-                        <pre><code data-trim class="javascript">
-_.shuffle([1, 2, 3, 4, 5, 6, 7]) 
-// &rarr; [6, 4, 3]
-                        </code></pre>
-                    </li>
-                </ul>
-            </section>
-            
-            <section>
-                <ul>
-                    <li>Operaciones conjuntistas:<br>
-                        <pre><code data-trim class="javascript">
-_.union([1, 5, 6], [1, 7, 5])
-    // &rarr; [1, 5, 6, 7]
-    
-_.intersection([1, 5, 6], [1, 7, 5])
-    // &rarr; [1, 5]
-    
-_.difference([1, 5, 6], [1, 7, 5])
-    // &rarr; [6]
-                        </code></pre>
-                    
-                    </li>
-                    <li>
-                        Eliminación de duplicados en un array (<code>uniq</code>)
-                        <pre><code data-trim class="javascript">
-_.uniq([1, 5, 1, 7, 8, 5])
-    // &rarr; [1, 5, 7, 8]
-                        </code></pre>
-                    </li>
-                </ul>
-            </section>
-            
-            <section>
-                <ul>
-                    <li>
-                        <code>findIndex(array, p)</code>: Devuelve el índice del primer elemento <code>x</code> de <code>array</code> tal que <code>p(x)</code> devuelve <code>true</code>.
-                        <pre><code data-trim class="javascript">
-_.findIndex(["Berta", "Beatriz", "Fabio"], function(nombre) {
-    return nombre.startsWith("F");
-})  // &rarr; 2
-                        </code></pre>
-                    </li>
-                    <li>
-                        <code>range(ini, fin[, step])</code>: Devuelve una lista ascendente desde <code>ini</code> hasta <code>fin</code>.
-                        <pre><code data-trim class="javascript">
-_.range(1, 5) // &rarr; [1, 2, 3, 4]
-                        </code></pre>
-                    </li>
-                </ul>
-                
-                <ul>
-                    <li><code>escape(cadena)</code>, <code>unescape(cadena)</code>: Sustituye los caracteres &lt;, &gt;, &quot;, etc de una cadena por sus correspondientes entidades HTML, y viceversa.</li>
-                    <pre><code data-trim class="javascript">
-_.escape("Esto es &lt;b&gt;importante&lt;/b&gt;")
-    // &rarr; Esto es &amp;lt;b&amp;gt;importante&amp;lt;/b&amp;gt;
-                    </code></pre>
-                </ul>
-            </section>
-            
-            <section>
-                <h3>Moment.js</h3>
-                <p>Funciones de manejo de fechas.</p>
-                <p>Se basa en una clase <code>Moment</code> que actúa como envoltorio de la clase <code>Date</code></p>
-                <pre><code data-trim class="javascript">
-var moment = require("moment");
-
-var hoy = moment();
-var comienzoCurso = moment(new Date(2016, 8, 26));
-                </code></pre>
-            </section>
-            
-            <section>
-                <p>Puede formatear una fecha a partir de una región.</p>
-                <pre><code data-trim class="javascript">
-var moment = require("moment");
-moment.locale('es');
-
-var hoy = moment();
-var comienzoCurso = moment(new Date(2016, 8, 26));
-
-console.log(comienzoCurso.format("MMM D"));
-    // &rarr; "sep. 26"
-    
-console.log(comienzoCurso.format("LLL"));
-    // &rarr; 26 de septiembre de 2016 0:00
-                </code></pre>
-            </section>
-            
-            <section>
-                <p>Formateado de fechas relativas:</p>
-                <pre><code data-trim class="javascript">
-console.log(comienzoCurso.fromNow());
-    // &rarr; hace un mes
-                </code></pre>
-                
-                <p>Operaciones sobre fechas:</p>
-                <pre><code data-trim class="javascript">
-var f1 = moment();
-var f2 = moment(new Date(1983, 7, 28));
-
-console.log(f1.diff(f2, 'years')); // &rarr; 33          
-                </code></pre>
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p5">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Módulos y paquetes</a></li>
+                    <li><a href="#/p3" class="outline">El modelo asíncrono</a></li>
+                    <li><a href="#/p4" class="outline">Módulos core</a></li>
+                    <li><a href="#/p5" class="outline current">Acceso a bases de datos</a></li>
+                    <li><a href="#/p6" class="outline">Servidores web</a></li>
+                    <li><a href="#/p7" class="outline">Bibliografía</a></li>
+                </ol>
             </section>
             
             
@@ -2226,6 +1324,11 @@ console.log(f1.diff(f2, 'years')); // &rarr; 33
                 
                 <div style="clear:both"></div>
                 
+            </section>
+            
+            <section>
+                <h4>Ejercicio</h4>
+                <p>Realizar una consulta SQL que muestre, para cada contacto, su nombre y apellidos, y el número de direcciones de correo electrónico asociadas al mismo.</p>
             </section>
             
             
@@ -2393,140 +1496,16 @@ conexion.connect(function(err) {
                 </code></pre>
             </section>
             
-            
-            <section>
-                <h3>Consultas SQL paramétricas</h3>
-                <p>Realizamos una función que reciba una cadena <code>str</code>, e imprima los nombres de los usuarios cuyo nombre coincida con dicha cadena.</p>
-                <pre><code data-trim class="javascript">
-function buscarUsuario(str) {
-    conexion.connect(function(err) {
-        if (err) return;
-        var sql = "SELECT Nombre, Apellidos " +
-                  "FROM Contactos WHERE Nombre = '" + str + "'";
-        conexion.query(sql, function(err, filas) {
-            if (err) {
-                console.error(err);
-            } else {
-                filas.forEach(function(fila) {
-                   console.log(`${fila.Nombre} ${fila.Apellidos}`);
-                });
-            }
-            conexion.end();
-        });
-    });
-}
-                </code></pre>
-            </section>
-            
-            
-            <section>
-                <p>El valor del parámetro <code>str</code> puede provenir de la entrada de un usuario (por ejemplo, un formulario Web).</p>
-                <p>Supongamos la siguiente llamada:</p>
-                <pre><code data-trim class="javascript">
-buscarUsuario("Javier");
-                </code></pre>
-                <p>Se imprime el siguiente resultado:</p>
-                <pre><code data-trim class="no-highlight">
-Javier Fernández Montoro
-                </code></pre>
-                <p>¿Qué ocurre con la siguiente llamada?</p>
-                <pre><code data-trim class="javascript">
-buscarUsuario("Javier' OR '' = '");                
-                </code></pre>
-            </section>
-            
-            <section>
-                <h4>Inyección SQL</h4>
-                <img src="https://i.kinja-img.com/gawker-media/image/upload/18mpenleoksq8jpg.jpg" width="60%">
-                <p>Fuente: <a href="http://gizmodo.com/5498412/sql-injection-license-plate-hopes-to-foil-euro-traffic-cameras">http://gizmodo.com/5498412/sql-injection-license-plate-hopes-to-foil-euro-traffic-cameras</a></p>
-            </section>
-        
-            <section>
-                <h4>Inyección SQL</h4>
-                <img src="https://imgs.xkcd.com/comics/exploits_of_a_mom.png" width="100%">
-                <p>Fuente: <a href="https://xkcd.com/327/">https://xkcd.com/327/</a></p>
-            </section>
-            
-            <section>
-                <p>Una <strong>consulta paramétrica</strong> es una consulta SQL con &laquo;huecos&raquo; (denominados marcadores), representados mediante el símbolo <code>?</code>.</p>
-                <p>Al rellenar los marcadores con valores concretos, estos se &laquo;escapean&raquo; de manera que se previenen los ataques de inyección SQL.</p>
-                <p>Ejemplo de consulta paramétrica:</p>
-                <pre><code data-trim data-noescape class="sql">
-INSERT INTO Contactos(Nombre, Apellidos) VALUES (<span class="hl">?</span>, <span class="hl">?</span>);
-                </code></pre>
-            </section>
-            
-            <section>
-                <p>El método <code>query()</code> puede recibir una consulta paramétrica. En este caso, el segundo parámetro de este método recibe un array con los valores asignados a los marcadores.</p>
-                <p>Por ejemplo, si se ejecuta la consulta paramétrica,</p>
-                <pre><code data-trim data-noescape class="sql">
-SELECT Nombre, Apellidos FROM Contactos
-WHERE Nombre = <span class="hl">?</span>
-                </code></pre>
-                <p>y asignamos la cadena <code>"Javier' OR '' = '"</code> al marcador, en realidad se ejecutará la siguiente consulta:</p>
-                <pre><code data-trim data-noescape class="sql">
-SELECT Nombre, Apellidos FROM Contactos
-WHERE Nombre = <span class="hl">'Javier\' OR \'\' = \''</span>
-                </code></pre>
-            </section>
-            
-            <section>
-                <p>Se puede implementar la función <code>buscarUsuario</code> utilizando una consulta paramétrica:</p>
-                <pre><code data-trim data-noescape class="javascript">
-function buscarUsuario(str) {
-    conexion.connect(function(err) {
-        if (err) return;
-        var sql = "SELECT Nombre, Apellidos " +
-                  "FROM Contactos WHERE Nombre = <span class="hl">?</span>";
-        conexion.query(sql, [<span class="hl">str</span>], function(err, filas) {
-        
-            // ... Igual que antes ...
-            
-        });
-    });
-}
-                </code></pre>
-            </section>
-            
-            <section>
-                <h3>Pool de conexiones</h3>
-                <p>La creación de una conexión con un SGBD es una operación relativamente costosa.</p>
-                <p>Un <strong>pool de conexiones</strong> es un contenedor de conexiones a una determinada BD, pensado para que se reutilicen en sucesivas consultas a la BD.</p>
-                <p>Cuando se quiere realizar una consulta a la BD, se adquiere una conexión libre del <em>pool</em> de conexiones.</p>
-                <p>Cuando se ha terminado de trabajar con la conexión, se devuelve al <em>pool</em>, en lugar de cerrarla.</p>
-            </section>
-            
-            <section>
-                <p>El paquete <code>mysql</code> permite la creación de pools:</p>
-                <pre><code data-trim class="javascript">
-var mysql = require("mysql");
-
-var pool = mysql.createPool({
-    host:  "localhost",
-    user:  "root",
-    password: "",
-    database: "miBD"
-});
-//...                
-                </code></pre>
-                <p>Los objetos <code>Pool</code> devueltos por <code>createPool</code> permiten obtener conexiones mediante el método <code>getConnection()</code>. Esta función pasa a su callback la conexión obtenida.</p>
-            </section>
-            
-            <section>
-                <pre><code data-trim data-noescape class="javascript">
-// ...
-pool.getConnection(function(err, <span class="hl">conexion</span>) {
-    if (err) return;
-    var sql = "SELECT Nombre, Apellidos " +
-              "FROM Contactos";
-    <span class="hl">conexion</span>.query(sql, function(err, resultado) {
-        // ... Trabajar con el resultado ...
-        
-        // Devolver la conexión al pool
-        <span class="hl">conexion.release();</span>
-    });
-});
-                </code></pre>
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p6">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Módulos y paquetes</a></li>
+                    <li><a href="#/p3" class="outline">El modelo asíncrono</a></li>
+                    <li><a href="#/p4" class="outline">Módulos core</a></li>
+                    <li><a href="#/p5" class="outline">Acceso a bases de datos</a></li>
+                    <li><a href="#/p6" class="outline current">Servidores web</a></li>
+                    <li><a href="#/p7" class="outline">Bibliografía</a></li>
+                </ol>
             </section>
             
             <section>
@@ -3077,6 +2056,19 @@ function devolverPagina(response, filasBD) {
                 <p>El módulo <code>http</code> es de demasiado bajo nivel para estas tareas. Es recomendable el uso de un <em>framework</em> que abstraiga los detalles técnicos.</p>
                 <p style="color:#009e3c; font-size: 120%; font-style:italic; font-weight:bold">Continuará...</p>
             </section>
+
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p7">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Módulos y paquetes</a></li>
+                    <li><a href="#/p3" class="outline">El modelo asíncrono</a></li>
+                    <li><a href="#/p4" class="outline">Módulos core</a></li>
+                    <li><a href="#/p5" class="outline">Acceso a bases de datos</a></li>
+                    <li><a href="#/p6" class="outline">Servidores web</a></li>
+                    <li><a href="#/p7" class="outline current">Bibliografía</a></li>
+                </ol>
+            </section>
+            
             
             <section>
                 <h2>Bibliografía</h2>
