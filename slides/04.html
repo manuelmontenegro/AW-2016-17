@@ -1196,8 +1196,8 @@ console.log(nuevoFichero);
                     </li>
                     <li>
                         <code>writeFile(fichero, datos, options, callback)</code><br>
-                        Escritura asíncrona de un fichero.<br>
-                        <span style="font-size:70%">La función callback recibe como primer parámetro un objeto <code>Error</code> (si se produce error).</span>
+                        Escritura asíncrona de un fichero.
+                        <p style="font-size:70%">La función callback recibe como primer parámetro un objeto <code>Error</code> (si se produce error).</p>
                         
                     </li>
                 </ul>
@@ -1230,6 +1230,7 @@ fs.writeFile("Poema.txt", texto, {encoding: "utf-8"},
             
             <section>
                 <p>Si no se indica la opción <code>encoding</code>, estas funciones trabajan con objetos de tipo <code>Buffer</code>, en lugar de cadenas. Un buffer representa una secuencia de bytes.</p>
+                <div class="fragment">
                 <p>Esto sirve para trabajar con ficheros binarios.</p>
                 <pre><code data-trim class="javascript">
 var fs = require("fs");
@@ -1242,6 +1243,7 @@ fs.readFile("thymeleaf.pdf", function(err, buffer) {
     console.log(mark.toString("ascii"));
 });                
                 </code></pre>
+                </div>
             </section>
             
             <section>
@@ -1262,8 +1264,8 @@ fs.readFile("thymeleaf.pdf", function(err, buffer) {
                     <li><code>openSync</code>, <code>closeSync</code>, <code>readSync</code>, <code>writeSync</code>.</li>
                     <li><code>mkdirSync</code>, <code>fstatSync</code>, <code>renameSync</code>, etc.</li>
                 </ul>
-                <div style="background-color:#FBB; margin-top:1em">
-                    Prohibido utilizarlas en esta asignatura
+                <div style="background-color:#FBB; margin-top:1em" class="fragment">
+                    Prohibido utilizarlas en las prácticas
                 </div>
             </section>
             
@@ -1284,14 +1286,14 @@ fs.readFile("thymeleaf.pdf", function(err, buffer) {
                 <h2>Acceso a bases de datos</h2>
                 <p>Paquetes para conexión a un SGBD:</p>
                 <ul>
-                    <li>Bases de datos <strong>relacionales</strong>:
+                    <li class="fragment">Bases de datos <strong>relacionales</strong>:
                     <ul>
                         <li><code>mysql</code>: MySQL, MariaDB. <span class="arrow_box_left caja_codigo fragment" style="position:relative;left:20px">Este tema</span></li>
                         <li><code>node-oracledb</code>: Oracle.</li>
                         <li><code>sequelize</code>: ORM para MySQL.</li>
                     </ul>
                     </li>
-                    <li>
+                    <li class="fragment">
                         Bases de datos <strong>documentales</strong>:
                         <ul>
                             <li><code>mongodb</code>: MongoDB (JSON)</li>
@@ -1338,6 +1340,7 @@ fs.readFile("thymeleaf.pdf", function(err, buffer) {
                 <pre><code data-trim class="no-highlight">
 npm install mysql --save                
                 </code></pre>
+                <div class="fragment">
                 <p>Pasos para acceder a la BD:</p>
                 <ol>
                     <li>Crear e inicializar un objeto <code>Connection</code>.</li>
@@ -1345,7 +1348,8 @@ npm install mysql --save
                     <li>Realizar consulta o modificación.</li>
                     <li>Cerrar la conexión.</li>
                 </ol>
-                <p>Salvo la primera, todas las operaciones son <strong>asíncronas</strong>.</p>
+                </div>    
+                <p class="fragment">Salvo la primera, todas las operaciones son <strong>asíncronas</strong>.</p>
             </section>
             
             <section>
@@ -1360,7 +1364,7 @@ var conexion = mysql.createConnection({
     database: "miBD"  <span class="arrow_box_left caja_codigo">Nombre de la BD</span>
 });
                 </code></pre>
-                <p>La función <code>createConnection</code> solamente configura los atributos de una conexión. La conexión propiamente dicha no se realiza hasta que se llame a <code>connect</code>.</p>
+                <p class="fragment">La función <code>createConnection</code> solamente configura los atributos de una conexión. La conexión propiamente dicha no se realiza hasta que se llame a <code>connect</code>.</p>
             </section>
             
             <section>
@@ -1436,7 +1440,7 @@ conexion.query(
     }
 );                
                 </code></pre>
-                <pre><code data-trim class="no-highlight">
+                <pre class="fragment"><code data-trim class="no-highlight">
 Javier Fernández Montoro
 Estela Hernández de la Fuente
 Gloria Ruiz Sánchez
@@ -1579,7 +1583,7 @@ conexion.connect(function(err) {
                     <div style="background-color:rgb(236, 255, 170);text-align:left">
                         &lt;!DOCTYPE html&gt;
                         <br/> &lt;html lang="es"&gt;
-                        <span class="no_arrow_box fragment" style="font-family:'Source Sans Pro', sans-serif;font-weight:bold;padding:2px 10px;border-radius:10px;top:-10px;left:385px">Cuerpo de la respuesta</span>
+                        <span class="no_arrow_box" style="font-family:'Source Sans Pro', sans-serif;font-weight:bold;padding:2px 10px;border-radius:10px;top:-10px;left:385px">Cuerpo de la respuesta</span>
                         <br/> &lt;head&gt;
                         <br/> &nbsp; &lt;title&gt;...&lt;/title&gt;
                         <br/> ...
@@ -1604,7 +1608,7 @@ conexion.connect(function(err) {
                     <image width="28.985" height="28.769" x="34.836" y="47.291" preserveAspectRatio="none" xlink:href="images/firefox.png"/>
                     <path d="M 200.69 31.733 L 218.714 31.21 L 223.024 36.435 L 219.106 41.92 L 200.69 42.312 L 200.69 31.733 Z" style="stroke: rgb(0, 0, 0); fill: rgb(206, 27, 27);" bx:origin="0.5 0.5" />
                     <path d="M 189.564 48.141 Z" style="stroke: black; fill: none;" />
-                    <text x="203.586" y="39.898" style="font-size: 6px; font-family: Roboto; text-transform: none; font-weight: 700; word-spacing: 0px; fill: rgb(255, 255, 255);">3000</text>
+                    <text x="203.586" y="38.898" style="font-size: 6px; font-family: Roboto; text-transform: none; font-weight: 700; word-spacing: 0px; fill: rgb(255, 255, 255);">3000</text>
                     <path d="M 75.198 31.71 C 75.198 31.71 96.509 14.661 143.393 13.383 C 190.277 12.105 207.753 28.726 207.753 28.7bo26" style="stroke: black; fill: none;" bx:origin="0.5 0.5" />
                     <text x="90.771" y="9.973" style="font-size: 8px; font-family: monospace; word-spacing: 0px;">GET /index.html HTTP/1.1</text>
                     <text x="90.771" y="17.973" style="font-size: 8px; font-family: monospace; word-spacing: 0px;">...</text>
@@ -1643,11 +1647,11 @@ var servidor = http.createServer(function(request, response) {
             <section>
                 <p>La función callback es definida por el programador, y llamada por el módulo <code>http</code> cada vez que algún cliente realiza una petición HTTP.
                 </p>
-                <p>
+                <p class="fragment">
                     El parámetro <code>request</code> de esta función callback contiene un objeto de la clase <code>IncomingMessage</code>, con atributos y métodos para acceder a cada componente de la petición: método, URL, cabeceras, etc.
                 </p>
-                <p>
-                    El parámetro <code>response</code> contiene métodos y atributos que especifican la respuesta HTTP que se devolverá al cliente.
+                <p class="fragment">
+                    El parámetro <code>response</code> (clase <code>ServerResponse</code>) contiene métodos y atributos que especifican la respuesta HTTP que se devolverá al cliente.
                 </p>
             </section>
             
@@ -1659,8 +1663,8 @@ var servidor = http.createServer(function(request, response) {
                     <li><code>url</code>: URL a la que se accede, excluyendo el nombre del servidor.</li>
                     <li><code>headers</code>: Objeto con las cabeceras de la petición.</li>
                 </ul>
-                <p>Nuestro servidor, de momento, se limitará a escribir esta información por consola:</p>
-                <pre><code data-trim class="javascript">
+                
+                <pre class="fragment"><code data-trim class="javascript">
 var servidor = http.createServer(function(request, response) {
     console.log(`Método: ${request.method}`);
     console.log(`URL: ${request.url}`);
@@ -1672,7 +1676,7 @@ var servidor = http.createServer(function(request, response) {
             
             <section>
                 <p>La función <code>createServer</code> tan solo sirve para especificar cómo queremos que se procesen las peticiones. Esta función no arranca el servidor creado.</p>
-                
+                <div class="fragment">
                 <p>Para iniciar el servidor debemos utilizar el método <code>listen()</code> del servidor recién creado, indicando el puerto al que queremos acceder.</p>
                 <pre><code data-trim class="javascript">
 var servidor = http.createServer(function(request, response) {
@@ -1680,7 +1684,8 @@ var servidor = http.createServer(function(request, response) {
 });
 servidor.listen(3000);
 console.log("Servidor escuchando en el puerto 3000");
-                </code></pre>                
+                </code></pre>         
+                </div>
             </section>
             
             <section>
@@ -1688,6 +1693,7 @@ console.log("Servidor escuchando en el puerto 3000");
                 <pre><code data-trim class="no-highlight">
 http://localhost:3000/index.html
                 </code></pre>
+                <div class="fragment">
                 <p>se imprime lo siguiente:</p>
                 <pre><code data-trim data-noescape class="no-highlight">
 Método: <span class="hl">GET</span>
@@ -1697,16 +1703,21 @@ URL: <span class="hl">/index.html</span>
                  Gecko/20100101 Firefox/49.0',
   ...
  }                </code></pre>
+                </div>
+                <div class="fragment">
                 <p>Si hubiésemos introducido</p>
                 <pre><code data-trim data-noescape class="no-highlight">
 http://localhost:3000/index.html?x=25&amp;y=34
                 </code></pre>
+                </div>
+                <div class="fragment">
                 <p>tendríamos:</p>
                 <pre><code data-trim data-noescape class="no-highlight">
 ...
 URL: <span class="hl">/index.html?x=25&amp;y=34</span>
 ...
             </code></pre>
+                </div>
             </section>
             
             <section>
@@ -1750,7 +1761,7 @@ var servidor = http.createServer(function(request, response) {
             
             <section>
                 <p>La función callback del servidor devuelve una respuesta en función de la petición recibida.</p>
-                <p>Una función callback tendría la siguiente forma:</p>
+                <p>Una función callback típica tendría la siguiente forma:</p>
                 <pre><code data-trim class="javascript">
 var servidor = http.createServer(function(request, response) {
     var method = request.method;
@@ -1774,12 +1785,12 @@ var servidor = http.createServer(function(request, response) {
             <section>
                 <h3>Páginas estáticas y dinámicas</h3>
                 <ul>
-                    <li><p>Las páginas <strong>estáticas</strong> son aquellas cuyo contenido es &laquo;fijo&raquo;, en tanto que no dependen de la petición HTTP realizada, o de otros recursos (por ejemplo, BD.)</p>
+                    <li><p>Las páginas <strong>estáticas</strong> son aquellas cuyo contenido es &laquo;fijo&raquo;, en tanto que no dependen de la petición HTTP realizada, o de otros recursos (por ejemplo, BD).</p>
                         <p>Las páginas estáticas se almacenan como archivos independientes en el servidor, y se devuelven al cliente tal y como están almacenadas (sin modificaciones).</p>
                         <p>Las hojas de estilo, imágenes, etc. de una página también se consideran recursos estáticos.</p>
                     </li>
                     
-                    <li>
+                    <li class="fragment">
                         <p>Las páginas <strong>dinámicas</strong> son generadas total o parcialmente mediante código Javascript, porque su contenido depende de la petición o de otros recursos.</p>
                     </li>
                 </ul>
@@ -1814,7 +1825,7 @@ var servidor = http.createServer(function(request, response) {
             
             
             <section>
-                <p>Implementamos una función <code>consultaBD</code>, que realiza la consulta SQL correspondiente, y pasa los resultados a la función callback pasada como parámetro:</p>
+                <p>Implementamos una función <code>consultaBD</code>, que realiza la consulta SQL correspondiente y pasa los resultados a la función callback pasada como parámetro:</p>
                 <pre><code data-trim class="javascript" style="font-size:90%">
 function consultaBD(callback) {
     var conexion = mysql.createConnection({
@@ -1932,6 +1943,7 @@ npm install ejs
 &lt;h1&gt;¡Bienvenido, <span class="hl">&lt;%= usuario.nombre %&gt;</span>!&lt;/h1&gt;
                 </code></pre>
                 
+                <div class="fragment">
                 <p>Los marcadores de programa contienen sentencias (o fragmentos de sentencias) Javascript. Suelen utilizarse con bucles, condicionales, etc.</p>
                 
                 <pre><code data-trim data-noescape class="html">
@@ -1941,6 +1953,7 @@ npm install ejs
    &lt;p&gt;&iexcl;Bienvenido, <span class="hl">&lt;%= usuario.nombre %&gt;</span>!&lt;/p&gt;
 <span class="hl">&lt;% } %&gt;</span>
                 </code></pre>
+                </div>
                 
             </section>
             
@@ -2053,8 +2066,9 @@ function devolverPagina(response, filasBD) {
                     <li>etc.</li>
                 </ul>
                 
-                <p>El módulo <code>http</code> es de demasiado bajo nivel para estas tareas. Es recomendable el uso de un <em>framework</em> que abstraiga los detalles técnicos.</p>
-                <p style="color:#009e3c; font-size: 120%; font-style:italic; font-weight:bold">Continuará...</p>
+                <p>El módulo <code>http</code> es de demasiado bajo nivel para estas tareas. Es recomendable el uso de un <strong>framework</strong> que abstraiga los detalles técnicos.</p>
+                <p style="color:#009e3c; font-size: 120%; font-style:italic; font-weight:bold; float:right" class="fragment">Continuará...</p>
+                <div style="clear:right"></div>
             </section>
 
             <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p7">
