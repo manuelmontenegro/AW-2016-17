@@ -381,7 +381,7 @@ function fib(n) {
             </section>
             
             <section>
-                <p>Suponemos que el código anterior está contenido en un fichero <code>moduloFib.hs</code>.</p>
+                <p>Suponemos que el código anterior está contenido en un fichero <code>moduloFib.js</code>.</p>
                 <p>Ahora hacemos uso de la función <code>fib</code> desde otro fichero:</p>
                 <pre><code data-trim data-noescape class="javascript">
 // testModules.js
@@ -415,7 +415,7 @@ var <span class="hl">myFib</span> = require("./moduloFib.js");
 console.log(<span class="hl">myFib</span>(10));                
                 </code></pre>
                 <div class="fragment">
-                <p>Esto es útil para prevenir conflictos de nombres entre los distintos módulos. Supongamos otro módulo <code>otroModuloFib.hs</code> que también exporta una función <code>fib</code>:</p>
+                <p>Esto es útil para prevenir conflictos de nombres entre los distintos módulos. Supongamos otro módulo <code>otroModuloFib.js</code> que también exporta una función <code>fib</code>:</p>
                 <pre><code data-trim data-noescape class="javascript">
 var <span class="hl">myFib</span> = require("./moduloFib.js");
 var <span class="hl">otroFib</span> = require("./otroModuloFib.js");
