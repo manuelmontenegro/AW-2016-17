@@ -1677,15 +1677,23 @@ var servidor = http.createServer(function(request, response) {
             <section>
                 <p>La función <code>createServer</code> tan solo sirve para especificar cómo queremos que se procesen las peticiones. Esta función no arranca el servidor creado.</p>
                 <div class="fragment">
-                <p>Para iniciar el servidor debemos utilizar el método <code>listen()</code> del servidor recién creado, indicando el puerto al que queremos acceder.</p>
+                <p>Para iniciar el servidor debemos utilizar el método <code>listen()</code> del servidor recién creado, indicando el puerto en el que queremos escuchar y (opcionalmente) una función callback que será llamada cuando comience la escucha.</p>
+                </div>
+            </section>
+            
+            <section>
                 <pre><code data-trim class="javascript">
 var servidor = http.createServer(function(request, response) {
     // ...
 });
-servidor.listen(3000);
-console.log("Servidor escuchando en el puerto 3000");
+servidor.listen(3000, function(err) {
+    if (err) {
+        console.log("Error al abrir el puerto 3000: " + err);
+    } else {
+        console.log("Servidor escuchando en el puerto 3000.");
+    }
+});
                 </code></pre>         
-                </div>
             </section>
             
             <section>
