@@ -1857,8 +1857,8 @@ function consultaBD(callback) {
 var servidor = http.createServer(function(request, response) {
     consultaBD(function(err, filasBD) {
         if (err) {
-            console.error(err);
             response.statusCode = 500;
+            console.error(err);
         } else {
             response.statusCode = 200;
             devolverPagina(response, filasBD);
@@ -1873,6 +1873,7 @@ var servidor = http.createServer(function(request, response) {
                 <p>La función <code>devolverPagina</code> es la que se encarga de generar el código HTML correspondiente:</p>
                 <pre><code data-trim class="javascript" style="font-size:90%;line-height:120%">
 function devolverPagina(response, filasBD) {
+    response.setHeader("Content-Type", "text/html");
     response.write('&lt;html&gt;');
     response.write('&lt;head&gt;');
     response.write('&lt;title&gt;Base de datos de teléfonos&lt;/title&gt;');
