@@ -1,3 +1,7 @@
+/*
+ * Pruebas con funciones anónimas
+ */
+
 "use strict";
 
 var f = function() { console.log("Hola"); };

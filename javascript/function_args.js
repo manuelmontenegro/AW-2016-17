@@ -1,4 +1,12 @@
+/*
+ * Experimentando con funciones con un número variable de argumentos
+ */ 
+
 "use strict";
+
+/*
+    Esta función imprime los argumentos dados.
+*/    
 
 function imprime_args(p1, p2, p3) {
     console.log("p1: " + p1);
@@ -15,6 +23,7 @@ function imprime_args(p1, p2, p3) {
 */
 function pintar_circulo(x, y, color, trazo) {
     if (color === undefined) color = "negro";
+//    color = color || "negro";
     if (trazo === undefined) trazo = 1;
     
     console.log("Pintar círculo en (" + x + ", " + y + ") con color " + color
@@ -54,7 +63,7 @@ function abrir_fichero(nombre, ops) {
 }
 
 
-/*
+
 imprime_args(1, "bar", true);
 imprime_args("uno", "dos", "tres", "cuatro");
 imprime_args("uno", "dos");
@@ -66,7 +75,7 @@ pintar_circulo(0, 0);
 
 
 console.log(suma(3, 4, "foo", 9));
-*/
+
 
 abrir_fichero("mio.txt");
 abrir_fichero("mio.txt", { solo_lectura: false });

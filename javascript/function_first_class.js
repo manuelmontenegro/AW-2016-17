@@ -1,3 +1,7 @@
+/*
+ * Funciones como ciudadanos de primera clase.
+ */
+
 "use strict";
 
 function incrementar(x) {
@@ -20,7 +24,9 @@ function factorial(n) {
     }
 }
 
-
+/*
+ * Aplica un array de funciones a un elemento dado
+ */
 function aplicar_funciones(funs, z) {
     for (var i = 0; i < funs.length; i++) {
         console.log("Aplicar función " + i + " pasando " + z + ": "
@@ -28,6 +34,10 @@ function aplicar_funciones(funs, z) {
     }
 }
 
+/*
+ * Dada una cadena indicando el mnemónico de una de las
+ * funciones definidas arriba, devuelve la función correspondiente
+ */
 function buscar_por_nombre(nombre) {
     switch(nombre) {
         case "INC": return incrementar;
