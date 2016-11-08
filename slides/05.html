@@ -1,0 +1,306 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tema 5 - Express.js</title>
+
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/aw.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/magula.css">
+
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <link rel="stylesheet" href="css/traspas.css" />
+</head>
+
+<body>
+    <svg width="0" height="0" style="float:left">
+        <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth" style="display:float">
+                <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+            </marker>
+        </defs>
+    </svg>
+    <div class="reveal">
+        <div class="slides">
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="fade">
+                <div class="headerlesson">Tema 5</div>
+                <h1 style="height:4em;position:relative;top:0.3em">Frameworks en el lado del servidor: Express.js</h1>
+                <div class="headerlesson">
+                    Aplicaciones Web - GIS - Curso 2016/17
+                </div>
+                <div class="author">
+                    <span class="myname">Manuel Montenegro</span> [<a href="mailto:montenegro@fdi.ucm.es" style="color:white">montenegro@fdi.ucm.es</a>]
+                    <br/> Dpto de Sistemas Informáticos y Computación
+                    <br/> Facultad de Informática
+                    <br/> Universidad Complutense de Madrid
+                </div>
+                <div class="cc">
+                    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+                    <br/> Esta obra está bajo una
+                    <br/><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="color:white">Licencia CC BY-NC-SA 4.0 Internacional</a>.
+                </div>
+                <div style="clear:left;font-size:15px"></div>
+            </section>
+
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="fade" id="p1">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline fragment highlight-orange">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Módulos y paquetes</a></li>
+                    <li><a href="#/p3" class="outline">El modelo asíncrono</a></li>
+                    <li><a href="#/p4" class="outline">Módulos core</a></li>
+                    <li><a href="#/p5" class="outline">Acceso a bases de datos</a></li>
+                    <li><a href="#/p6" class="outline">Servidores web</a></li>
+                    <li><a href="#/p7" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Introducción</h2>
+                <p>Hemos visto el módulo <code>http</code>, que implementa la funcionalidad de un servidor web.</p>
+                
+                <img src="images/05/EsquemaNodeHTTP.svg" width="90%" style="border:none;box-shadow:none">
+            </section>
+            
+            <section>
+                <p>La función callback realiza una distinción de casos en función de la URL especificada por el cliente en su petición.</p>
+                <pre><code data-trim class="javascript">
+var servidor = http.createServer(function(request, response) {
+    var method = request.method;
+    var url = request.url;
+    if (method === "GET" &amp;&amp; url === "/index.html") {
+        // Servir página principal.
+    } else if (method === "GET" &amp;&amp; url === "/index.css") {
+        // Servir hoja de estilo.
+    } else if (...) {
+    // ...
+    // ...
+    // ...
+    } else {
+        response.statusCode = 404;
+    }
+});
+                </code></pre>
+                <p><strong>Desventaja:</strong> escasa mantenibilidad del código.</p>
+            </section>
+            
+            <section>
+                <p>Existen, además, otros problemas en el desarrollo de un servidor web para los que el módulo <code>http</code> resulta insuficiente en una aplicación web grande:</p>
+                <ul>
+                    <li>Manejo de cookies</li>
+                    <li>Validación de formularios</li>
+                    <li>Gestión de páginas web estáticas</li>
+                    <li>Registro de peticiones (<code>logging</code>)</li>
+                    <li>Gestión de las vistas de una aplicación (<em>templates</em>)</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h3>Frameworks web</h3>
+                <p>Un <strong>marco de aplicaciones web</strong> (<em>web framework</em>) es un sistema, generalmente en forma de librería, que facilita el desarrollo de aplicaciones web mediante:</p>
+                <ul>
+                    <li>Separación entre la vista y controlador.
+                        <ul>
+                            <li><strong>Vista</strong>: documento HTML generado o plantilla EJS.</li>
+                            <li><strong>Controlador</strong>: función callback que procesa las peticiones.</li>
+                        </ul>
+                    </li>
+                    <li>División de un controlador monolítico en distintos mini-controladores, cada uno mantenible por separado.</li>
+                    <li>Abstracción de aspectos complejos: envío de ficheros, cookies, etc.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h4>Ejemplos de Frameworks Web</h4>
+                <ul>
+                    <li><span style="color:#04A;font-weight:bold">Java</span>: Apache Struts, Spring MVC, Spark, etc.</li>
+                    <li><span style="color:#04A;font-weight:bold">Python</span>: Django.</li>
+                    <li><span style="color:#04A;font-weight:bold">Ruby</span>: Ruby on Rails.</li>
+                    <li><span style="color:#04A;font-weight:bold">Node</span>:
+                        <ul>
+                            <li class="fragment highlight-red">Express.js - <a href="http://expressjs.com">http://expressjs.com</a> </li>
+                            <li>Sails.js - <a href="http://sailsjs.org">http://sailsjs.org</a> </li>
+                            <li>Meteor.js - <a href="http://www.meteor.com">http://www.meteor.com</a> </li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            
+            
+            <section>
+                <h3>Express.js</h3>
+                <p>Es un framework basado en el módulo <code>http</code> que proporciona:</p>
+                <ul>
+                    <li>Posibilidad de dividir la función callback que gestiona las peticiones HTTP en varias fases.</li>
+                    <li>Mecanismos de alto nivel para acceder a algunas componentes de la petición (cookies, IP del cliente, etc).</li>
+                </ul>
+                <p>Principales características:</p>
+                <ul>
+                    <li><strong>Flexible</strong>: no impone una determinada estructura.</li>
+                    <li><strong>Modular</strong>: basado en concatenar <em>middleware</em>.</li>
+                    <li><strong>Minimalista</strong>: solo proporciona funcionalidad básica, que puede extenderse mediante librerías externas.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <p>El minimalismo de Express.js responde a la filosofía UNIX:</p>
+                <blockquote style="width:90%;background-color:#DDF">
+                    Write programs that do one thing and do it well.
+                </blockquote>
+                <p>Es raro el uso de Express.js sin ninguna librería adicional.</p>
+                <p><strong>Ventajas</strong></p>
+                <ul>
+                    <li>Eficiencia: no hay componentes innecesarios.</li>
+                    <li>Simplicidad: es fácil comprender el funcionamiento.</li>
+                    <li>Flexibilidad: componentes intercambiables.</li>
+                </ul>
+                <p><strong>Inconvenientes</strong></p>
+                <ul>
+                    <li>Cantidad abrumadora de componentes externos.</li>
+                    <li>Requiere tomar decisiones de diseño.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h3>Primera aplicación en Express</h3>
+                <p>Creamos un proyecto nuevo y añadimos <code>express</code> como dependencia:</p>
+                <pre><code data-trim class="no-highlight">
+# npm init
+...
+# npm install express --save
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Escribimos un programa <code>main.js</code> que comienza del siguiente modo:</p>
+                <pre><code data-trim class="javascript">
+// main.js
+// -------
+
+"use strict";
+
+var express = require("express");
+var app = express();
+// ...
+                </code></pre>
+                <p>El módulo <code>express</code> exporta una única función.</p>
+                <p>Cada llamada a esta función devuelve una <strong>aplicación</strong>. Una aplicación es un servidor HTTP que puede escuchar en un determinado puerto.</p>
+            </section>
+            
+            <section>
+                <p>A continuación se definen las <strong>rutas</strong>, que se encargan de manejar cada URL.</p>
+                <p><code>app.get(<span style="font-style:italic">URL</span>, <span style="font-style:italic">callback</span>)</code></p>
+                <p>Cuando se reciba una petición de tipo GET sobre la <code style="font-style:italic">URL</code> pasada como parámetro, se llamará a la función <code style="font-style:italic">callback</code>, que será la que gestione la petición.</p>
+                <pre><code data-trim class="javascript">
+app.get("/", function(request, response) {
+    response.status(200);
+    response.write("Esta es la página raíz");
+    response.end();
+});
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Los objetos <code>request</code> y <code>response</code> son del mismo tipo que los del módulo <code>http</code>, pero con algunos métodos más. <a href="http://expressjs.com/en/4x/api.html">[+]</a></p>
+                <ul>
+                    <li><code>response.status(<span style="font-style:italic">codigo</span>)</code><br>
+                        Especifica el código HTTP de respuesta.
+                    </li>
+                    <li><code>response.set(<span style="font-style:italic">clave</span>, <span style="font-style:italic">valor</span>)</code><br>
+                        Modifica las cabeceras de la respuesta.
+                    </li>
+                    
+                    <li><code>response.write(<span style="font-style:italic">cadena</span>)</code><br>
+                        Escribe en el cuerpo de la respuesta.
+                    </li>
+                    <li><code>response.end([cadena])</code><br>
+                        Envía señal de finalización de respuesta.
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <p>La ruta anterior podía haberse escrito del siguiente modo:</p>
+                <pre><code data-trim class="javascript">
+app.get("/", function(request, response) {
+    response.status(200);
+    response.set("Content-Type", "text/plain; charset=utf-8");
+    response.end("Esta es la página raíz");
+});
+                </code></pre>
+                <p>Es conveniente indicar el tipo MIME de la respuesta (<code>text/plain</code>), para que el navegador web sepa qué hacer con el fichero recibido. <a href="01.html#/48">[+]</a></p>
+                
+                
+            </section>
+            
+            <section>
+                <p>Añadimos otra ruta para gestionar la URL <code>/users.html</code>:</p>
+                <pre><code data-trim class="javascript">
+app.get("/users.html", function(request, response) {
+    response.status(200);
+    response.set("Content-Type", "text/plain; charset=utf-8");
+    response.end("Aquí se mostrará la página de usuarios");
+});                
+                </code></pre>
+                <p>
+                    Por último, se llama al método <code>listen()</code>, que funciona igual que su homólogo en <code>http</code>:
+                </p>
+                <pre><code data-trim class="javascript">
+app.listen(3000, function() {
+    console.log("Servidor arrancado en el puerto 3000");
+});
+                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Capturas de pantalla, mostrar respuestas HTTP.</p>
+            </section>
+            
+
+        </div>
+
+    </div>
+
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            history: true,
+
+            // More info https://github.com/hakimel/reveal.js#dependencies
+            dependencies: [{
+                src: 'plugin/markdown/marked.js'
+            }, {
+                src: 'plugin/markdown/markdown.js'
+            }, {
+                src: 'plugin/notes/notes.js',
+                async: true
+            }, {
+                src: 'plugin/highlight/highlight.js',
+                async: true,
+                callback: function() {
+                    hljs.initHighlightingOnLoad();
+                }
+            }]
+        });
+    </script>
+</body>
+
+</html>
