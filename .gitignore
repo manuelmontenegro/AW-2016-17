@@ -2,3 +2,5 @@
 /express/primer-ejemplo/nbproject/
 node_modules
 
+/node/bd-mysql/nbproject/private/
+nbproject
