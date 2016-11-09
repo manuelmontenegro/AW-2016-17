@@ -1,0 +1,18 @@
+{
+  "name": "middleware-basico",
+  "version": "1.0.0",
+  "keywords": [
+    "util",
+    "functional",
+    "server",
+    "client",
+    "browser"
+  ],
+  "author": "manuel",
+  "contributors": [],
+  "dependencies": {
+    "compress": "^0.99.0",
+    "express": "^4.14.0",
+    "morgan": "^1.7.0"
+  }
+}
