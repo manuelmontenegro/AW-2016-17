@@ -267,10 +267,824 @@ app.listen(3000, function() {
             </section>
             
             <section>
-                <p>Capturas de pantalla, mostrar respuestas HTTP.</p>
+                <p>Resultado:</p>
+                <img src="images/05/EjemploRaiz.png" width="60%">
+                <p><code>http://localhost:3000/</code></p>
             </section>
             
+            <section>
+                <p>Respuesta HTTP devuelta:</p>
+                <pre><code data-trim data-noescape class="no-highlight" style="line-height:1.4em">
+HTTP/1.1 <span class="hl">200</span> OK    <span class="arrow_box_left caja_codigo fragment"><span style="font-family:monospace">response.status(200)</span></span>
+X-Powered-By: Express 
+<span class="hl">Content-Type: text/plain; charset=utf-8</span>   <span class="arrow_box_left caja_codigo fragment"><span style="font-family:monospace">response.set(...)</span></span>
+Date: Tue, 08 Nov 2016 21:07:14 GMT
+Connection: keep-alive
+Content-Length: 24
 
+<span class="hl" style="background-color:#CCF">Esta es la página raíz</span>   <span class="arrow_box_left caja_codigo fragment"><span style="font-family:monospace">response.write(...) / response.end(...)</span></span>
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Comprobamos el funcionamiento de la segunda ruta:</p>
+                <p><code>http://localhost:3000/users.html</code></p>
+                <img src="images/05/EjemploUsers.png" width="60%">
+            </section>
+            
+            <section>
+                <p>Mediante la cabecera <code>Content-Disposition</code> podemos indicar al navegador que el contenido es para ser descargado, no para ser visualizado en él.</p>
+                <pre><code data-trim class="javascript">
+app.get("/users.html", function(request, response) {
+    // ...
+    response.set("Content-Disposition", "attachment");
+    // ...
+});                
+                </code></pre>
+            </section>
+            
+            <section>
+                <img src="images/05/EjemploDownload.png" width="80%">
+            </section>
+            
+            <section>
+                <h4>Contenido HTML</h4>
+                <p>Al igual que en el módulo <code>http</code>, el objeto <code>response</code> puede (y suele) utilizarse para generar páginas HTML.</p>
+                <pre><code data-trim class="javascript">
+var usuarios = ["Javier Montoro", "Dolores Vega", "Beatriz Nito"];
+
+app.get("/users.html", function(request, response) {
+    response.status(200);
+    response.set("Content-Type", "text/html");
+    response.write("&lt;html&gt;");
+    response.write("&lt;head&gt;");
+    response.write("&lt;title>Lista de usuarios&lt;/title&gt;");
+    response.write('&lt;meta charset="utf-8"&gt;')
+    response.write("&lt;/head&gt;");
+    response.write("&lt;body&gt;&lt;ul&gt;");
+    usuarios.forEach(function(usuario) {
+        response.write(`&lt;li&gt;${usuario}&lt;/li&gt;`);
+    });
+    response.write("&lt;/ul&gt;&lt;/body&gt;");
+    response.end("&lt;/html&gt;");
+});                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p><code>http://localhost:3000/users.html</code></p>
+                <img src="images/05/ListaUsuarios.png" width="80%">
+            </section>
+            
+            <section>
+                <h4>Uso de plantillas EJS</h4>
+                <p>Al igual que con el módulo <code>http</code>, la generación de código HTML resulta más sencilla utilizando un motor de plantillas.</p>
+                <p>Express.js soporta varios: Jade, Mustache, <strong>EJS</strong>, etc.</p>
+                <p>Para utilizar EJS es necesario configurar previamente el objeto aplicación mediante el método <code>set()</code>.</p>
+                <p>Es necesario indicar:</p>
+                <ul>
+                    <li>El motor de plantillas a utilizar: opción <code>view engine</code>.</li>
+                    <li>El directorio con las plantillas: opción <code>views</code>.</li>
+                </ul>
+            </section>
+            
+            <section>
+                   <pre><code data-trim class="javascript">
+var path = require("path");
+var express = require("express");
+
+var app = express();
+                </code></pre>
+                <p>Utilizamos EJS como motor de plantillas:</p>
+                <pre><code data-trim class="javascript">
+                app.set("view engine", "ejs");
+                </code></pre>
+                <p>El directorio con las plantillas se llamará <code>views</code> y estará
+situado debajo del directorio el el que se encuentra el fichero actual:</p>
+                <pre><code data-trim class="javascript">
+app.set("views", path.join(__dirname, "views"));
+    // Recuerda: __dirname = Directorio del script actual
+    //           path.join(dir1, dir2, ...) = "dir1/dir2/..."
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Fichero <code>views/users.ejs</code></p>
+                <pre><code data-trim data-noescape class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Lista de usuarios&lt;/title&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;ul&gt;
+            <span class="hl">&lt;% users.forEach(function(user) { %&gt;</span>
+            &lt;li&gt;<span class="hl">&lt;%= user %&gt;</span>&lt;/li&gt;
+            <span class="hl">&lt;% }); %&gt;</span>
+        &lt;/ul&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>La llamada <code>response.render()</code> se encarga de llamar al motor de plantillas y enviar el resultado. </p>
+                <p>Recibe dos parámetros:</p>
+                <ul>
+                    <li>Una cadena con el nombre de la vista. Buscará el fichero correspondiente en la carpeta de plantillas.</li>
+                    <li>El modelo a visualizar.</li>
+                </ul>
+                <pre><code data-trim data-noescape class="javascript">
+var usuarios = ["Javier Montoro", "Dolores Vega", "Beatriz Nito"];
+                
+app.get("/users.html", function(request, response) {
+    response.status(200);
+    <span class="hl">response.render("users", { users: usuarios });</span>
+    // Busca la plantilla "views/users.ejs"
+    // La variable 'users' que hay dentro de esta plantilla, tomará
+    // el valor del array usuarios.
+});
+                
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>Redirecciones HTTP</h4>
+                <p>Se envían mediante <code>response.redirect(url)</code>:</p>
+                <pre><code data-trim class="javascript">
+app.get("/usuarios.html", function(request, response) {
+    response.redirect("/users.html");
+});                
+                </code></pre>
+                <p>Al acceder a <code>http://localhost:3000/usuarios.html</code> se obtendrá la siguiente respuesta HTTP,</p>
+                <pre><code data-trim data-noescape class="no-highlight">
+HTTP/1.1 302 Found     <soan class="arrow_box_left caja_codigo">Código 302 &rArr; Redirección</soan>
+X-Powered-By: Express
+Location: <span class="hl">/users.html</span>
+...
+                </code></pre>
+                <p>y el navegador &laquo;saltará&raquo; automáticamente a <code>users.html</code>.</p>
+            </section>
+
+            <section>
+                <h4>Aplicación final</h4>
+                <pre><code data-trim class="javascript">
+
+var path = require("path");
+var express = require("express");
+
+var app = express();
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
+
+app.get("/", function(request, response) {
+    response.status(200);
+    response.set("Content-Type", "text/plain; charset=utf-8");
+    response.end("Esta es la página raíz");
+});
+
+// ... continúa ...
+                </code></pre>
+            </section>
+            
+            <section>
+                <pre><code data-trim class="javascript">
+// ... viene de la anterior ...
+
+var usuarios = ["Javier Montoro", "Dolores Vega", "Beatriz Nito"];
+
+app.get("/users.html", function(request, response) {
+    response.status(200);
+    response.render("users", { users: usuarios });
+});
+
+app.get("/usuarios.html", function(request, response) {
+    response.redirect("/users.html");
+});
+
+app.listen(3000, function() {
+    console.log("Servidor arrancado en el puerto 3000");
+});                
+                
+                </code></pre>
+            </section>
+            
+            
+            
+            
+            <section>
+                <h2>Fundamentos de Express.js</h2>
+                <p>El framework se basa en tres componentes:</p>
+                <ul>
+                    <li><strong>Middleware</strong></li>
+                    <li><strong>Rutas</strong></li>
+                    <li><strong>Subaplicaciones</strong> (routers)</li>
+                </ul>
+            </section>
+    
+            <section>
+                <h3>Middleware</h3>
+                <p>Recordemos el manejo de peticiones utilizando directamente el módulo <code>http</code>:</p>
+                <pre><code data-trim class="javascript">
+var server = http.createServer(function(request, response) {...});
+                </code></pre>
+                <p>
+                    Se gestionan las peticiones mediante una única función monolítica que manipula el argumento <code>response</code> para indicar qué respuesta se quiere enviar:
+                </p>
+                
+                <img src="images/05/Monolitico.svg" width="95%" style="border:none;box-shadow:none">
+            </section>
+            
+            <section>
+                <p>Express.js se basa en dividir esta función monolítica en varias fases:</p>
+                <img src="images/05/Polil%C3%ADtico.svg" width="95%" style="border:none;box-shadow:none">
+                <p style="background-color:#FFC;padding:20px 0px">Cada una de estas fases recibe el nombre de <strong>middleware</strong>.</p>
+            </section>
+            
+            <section>
+                <img src="images/05/Fase2.svg" width="95%" style="border:none;box-shadow:none">
+                <p>Un middleware recibe un objeto <code>request</code> con los datos de la petición y un objeto <code>response</code> con la respuesta acumulada hasta el momento. Durante su ejecución puede:</p>
+                <ul>
+                    <li><strong>Leer</strong> y/o <strong>modificar</strong> el objeto <code>request</code> (por ejemplo, añadiendo nuevos atributos).</li>
+                    <li><strong>Leer</strong> y/o <strong>modificar</strong> el objeto <code>response</code> (por ejemplo, para añadir un fragmento a la respuesta).</li>
+                </ul>
+            </section>
+            
+            <section>
+                <p>La ejecución de un middleware puede finalizar de tres formas distintas:</p>
+                <ol>
+                    <li>Pasando el control al <strong>siguiente</strong> middleware en la cadena.</li>
+                    <li><strong>Finalizando</strong> la cadena de middlewares, sin pasar el control al siguiente.</li>
+                    <li>Provocando un <strong>error</strong>, que será gestionado por otro middleware.</li>
+                </ol>
+                <p>Pasamos a analizar los dos primeros casos.</p>
+                <p>El último se describirá más adelante.</p>
+            </section>
+            
+            <section>
+                <h4>Caso 1: Pasar el control al siguiente middleware</h4>
+                <img src="images/05/Fase2-3.svg" width="95%" style="border:none;box-shadow:none">
+                <p>El middleware &laquo;destino&raquo; recibirá los objetos <code>request</code> y <code>response</code> tal y como el middleware &laquo;origen&raquo; los dejó al finalizar su ejecución.</p>
+            </section>
+
+            <section>
+                <h4>Caso 2: Finalizar la cadena</h4>
+                <img src="images/05/Fase2Fin.svg" width="95%" style="border:none;box-shadow:none">
+                <p>Si un middleware decide no invocar al siguiente, la cadena finalizará y la petición se dará por atendida.</p>
+                <p>En este caso, el middleware deberá haber llamado a <code>response.end()</code> o <code>response.redirect()</code>para devolver una respuesta al cliente.</p>
+            </section>
+            
+            <section>
+                <p style="background:#AFA; padding:10px 0px">
+                La programación de un servidor con Express.js consiste fundamentalmente en encadenar middlewares.
+                </p>
+                <p>
+                    Si <code>app</code> representa un objeto aplicación, el método <code>app.use(...)</code> añade un middleware a la cadena.
+                </p>
+                <pre><code data-trim data-noescape class="javascript">
+var express = require("express");
+var app = express();
+
+app.use(middleware_1); <div style="float:right;width:60%" class="fragment"><img src="images/05/TresMiddles.svg" style="border:none;box-shadow:none"></div>
+app.use(middleware_2);  
+app.use(middleware_3);
+
+// ...
+
+app.listen(3000);
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>Construir un middleware</h3>
+                <p>Un middleware es, básicamente, una función con tres parámetros: <code>request</code>, <code>response</code> y <code>next</code>.</p>
+                <p>El parámetro <code>next</code> es una función. Cuando el  middleware quiera transferir el control al siguiente de la cadena deberá llamar a <code>next()</code> sin parámetros.</p>
+                <pre><code data-trim class="javascript">
+var middleware_1 = function (request, response, next) { 
+    // ...
+    // Manipular los objetos request y/o response.
+    // ...
+    
+    next();  // Saltar al siguiente middleware
+}
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>Ejemplo 1: registro de peticiones (<em>log</em>)</h4>
+                <p>Creamos un middleware que se limita a mostrar por pantalla las peticiones recibidas sin alterarlas.</p>
+                <p>Este tipo de middleware suele ir al principio de la cadena.</p>
+                <pre><code data-trim class="javascript">
+function logger(request, response, next) {
+    console.log(`Recibida petición ${request.method} ` +
+                `en ${request.url} de ${request.ip}`);
+       
+    // Saltar al siguiente middleware   
+    next();
+}
+
+app.use(logger);                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Otra forma: introducir la definición de función en la propia llamada a <code>app.use()</code>.</p>
+                <pre><code data-trim class="javascript">
+app.use(function (request, response, next) {
+    console.log(`Recibida petición ${request.method} ` +
+                `en ${request.url} de ${request.ip}`);
+    next();
+
+});                
+                </code></pre>
+            </section>
+
+            <section>
+                <h4>Ejemplo 2: control de acceso</h4>
+                <p>El siguiente middleware deniega todas las peticiones que provengan de una IP censurada.</p>
+                <pre><code data-trim class="javascript">
+var ipsCensuradas = [ "147.96.81.244", "145.2.34.23" ];
+
+app.use(function(request, response, next) {
+    // Comprobamos si la IP de la petición está dentro de la
+    // lista de IPs censuradas.
+    if (ipsCensuradas.indexOf(request.ip) >= 0) {
+        // Si está censurada, devolvemos código 401 (Unauthorized)
+        response.status(401);
+        response.end("No autorizado");
+    } else {
+        // En caso contrario, pasamos al siguiente middleware.
+        next();
+    }
+});
+                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>También puede utilizarse middleware para comprobar si el usuario está identificado y, en caso contrario, redirigir a una página de identificación.</p>
+                <pre><code data-trim class="javascript">
+app.use(function(request, response, next) {
+    if (usuarioActual === undefined) {
+        response.redirect("/login.html");
+    } else {
+        next();
+    }
+});
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>Ejemplo 3: adjuntar información a la petición</h4>
+                <p>El siguiente middleware extiende la petición con un atributo <code>esUCM</code> que indica si la IP del usuario es de la forma <code>147.96.x.x</code></p>
+                <pre><code data-trim class="javascript">
+app.use(function(request, response, next)) {
+    request.esUCM = request.ip.startsWith("147.96.");
+    next();
+});                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Colocamos tres middlewares anteriores en secuencia, seguidos de un manejador para la ruta <code>/index.html</code>:</p>
+                <pre><code data-trim class="javascript">
+var express = require("express");
+var app = express();
+
+var ipsBloqueadas = [ ... ];
+
+app.use( ... /* logger */ ...);
+app.use( ... /* ip bloqueada? */ ...);
+app.use( ... /* ip ucm? */ ...);
+
+app.get("/index.html", function(request, response) {
+    response.status(200);
+    response.set("Content-Type", "text/plain; encoding=utf-8");
+    response.write("¡Hola!");
+    if (request.esUCM) {
+        reponse.write("Estás conectado desde la UCM");
+    }
+    response.end();
+});
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Hasta ahora tenemos la siguiente cadena:</p>
+                <img src="images/05/RunningExample1.svg" width="95%" style="border:none;box-shadow:none">
+            </section>
+
+            <section>
+                <h4>Ejemplo 4: Error 404  (Not found)</h4>
+                <p>
+                    Al final de la cadena suele colocarse un middleware que gestiona los casos en los que la URL no haya sido capturada por ningún manejador, para devolver el código de error 404.
+                </p>
+                <pre><code data-trim class="javascript">
+app.use(function(request, response, next) {
+    response.status(404);
+    response.render("error", { url: request.url });
+});                
+                </code></pre>
+                <p><code>views/error.ejs</code></p>
+                <pre><code data-trim data-noescape class="html">
+<!DOCTYPE html>
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;ERROR 404&lt;/title&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Error 404&lt;/h1&gt;
+        &lt;p&gt;La direcci&oacute;n &lt;code&gt;<span class="hl">&lt;%= url %&gt;</span>&lt;/code&gt; no existe&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;              
+                </code></pre>
+            </section>
+            
+            <section>
+                <img src="images/05/RunningExample2.svg" width="100%" style="border:none;box-shadow:none">
+            </section>
+            
+            <section>
+                <h3>Middleware básico</h3>
+                <ul>
+                    <li><code>static</code> (viene incluido con Express.js)
+                    </li>
+                    <li><code>morgan</code><br></li>
+                    <li><code>compress</code><br></li>
+                </ul>
+            </section>
+            
+            <section>
+                <h4>
+                    <code>static</code>: servir ficheros estáticos
+                </h4>
+                <p>Recordatorio: <a href="04.html#/113">páginas web estáticas y dinámicas</a></p>
+                <p>Los recursos estáticos (imágenes, páginas web estáticas, hojas de estilo) suelen almacenarse en una carpeta determinada del proyecto.</p>
+                <p>Cuando se recibe una petición GET para acceder a alguno de estos recursos estáticos, se lee el fichero correspondiente y se envía su contenido en la respuesta.</p>
+                <p>El middleware <code>static</code> se encarga de ello.</p>
+            </section>
+            
+            <section>
+                <p><code>express.static(root)</code></p>
+                <p>Recibe un nombre de directorio <code>root</code> y devuelve el siguiente middleware que realiza (a grandes rasgos) lo siguiente:</p>
+                <ul>
+                    <li>Analiza <code>request.url</code> y comprueba si existe un fichero en el directorio <code>root</code> que coincida con la URL de la petición.</li>
+                    <li>En caso de existir, lee el fichero y responde con su contenido.</li>
+                    <li>En caso de no existir, pasar al siguiente middleware.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h4>Ejemplo de uso</h4>
+                <p>Los recursos estáticos suelen almacenarse en un directorio llamado <code>public</code>, que se sitúa dentro del proyecto.</p>
+                <img src="images/05/FolderStructure2.svg" style="width:27%;border:none;box-shadow:none; float:left">
+                <div style="float:right; width:70%">
+                    <p><code>public/index.html</code></p>
+                <pre style="margin:0px;width:100%"><code data-trim class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Middleware est&aacute;tico&lt;/title&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;css/style.css&quot;&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;&iexcl;Bienvenido!&lt;/h1&gt;
+        &lt;p&gt;Esto es una p&aacute;gina web est&aacute;tica&lt;/p&gt;
+        &lt;img src=&quot;img/escudofdigrande.png&quot;
+                width=&quot;300&quot;&gt;
+    &lt;/body&gt;
+&lt;/html&gt;                
+                </code></pre>
+                </div>
+                <div style="clear:both"></div>
+            </section>
+            
+            <section>
+                <img src="images/05/FolderStructure2.svg" style="width:27%;border:none;box-shadow:none; float:left; position:relative; top:2em">
+                <div style="float:right; width:70%">
+                    <p><code>main.js</code></p>
+                <pre style="margin:0px;width:100%"><code data-trim class="javascript">
+"use strict";
+
+var express = require("express");
+var path = require("path");
+
+var app = express();
+
+// La variable ficherosEstaticos guarda el
+// nombre del directorio donde se encuentran
+// los ficheros estáticos:
+// &lt;directorioProyecto&gt;/public
+var ficherosEstaticos = 
+                path.join(__dirname, "public");
+
+app.use(express.static(ficherosEstaticos));
+
+app.listen(3000, function() {
+    console.log("Escuchando en el puerto 3000");
+})
+                </code></pre>
+                </div>
+                <div style="clear:both"></div>
+            </section>
+            
+            <section>
+                <p>Resultado:</p>
+                <img src="images/05/WebEstatica.png" width="60%">
+            </section>
+
+            <section>
+                <h4><code>morgan</code>: registro de peticiones</h4>
+                <p>Anteriormente hemos implementado un middleware sencillo que escribía por pantalla las peticiones recibidas. </p>
+                <p>El middleware <code>morgan</code> permite hacer lo mismo, pero proporciona muchas más opciones.</p>
+                <p>Instalación en el proyecto:</p>
+                <pre><code data-trim class="no-highlight">
+npm install morgan --save                
+                </code></pre>
+                <p><a href="https://github.com/expressjs/morgan">https://github.com/expressjs/morgan</a></p>
+            </section>
+            
+            <section>
+                <p>El módulo <code>morgan</code> exporta una única función que recibe el tipo de información a imprimir y devuelve un middleware.</p>
+                <pre><code data-trim class="javascript">
+var morgan = require("morgan");
+
+...
+
+app.use(morgan("dev"));
+                </code></pre>
+                <p>Tipos disponibles: <code>dev</code>, <code>combined</code>, <code>common</code>, <code>short</code>, <code>tiny</code>.</p>
+                <p><a href="https://github.com/expressjs/morgan#predefined-formats">https://github.com/expressjs/morgan#predefined-formats</a></p>
+            </section>
+            
+            <section>
+                <p>Al realizar distintas peticiones con el navegador se imprime esta información por pantalla:</p>
+                <img src="images/05/Morgan.png" width="80%">
+            </section>
+            
+            <section>
+                <h3>Manejo de errores</h3>
+                <p>Recordemos cómo puede finalizar un middleware:</p>
+                <ol>
+                    <li>Pasando el control al siguiente middleware en la cadena.</li>
+                    <li>Finalizando la cadena de middlewares, sin pasar el control al siguiente.</li>
+                    <li class="fragment highlight-blue">Provocando un <strong>error</strong>, que será gestionado por otro middleware.</li>
+                </ol>
+                <p>Pasamos a describir este último caso.</p>
+            </section>
+            
+            <section>
+                <p>Dentro de la cadena de middlewares podemos incorporar algunos middleware especiales que se encargan de gestionar los errores producidos.</p>
+                <img src="images/05/MiddlewareError1.svg" width="90%" style="border:none;box-shadow:none">
+                <p>Este tipo de middleware se caracteriza por recibir <strong>cuatro</strong> parámetros, en lugar de tres:</p>
+                <pre><code data-trim class="javascript">
+function(error, request, response, next) { ... }
+                </code></pre>
+                <p>El primer parámetro contiene información sobre el error producido.</p>
+            </section>
+            
+            <section>
+                <p>Cuando un middleware llama a su función <code>next</code> <strong>pasándole un argumento</strong>, el control pasa directamente al primer manejador de errores disponible en la cadena, &laquo;saltándose&raquo; los middlewares intermedios.</p>
+                <img src="images/05/MiddlewareError2.svg" width="90%" style="border:none;box-shadow:none">
+                <p>El argumento pasado a <code>next</code> será el objeto <code>Error</code> recibido por el manejador de errores (i.e. el primer parámetro).</p>
+            </section>
+            
+            <section>
+                <p>A su vez, el manejador de error puede pasar el control al siguiente manejador de error de la cadena. Para ello ha de llamar a su función <code>next()</code> con el mismo objeto error recibido, o con otro distinto.</p>
+                <img src="images/05/MiddlewareError3.svg" width="90%" style="border:none;box-shadow:none">
+            </section>
+            
+            <section>
+                <h4>Ejemplo</h4>
+                <pre><code data-trim data-noescape class="javascript">
+var express = require("express");
+var path = require("path");
+var fs = require("fs");
+
+var app = express();
+
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
+app.get("/usuarios", function(request, response, next) {
+    fs.readFile("noexiste.txt", function(err, contenido) {
+        if (err) {
+            <span class="hl">next(err);</span>  <span class="arrow_box_left caja_codigo">Saltar al manejador de error</span>
+        } else {
+            request.contenido = contenido;            
+        }
+    });
+});
+// ... continúa ...
+                </code></pre>
+            </section>
+            
+            <section>
+                <pre><code data-trim class="javascript">
+// Manejador del error
+
+app.use(function(error, request, response, next) {
+   // Código 500: Internal server error
+   response.status(500);
+   response.render("error", {
+       mensaje: error.message,
+       pila: error.stack
+   });
+});
+
+app.listen(3000, function() {
+..    console.log("Escuchando en el puerto 3000");
+});
+                </code></pre>
+            </section>
+            
+            <section>
+                <code>views/error.ejs</code>
+                <pre><code data-trim data-noescape class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Error del servidor&lt;/title&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;500 - Error interno del servidor&lt;/h1&gt;
+        &lt;p&gt;Se ha producido el siguiente error: <span class="hl">&lt;%= mensaje %&gt;</span>&lt;/p&gt;
+        &lt;p&gt;Pila de ejecuci&oacute;n:&lt;/p&gt;
+        &lt;pre&gt;<span class="hl">&lt;%= pila %&gt;</span>&lt;/pre&gt;
+    &lt;/body&gt;
+&lt;/html&gt;                
+                </code></pre>
+            </section>
+            
+            <section>
+                <img src="images/05/ErrorInterno.png" width="100%">
+            </section>
+            
+            <section>
+                <h3>Direccionamiento y rutas</h3>
+                <p>El direccionamiento de Express.js permite asociar una acción a una ruta determinada.</p>
+                <pre><code data-trim class="javascript">
+app.get("/users", function(request, response) {
+    // Acciones a realizar cuando se realice una petición
+    // de tipo GET sobre la URL /users.
+});
+                </code></pre>
+                <p>Existen funciones para los demás tipos de peticiones HTTP:</p>
+                <ul style="position:relative; left:-0.5em">
+                <li><code>app.post()</code></li>
+                <li><code>app.put()</code></li>
+                <li><code>app.delete()</code></li>
+                </ul>
+                <ul style="position:relative; left:0.5em">
+                <li><code>app.options()</code></li>
+                <li><code>app.head()</code></li>
+                <li>etc.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <p>Ejemplo:</p>
+                <pre><code data-trim class="javascript">
+app.post("/nuevo_usuario", function(request, response) {
+    // Se ha realizado una petición de tipo POST
+    // sobre la URL /nuevo_usuario
+});
+
+app.put("/modificar_usuario", function(request, response) {
+    // Se ha realizado una petición de tipo PUT
+    // sobre la URL /modificar_usuario
+});
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>Rutas paramétricas</h4>
+                <p>Es posible especificar marcadores dentro de una ruta.</p>
+                <p>De este modo, la ruta se convierte en una plantilla a la que pueden ajustarse distintas rutas:</p>
+                <p>Por ejemplo: <code>/usuarios/<span class="hl">:id</span></code></p>
+                <p>Esta plantilla comprende las siguientes rutas:</p>
+                <ul>
+                    <li><code>/usuarios/<span class="hl">34</span></code></li>
+                    <li><code>/usuarios/<span class="hl">pep</span></code></li>
+                    <li><code>/usuarios/<span class="hl">43pep</span></code></li>
+                    <li><code>/usuarios/<span class="hl">gerardo-hernandez</span></code></li>
+                </ul>
+            </section>
+            
+            <section>
+                <p>Podemos acceder a los valores concretos de la ruta paramétrica mediante el objeto <code>request.params</code>.</p>
+                
+                <pre><code data-trim class="javascript">
+app.get("/usuarios/:id", function(request, response) {
+    response.status(400);
+    response.render("usuario", { ident: request.params.id });
+});
+                </code></pre>
+                <p><code>views/usuario.ejs</code></p>
+                <pre><code data-trim data-noescape class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Saludo&lt;/title&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;&iexcl;Bienvenido, <span class="hl">&lt;%= ident %&gt;</span>!&lt;/h1&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+                </code></pre>
+            </section>
+            
+            <section>
+                <img src="images/05/Saludo1.png" width="60%">
+                <img src="images/05/Saludo2.png" width="60%">
+            </section>
+            
+            <section>
+                <p>Otros ejemplos de rutas paramétricas:</p>
+                <p><code>/usuarios/<span class="hl">:id</span>/perfil</code></p>
+                <p><code>/usuarios/<span class="hl">:id</span>/editar_perfil.html</code></p>
+                <p><code>/libros/<span class="hl">:idAutor</span>/<span class="hl" style="background-color:#DDF">:libro</span></code></p>
+                <p>Express.js utiliza el módulo <code>path-to-regexp</code> para analizar y capturar sus rutas. Este módulo permite especificar expresiones regulares en las rutas. Más información:</p>
+                <p><a href="https://github.com/pillarjs/path-to-regexp">https://github.com/pillarjs/path-to-regexp</a></p>
+            </section>
+            
+            <section>
+                <h4>Middleware específico de ruta</h4>
+                <p>Es posible incluir una secuencia de middlewares específicos para una determinada ruta.</p>
+                <pre><code data-trim class="javascript">
+app.get(ruta, middleware_1, middleware_2, ..., manejador);
+app.post(ruta, middleware_1, middleware_2, ..., manejador);
+...
+                </code></pre>
+                <p>Estos middlewares solamente se tendrán en cuenta cuando la petición ajuste con la ruta.</p>
+            </section>
+            
+            <section>
+                <p>El middleware específico resulta útil para aquellas rutas que requieren pasos previos (por ejemplo, autenticación):</p>
+                <pre><code data-trim data-noescape class="javascript">
+function identificacionRequerida(request, response, next) {
+    if (usuario_identificado) {
+        next();
+    } else {
+        response.status(401);
+        response.end();
+    }
+}
+
+app.get("/secreto.html", <span class="hl">identificacionRequerida</span>,
+            function(request, response) { ... } );
+app.get("/otro_secreto.html", <span class="hl">identificacionRequerida</span>,
+            function(request, response) { ... } );
+app.get("/publico.html", function(request, response) { ... } );
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>Subaplicaciones (routers)</h3>
+                <p>Un <strong>router</strong> puede considerarse como una mini-aplicación web con sus propias rutas y su propia cadena de middleware.</p>
+                <p>Los routers se crean mediante <code>express.Router()</code></p>
+                <p>El router creado tiene los métodos <code>use()</code>, <code>get()</code>, <code>post()</code>, etc, que permiten incorporar middleware y manejo de rutas en la subaplicación.</p>
+            </section>
+            
+            <section>
+                <p>Módulo: <code>miRouter.js</code></p>
+                <pre><code data-trim class="javascript">
+var miRouter = express.Router();
+
+miRouter.get("/crear_usuario.html", function(request, response) {
+    console.log("Creando usuario.");
+    response.end();
+});
+
+miRouter.get("/buscar_usuario.html", function(request, response) {
+    console.log("Buscando usuario");
+    response.end();
+});
+
+module.exports = miRouter;
+                </code></pre>
+            </section>
+            
+            
+            <section>
+                <p>Es posible incorporar un router en otra aplicación indicando la ruta sobre la que se quiere montar:</p>
+                <p><code>app.use(<em>ruta</em>, <em>router</em>)</code></p>
+                <pre><code data-trim data-noescape class="javascript">
+var app = express();
+var miRouter = require("./miRouter");
+app.use("<span class="hl" style="background-color:#FD3">/usuarios</span>", miRouter);     <span class="arrow_box_left caja_codigo">Montar sobre la ruta <span style="font-family:monospace">/usuarios</span></span>                
+                </code></pre>
+                <p>En este caso, las rutas definidas en el router estarán accesible a través de las siguientes URLs:</p>
+                <p style="font-size:80%"><code>http://localhost:3000<span class="hl" style="background-color:#FD3">/usuarios</span>/crear_usuario.html</code></p>
+                <p style="font-size:80%"><code>http://localhost:3000<span class="hl" style="background-color:#FD3">/usuarios</span>/buscar_usuario.html</code></p>
+            </section>
+        
         </div>
 
     </div>
