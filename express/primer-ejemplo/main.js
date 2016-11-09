@@ -1,9 +1,12 @@
 "use strict";
 
-
+var path = require("path");
 var express = require("express");
 
 var app = express();
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
 
 app.get("/", function(request, response) {
     response.status(200);
@@ -11,10 +14,15 @@ app.get("/", function(request, response) {
     response.end("Esta es la página raíz");
 });
 
+var usuarios = ["Javier Montoro", "Dolores Vega", "Beatriz Nito"];
+
 app.get("/users.html", function(request, response) {
     response.status(200);
-    response.set("Content-Type", "text/plain; charset=utf-8");
-    response.end("Aquí se mostrará la página de usuarios");
+    response.render("users", { users: usuarios });
+});
+
+app.get("/usuarios.html", function(request, response) {
+    response.redirect("/users.html");
 });
 
 app.listen(3000, function() {
