@@ -219,6 +219,9 @@ app.get("/", function(request, response) {
                     <li><code>response.status(<span style="font-style:italic">codigo</span>)</code><br>
                         Especifica el código HTTP de respuesta.
                     </li>
+                    <li><code>response.type(<span style="font-style:italic">codigo</span>)</code><br>
+                        Especifica el tipo MIME del cuerpo de la respuesta.
+                    </li>
                     <li><code>response.set(<span style="font-style:italic">clave</span>, <span style="font-style:italic">valor</span>)</code><br>
                         Modifica las cabeceras de la respuesta.
                     </li>
@@ -237,7 +240,7 @@ app.get("/", function(request, response) {
                 <pre><code data-trim class="javascript">
 app.get("/", function(request, response) {
     response.status(200);
-    response.set("Content-Type", "text/plain; charset=utf-8");
+    response.type("text/plain; charset=utf-8");
     response.end("Esta es la página raíz");
 });
                 </code></pre>
@@ -251,7 +254,7 @@ app.get("/", function(request, response) {
                 <pre><code data-trim class="javascript">
 app.get("/users.html", function(request, response) {
     response.status(200);
-    response.set("Content-Type", "text/plain; charset=utf-8");
+    response.type("text/plain; charset=utf-8");
     response.end("Aquí se mostrará la página de usuarios");
 });                
                 </code></pre>
@@ -306,7 +309,28 @@ app.get("/users.html", function(request, response) {
             <section>
                 <img src="images/05/EjemploDownload.png" width="80%">
             </section>
+
+            <section>
+                <p>Funciones para devolver un fichero al cliente:</p>
+                <ul>
+                    <li><code>response.sendFile(path)</code>
+                        <br>Devuelve al cliente el fichero indicado.
+                    </li>
+                    <li><code>response.download(path)</code>
+                        <br>Devuelve al cliente el fichero indicado, utilizando la cabecera <code>Content-Disposition: attachment</code>.
+                    </li>
+                </ul>
+                <pre><code data-trim class="javascript">
+app.get("/usuario/imagen.png", function(request, response) {
+    response.status(200);
+    response.sendFile("./path/fichero.png");
+});
+                </code></pre>
+                <p>Estas funciones &laquo;adivinan&raquo; el tipo MIME del fichero enviado.</p>
+                    
+            </section>
             
+
             <section>
                 <h4>Contenido HTML</h4>
                 <p>Al igual que en el módulo <code>http</code>, el objeto <code>response</code> puede (y suele) utilizarse para generar páginas HTML.</p>
@@ -315,7 +339,7 @@ var usuarios = ["Javier Montoro", "Dolores Vega", "Beatriz Nito"];
 
 app.get("/users.html", function(request, response) {
     response.status(200);
-    response.set("Content-Type", "text/html");
+    response.type("text/html");
     response.write("&lt;html&gt;");
     response.write("&lt;head&gt;");
     response.write("&lt;title>Lista de usuarios&lt;/title&gt;");
@@ -441,7 +465,7 @@ app.set("views", path.join(__dirname, "views"));
 
 app.get("/", function(request, response) {
     response.status(200);
-    response.set("Content-Type", "text/plain; charset=utf-8");
+    response.type("text/plain; charset=utf-8");
     response.end("Esta es la página raíz");
 });
 
@@ -661,7 +685,7 @@ app.use( ... /* ip ucm? */ ...);
 
 app.get("/index.html", function(request, response) {
     response.status(200);
-    response.set("Content-Type", "text/plain; encoding=utf-8");
+    response.type("text/plain; encoding=utf-8");
     response.write("¡Hola!");
     if (request.esUCM) {
         reponse.write("Estás conectado desde la UCM");
@@ -1083,6 +1107,134 @@ app.use("<span class="hl" style="background-color:#FD3">/usuarios</span>", miRou
                 <p>En este caso, las rutas definidas en el router estarán accesible a través de las siguientes URLs:</p>
                 <p style="font-size:80%"><code>http://localhost:3000<span class="hl" style="background-color:#FD3">/usuarios</span>/crear_usuario.html</code></p>
                 <p style="font-size:80%"><code>http://localhost:3000<span class="hl" style="background-color:#FD3">/usuarios</span>/buscar_usuario.html</code></p>
+            </section>
+            
+            <section>
+                <h2>Peticiones y formularios</h2>
+                <p>Supongamos un formulario HTML:</p>
+                    <pre><code data-trim data-noescape class="html">
+&lt;form method="<span class="hl" style="font-style:italic">método HTTP</span>" action="<span class="hl" style="font-style:italic">url</span>"&gt;
+...
+&lt;/form&gt;
+                    </code></pre>
+                <p>El método HTTP puede ser <code>GET</code> o <code>POST</code>.</p>
+                <p>Al enviar el formulario el navegador saltará a la <code>url</code> indicada. Podemos procesar la información del formulario mediante la ruta correspondiente:</p>
+                <pre><code data-trim data-noescape class="javascript">
+app.use("<span class="hl" style="font-style:italic">url</span>", function(request, response) {
+    // Tratar información del formulario.
+});
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Trabajaremos con el siguiente formulario:</p>
+                <img src="images/05/FormularioGET.png" width="90%">
+            </section>
+            
+            <section>
+                <pre><code data-trim class="html">
+&lt;form method=&quot;GET&quot; action=&quot;procesar_get.html&quot;&gt;
+    &lt;div&gt;
+       &lt;label for=&quot;formNombre&quot;&gt;Nombre:&lt;/label&gt;
+       &lt;input type=&quot;text&quot; name=&quot;nombre&quot; id=&quot;formNombre&quot;&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+       &lt;label for=&quot;formEdad&quot;&gt;Edad:&lt;/label&gt;
+       &lt;input type=&quot;text&quot; name=&quot;edad&quot; id=&quot;formEdad&quot;&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+       &lt;input type=&quot;radio&quot; name=&quot;sexo&quot; value=&quot;H&quot; id=&quot;formHombre&quot;&gt;
+       &lt;label for=&quot;formHombre&quot;&gt;Hombre&lt;/label&gt;
+       &lt;input type=&quot;radio&quot; name=&quot;sexo&quot; value=&quot;M&quot; id=&quot;formMujer&quot;&gt;
+       &lt;label for=&quot;formMujer&quot;&gt;Mujer&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+       &lt;input type=&quot;checkbox&quot; name=&quot;fumador&quot; value=&quot;ON&quot; 
+                  id=&quot;formFumador&quot;&gt;
+       &lt;label for=&quot;formFumador&quot;&gt;Fumador/a&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+       &lt;input type=&quot;submit&quot; value=&quot;Enviar&quot;&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>Peticiones de tipo <code>GET</code></h3>
+                <p>Recordemos que, en las peticiones de tipo <code>GET</code>, la información del formulario se incluye en la URL de destino.</p>
+                <pre><code data-trim data-noescape class="no-highlight" style="font-size:95%">
+/procesar_get.html<span class="hl">?nombre=Germ%C3%A1n&amp;edad=Hernando+Coello&amp;sexo=H</span>                 
+                </code></pre>
+                <p>El objeto <code>request.query</code> contiene los datos del formulario:</p>
+                <pre><code data-trim class="javascript">
+app.get("/procesar_get.html", function(request, response) {
+    console.log(request.query);
+        // &rarr; { nombre: 'Germán', 
+        //     edad: 'Hernando Coello',
+        //     sexo: 'H' }
+    request.end();
+});
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Ejemplo de uso:</p>
+                <pre><code data-trim class="javascript">
+app.get("/procesar_get.html", function(request, response) {
+    var sexoStr = "No especificado";
+    switch (request.query.sexo) {
+        case "H": sexoStr = "Hombre"; break;
+        case "M": sexoStr = "Mujer"; break;
+    }
+    response.render("infoForm", {
+        nombre: request.query.nombre,
+        edad: request.query.edad,
+        sexo: sexoStr,
+        fumador: (request.query.fumador === "ON" ? "Sí" : "No")
+    });
+    response.end();
+});                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Plantilla <code>infoForm.ejs</code>:</p>
+                <pre><code data-trim data-noescape class="html" style="font-size:80%; line-height:115%">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Informaci&oacute;n proporcionada&lt;/title&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Formulario procesado&lt;/h1&gt;
+        &lt;table&gt;
+            &lt;tr&gt;
+                &lt;th&gt;Nombre:&lt;/th&gt;
+                &lt;td&gt;<span class="hl">&lt;%= nombre %&gt;</span>&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;th&gt;Edad:&lt;/th&gt;
+                &lt;td&gt;<span class="hl">&lt;%= edad %&gt;</span>&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;th&gt;Sexo:&lt;/th&gt;
+                &lt;td&gt;<span class="hl">&lt;%= sexo %&gt;</span>&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;th&gt;Fumador:&lt;/th&gt;
+                &lt;td&gt;<span class="hl">&lt;%= fumador %&gt;</span>&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/body&gt;
+&lt;/html&gt;                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Resultado:</p>
+                <img src="images/05/FormularioProcesado.png" width="90%">
             </section>
         
         </div>
