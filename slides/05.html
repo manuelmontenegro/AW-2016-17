@@ -1234,11 +1234,286 @@ app.get("/procesar_get.html", function(request, response) {
             
             <section>
                 <p>Resultado:</p>
-                <img src="images/05/FormularioProcesado.png" width="90%">
+                <img src="images/05/FormularioProcesado.png" width="80%">
+            </section>
+            
+            <section>
+                <h3>Peticiones de tipo <code>POST</code></h3>
+                <pre><code data-trim data-noescape class="html">
+&lt;form method=&quot;<span class="hl">POST</span>&quot; action=&quot;<span class="hl">procesar_post.html</span>&quot;&gt;
+    ...
+&lt;/form&gt;                
+                </code></pre>
+                <p>Al contrario que en las peticiones <code>GET</code>, la información del formulario no forma parte de la URL. Se incluye en el <strong>cuerpo</strong> de la petición <code>POST</code>:</p>
+                
+                <pre><code data-trim data-noescape class="no-highlight">
+POST http://localhost:3000/procesar_post.html HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:49.0) 
+Accept: text/html
+...
+
+<div style="background-color:#FCF">Content-Type: application/x-www-form-urlencoded 
+Content-Length: 46                              <span class="no_arrow_box caja_codigo">Cuerpo de la petición</span>
+
+<span class="hl">nombre=Germ%C3%A1n&amp;edad=Hernando+Coello&amp;sexo=H</span></div>
+                </code></pre>
+            </section>
+            
+            
+            <section>
+                <p>Existen métodos de lectura en el objeto <code>request </code>que permiten acceder al cuerpo de la petición.</p>
+                <p>Sin embargo, estos métodos devuelven la cadena con la información del formulario &laquo;en bruto&raquo;:</p>
+                <pre><code data-trim class="no-highlight">
+nombre=Germ%C3%A1n&amp;edad=Hernando+Coello&amp;sexo=H                
+                </code></pre>
+                <p>El programa ha de &laquo;parsear&raquo; esta cadena para extraer cada uno de los valores del formulario.</p>
+                <p>Por suerte, existe un middleware que hace esto:<br><code>body-parser</code></p>
+            </section>
+            
+            <section>
+                <h3>El middleware <code>body-parser</code></h3>
+                <pre><code data-trim class="no-highlight">
+npm install body-parser --save                
+                </code></pre>
+                <p>Este middleware obtiene el cuerpo de la petición HTTP, interpreta su contenido y modifica el objeto <code>request</code>, añadiéndole un nuevo atributo (llamado <code>body</code>) con la información del formulario.</p>
+                <pre><code data-trim class="javascript">
+var bodyParser = require("body-parser");
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Cada uno de los siguientes métodos que exporta <code>body-parser</code> devuelve un middleware:</p>
+                <ul>
+                    <li><code>bodyParser.text(options)</code><br>
+                        El atributo <code>req.body</code> contendrá una cadena de texto con el contenido &laquo;bruto&raquo; del cuerpo de la petición.
+                    </li>
+                    <li><code>bodyParser.urlencoded(options)</code><br>
+                        Supone que el cuerpo de la petición contiene información en formato URL (como el mostrado anteriormente). El atributo <code>req.body</code> contiene un objeto con dicha información.
+                        
+                    </li>
+                    <li><code>bodyParser.json(options)</code><br>
+                        Igual que el anterior, pero supone que la petición contiene un objeto en formato JSON.
+                        
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <p>En nuestro caso:</p>
+                <pre><code data-trim data-noescape class="javascript">
+// ...
+
+// Incluimos el middleware body-parser en la cadena de middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// ...
+
+app.post("/procesar_post.html", function(request, response) {
+    console.log(<span class="hl">request.body</span>);
+        // &rarr; { nombre: 'Germán', 
+        //     edad: 'Hernando Coello',
+        //     sexo: 'H' }
+    response.end();
+});
+             </code></pre>
+                <p>El middleware <code>body-parser</code> debe situarse antes de la ruta <code>/procesar_post.html</code>, para que en esta última tenga la propiedad <code>request.body</code> disponible.</p>
             </section>
         
-        </div>
+            <section>
+                <h4>La opción <code>extended</code></h4>
+                <pre><code data-trim class="javascript">
+app.use(bodyParser.urlencoded({ extended: false }));                
+                </code></pre>
+                <p>Si <code>extended</code> toma el valor <code>false</code>, se utilizará la librería <code>querystring</code> para interpretar la información de los formularios.</p>
+                <pre><code data-trim class="javascript">
+app.use(bodyParser.urlencoded({ extended: true }));                
+                </code></pre>
+                <p>En este caso se utiliza la librería <code>qs</code>, que permite codificar objetos y arrays dentro de la URL.</p>
+            </section>
+            
+            <section>
+                <h4>Ejemplo</h4>
+                <pre><code data-trim data-noescape class="html">
+&lt;form method=&quot;POST&quot; action=&quot;procesar_post.html&quot;&gt;
+    ...
+    &lt;input type=&quot;text&quot; name=&quot;<span class="hl">datosPersonales[nombre]</span>&quot;
+           id=&quot;formNombre&quot;&gt;
+    ...
+    &lt;input type=&quot;text&quot; name=&quot;<span class="hl">datosPersonales[edad]</span>&quot; 
+           id=&quot;formEdad&quot;&gt;
+    ...
+    &lt;input type=&quot;radio&quot; name=&quot;sexo&quot; value=&quot;H&quot; id=&quot;formHombre&quot;&gt;
+    ...
+    &lt;input type=&quot;radio&quot; name=&quot;sexo&quot; value=&quot;M&quot; id=&quot;formMujer&quot;&gt;
+    ...
+    &lt;input type=&quot;checkbox&quot; name=&quot;fumador&quot; value=&quot;ON&quot;
+           id=&quot;formFumador&quot;&gt;
+    ...
+&lt;/form&gt;
+                </code></pre>
+                
+            </section>
+            
+            <section>
+                <pre><code data-trim class="javascript">
+app.post("/procesar_post.html", function(request, response) {
+    console.log(request.body);
+    response.end();
+});                
+                </code></pre>
+                <p>Con <code>extended:false</code></p>
+                <pre><code data-trim class="javascript">
+{  
+   "datosPersonales[nombre]":"Germán",
+   "datosPersonales[edad]":"Hernando Coello",
+   sexo:"H"
+}                </code></pre>
+                <p>Con <code>extended:true</code></p>
+                <pre><code data-trim class="javascript">
+{  
+   datosPersonales:{  
+      nombre:"Germán",
+      edad:"Hernando Coello"
+   },
+   sexo:"H"
+}               </code></pre>
 
+            </section>
+            
+            <section>
+                <h2>Cookies y sesiones</h2>
+                <p style="background-color:#dcf1ab; padding: 20px 0px; font-weight:bold;font-style:italic">
+                    El protocolo HTTP es un protocolo sin estado
+                </p>
+                <p>
+                    Cada petición es una transacción independiente que no guarda relación con ninguna otra anterior.
+                </p>
+                <p>
+                    En otras palabras, HTTP es un protocolo &laquo;sin memoria&raquo;
+                </p>
+                <p>Cuando recibe una petición, la atiende, y se &laquo;olvida&raquo; del cliente que realizó la petición.</p>
+                <p>Si un cliente realiza varias peticiones consecutivas, desde el punto de vista del servidor es como si cada una de las peticiones proviniese de un cliente distinto.</p>
+            </section>
+            
+            <section>
+                <p>Sin embargo, hay numerosas ocasiones en las que un cliente desearía ser &laquo;recordado&raquo; por un servidor web:</p>
+                <ul style="font-size:80%">
+                    <li><strong>Identificación de usuarios</strong>: cuando un usuario se <em>loguea</em> a una página web, no debería tener que hacerlo cada vez que quiera visitar una página que requiera identificación.</li>
+                    <li><strong>Carros de la compra en una tienda web</strong>: el usuario añade productos a su carro de la compra a medida que navega por las páginas del sitio web, y el servidor debería &laquo;recordar&raquo; el contenido del carro de la compra.</li>
+                    <li><strong>Operación en fases</strong>: si una determinada operación (registro en un portal web, pago en tienda web, etc.) requiere visitar varias páginas en secuencia, el servidor debería considerar que todas las visitas forman parte de una única operación.</li>
+                    <li>etc.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <p>Mecanismos para dotar a un servidor HTTP de &laquo;memoria&raquo;:</p>
+                <ul>
+                    <li><strong>Cookies</strong></li>
+                    <li><strong>Sesiones</strong></li>
+                </ul>
+            </section>
+            
+            <section>
+                <h3>Cookies</h3>
+                <p>Funcionan del siguiente modo:</p>
+                <img src="images/05/Cookie1.svg" width="80%" style="border:none;box-shadow:none">
+                <p>El cliente realiza una petición HTTP al servidor.</p>
+            </section>
+
+            <section>
+                <img src="images/05/Cookie2.svg" width="80%" style="border:none;box-shadow:none">
+                <p>El servidor responde al cliente, e incorpora en la respuesta una o varias <strong>cookies</strong> con la información que debe ser &laquo;recordada&raquo; de una petición a otra.</p>
+            </section>
+
+            <section>
+                <img src="images/05/Cookie3.svg" width="80%" style="border:none;box-shadow:none">
+                <p>El navegador almacena esta información en su depósito de cookies.</p>
+            </section>
+
+            <section>
+                <img src="images/05/Cookie4.svg" width="80%" style="border:none;box-shadow:none">
+                <p>Cada vez que el cliente realiza una petición al mismo servidor, adjunta las cookies correspondiente.</p>
+                <p>
+                    De este modo, el servidor dispone de la información que debía ser recordada de una petición a otra.
+                </p>
+            </section>
+            
+            <section>
+                <h4>¿Cómo envía el servidor las cookies al cliente?</h4>
+                <p>Mediante las cabeceras de la respuesta HTTP.</p>
+    <pre><code data-trim data-noescape class="no-highlight">
+HTTP/1.1 200 OK
+<span class="hl">Set-Cookie: usuario=pepe26; carroCompra=[...]; Path=/</span>
+Content-Type: text/html; charset=utf-8
+...
+
+&lt;html&gt;
+    &lt;head&gt;
+    ...
+</code></pre>                
+                <img src="images/05/Cookie2.svg" width="70%" style="border:none;box-shadow:none">
+
+            </section>
+            
+            <section>
+                <h4>¿Cómo devuelve el cliente las cookies al servidor?</h4>
+                <p>Mediante las cabeceras de la petición HTTP.</p>
+                <pre><code data-trim data-noescape class="no-highlight">
+GET /pagina6.html HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:49.0) ...
+Accept: text/html,application/xhtml+xml
+...
+<span class="hl">Cookie: usuario=pepe26; carroCompra=[...]
+</span>...
+            </code></pre>
+                <img src="images/05/Cookie4.svg" width="70%" style="border:none;box-shadow:none">
+
+            </section>
+            
+            <section>
+                <p>El navegador almacena las cookies de los distintos sitios web que visita.</p>
+                <p>Cada paquete de cookies se identifica mediante:</p>
+                <ul>
+                    <li>El <strong>dominio</strong> del cual proceden (p.ej. <code>foo.com</code>, <code>domain.org</code>, etc.), y</li>
+                    <li>Un <strong>path</strong> dentro del dominio (p.ej. <code>/admin</code>, <code>/user</code>, etc.)</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h4>Establecer cookies en Node</h4>
+                <p>El objeto <code>response</code> tiene un método para establecer una cookie en el cliente:</p>
+                <p><code>response.cookie(<em>nombre</em>, <em>valor</em>[, <em>opciones</em>])</code></p>
+                <pre><code data-trim data-noescape class="javascript">
+app.get("/reset.html", function(request, response) {
+    response.status(200);
+    <span class="hl">response.cookie("contador", 0);</span>
+    response.type("text/plain");
+    response.end("Has reiniciado el contador");
+});                
+                </code></pre>
+            </section>
+            
+            <section>
+                <img src="images/05/ReiniciarContador.png" width="80%">
+                <pre><code data-trim data-noescape class="no-highlight">
+HTTP/1.1 200 OK
+X-Powered-By: Express
+<span class="hl">Set-Cookie: contador=0; Path=/</span>
+Content-Type: text/plain; charset=utf-8
+Date: Thu, 10 Nov 2016 19:53:13 GMT
+Connection: keep-alive
+Content-Length: 26                
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>Opciones de <code>setCookie</code></h4>
+            </section>
+            
+    
+        </div>
     </div>
 
 
