@@ -1267,7 +1267,7 @@ Content-Length: 46                              <span class="no_arrow_box caja_c
                 <pre><code data-trim class="no-highlight">
 nombre=Germ%C3%A1n&amp;edad=Hernando+Coello&amp;sexo=H                
                 </code></pre>
-                <p>El programa ha de &laquo;parsear&raquo; esta cadena para extraer cada uno de los valores del formulario.</p>
+                <p>El programa ha de analizar sintácticamente esta cadena para extraer cada uno de los valores del formulario.</p>
                 <p>Por suerte, existe un middleware que hace esto:<br><code>body-parser</code></p>
             </section>
             
@@ -1325,7 +1325,7 @@ app.post("/procesar_post.html", function(request, response) {
                 <pre><code data-trim class="javascript">
 app.use(bodyParser.urlencoded({ extended: false }));                
                 </code></pre>
-                <p>Si <code>extended</code> toma el valor <code>false</code>, se utilizará la librería <code>querystring</code> para interpretar la información de los formularios.</p>
+                <p>Si <code>extended</code> toma el valor <code>false</code>, se utilizará la librería <code>querystring</code> para analizar la información de los formularios.</p>
                 <pre><code data-trim class="javascript">
 app.use(bodyParser.urlencoded({ extended: true }));                
                 </code></pre>
@@ -1474,10 +1474,12 @@ Accept: text/html,application/xhtml+xml
             
             <section>
                 <p>El navegador almacena las cookies de los distintos sitios web que visita.</p>
-                <p>Cada paquete de cookies se identifica mediante:</p>
+                <p>Cada cookie tiene un ámbito, que viene determinado por:
                 <ul>
-                    <li>El <strong>dominio</strong> del cual proceden (p.ej. <code>foo.com</code>, <code>domain.org</code>, etc.), y</li>
-                    <li>Un <strong>path</strong> dentro del dominio (p.ej. <code>/admin</code>, <code>/user</code>, etc.)</li>
+                    <li>El <strong>dominio</strong> del que procede<br>
+                        Por ejemplo: <code>foo.com</code>, <code>domain.org</code>, etc.</li>
+                    <li>Una <strong>ruta</strong> (<em>path</em>) dentro del dominio<br>
+                        Por ejemplo: <code>/admin</code>, <code>/user</code>, etc.</li>
                 </ul>
             </section>
             
@@ -1510,6 +1512,243 @@ Content-Length: 26
             
             <section>
                 <h4>Opciones de <code>setCookie</code></h4>
+                <ul>
+                    <li><code>domain</code> / <code>path</code><br>
+                        Determinan el ámbito de la cookie.<br>
+                    </li>
+                    <li><code>expires</code><br>
+                        Determina la fecha de caducidad de la cookie. A partir de esta fecha, el cliente ya no la enviará al servidor.
+                    </li>
+                    <li><code>maxAge</code><br>
+                        Alternativa a <code>expires</code>, pero indicando el tiempo de vida de la cookie (en ms).
+                    </li>
+                </ul>
+                <pre><code data-trim class="javascript">
+// La siguiente cookie se almacena durante 24h = 24*60*60*1000
+response.cookie("contador", 0, { maxAge: 86400000 } );
+                </code></pre>
+
+            </section>
+            
+            <section>
+                <h4>Acceso a las cookies enviadas por el cliente</h4>
+                <p>El navegador envía las cookies en la cabecera de cada petición HTTP.</p>
+                <p>En principio, podría utilizarse el método <code>request.get()</code> para acceder a la línea correspondiente de la cabecera, pero esta función nos devuelve el contenido de texto en formato de texto &laquo;bruto&raquo;, que tendríamos que analizar sintácticamente:</p>
+                <pre><code data-trim class="javascript">
+app.get("/increment.html", function(request, response) {
+    console.log(request.get("Cookie"));
+        // &rarr; "contador=0"
+    response.end();
+});                
+                </code></pre>
+            </section>
+            
+            
+            <section>
+                <h4>El middleware <code>cookie-parser</code></h4>
+                <pre><code data-trim class="no-highlight">
+npm install cookie-parser --save                
+                </code></pre>
+                <p>Recupera la información de la cabecera HTTP <code>Cookie</code>, realiza su análisis sintáctico y añade un atributo <code>cookies</code> dentro del objeto <code>request</code> con el contenido de la cookie. </p>
+                
+                <pre><code data-trim class="javascript">
+// ...
+
+var cookieParser = require("cookie-parser");
+
+// ...
+
+app.use(cookieParser());
+
+app.get("/increment.html", function(request, response) {
+    console.log(request.cookies);
+        // &rarr; { contador: '0' }
+    console.log(Number(request.cookies.contador));
+        // &rarr; 0
+    response.end();
+});                
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>Ejemplo</h4>
+                <pre><code data-trim class="javascript">
+app.use(cookieParser());
+
+app.get("/increment.html", function(request, response) {
+  if (request.cookies.contador === undefined) {
+    response.redirect("/reset.html");
+  } else {
+    var contador = Number(request.cookies.contador) + 1;
+    response.cookie("contador", contador);
+    response.status(200);
+    response.type("text/plain");
+    response.end(`El valor actual del contador es ${contador}`);
+  }
+});
+
+app.get("/reset.html", function(request, response) {
+  response.status(200);
+  response.cookie("contador", 0, { maxAge: 86400000 } );
+  response.type("text/plain");
+  response.end("Has reiniciado el contador");
+});
+                </code></pre>
+            </section>
+            
+            <section>
+                <img src="images/05/Increment1.png" width="80%">
+                <img src="images/05/Increment2.png" width="80%">
+            </section>
+            
+            <section>
+                <h4>Observar cookies en Firefox</h4>
+                <p>Es necesario activar la pestaña de <em>Almacenamiento</em> dentro de las herramientas del desarrollador.</p>
+                <p style="position:relative;top:-20px">Esto puede hacerse a través del botón de configuración <img src="images/05/RuedaDentada.png" style="border:1px solid;box-shadow:none;height:1em;position:relative;top:20px"> en la barra de herramientas del desarrollador.</p>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/ZIBFGqKQ2xY" frameborder="0" allowfullscreen></iframe>
+            </section>
+            
+            <section>
+                <h4>Limitaciones de las cookies</h4>
+                <ul>
+                    <li><span style="font-weight:bold">Su contenido es accesible al cliente</span><br>
+                        El usuario de la aplicación web puede alterarlas mediante las herramientas del desarrollador. Esto conlleva problemas de seguridad.<br>
+                Las cookies firmadas (<em>signed cookies</em>) pueden prevenir la manipulación por parte del usuario <a href="https://github.com/expressjs/cookie-parser#cookieparsersignedcookiescookies-secret">[+]</a>.
+                    </li>
+                    <li><span style="font-weight:bold">Limitaciones de almacenamiento</span><br>
+                        Existe un número máximo de cookies que un servidor puede enviar a un cliente, y un tamaño máximo para cada una de ellas.
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h3>Sesiones</h3>
+                <p>Soluciona las limitaciones de las cookies delegando su almacenamiento en el <strong>servidor</strong>.</p>
+                <p>El servidor guarda una base de datos con las cookies de cada uno de los clientes. Cada entrada de la BD está identificada con una clave, llamada <strong>session id</strong> (SID).</p>
+                <p>De este modo, cada cliente tan solo tiene que almacenar su SID y enviárselo al servidor en cada petición.
+                </p>
+                <p>Para el almacenamiento del SID se utiliza una cookie.</p>
+            </section>
+            
+            <section>
+                <img src="images/05/Session1.svg" width="90%" style="border:none;box-shadow:none">
+                <p>El servidor envía una cookie con el SID al navegador.</p>
+            </section>
+            
+            <section>
+                <img src="images/05/Session2.svg" width="90%" style="border:none;box-shadow:none">
+                <p>El navegador envía su SID con cada petición.</p>
+            </section>
+            
+            <section>
+                <h4>El middleware <code>express-session</code></h4>
+                <p>Gestiona el almacenamiento de sesiones.</p>
+                <pre><code data-trim class="no-highlight">
+npm install express-session --save                
+                </code></pre>
+                <p>Exporta una única función que devuelve un middleware.</p>
+                <p>Este middleware añade un atributo <code>session</code> al objeto <code>request</code> que contiene los datos de la sesión correspondientes al cliente que se está atendiendo.</p>
+                <p>El atributo <code>request.session</code> también se utiliza para añadir o modificar información de la sesión. Al utilizar <code>response.end()</code> o similar, el servidor guarda toda la información de <code>request.session</code> en el almacenamiento de sesiones del servidor.</p>
+            </section>
+            
+            <section>
+                <h4>Ejemplo</h4>
+                <p>Implementamos el ejemplo anterior utilizando sesiones:</p>
+                <pre><code data-trim data-noescape class="javascript">
+
+var session = require("express-session");
+
+...
+
+var middlewareSession = session({
+    saveUninitialized: false,
+    secret: "foobar34",         <span class="arrow_box_left caja_codigo">Opciones del middleware</span>
+    resave: false
+});
+
+app.use(middlewareSession);
+
+app.get("/reset.html", function(request, response) {
+    response.status(200);
+    <span class="hl">request.session.contador = 0;</span>
+    response.type("text/plain");
+    response.end("Has reiniciado el contador");
+});
+
+...                
+                </code></pre>
+            </section>
+            
+            <section>
+                <pre><code data-trim data-noescape class="javascript">
+...                
+app.get("/increment.html", function(request, response) {
+  if (request.session.contador === undefined) {
+    response.redirect("/reset.html");
+  } else {
+    var contador = Number(<span class="hl">request.session.contador</span>) + 1;
+    <span class="hl">request.session.contador++;</span>
+    response.status(200);
+    response.type("text/plain");
+    response.end(`El valor actual del contador es ${contador}`);
+  }
+});
+...                
+                </code></pre>
+            </section>
+            
+            
+            <section>
+                <h4>Opciones del middleware</h4>
+                <ul>
+                    <li><code>saveUninitialized : false</code><br>
+                        Indica que no se cree ninguna sesión para los clientes que no estén en la BD de sesiones, a menos que durante la petición se añada algún atributo a <code>request.session</code>.
+                    </li>
+                    <li><code>resave : true</code><br>
+                        Fuerza a que se guarde el contenido en la sesión en la BD de sesiones al final de la petición, aunque no se haya modificado ningún atributo de <code>request.session</code>.
+                    </li>
+                    <li>
+                        <code>secret</code><br>
+                        Cadena que se utilizará para firmar el SID que se envía al cliente.
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h4>Almacenamiento de datos de sesión</h4>
+                <p>Las sesiones se almacenan, por defecto, en un objeto <code>MemoryStore</code> alojado en memoria.</p>
+                <p><strong>Problema:</strong> al reiniciar o finalizar el servidor, la información del almacén de sesiones desaparece.</p>
+                <p>Un <code>MemoryStore</code> puede ser útil en la fase de desarrollo, pero para servidores en producción es mejor utilizar un método de almacenamiento con persistencia, p.ej. un SGBD.</p>
+                <a href="https://github.com/expressjs/session#compatible-session-stores" style="font-size:80%">https://github.com/expressjs/session#compatible-session-stores</a>
+            </section>
+            
+            <section>
+                <p>El módulo <code>express-mysql-session</code> permite almacenar la informacion de sesión en una base de datos MySQL.</p>
+                <pre><code data-trim class="javascript">
+var mysqlSession = require("express-mysql-session");
+var MySQLStore = mysqlSession(session);
+var sessionStore = new MySQLStore({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "miBD"
+});
+                </code></pre>
+                <p>El objeto <code>sessionStore</code> creado puede pasarse a la función <code>session</code> como parámetro:</p>
+                <pre><code data-trim data-noescape class="javascript">
+var middlewareSession = session({
+    saveUninitialized: false,
+    secret: "foobar34",
+    resave: false,
+    store: <span class="hl">sessionStore</span>
+});
+app.use(middlewareSession);                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>De este modo la información de las sesiones se guarda en una tabla llamada <code>sessions</code>) en la BD:</p>
+                <img src="images/05/TablaSesiones.png" width="90%" style="border:none">
             </section>
             
     
