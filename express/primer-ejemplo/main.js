@@ -10,7 +10,7 @@ app.set("views", path.join(__dirname, "views"));
 
 app.get("/", function(request, response) {
     response.status(200);
-    response.set("Content-Type", "text/plain; charset=utf-8");
+    response.type("text/plain; charset=utf-8");
     response.end("Esta es la página raíz");
 });
 
