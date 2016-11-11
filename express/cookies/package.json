@@ -1,0 +1,17 @@
+{
+  "name": "cookies",
+  "version": "1.0.0",
+  "keywords": [
+    "util",
+    "functional",
+    "server",
+    "client",
+    "browser"
+  ],
+  "author": "manuel",
+  "contributors": [],
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0"
+  }
+}
