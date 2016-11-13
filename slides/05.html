@@ -1890,6 +1890,116 @@ app.get("/pag4", function(request, response) {
 &lt;/body&gt;                
                 </code></pre>
             </section>
+            
+            <section>
+                <h2>Configuración de aplicaciones Express.js</h2>
+                <p>Los objetos <code>app</code> proporcionan algunas opciones globales de configuración. Su acceso y modificación se realiza mediante:</p>
+                <ul>
+                    <li>
+                        <code>app.set(<em>nombreOpcion</em>, <em>nuevoValor</em>)</code><br>
+                        Modifica una opción.
+                        <pre><code data-trim class="javascript">
+app.set("view cache", false);
+                        </code></pre>
+                    </li>
+                    <li>
+                        <code>app.get(<em>nombreOpcion</em>)</code><br>
+                        Obtiene el valor actual de una opción.
+                        <pre><code data-trim class="javascript">
+console.log(app.get("view engine")); // &rarr; "ejs"
+                        </code></pre>
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h3>La opción <code>env</code></h3>
+                <p>Establece el modo de ejecución de la aplicación:</p>
+                <ul>
+                    <li><code>development</code></li>
+                    <li><code>test</code></li>
+                    <li><code>stage</code></li>
+                    <li><code>preview</code></li>
+                    <li><code>production</code></li>
+                </ul>
+                <p>Esta opción resulta útil para añadir y eliminar middleware en función del contexto en el que esté desplegado el sistema.</p>
+            </section>
+            
+            <section>
+                <h4>Ejemplos</h4>
+                <p>Activar un tipo de registro (<em>log</em>) distinto en función del modo de la aplicación:</p>
+                    <pre><code data-trim class="javascript">
+if (app.get("env") === "development") {
+    app.use(morgan("dev"));
+} else {
+    app.use(morgan("common"));
+}
+                    </code></pre>
+            </section>
+            <section>
+                <p>Seleccionar un middleware de gestión de errores que muestre información más  detallado en desarrollo y más escueta en producción:</p>
+                <pre><code data-trim data-noescape class="javascript">
+if (app.get('env') === 'development') {
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            <span class="hl">error: err</span>               <span class="arrow_box_left caja_codigo">Incluir traza de excepciones</span>
+        });
+    });
+} else {
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            <span class="hl">error: {}</span>                <span class="arrow_box_left caja_codigo">No incluir traza de excepciones</span>
+        });
+    });
+}
+
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>Modificar la opción <code>env</code></h4>
+                <p>Puede hacerse mediante el método <code>set</code> de los objetos aplicación: </p>
+                <pre><code data-trim class="javascript">
+app.set("env", "development");
+                </code></pre>
+                <p>o bien estableciendo la variable de entorno <code>NODE_ENV</code> en el sistema operativo:</p>
+                <pre><code data-trim class="no-highlight">
+# export NODE_ENV=preview
+# npm start
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>Opciones sobre vistas</h3>
+                <ul>
+                    <li><code>view cache</code><br>
+                        Si toma el valor <code>false</code>, las plantillas se leerán de disco cada vez que se utilice el método <code>response.render()</code> .
+                        En el modo <code>production</code> su valor por defecto es <code>true</code>, y en los restantes es <code>false</code>.
+                    </li>
+                    <li><code>view engine</code></li>
+                    <li><code>view cache</code><br>
+                        Determinan el motor de plantilla por defecto y el directorio con las plantillas.
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h3>Opciones sobre rutas</h3>
+                <ul>
+                    <li>
+                        <code>case sensitive routing</code> (defecto: <code>false</code>)<br>
+                        Indica si el ajuste de rutas es sensible a mayúsculas y minúsculas. Cuando está activado, considerará distintas las rutas <code>/foo</code> y <code>/Foo</code>.
+                    </li>
+                    <li>
+                        <code>strict routing</code> (defecto: <code>false</code>)<br>
+                        Cuando se activa, se tendrán en cuenta los símbolos <code>/</code> finales de cara al ajuste de rutas, de modo que las rutas <code>/users</code> y <code>/users/</code> serán distintas.
+                    </li>
+                </ul>
+            </section>
     
         </div>
     </div>
