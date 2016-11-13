@@ -280,7 +280,7 @@ app.listen(3000, function() {
                 <pre><code data-trim data-noescape class="no-highlight" style="line-height:1.4em">
 HTTP/1.1 <span class="hl">200</span> OK    <span class="arrow_box_left caja_codigo fragment"><span style="font-family:monospace">response.status(200)</span></span>
 X-Powered-By: Express 
-<span class="hl">Content-Type: text/plain; charset=utf-8</span>   <span class="arrow_box_left caja_codigo fragment"><span style="font-family:monospace">response.set(...)</span></span>
+<span class="hl">Content-Type: text/plain; charset=utf-8</span>   <span class="arrow_box_left caja_codigo fragment"><span style="font-family:monospace">response.type(...)</span></span>
 Date: Tue, 08 Nov 2016 21:07:14 GMT
 Connection: keep-alive
 Content-Length: 24
@@ -1751,6 +1751,145 @@ app.use(middlewareSession);
                 <img src="images/05/TablaSesiones.png" width="90%" style="border:none">
             </section>
             
+            <section>
+                <h2>Diseño avanzado de plantillas</h2>
+                <p>Delimitadores EJS vistos hasta ahora:</p>
+                <ul>
+                    <li>Delimitadores de sentencias <code>&lt;%</code>, <code>%></code></li>
+                    <li>Delimitadores de expresión <code>&lt;%=</code>, <code>%></code></li>
+                </ul>
+                <pre><code data-trim data-noescape class="html">
+<span class="hl">&lt;% for (var i = 0; i &lt; 10; i++) { %&gt;</span>
+   &lt;li&gt;Opci&oacute;n <span class="hl" style="background-color:#FDF">&lt;%= i+1 %&gt;</span>&lt;/li&gt;
+<span class="hl">&lt;% } %&gt;</span>                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Las plantillas se traducen a código Javascript antes de ser ejecutadas:</p>
+                <pre><code data-trim data-noescape class="javascript">
+try {
+  var __output = [], __append = __output.push.bind(__output);
+  with (locals || {}) {
+    ;  <span class="hl">for(var i = 0; i &lt; 10; i++) { </span>
+    ; __append("&lt;li&gt;Opción ")
+    ; __append(<span class="hl" style="background-color:#FDF">escape(i + 1)</span>)
+    ; __append(" &lt;/li&gt;")
+    ;  <span class="hl">}</span> 
+  }
+  return __output.join("");
+} catch (e) {
+  rethrow(e, __lines, __filename, __line);
+}
+                
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>Inclusión literal de contenido</h3>
+                <p>
+                    Los delimitadores <code>&lt;%=</code> y <code>%&gt;</code> interpretan los caracteres especiales HTML (<code>&lt;</code>, <code>&gt;</code>, etc) y los converten en las entidades correspondientes (<code>&amp;lt;</code>, <code>&amp;gt;</code>, etc.)
+                </p>
+                <p>
+                    Si no se desea realizar esta transformación, se puede utilizar los delimitadores <code>&lt;%-</code> y <code>%&gt;</code>.
+                </p>
+            </section>
+            
+            <section>
+                <pre><code data-trim data-noescape class="html">
+&lt;p&gt; <span class="hl">&lt;%= msg %&gt;</span> &lt;/p&gt;
+&lt;p&gt; <span class="hl" style="background-color:#FDD">&lt;%- msg %&gt;</span> &lt;/p&gt;                
+                </code></pre>
+                <p>Si la variable <code>msg</code> toma el valor<br> <code>"Esto es &lt;b&gt;importante&lt;/b&gt;"</code><br>tenemos:</p>
+                <pre><code data-trim data-noescape class="html">
+&lt;p&gt; <span class="hl">Esto es &amp;lt;b&amp;gt;importante&amp;lt;/b&amp;gt;</span> &lt;/p&gt;
+&lt;p&gt; <span class="hl"  style="background-color:#FDD">Esto es &lt;b&gt;importante&lt;/b&gt;</span> &lt;/p&gt;                </code></pre>
+                
+            </section>
+            
+            <section>
+                <div style="background-color:#DFC; padding:10px 10px">
+                    Si el contenido de una plantilla proviene de la entrada proporcionada por el usuario, es recomendable utilizar <code>&lt;%=</code> y <code>%></code> para evitar la inyección de HTML en nuestras páginas.
+                </div>
+            </section>
+            
+            <section>
+                <h3>Subplantillas</h3>
+                <p>La función <code>include</code> sirve para insertar el contenido de una plantilla dentro de otra.</p>
+                <pre><code data-trim data-noescape class="html">
+&lt;body&gt;
+    <span class="hl" style="background-color:#FDD">&lt;%- include(&quot;header&quot;) %&gt;</span>
+    &lt;div&gt;
+        &lt;ul&gt;
+            <span class="hl">&lt;% usuarios.forEach(function(u) { %&gt;</span>
+            <span class="hl" style="background-color:#FDD">&lt;%- include(&quot;userView&quot;, { usuario: u }) %&gt;</span>
+            <span class="hl">&lt;% }); %&gt;</span>
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    <span class="hl" style="background-color:#FDD">&lt;%- include(&quot;footer&quot;) %&gt;</span>
+&lt;/body&gt;                
+                </code></pre>
+                
+                <p>En este caso debe utilizarse <code>&lt;%-</code> y <code>%&gt;</code>, ya que se desea integrar las etiquetas HTML de la plantilla incluida dentro de esta plantilla.</p>
+            </section>
+            
+            <section>
+                <p><code>views/header.ejs</code></p>
+                <pre><code data-trim class="html">
+&lt;header&gt;
+    Cabecera de la p&aacute;gina
+&lt;/header&gt;
+                </code></pre>
+                <p><code>views/footer.ejs</code></p>
+                <pre><code data-trim class="html">
+&lt;footer&gt;
+    Pie de p&aacute;gina
+&lt;/footer&gt;
+                </code></pre>
+                <p><code>views/userView.ejs</code></p>
+                <pre><code data-trim data-noescape class="html">
+&lt;li&gt;<span class="hl">&lt;%= usuario.apellidos %&gt;</span>, <span class="hl">&lt;%= usuario.nombre %&gt;</span>&lt;/li&gt;
+                </code></pre>
+                <p>En este caso hemos asignado el valor del objeto <code>usuario</code> en la el <code>include</code> de la plantilla anterior.</p>
+            </section>
+            
+            <section>
+                <pre><code data-trim class="javascript">
+var usuarios = [
+    { nombre: "Francisco", apellidos: "Flores Blanco" },
+    { nombre: "Elena", apellidos: "Nito del Bosque" },
+    { nombre: "Germán", apellidos: "Gómez Gómez" }
+]
+
+app.get("/pag3", function(request, response) {
+    response.status(200);
+    response.render("view3", { usuarios: usuarios });
+});                
+                </code></pre>
+                <img src="images/05/ResPlantilla.png" width="60%">
+            </section>
+            
+            <section>
+                <h3>Variables globales de plantilla</h3>
+                <p>Los objetos <code>app</code> y <code>response</code> tienen cada uno un atributo <code>locals</code> en el que podemos añadir variables, que serán accesibles desde cualquier plantilla.</p>
+                <pre><code data-trim class="javascript">
+app.locals.nombreApp = "Mi Aplicación";
+app.locals.correo = "montenegro@fdi.ucm.es"
+...
+app.get("/pag4", function(request, response) {
+    response.status(200);
+    response.render("view4");
+});
+                </code></pre>
+                <p><code>views/view4.ejs</code></p>
+                <pre><code data-trim data-noescape class="html">
+&lt;body&gt;
+    &lt;h1&gt;Bienvenido a <span class="hl">&lt;%= nombreApp %&gt;</span>&lt;/h1&gt;
+    &lt;p&gt;Para m&aacute;s ayuda contactar con 
+            &lt;a href=&quot;mailto:<span class="hl">&lt;%= correo %&gt;</span>&quot;&gt;<span class="hl">&lt;%= correo %&gt;</span>&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;                
+                </code></pre>
+            </section>
     
         </div>
     </div>
