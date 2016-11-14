@@ -1974,7 +1974,7 @@ app.set("env", "development");
             </section>
             
             <section>
-                <h3>Opciones sobre vistas</h3>
+                <h3>Opciones relativas a vistas</h3>
                 <ul>
                     <li><code>view cache</code><br>
                         Si toma el valor <code>false</code>, las plantillas se leerán de disco cada vez que se utilice el método <code>response.render()</code> .
@@ -1988,7 +1988,7 @@ app.set("env", "development");
             </section>
             
             <section>
-                <h3>Opciones sobre rutas</h3>
+                <h3>Opciones relativas a rutas</h3>
                 <ul>
                     <li>
                         <code>case sensitive routing</code> (defecto: <code>false</code>)<br>
@@ -2000,7 +2000,211 @@ app.set("env", "development");
                     </li>
                 </ul>
             </section>
+            
+            <section>
+                <h2>Herramientas de desarrollo compatibles con Express.js</h2>
+                <ul>
+                    <li>Gestión de procesos: <code>forever</code>.</li>
+                    <li>Monitorización de cambios: <code>nodemon</code>.</li>
+                    
+                </ul>
+            </section>
+            
+            <section>
+                <h3>Gestión de procesos en Node</h3>
+                <p>Un servidor web está pensado para ejecutarse de manera indefinida, aún en presencia de errores que impidan atender una petición concreta.</p>
+                <p>Los errores deben ser registrados en un fichero, pero no deben suponer la parada del servidor web.</p>
+                <p>Sin embargo, cualquier excepción no capturada en Node supone la finalización del programa.</p>
+            </section>
+            
+            <section>
+                <p>La herramienta <code>forever</code> permite reiniciar un programa Node en el caso en que este aborte.</p>
+                <p><a href="https://github.com/foreverjs/forever">https://github.com/foreverjs/forever</a></p>
+                <pre><code data-trim class="no-highlight">
+# npm install -g forever
+                </code></pre>
+                <p>Esta herramienta lanza los programas Node en segundo plano, en los que las llamadas a <code>console.log()</code>, <code>console.error()</code>, etc. se escriben en un fichero de registro.</p>
+            </section>
+            
+            <section>
+                <p>Para arrancar un programa:</p>
+                <pre><code data-trim data-noescape class="no-highlight">
+# forever start <em>fichero.js</em>
+                </code></pre>
+                <p><code>forever</code> reiniciará el programa en caso de error. </p>
+                <p>Es posible arrancar varios programas con <code>forever</code>. El comando <code>list</code> imprime los programas en ejecución:</p>
+                <pre><code data-trim data-noescape class="no-highlight">
+# forever list
+Forever processes running
+ uid  command  script  forever pid  id logfile  uptime      
+ <span class="hl">[0]</span> 39Tw node main.js 5813    5825    39Tw.log 0:0:0:4.627 
+                </code></pre>
+                <p>Cada proceso Node se identifica con un UID, que es un número identificador que debe indicarse posteriormente para gestionar su parada, reinicio, etc.</p>
+            </section>
+            
+            <section>
+                <h4>Otras acciones</h4>
+                <ul>
+                    <li>
+                        <code>forever stop <em>UID</em></code><br>
+                        Detiene el proceso correspondiente al UID dado.    
+                    </li>
+                    <li>
+                        <code>forever restart <em>UID</em></code><br>
+                        Reinicia un proceso.
+                    </li>
+                    <li>
+                        <code>forever logs <em>UID</em></code><br>
+                        Imprime la salida (<code>console.log()</code>, etc.) de un proceso. Esta salida se encuentra disponible en un fichero, cuyo nombre puede verse en el listado devuelto por <code>forever list</code>.
+                    </li>
+                </ul>
+                
+                <pre><code data-trim class="no-highlight">
+# forever logs 0
+main.js:5825 - Escuchando en el puerto 3000
+
+# forever stop 0
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>Monitorización de cambios</h3>
+                <p>Durante el desarrollo de un servidor web con Node, cualquier cambio en los ficheros <code>.js</code> requiere el reinicio del programa para que este se haga efectivo.</p>
+                <p>La herramienta <code>nodemon</code> realiza esto automáticamente.</p>
+                <p><a href="http://nodemon.io/">http://nodemon.io/</a></p>
+                <pre><code data-trim class="no-highlight">
+npm install -g nodemon
+                </code></pre>
+                <p>Para ejecutar un programa:</p>
+                <pre><code data-trim data-noescape class="no-highlight">
+nodemon <em>fichero.js</em>
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Ejemplo:</p>
+                <pre><code data-trim class="no-highlight">
+# nodemon main.js
+[nodemon] 1.11.0
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching: *.*
+[nodemon] starting `node main.js`
+Escuchando en el puerto 3000
+                </code></pre>
+                <p>Al hacer cambio en el fichero <code>main.js</code>, o en alguno de los módulos de los que este depende, se reiniciara el programa automáticamente:</p>
+                <pre><code data-trim class="no-highlight">
+[nodemon] restarting due to changes...
+[nodemon] starting `node main.js`
+Escuchando en el puerto 3000
+                </code></pre>
+                <p>Puede forzarse el reinicio tecleando <code>rs &#x21B2;</code>.</p>
+            </section>
+            
+            <section>
+                <h3>Generación de plantillas de proyecto</h3>
+                <p>Express.js es una librería flexible, en tanto que no impone una estructura determinada de directorios en el proyecto.</p>
+                <p>No obstante, es frecuente el uso de una estructura concreta de directorios para los proyectos:</p>
+                <ul>
+                    <li><code>public/</code> para los ficheros estáticos.</li>
+                    <li><code>views/</code> para las vistas.</li>
+                    <li><code>app.js</code> para el fichero principal.</li>
+                    <li>etc.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <p>El programa <code>express-generator</code> genera una plantilla de proyecto con esta estructura predefinida.</p>
+                <a href="http://expressjs.com/en/starter/generator.html">http://expressjs.com/en/starter/generator.html</a>
+                <pre><code data-trim class="no-highlight">
+npm install -g express-generator
+                </code></pre>
+                <p>Para generar un proyecto vacío:</p>
+                <pre><code data-trim data-noescape class="no-highlight">
+# express -e <em>nombreDir</em>                
+                </code></pre>
+                <p>La opción <code>-e</code> indica que se utilice EJS como gestor de plantillas (por defecto se utiliza Jade).
+            </section>
+            
+            <section>
+                <p>Ejemplo:</p>
+                <pre><code data-trim class="no-highlight" style="font-size:100%;line-height:105%">
+# express -e miapp
+
+   create : miapp
+   create : miapp/package.json
+   create : miapp/app.js
+   create : miapp/public
+   create : miapp/routes
+   create : miapp/routes/index.js
+   create : miapp/routes/users.js
+   create : miapp/views
+   create : miapp/views/index.ejs
+   create : miapp/views/error.ejs
+   create : miapp/bin
+   create : miapp/bin/www
+   create : miapp/public/javascripts
+   create : miapp/public/stylesheets
+   create : miapp/public/stylesheets/style.css
+   create : miapp/public/images
+
+   install dependencies:
+     $ cd miapp &amp;&amp; npm install
+
+   run the app:
+     $ DEBUG=miapp:* npm start
+             </code></pre>
+            </section>
+            
+            <section>
+                <p>Se crea la siguiente estructura de directorios:</p>
+                <pre><code data-trim data-noescape class="no-highlight">
+miapp
+├── app.js   <span class="arrow_box_left caja_codigo">Ejecutable principal</span>
+├── bin
+│   └── www
+├── package.json
+<div style="background-color:#DFD">├── public
+│   ├── images
+│   ├── javascripts     <span class="no_arrow_box caja_codigo">Ficheros estáticos</span>
+│   └── stylesheets
+│       └── style.css</div><div style="background-color:#FEE">├── routes
+│   ├── index.js        <span class="no_arrow_box caja_codigo">Rutas</span>
+│   └── users.js</div><div style="background-color:#EEF">└── views
+    ├── error.ejs       <span class="no_arrow_box caja_codigo">Plantillas</span>
+    └── index.ejs</div>
+                
+                </code></pre>
+            </section>
     
+            <section>
+                <h2>Bibliografía</h2>
+                <div style="float:left; width:70%">
+                    <ul>
+                        <li>E.M. Hahn
+                            <br>
+                            <a href="http://cisne.sim.ucm.es/record=b3589231~S6*spi">Express in Action</a>
+                            <br> Manning Publications (2016)
+                        </li>
+                        <li>A. Mardan
+                            <br>
+                            <a href="http://cisne.sim.ucm.es/record=b3413465~S6*spi">Pro Express.js</a>
+                            <br> Apress (2014)
+                        </li>
+                        <li>
+                            <a href="http://expressjs.com/en/api.html">Express API Reference</a>
+                            <br><span style="font-size:70%">http://expressjs.com/en/api.html</span>
+                        </li>
+                    </ul>
+                </div>
+                <div style="float:right; width: 30%">
+                    <img src="https://images.manning.com/255/340/resize/book/3/01d3d4e-8cdb-49e9-a163-4ef3a6a241c0/Hahn-Express-HI.png" style="width:50%; border:none">
+                    <img src="https://images.springer.com/sgw/books/medium/9781484200384.jpg" style="width:50%; border:none">
+                </div>
+                <div style="clear:both"></div>
+
+            </section>
+            
+            
         </div>
     </div>
 
