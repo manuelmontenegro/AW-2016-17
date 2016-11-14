@@ -57,14 +57,17 @@
             </section>
 
             <section data-background-image="images/RedBackground.jpg" data-background-transition="fade" id="p1">
-                <ol class="contenidos" style="width:13em">
+                <ol class="contenidos" style="width:18em">
                     <li><a href="#/p1" class="outline fragment highlight-orange">Introducción</a></li>
-                    <li><a href="#/p2" class="outline">Módulos y paquetes</a></li>
-                    <li><a href="#/p3" class="outline">El modelo asíncrono</a></li>
-                    <li><a href="#/p4" class="outline">Módulos core</a></li>
-                    <li><a href="#/p5" class="outline">Acceso a bases de datos</a></li>
-                    <li><a href="#/p6" class="outline">Servidores web</a></li>
-                    <li><a href="#/p7" class="outline">Bibliografía</a></li>
+                    <li><a href="#/p2" class="outline">Primera aplicación</a></li>
+                    <li><a href="#/p3" class="outline">Middleware</a></li>
+                    <li><a href="#/p4" class="outline">Direccionamiento y subaplicaciones</a></li>
+                    <li><a href="#/p5" class="outline">Peticiones y formularios</a></li>
+                    <li><a href="#/p6" class="outline">Cookies y sesiones</a></li>
+                    <li><a href="#/p7" class="outline">Diseño avanzado de plantillas</a></li>
+                    <li><a href="#/p8" class="outline">Configuración de aplicaciones</a></li>
+                    <li><a href="#/p9" class="outline">Herramientas de desarrollo</a></li>
+                    <li><a href="#/p10" class="outline">Bibliografía</a></li>
                 </ol>
             </section>
 
@@ -174,8 +177,24 @@ var servidor = http.createServer(function(request, response) {
                 </ul>
             </section>
             
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p2">
+                <ol class="contenidos" style="width:18em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline current">Primera aplicación</a></li>
+                    <li><a href="#/p3" class="outline">Middleware</a></li>
+                    <li><a href="#/p4" class="outline">Direccionamiento y subaplicaciones</a></li>
+                    <li><a href="#/p5" class="outline">Peticiones y formularios</a></li>
+                    <li><a href="#/p6" class="outline">Cookies y sesiones</a></li>
+                    <li><a href="#/p7" class="outline">Diseño avanzado de plantillas</a></li>
+                    <li><a href="#/p8" class="outline">Configuración de aplicaciones</a></li>
+                    <li><a href="#/p9" class="outline">Herramientas de desarrollo</a></li>
+                    <li><a href="#/p10" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
+            
             <section>
-                <h3>Primera aplicación en Express</h3>
+                <h2>Primera aplicación en Express</h2>
                 <p>Creamos un proyecto nuevo y añadimos <code>express</code> como dependencia:</p>
                 <pre><code data-trim class="no-highlight">
 # npm init
@@ -496,20 +515,24 @@ app.listen(3000, function() {
             </section>
             
             
-            
-            
-            <section>
-                <h2>Fundamentos de Express.js</h2>
-                <p>El framework se basa en tres componentes:</p>
-                <ul>
-                    <li><strong>Middleware</strong></li>
-                    <li><strong>Rutas</strong></li>
-                    <li><strong>Subaplicaciones</strong> (routers)</li>
-                </ul>
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p3">
+                <ol class="contenidos" style="width:18em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Primera aplicación</a></li>
+                    <li><a href="#/p3" class="outline current">Middleware</a></li>
+                    <li><a href="#/p4" class="outline">Direccionamiento y subaplicaciones</a></li>
+                    <li><a href="#/p5" class="outline">Peticiones y formularios</a></li>
+                    <li><a href="#/p6" class="outline">Cookies y sesiones</a></li>
+                    <li><a href="#/p7" class="outline">Diseño avanzado de plantillas</a></li>
+                    <li><a href="#/p8" class="outline">Configuración de aplicaciones</a></li>
+                    <li><a href="#/p9" class="outline">Herramientas de desarrollo</a></li>
+                    <li><a href="#/p10" class="outline">Bibliografía</a></li>
+                </ol>
             </section>
-    
+            
+                
             <section>
-                <h3>Middleware</h3>
+                <h2>Middleware</h2>
                 <p>Recordemos el manejo de peticiones utilizando directamente el módulo <code>http</code>:</p>
                 <pre><code data-trim class="javascript">
 var server = http.createServer(function(request, response) {...});
@@ -949,8 +972,24 @@ app.listen(3000, function() {
                 <img src="images/05/ErrorInterno.png" width="100%">
             </section>
             
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p4">
+                <ol class="contenidos" style="width:18em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Primera aplicación</a></li>
+                    <li><a href="#/p3" class="outline">Middleware</a></li>
+                    <li><a href="#/p4" class="outline current">Direccionamiento y subaplicaciones</a></li>
+                    <li><a href="#/p5" class="outline">Peticiones y formularios</a></li>
+                    <li><a href="#/p6" class="outline">Cookies y sesiones</a></li>
+                    <li><a href="#/p7" class="outline">Diseño avanzado de plantillas</a></li>
+                    <li><a href="#/p8" class="outline">Configuración de aplicaciones</a></li>
+                    <li><a href="#/p9" class="outline">Herramientas de desarrollo</a></li>
+                    <li><a href="#/p10" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
+            
             <section>
-                <h3>Direccionamiento y rutas</h3>
+                <h2>Direccionamiento y rutas</h2>
                 <p>El direccionamiento de Express.js permite asociar una acción a una ruta determinada.</p>
                 <pre><code data-trim class="javascript">
 app.get("/users", function(request, response) {
@@ -1108,6 +1147,23 @@ app.use("<span class="hl" style="background-color:#FD3">/usuarios</span>", miRou
                 <p style="font-size:80%"><code>http://localhost:3000<span class="hl" style="background-color:#FD3">/usuarios</span>/crear_usuario.html</code></p>
                 <p style="font-size:80%"><code>http://localhost:3000<span class="hl" style="background-color:#FD3">/usuarios</span>/buscar_usuario.html</code></p>
             </section>
+
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p5">
+                <ol class="contenidos" style="width:18em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Primera aplicación</a></li>
+                    <li><a href="#/p3" class="outline">Middleware</a></li>
+                    <li><a href="#/p4" class="outline">Direccionamiento y subaplicaciones</a></li>
+                    <li><a href="#/p5" class="outline current">Peticiones y formularios</a></li>
+                    <li><a href="#/p6" class="outline">Cookies y sesiones</a></li>
+                    <li><a href="#/p7" class="outline">Diseño avanzado de plantillas</a></li>
+                    <li><a href="#/p8" class="outline">Configuración de aplicaciones</a></li>
+                    <li><a href="#/p9" class="outline">Herramientas de desarrollo</a></li>
+                    <li><a href="#/p10" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
+            
             
             <section>
                 <h2>Peticiones y formularios</h2>
@@ -1380,6 +1436,22 @@ app.post("/procesar_post.html", function(request, response) {
 }               </code></pre>
 
             </section>
+
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p6">
+                <ol class="contenidos" style="width:18em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Primera aplicación</a></li>
+                    <li><a href="#/p3" class="outline">Middleware</a></li>
+                    <li><a href="#/p4" class="outline">Direccionamiento y subaplicaciones</a></li>
+                    <li><a href="#/p5" class="outline">Peticiones y formularios</a></li>
+                    <li><a href="#/p6" class="outline current">Cookies y sesiones</a></li>
+                    <li><a href="#/p7" class="outline">Diseño avanzado de plantillas</a></li>
+                    <li><a href="#/p8" class="outline">Configuración de aplicaciones</a></li>
+                    <li><a href="#/p9" class="outline">Herramientas de desarrollo</a></li>
+                    <li><a href="#/p10" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
             
             <section>
                 <h2>Cookies y sesiones</h2>
@@ -1751,6 +1823,24 @@ app.use(middlewareSession);
                 <img src="images/05/TablaSesiones.png" width="90%" style="border:none">
             </section>
             
+            
+
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p7">
+                <ol class="contenidos" style="width:18em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Primera aplicación</a></li>
+                    <li><a href="#/p3" class="outline">Middleware</a></li>
+                    <li><a href="#/p4" class="outline">Direccionamiento y subaplicaciones</a></li>
+                    <li><a href="#/p5" class="outline">Peticiones y formularios</a></li>
+                    <li><a href="#/p6" class="outline">Cookies y sesiones</a></li>
+                    <li><a href="#/p7" class="outline current">Diseño avanzado de plantillas</a></li>
+                    <li><a href="#/p8" class="outline">Configuración de aplicaciones</a></li>
+                    <li><a href="#/p9" class="outline">Herramientas de desarrollo</a></li>
+                    <li><a href="#/p10" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
+            
             <section>
                 <h2>Diseño avanzado de plantillas</h2>
                 <p>Delimitadores EJS vistos hasta ahora:</p>
@@ -1890,6 +1980,22 @@ app.get("/pag4", function(request, response) {
 &lt;/body&gt;                
                 </code></pre>
             </section>
+
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p8">
+                <ol class="contenidos" style="width:18em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Primera aplicación</a></li>
+                    <li><a href="#/p3" class="outline">Middleware</a></li>
+                    <li><a href="#/p4" class="outline">Direccionamiento y subaplicaciones</a></li>
+                    <li><a href="#/p5" class="outline">Peticiones y formularios</a></li>
+                    <li><a href="#/p6" class="outline">Cookies y sesiones</a></li>
+                    <li><a href="#/p7" class="outline">Diseño avanzado de plantillas</a></li>
+                    <li><a href="#/p8" class="outline current">Configuración de aplicaciones</a></li>
+                    <li><a href="#/p9" class="outline">Herramientas de desarrollo</a></li>
+                    <li><a href="#/p10" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
             
             <section>
                 <h2>Configuración de aplicaciones Express.js</h2>
@@ -2001,12 +2107,28 @@ app.set("env", "development");
                 </ul>
             </section>
             
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p9">
+                <ol class="contenidos" style="width:18em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Primera aplicación</a></li>
+                    <li><a href="#/p3" class="outline">Middleware</a></li>
+                    <li><a href="#/p4" class="outline">Direccionamiento y subaplicaciones</a></li>
+                    <li><a href="#/p5" class="outline">Peticiones y formularios</a></li>
+                    <li><a href="#/p6" class="outline">Cookies y sesiones</a></li>
+                    <li><a href="#/p7" class="outline">Diseño avanzado de plantillas</a></li>
+                    <li><a href="#/p8" class="outline">Configuración de aplicaciones</a></li>
+                    <li><a href="#/p9" class="outline current">Herramientas de desarrollo</a></li>
+                    <li><a href="#/p10" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
+            
             <section>
                 <h2>Herramientas de desarrollo compatibles con Express.js</h2>
                 <ul>
                     <li>Gestión de procesos: <code>forever</code>.</li>
                     <li>Monitorización de cambios: <code>nodemon</code>.</li>
-                    
+                    <li>Plantillas de proyecto: <code>express-generator</code>.</li>
                 </ul>
             </section>
             
@@ -2176,6 +2298,22 @@ miapp
                 </code></pre>
             </section>
     
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p10">
+                <ol class="contenidos" style="width:18em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Primera aplicación</a></li>
+                    <li><a href="#/p3" class="outline">Middleware</a></li>
+                    <li><a href="#/p4" class="outline">Direccionamiento y subaplicaciones</a></li>
+                    <li><a href="#/p5" class="outline">Peticiones y formularios</a></li>
+                    <li><a href="#/p6" class="outline">Cookies y sesiones</a></li>
+                    <li><a href="#/p7" class="outline">Diseño avanzado de plantillas</a></li>
+                    <li><a href="#/p8" class="outline">Configuración de aplicaciones</a></li>
+                    <li><a href="#/p9" class="outline">Herramientas de desarrollo</a></li>
+                    <li><a href="#/p10" class="outline current">Bibliografía</a></li>
+                </ol>
+            </section>
+            
+            
             <section>
                 <h2>Bibliografía</h2>
                 <div style="float:left; width:70%">
