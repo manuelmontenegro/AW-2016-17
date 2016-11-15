@@ -1,0 +1,16 @@
+{
+  "name": "bdTelefonos",
+  "version": "1.0.0",
+  "keywords": [
+    "util",
+    "functional",
+    "server",
+    "client",
+    "browser"
+  ],
+  "author": "manuel",
+  "contributors": [],
+  "dependencies": {
+    "mysql": "^2.12.0"
+  }
+}
