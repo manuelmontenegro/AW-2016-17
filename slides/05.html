@@ -73,13 +73,13 @@
 
             <section>
                 <h2>Introducción</h2>
-                <p>Hemos visto el módulo <code>http</code>, que implementa la funcionalidad de un servidor web.</p>
+                <p>Conocemos el módulo <code>http</code>, que implementa la funcionalidad de un servidor web.</p>
                 
                 <img src="images/05/EsquemaNodeHTTP.svg" width="90%" style="border:none;box-shadow:none">
             </section>
             
             <section>
-                <p>La función callback realiza una distinción de casos en función de la URL especificada por el cliente en su petición.</p>
+                <p>La función callback distingue casos en función de la URL indicada por el cliente en su petición.</p>
                 <pre><code data-trim class="javascript">
 var servidor = http.createServer(function(request, response) {
     var method = request.method;
@@ -97,11 +97,11 @@ var servidor = http.createServer(function(request, response) {
     }
 });
                 </code></pre>
-                <p><strong>Desventaja:</strong> escasa mantenibilidad del código.</p>
+                <p class="fragment"><strong>Desventaja:</strong> código difícil de mantener.</p>
             </section>
             
             <section>
-                <p>Existen, además, otros problemas en el desarrollo de un servidor web para los que el módulo <code>http</code> resulta insuficiente en una aplicación web grande:</p>
+                <p>El módulo <code>http</code> resulta insuficiente en aplicaciones web grandes, que normalmente requieren:</p>
                 <ul>
                     <li>Manejo de cookies</li>
                     <li>Validación de formularios</li>
@@ -115,14 +115,14 @@ var servidor = http.createServer(function(request, response) {
                 <h3>Frameworks web</h3>
                 <p>Un <strong>marco de aplicaciones web</strong> (<em>web framework</em>) es un sistema, generalmente en forma de librería, que facilita el desarrollo de aplicaciones web mediante:</p>
                 <ul>
-                    <li>Separación entre la vista y controlador.
+                    <li class="fragment">Separación entre la vista y controlador.
                         <ul>
                             <li><strong>Vista</strong>: documento HTML generado o plantilla EJS.</li>
                             <li><strong>Controlador</strong>: función callback que procesa las peticiones.</li>
                         </ul>
                     </li>
-                    <li>División de un controlador monolítico en distintos mini-controladores, cada uno mantenible por separado.</li>
-                    <li>Abstracción de aspectos complejos: envío de ficheros, cookies, etc.</li>
+                    <li class="fragment">División de un controlador monolítico en distintos mini-controladores, cada uno mantenible por separado.</li>
+                    <li class="fragment">Abstracción de aspectos complejos: envío de ficheros, cookies, etc.</li>
                 </ul>
             </section>
             
@@ -150,12 +150,14 @@ var servidor = http.createServer(function(request, response) {
                     <li>Posibilidad de dividir la función callback que gestiona las peticiones HTTP en varias fases.</li>
                     <li>Mecanismos de alto nivel para acceder a algunas componentes de la petición (cookies, IP del cliente, etc).</li>
                 </ul>
+                <div class="fragment">
                 <p>Principales características:</p>
                 <ul>
                     <li><strong>Flexible</strong>: no impone una determinada estructura.</li>
                     <li><strong>Modular</strong>: basado en concatenar <em>middleware</em>.</li>
                     <li><strong>Minimalista</strong>: solo proporciona funcionalidad básica, que puede extenderse mediante librerías externas.</li>
                 </ul>
+                    </div>
             </section>
             
             <section>
@@ -164,17 +166,21 @@ var servidor = http.createServer(function(request, response) {
                     Write programs that do one thing and do it well.
                 </blockquote>
                 <p>Es raro el uso de Express.js sin ninguna librería adicional.</p>
+                <div class="fragment">
                 <p><strong>Ventajas</strong></p>
                 <ul>
                     <li>Eficiencia: no hay componentes innecesarios.</li>
                     <li>Simplicidad: es fácil comprender el funcionamiento.</li>
                     <li>Flexibilidad: componentes intercambiables.</li>
                 </ul>
+                </div>
+                <div class="fragment">
                 <p><strong>Inconvenientes</strong></p>
                 <ul>
                     <li>Cantidad abrumadora de componentes externos.</li>
                     <li>Requiere tomar decisiones de diseño.</li>
                 </ul>
+                </div>
             </section>
             
             <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p2">
@@ -194,7 +200,7 @@ var servidor = http.createServer(function(request, response) {
             
             
             <section>
-                <h2>Primera aplicación en Express</h2>
+                <h2>Primera aplicación con Express.js</h2>
                 <p>Creamos un proyecto nuevo y añadimos <code>express</code> como dependencia:</p>
                 <pre><code data-trim class="no-highlight">
 # npm init
@@ -220,7 +226,7 @@ var app = express();
             </section>
             
             <section>
-                <p>A continuación se definen las <strong>rutas</strong>, que se encargan de manejar cada URL.</p>
+                <p>A continuación se definen las <strong>rutas</strong>, que se encargan de manejar cada URL:</p>
                 <p><code>app.get(<span style="font-style:italic">URL</span>, <span style="font-style:italic">callback</span>)</code></p>
                 <p>Cuando se reciba una petición de tipo GET sobre la <code style="font-style:italic">URL</code> pasada como parámetro, se llamará a la función <code style="font-style:italic">callback</code>, que será la que gestione la petición.</p>
                 <pre><code data-trim class="javascript">
@@ -277,6 +283,7 @@ app.get("/users.html", function(request, response) {
     response.end("Aquí se mostrará la página de usuarios");
 });                
                 </code></pre>
+                <div class="fragment">
                 <p>
                     Por último, se llama al método <code>listen()</code>, que funciona igual que su homólogo en <code>http</code>:
                 </p>
@@ -286,6 +293,7 @@ app.listen(3000, function() {
 });
                 
                 </code></pre>
+                </div>
             </section>
             
             <section>
@@ -330,7 +338,7 @@ app.get("/users.html", function(request, response) {
             </section>
 
             <section>
-                <p>Funciones para devolver un fichero al cliente:</p>
+                <p>Existen funciones de más alto nivel para devolver un fichero al cliente:</p>
                 <ul>
                     <li><code>response.sendFile(path)</code>
                         <br>Devuelve al cliente el fichero indicado.
@@ -345,7 +353,7 @@ app.get("/usuario/imagen.png", function(request, response) {
     response.sendFile("./path/fichero.png");
 });
                 </code></pre>
-                <p>Estas funciones &laquo;adivinan&raquo; el tipo MIME del fichero enviado.</p>
+                <p>Estas funciones detectan el tipo MIME del fichero enviado.</p>
                     
             </section>
             
@@ -398,10 +406,13 @@ var express = require("express");
 
 var app = express();
                 </code></pre>
+                <div class="fragment">
                 <p>Utilizamos EJS como motor de plantillas:</p>
                 <pre><code data-trim class="javascript">
                 app.set("view engine", "ejs");
                 </code></pre>
+                </div>
+                <div class="fragment">
                 <p>El directorio con las plantillas se llamará <code>views</code> y estará
 situado debajo del directorio el el que se encuentra el fichero actual:</p>
                 <pre><code data-trim class="javascript">
@@ -409,6 +420,7 @@ app.set("views", path.join(__dirname, "views"));
     // Recuerda: __dirname = Directorio del script actual
     //           path.join(dir1, dir2, ...) = "dir1/dir2/..."
                 </code></pre>
+                </div>
             </section>
             
             <section>
@@ -432,11 +444,11 @@ app.set("views", path.join(__dirname, "views"));
             </section>
             
             <section>
-                <p>La llamada <code>response.render()</code> se encarga de llamar al motor de plantillas y enviar el resultado. </p>
+                <p>La llamada <code>response.render()</code> se encarga de llamar al motor de plantillas y devolver el resultado al cliente. </p>
                 <p>Recibe dos parámetros:</p>
                 <ul>
                     <li>Una cadena con el nombre de la vista. Buscará el fichero correspondiente en la carpeta de plantillas.</li>
-                    <li>El modelo a visualizar.</li>
+                    <li>El modelo a visualizar. Los &laquo;huecos&raquo; de la plantilla se rellenan con los atributos del modelo.</li>
                 </ul>
                 <pre><code data-trim data-noescape class="javascript">
 var usuarios = ["Javier Montoro", "Dolores Vega", "Beatriz Nito"];
@@ -460,6 +472,7 @@ app.get("/usuarios.html", function(request, response) {
     response.redirect("/users.html");
 });                
                 </code></pre>
+                <div class="fragment">
                 <p>Al acceder a <code>http://localhost:3000/usuarios.html</code> se obtendrá la siguiente respuesta HTTP,</p>
                 <pre><code data-trim data-noescape class="no-highlight">
 HTTP/1.1 302 Found     <soan class="arrow_box_left caja_codigo">Código 302 &rArr; Redirección</soan>
@@ -468,6 +481,7 @@ Location: <span class="hl">/users.html</span>
 ...
                 </code></pre>
                 <p>y el navegador &laquo;saltará&raquo; automáticamente a <code>users.html</code>.</p>
+                </div>
             </section>
 
             <section>
@@ -562,12 +576,14 @@ var server = http.createServer(function(request, response) {...});
             <section>
                 <p>La ejecución de un middleware puede finalizar de tres formas distintas:</p>
                 <ol>
-                    <li>Pasando el control al <strong>siguiente</strong> middleware en la cadena.</li>
-                    <li><strong>Finalizando</strong> la cadena de middlewares, sin pasar el control al siguiente.</li>
-                    <li>Provocando un <strong>error</strong>, que será gestionado por otro middleware.</li>
+                    <li class="fragment">Pasando el control al <strong>siguiente</strong> middleware en la cadena.</li>
+                    <li class="fragment"><strong>Finalizando</strong> la cadena de middlewares, sin pasar el control al siguiente.</li>
+                    <li class="fragment">Provocando un <strong>error</strong>, que será gestionado por otro middleware.</li>
                 </ol>
-                <p>Pasamos a analizar los dos primeros casos.</p>
-                <p>El último se describirá más adelante.</p>
+                <div class="fragment">
+                    <p>Pasamos a analizar los dos primeros casos.</p>
+                    <p>El último se describirá más adelante.</p>
+                </div>
             </section>
             
             <section>
@@ -584,9 +600,10 @@ var server = http.createServer(function(request, response) {...});
             </section>
             
             <section>
-                <p style="background:#AFA; padding:10px 0px">
-                La programación de un servidor con Express.js consiste fundamentalmente en encadenar middlewares.
+                <p style="background:#AFA; padding:10px 10px">
+                La programación de un servidor con Express.js se basa en el encadenamiento de middlewares.
                 </p>
+                <div class="fragment">
                 <p>
                     Si <code>app</code> representa un objeto aplicación, el método <code>app.use(...)</code> añade un middleware a la cadena.
                 </p>
@@ -602,6 +619,7 @@ app.use(middleware_3);
 
 app.listen(3000);
                 </code></pre>
+                </div>
             </section>
             
             <section>
@@ -621,7 +639,7 @@ var middleware_1 = function (request, response, next) {
             
             <section>
                 <h4>Ejemplo 1: registro de peticiones (<em>log</em>)</h4>
-                <p>Creamos un middleware que se limita a mostrar por pantalla las peticiones recibidas sin alterarlas.</p>
+                <p>Creamos un middleware que se limita a mostrar por pantalla las peticiones recibidas, sin alterarlas.</p>
                 <p>Este tipo de middleware suele ir al principio de la cadena.</p>
                 <pre><code data-trim class="javascript">
 function logger(request, response, next) {
@@ -726,7 +744,10 @@ app.get("/index.html", function(request, response) {
             <section>
                 <h4>Ejemplo 4: Error 404  (Not found)</h4>
                 <p>
-                    Al final de la cadena suele colocarse un middleware que gestiona los casos en los que la URL no haya sido capturada por ningún manejador, para devolver el código de error 404.
+                    Al final de la cadena suele colocarse un middleware que gestiona los casos en los que la URL no haya sido capturada por ningún manejador anterior.
+                </p>
+                <p>
+                    Esta página devuelve el código de error 404.
                 </p>
                 <pre><code data-trim class="javascript">
 app.use(function(request, response, next) {
@@ -738,10 +759,7 @@ app.use(function(request, response, next) {
                 <pre><code data-trim data-noescape class="html">
 <!DOCTYPE html>
 &lt;html&gt;
-    &lt;head&gt;
-        &lt;title&gt;ERROR 404&lt;/title&gt;
-        &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;/head&gt;
+    &lt;head&gt;&lt;title&gt;ERROR 404&lt;/title&gt;&lt;meta charset=&quot;UTF-8&quot;&gt;&lt;/head&gt;
     &lt;body&gt;
         &lt;h1&gt;Error 404&lt;/h1&gt;
         &lt;p&gt;La direcci&oacute;n &lt;code&gt;<span class="hl">&lt;%= url %&gt;</span>&lt;/code&gt; no existe&lt;/p&gt;
@@ -769,9 +787,9 @@ app.use(function(request, response, next) {
                     <code>static</code>: servir ficheros estáticos
                 </h4>
                 <p>Recordatorio: <a href="04.html#/113">páginas web estáticas y dinámicas</a></p>
-                <p>Los recursos estáticos (imágenes, páginas web estáticas, hojas de estilo) suelen almacenarse en una carpeta determinada del proyecto.</p>
+                <p>Los recursos estáticos (imágenes, páginas web estáticas, hojas de estilo) suelen almacenarse en una carpeta determinada dentro del servidor.</p>
                 <p>Cuando se recibe una petición GET para acceder a alguno de estos recursos estáticos, se lee el fichero correspondiente y se envía su contenido en la respuesta.</p>
-                <p>El middleware <code>static</code> se encarga de ello.</p>
+                <p>El middleware <code>static</code> se encarga de todo esto.</p>
             </section>
             
             <section>
@@ -779,8 +797,8 @@ app.use(function(request, response, next) {
                 <p>Recibe un nombre de directorio <code>root</code> y devuelve el siguiente middleware que realiza (a grandes rasgos) lo siguiente:</p>
                 <ul>
                     <li>Analiza <code>request.url</code> y comprueba si existe un fichero en el directorio <code>root</code> que coincida con la URL de la petición.</li>
-                    <li>En caso de existir, lee el fichero y responde con su contenido.</li>
-                    <li>En caso de no existir, pasar al siguiente middleware.</li>
+                    <li>En caso de existir, lee el fichero y devuelve su contenido en la respuesta.</li>
+                    <li>En caso de no existir, pasa al siguiente middleware.</li>
                 </ul>
             </section>
             
@@ -881,7 +899,7 @@ app.use(morgan("dev"));
                     <li>Finalizando la cadena de middlewares, sin pasar el control al siguiente.</li>
                     <li class="fragment highlight-blue">Provocando un <strong>error</strong>, que será gestionado por otro middleware.</li>
                 </ol>
-                <p>Pasamos a describir este último caso.</p>
+                <p class="fragment">Pasamos a describir este último caso.</p>
             </section>
             
             <section>
@@ -897,7 +915,7 @@ function(error, request, response, next) { ... }
             <section>
                 <p>Cuando un middleware llama a su función <code>next</code> <strong>pasándole un argumento</strong>, el control pasa directamente al primer manejador de errores disponible en la cadena, &laquo;saltándose&raquo; los middlewares intermedios.</p>
                 <img src="images/05/MiddlewareError2.svg" width="90%" style="border:none;box-shadow:none">
-                <p>El argumento pasado a <code>next</code> será el objeto <code>Error</code> recibido por el manejador de errores (i.e. el primer parámetro).</p>
+                <p>El argumento pasado a <code>next</code> será el objeto <code>Error</code> recibido por el manejador de errores como primer parámetro.</p>
             </section>
             
             <section>
@@ -997,6 +1015,7 @@ app.get("/users", function(request, response) {
     // de tipo GET sobre la URL /users.
 });
                 </code></pre>
+                <div class="fragment">
                 <p>Existen funciones para los demás tipos de peticiones HTTP:</p>
                 <ul style="position:relative; left:-0.5em">
                 <li><code>app.post()</code></li>
@@ -1008,6 +1027,7 @@ app.get("/users", function(request, response) {
                 <li><code>app.head()</code></li>
                 <li>etc.</li>
                 </ul>
+                </div>
             </section>
             
             <section>
@@ -1028,7 +1048,7 @@ app.put("/modificar_usuario", function(request, response) {
             <section>
                 <h4>Rutas paramétricas</h4>
                 <p>Es posible especificar marcadores dentro de una ruta.</p>
-                <p>De este modo, la ruta se convierte en una plantilla a la que pueden ajustarse distintas rutas:</p>
+                <p>De este modo, la ruta se convierte en una plantilla a la que pueden ajustarse distintas rutas.</p>
                 <p>Por ejemplo: <code>/usuarios/<span class="hl">:id</span></code></p>
                 <p>Esta plantilla comprende las siguientes rutas:</p>
                 <ul>
@@ -1040,7 +1060,7 @@ app.put("/modificar_usuario", function(request, response) {
             </section>
             
             <section>
-                <p>Podemos acceder a los valores concretos de la ruta paramétrica mediante el objeto <code>request.params</code>.</p>
+                <p>Podemos acceder a los valores concretos de la ruta paramétrica mediante los atributos de <code>request.params</code>.</p>
                 
                 <pre><code data-trim class="javascript">
 app.get("/usuarios/:id", function(request, response) {
@@ -1143,9 +1163,11 @@ var app = express();
 var miRouter = require("./miRouter");
 app.use("<span class="hl" style="background-color:#FD3">/usuarios</span>", miRouter);     <span class="arrow_box_left caja_codigo">Montar sobre la ruta <span style="font-family:monospace">/usuarios</span></span>                
                 </code></pre>
+                <div class="fragment">
                 <p>En este caso, las rutas definidas en el router estarán accesible a través de las siguientes URLs:</p>
                 <p style="font-size:80%"><code>http://localhost:3000<span class="hl" style="background-color:#FD3">/usuarios</span>/crear_usuario.html</code></p>
                 <p style="font-size:80%"><code>http://localhost:3000<span class="hl" style="background-color:#FD3">/usuarios</span>/buscar_usuario.html</code></p>
+                </div>
             </section>
 
             <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p5">
@@ -1174,12 +1196,14 @@ app.use("<span class="hl" style="background-color:#FD3">/usuarios</span>", miRou
 &lt;/form&gt;
                     </code></pre>
                 <p>El método HTTP puede ser <code>GET</code> o <code>POST</code>.</p>
+                <div class="fragment">
                 <p>Al enviar el formulario el navegador saltará a la <code>url</code> indicada. Podemos procesar la información del formulario mediante la ruta correspondiente:</p>
                 <pre><code data-trim data-noescape class="javascript">
 app.use("<span class="hl" style="font-style:italic">url</span>", function(request, response) {
     // Tratar información del formulario.
 });
                 </code></pre>
+                </div>
             </section>
             
             <section>
@@ -1318,13 +1342,15 @@ Content-Length: 46                              <span class="no_arrow_box caja_c
             
             
             <section>
-                <p>Existen métodos de lectura en el objeto <code>request </code>que permiten acceder al cuerpo de la petición.</p>
+                <p>Existen métodos de lectura en el objeto <code>request</code> que permiten acceder al cuerpo de la petición.</p>
+                <div class="fragment">
                 <p>Sin embargo, estos métodos devuelven la cadena con la información del formulario &laquo;en bruto&raquo;:</p>
                 <pre><code data-trim class="no-highlight">
 nombre=Germ%C3%A1n&amp;edad=Hernando+Coello&amp;sexo=H                
                 </code></pre>
                 <p>El programa ha de analizar sintácticamente esta cadena para extraer cada uno de los valores del formulario.</p>
-                <p>Por suerte, existe un middleware que hace esto:<br><code>body-parser</code></p>
+                </div>
+                <p class="fragment">Por suerte, existe un middleware que hace esto:<br><code>body-parser</code></p>
             </section>
             
             <section>
@@ -1382,10 +1408,12 @@ app.post("/procesar_post.html", function(request, response) {
 app.use(bodyParser.urlencoded({ extended: false }));                
                 </code></pre>
                 <p>Si <code>extended</code> toma el valor <code>false</code>, se utilizará la librería <code>querystring</code> para analizar la información de los formularios.</p>
+                <div class="fragment">
                 <pre><code data-trim class="javascript">
 app.use(bodyParser.urlencoded({ extended: true }));                
                 </code></pre>
                 <p>En este caso se utiliza la librería <code>qs</code>, que permite codificar objetos y arrays dentro de la URL.</p>
+                </div>
             </section>
             
             <section>
@@ -1418,6 +1446,7 @@ app.post("/procesar_post.html", function(request, response) {
     response.end();
 });                
                 </code></pre>
+                <div class="fragment">
                 <p>Con <code>extended:false</code></p>
                 <pre><code data-trim class="javascript">
 {  
@@ -1425,6 +1454,7 @@ app.post("/procesar_post.html", function(request, response) {
    "datosPersonales[edad]":"Hernando Coello",
    sexo:"H"
 }                </code></pre>
+                </div><div class="fragment">
                 <p>Con <code>extended:true</code></p>
                 <pre><code data-trim class="javascript">
 {  
@@ -1434,6 +1464,7 @@ app.post("/procesar_post.html", function(request, response) {
    },
    sexo:"H"
 }               </code></pre>
+                </div>
 
             </section>
 
@@ -1458,23 +1489,23 @@ app.post("/procesar_post.html", function(request, response) {
                 <p style="background-color:#dcf1ab; padding: 20px 0px; font-weight:bold;font-style:italic">
                     El protocolo HTTP es un protocolo sin estado
                 </p>
-                <p>
+                <p class="fragment">
                     Cada petición es una transacción independiente que no guarda relación con ninguna otra anterior.
                 </p>
-                <p>
+                <p class="fragment">
                     En otras palabras, HTTP es un protocolo &laquo;sin memoria&raquo;
                 </p>
-                <p>Cuando recibe una petición, la atiende, y se &laquo;olvida&raquo; del cliente que realizó la petición.</p>
-                <p>Si un cliente realiza varias peticiones consecutivas, desde el punto de vista del servidor es como si cada una de las peticiones proviniese de un cliente distinto.</p>
+                <p class="fragment">Cuando recibe una petición, la atiende, y se &laquo;olvida&raquo; del cliente que realizó la petición.</p>
+                <p class="fragment">Si un cliente realiza varias peticiones consecutivas, desde el punto de vista del servidor es como si cada una de las peticiones proviniese de un cliente distinto.</p>
             </section>
             
             <section>
                 <p>Sin embargo, hay numerosas ocasiones en las que un cliente desearía ser &laquo;recordado&raquo; por un servidor web:</p>
                 <ul style="font-size:80%">
-                    <li><strong>Identificación de usuarios</strong>: cuando un usuario se <em>loguea</em> a una página web, no debería tener que hacerlo cada vez que quiera visitar una página que requiera identificación.</li>
-                    <li><strong>Carros de la compra en una tienda web</strong>: el usuario añade productos a su carro de la compra a medida que navega por las páginas del sitio web, y el servidor debería &laquo;recordar&raquo; el contenido del carro de la compra.</li>
-                    <li><strong>Operación en fases</strong>: si una determinada operación (registro en un portal web, pago en tienda web, etc.) requiere visitar varias páginas en secuencia, el servidor debería considerar que todas las visitas forman parte de una única operación.</li>
-                    <li>etc.</li>
+                    <li class="fragment"><strong>Identificación de usuarios</strong>: cuando un usuario se <em>loguea</em> a una página web, no debería tener que hacerlo cada vez que quiera visitar una página que requiera identificación.</li>
+                    <li class="fragment"><strong>Carros de la compra en una tienda web</strong>: el usuario añade productos a su carro de la compra a medida que navega por las páginas del sitio web, y el servidor debería &laquo;recordar&raquo; el contenido del carro de la compra.</li>
+                    <li class="fragment"><strong>Operación en fases</strong>: si una determinada operación (registro en un portal web, pago en tienda web, etc.) requiere visitar varias páginas en secuencia, el servidor debería considerar que todas las visitas forman parte de una única operación.</li>
+                    <li class="fragment">etc.</li>
                 </ul>
             </section>
             
@@ -1505,7 +1536,7 @@ app.post("/procesar_post.html", function(request, response) {
 
             <section>
                 <img src="images/05/Cookie4.svg" width="80%" style="border:none;box-shadow:none">
-                <p>Cada vez que el cliente realiza una petición al mismo servidor, adjunta las cookies correspondiente.</p>
+                <p>Cada vez que el cliente realiza una petición al mismo servidor, adjunta las cookies correspondientes.</p>
                 <p>
                     De este modo, el servidor dispone de la información que debía ser recordada de una petición a otra.
                 </p>
@@ -1529,7 +1560,7 @@ Content-Type: text/html; charset=utf-8
             </section>
             
             <section>
-                <h4>¿Cómo devuelve el cliente las cookies al servidor?</h4>
+                <h4>¿Cómo recuerda el cliente las cookies al servidor?</h4>
                 <p>Mediante las cabeceras de la petición HTTP.</p>
                 <pre><code data-trim data-noescape class="no-highlight">
 GET /pagina6.html HTTP/1.1
@@ -1571,7 +1602,7 @@ app.get("/reset.html", function(request, response) {
             
             <section>
                 <img src="images/05/ReiniciarContador.png" width="80%">
-                <pre><code data-trim data-noescape class="no-highlight">
+                <pre class="fragment"><code data-trim data-noescape class="no-highlight">
 HTTP/1.1 200 OK
 X-Powered-By: Express
 <span class="hl">Set-Cookie: contador=0; Path=/</span>
@@ -1605,7 +1636,7 @@ response.cookie("contador", 0, { maxAge: 86400000 } );
             <section>
                 <h4>Acceso a las cookies enviadas por el cliente</h4>
                 <p>El navegador envía las cookies en la cabecera de cada petición HTTP.</p>
-                <p>En principio, podría utilizarse el método <code>request.get()</code> para acceder a la línea correspondiente de la cabecera, pero esta función nos devuelve el contenido de texto en formato de texto &laquo;bruto&raquo;, que tendríamos que analizar sintácticamente:</p>
+                <p>Podría utilizarse el método <code>request.get()</code> para acceder a la línea correspondiente de la cabecera, pero esta función nos devuelve el contenido de texto en formato de texto &laquo;bruto&raquo;, que tendríamos que analizar sintácticamente:</p>
                 <pre><code data-trim class="javascript">
 app.get("/increment.html", function(request, response) {
     console.log(request.get("Cookie"));
@@ -1613,6 +1644,7 @@ app.get("/increment.html", function(request, response) {
     response.end();
 });                
                 </code></pre>
+                <p class="fragment">Pero el middleware <code>cookie-parser</code> nos ayuda con esto.</p>
             </section>
             
             
@@ -1647,6 +1679,13 @@ app.get("/increment.html", function(request, response) {
                 <pre><code data-trim class="javascript">
 app.use(cookieParser());
 
+app.get("/reset.html", function(request, response) {
+  response.status(200);
+  response.cookie("contador", 0, { maxAge: 86400000 } );
+  response.type("text/plain");
+  response.end("Has reiniciado el contador");
+});
+
 app.get("/increment.html", function(request, response) {
   if (request.cookies.contador === undefined) {
     response.redirect("/reset.html");
@@ -1657,13 +1696,6 @@ app.get("/increment.html", function(request, response) {
     response.type("text/plain");
     response.end(`El valor actual del contador es ${contador}`);
   }
-});
-
-app.get("/reset.html", function(request, response) {
-  response.status(200);
-  response.cookie("contador", 0, { maxAge: 86400000 } );
-  response.type("text/plain");
-  response.end("Has reiniciado el contador");
 });
                 </code></pre>
             </section>
@@ -1685,7 +1717,7 @@ app.get("/reset.html", function(request, response) {
                 <ul>
                     <li><span style="font-weight:bold">Su contenido es accesible al cliente</span><br>
                         El usuario de la aplicación web puede alterarlas mediante las herramientas del desarrollador. Esto conlleva problemas de seguridad.<br>
-                Las cookies firmadas (<em>signed cookies</em>) pueden prevenir la manipulación por parte del usuario <a href="https://github.com/expressjs/cookie-parser#cookieparsersignedcookiescookies-secret">[+]</a>.
+                Las cookies firmadas (<em>signed cookies</em>) pueden prevenir la manipulación por parte del usuario. <a href="https://github.com/expressjs/cookie-parser#cookieparsersignedcookiescookies-secret">[+]</a>
                     </li>
                     <li><span style="font-weight:bold">Limitaciones de almacenamiento</span><br>
                         Existe un número máximo de cookies que un servidor puede enviar a un cliente, y un tamaño máximo para cada una de ellas.
@@ -1719,7 +1751,7 @@ app.get("/reset.html", function(request, response) {
 npm install express-session --save                
                 </code></pre>
                 <p>Exporta una única función que devuelve un middleware.</p>
-                <p>Este middleware añade un atributo <code>session</code> al objeto <code>request</code> que contiene los datos de la sesión correspondientes al cliente que se está atendiendo.</p>
+                <p>Este middleware añade un atributo <code>session</code> al objeto <code>request</code> que contiene los datos de sesión correspondientes al cliente que se está atendiendo.</p>
                 <p>El atributo <code>request.session</code> también se utiliza para añadir o modificar información de la sesión. Al utilizar <code>response.end()</code> o similar, el servidor guarda toda la información de <code>request.session</code> en el almacenamiento de sesiones del servidor.</p>
             </section>
             
@@ -1881,7 +1913,7 @@ try {
                     Los delimitadores <code>&lt;%=</code> y <code>%&gt;</code> interpretan los caracteres especiales HTML (<code>&lt;</code>, <code>&gt;</code>, etc) y los converten en las entidades correspondientes (<code>&amp;lt;</code>, <code>&amp;gt;</code>, etc.)
                 </p>
                 <p>
-                    Si no se desea realizar esta transformación, se puede utilizar los delimitadores <code>&lt;%-</code> y <code>%&gt;</code>.
+                    Si no se desea realizar esta transformación, se puede utilizar otro par de delimitadores: <code>&lt;%-</code> y <code>%&gt;</code>.
                 </p>
             </section>
             
@@ -1898,8 +1930,8 @@ try {
             </section>
             
             <section>
-                <div style="background-color:#DFC; padding:10px 10px">
-                    Si el contenido de una plantilla proviene de la entrada proporcionada por el usuario, es recomendable utilizar <code>&lt;%=</code> y <code>%></code> para evitar la inyección de HTML en nuestras páginas.
+                <div style="background-color:#DFC; padding:10px 20px">
+                    Si el contenido de una plantilla proviene de la entrada proporcionada por el usuario, es recomendable utilizar <code>&lt;%=</code> y <code>%></code> para evitar que el usuario de la aplicación inyecte HTML en nuestras páginas.
                 </div>
             </section>
             
@@ -1920,7 +1952,7 @@ try {
 &lt;/body&gt;                
                 </code></pre>
                 
-                <p>En este caso debe utilizarse <code>&lt;%-</code> y <code>%&gt;</code>, ya que se desea integrar las etiquetas HTML de la plantilla incluida dentro de esta plantilla.</p>
+                <p class="fragment">En este caso tiene sentido utilizar <code>&lt;%-</code> y <code>%&gt;</code>, ya que se desea integrar las etiquetas HTML de la plantilla incluida dentro de esta plantilla.</p>
             </section>
             
             <section>
@@ -2136,7 +2168,7 @@ app.set("env", "development");
                 <h3>Gestión de procesos en Node</h3>
                 <p>Un servidor web está pensado para ejecutarse de manera indefinida, aún en presencia de errores que impidan atender una petición concreta.</p>
                 <p>Los errores deben ser registrados en un fichero, pero no deben suponer la parada del servidor web.</p>
-                <p>Sin embargo, cualquier excepción no capturada en Node supone la finalización del programa.</p>
+                <p>Sin embargo, cuando en Node se lanza una excepción que no se captura en ningún sitio, el programa finaliza, y se ha de reiniciar manualmente.</p>
             </section>
             
             <section>
@@ -2145,7 +2177,7 @@ app.set("env", "development");
                 <pre><code data-trim class="no-highlight">
 # npm install -g forever
                 </code></pre>
-                <p>Esta herramienta lanza los programas Node en segundo plano, en los que las llamadas a <code>console.log()</code>, <code>console.error()</code>, etc. se escriben en un fichero de registro.</p>
+                <p>Esta herramienta lanza los programas Node en segundo plano y captura sus salidas, de modo que las llamadas a <code>console.log()</code>, <code>console.error()</code>, etc. se escriben en un fichero de registro en lugar de mostrarse por pantalla.</p>
             </section>
             
             <section>
@@ -2191,7 +2223,7 @@ main.js:5825 - Escuchando en el puerto 3000
             
             <section>
                 <h3>Monitorización de cambios</h3>
-                <p>Durante el desarrollo de un servidor web con Node, cualquier cambio en los ficheros <code>.js</code> requiere el reinicio del programa para que este se haga efectivo.</p>
+                <p>Durante el desarrollo de un servidor web con Node, cualquier cambio en los ficheros <code>.js</code> requiere el reinicio del servidor para que los cambios se hagan efectivos.</p>
                 <p>La herramienta <code>nodemon</code> realiza esto automáticamente.</p>
                 <p><a href="http://nodemon.io/">http://nodemon.io/</a></p>
                 <pre><code data-trim class="no-highlight">
@@ -2244,7 +2276,7 @@ npm install -g express-generator
                 <pre><code data-trim data-noescape class="no-highlight">
 # express -e <em>nombreDir</em>                
                 </code></pre>
-                <p>La opción <code>-e</code> indica que se utilice EJS como gestor de plantillas (por defecto se utiliza Jade).
+                <p>La opción <code>-e</code> indica que se utilice EJS como gestor de plantillas. En caso de no incluirla se utilizaría Jade.
             </section>
             
             <section>
@@ -2281,18 +2313,18 @@ npm install -g express-generator
                 <p>Se crea la siguiente estructura de directorios:</p>
                 <pre><code data-trim data-noescape class="no-highlight">
 miapp
-├── app.js   <span class="arrow_box_left caja_codigo">Ejecutable principal</span>
+├── app.js   <span class="arrow_box_left caja_codigo fragment">Ejecutable principal</span>
 ├── bin
 │   └── www
 ├── package.json
 <div style="background-color:#DFD">├── public
 │   ├── images
-│   ├── javascripts     <span class="no_arrow_box caja_codigo">Ficheros estáticos</span>
+│   ├── javascripts     <span class="no_arrow_box caja_codigo fragment">Ficheros estáticos</span>
 │   └── stylesheets
 │       └── style.css</div><div style="background-color:#FEE">├── routes
-│   ├── index.js        <span class="no_arrow_box caja_codigo">Rutas</span>
+│   ├── index.js        <span class="no_arrow_box caja_codigo fragment">Rutas</span>
 │   └── users.js</div><div style="background-color:#EEF">└── views
-    ├── error.ejs       <span class="no_arrow_box caja_codigo">Plantillas</span>
+    ├── error.ejs       <span class="no_arrow_box caja_codigo fragment">Plantillas</span>
     └── index.ejs</div>
                 
                 </code></pre>
