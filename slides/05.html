@@ -231,7 +231,8 @@ var app = express();
                 <p>Cuando se reciba una petición de tipo GET sobre la <code style="font-style:italic">URL</code> pasada como parámetro, se llamará a la función <code style="font-style:italic">callback</code>, que será la que gestione la petición.</p>
                 <pre><code data-trim class="javascript">
 app.get("/", function(request, response) {
-    response.status(200);
+    response.statusCode = 200;
+    response.setHeader("Content-Type", "text/html");
     response.write("Esta es la página raíz");
     response.end();
 });
@@ -561,7 +562,7 @@ var server = http.createServer(function(request, response) {...});
             <section>
                 <p>Express.js se basa en dividir esta función monolítica en varias fases:</p>
                 <img src="images/05/Polil%C3%ADtico.svg" width="95%" style="border:none;box-shadow:none">
-                <p style="background-color:#FFC;padding:20px 0px">Cada una de estas fases recibe el nombre de <strong>middleware</strong>.</p>
+                <p style="background-color:#FFC;padding:20px 0px" class="fragment">Cada una de estas fases recibe el nombre de <strong>middleware</strong>.</p>
             </section>
             
             <section>
