@@ -1586,7 +1586,152 @@ app.post("/procesar_formulario.html",
             </code></pre>
                 <img src="images/06/FormularioDatosImagen.png" width="30%">
             </section>
-        
+            
+            <section>
+                <h3>Imágenes y bases de datos</h3>
+                <p>Las imágenes pueden ser guardadas en la base de datos como celdas de tipo BLOB.</p>
+                <p>Supongamos que queremos almacenar los resultados del formulario anterior en una base de datos.</p>
+                <img src="images/06/TablaPersonas.png" width="40%" style="border:none; box-shadow:none">
+            </section>    
+            
+            <section>
+                <p>El primer paso es configurar <code>multer</code> para que los ficheros adjuntos al formulario se almacenen en memoria:</p>
+                <pre><code data-trim class="javascript">
+var multer = require("multer");
+...
+var upload = multer({ storage: multer.memoryStorage() });
+                </code></pre>
+                <p>Al utilizar almacenamiento en memoria, el contenido del fichero está disponible dentro de la propiedad <code>buffer</code> como un objeto de la clase <code>Buffer</code>.</p>
+            </section>
+            
+            
+            <section>
+                <p>Actualizamos el controlador de <code>/procesar_formulario.html</code></p>
+                <pre><code data-trim data-noescape class="javascript">
+app.post("/procesar_formulario.html", upload.single("foto"), 
+                function(request, response) {
+    var usuario = {
+        nombre: request.body.nombre,
+        apellidos: request.body.apellidos,
+        fumador: request.body.fumador === "si",
+        foto: null
+    };
+    
+    if (request.file) {
+        usuario.foto = <span class="hl">request.file.buffer</span>;
+    }
+    
+    insertarUsuario(usuario, function(err, newId) {
+        usuario.id = newId;
+        response.render("datos_formulario_bd", usuario);
+    });
+});                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>La función <code>insertarUsuario</code> utiliza una consulta paramétrica para añadir la correspondiente fila en la BD.</p>
+                <pre><code data-trim data-noescape class="javascript" style="font-size:80%; line-height:115%">
+var pool = mysql.createPool(...);
+...
+function insertarUsuario(usuario, callback) {
+    pool.getConnection(function(err, con) {
+        if (err) {
+            callback(err);
+        } else {
+            var sql = 
+                "INSERT INTO personas(Nombre, Apellidos, Fumador, Foto) " +
+                "VALUES (?, ?, ?, ?)";
+            con.query(sql, [usuario.nombre, usuario.apellidos, 
+                            usuario.fumador, <span class="hl">usuario.foto</span>],  <span class="arrow_box_left caja_codigo">Objeto <span style="font-family:monospace">Buffer</span></span>
+                function(err, result) {
+                    con.release();
+                    if (err) {
+                        callback(err);
+                    } else {
+                        callback(null, result.insertId);
+                    }
+                });
+        }
+    });
+}                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Añadimos una ruta <code>/imagen/<span class="hl">:id</span></code> que devuelve al cliente la foto correspondiente al usuario con el <code>id</code> dado.</p>
+                <pre><code data-trim data-noescape class="javascript">
+app.get("/imagen/:id", function(request, response, next) {
+    var n = Number(request.params.id);
+    if (isNaN(n)) {
+        next(new Error("Id no numérico"));
+    } else {
+        obtenerImagen(n, function(err, imagen) {
+            if (err) {
+                next(err)
+            } else {
+                if (imagen) {
+                    <span class="hl">response.end(imagen);</span>  <span class="arrow_box_left caja_codigo">Devolvemos buffer al cliente</span>
+                } else {
+                    response.status(404);
+                    response.end("Not found");
+                }
+            }
+        });
+    }
+});                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>La función <code>obtenerImagen</code> obtiene la foto de la BD:</p>
+                <pre><code data-trim class="javascript">
+function obtenerImagen(id, callback) {
+    pool.getConnection(function(err, con) {
+        if (err) {
+            callback(err);
+        } else {
+            var sql = "SELECT Foto FROM personas WHERE Id = ?";
+            con.query(sql, [id], function(err, result) {
+                con.release();
+                if (err) {
+                    callback(err);
+                } else {
+                    // Comprobamos si existe una persona
+                    // con el Id dado.
+                    if (result.length === 0) { 
+                        callback(null, undefined);
+                    } else {
+                        callback(null, result[0].Foto);
+                    }
+                }
+            });
+        }
+    });
+}                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Una vez que el usuario ha enviado el formulario, y se ha insertado la información correspondiente en la BD, se visualiza la vista <code>datos_formularo_bd</code>.</p>
+                <p>Esta vista utiliza una URL de la forma <code>/imagen/:id</code> para mostrar la imagen del usuario:</p>
+                <pre><code data-trim data-noescape class="html">
+...
+<span class="hl">&lt;% if (foto) { %&gt;</span>
+&lt;tr&gt;
+    &lt;td&gt;Foto:&lt;/td&gt;
+    &lt;td&gt;&lt;img src=&quot;/imagen/<span class="hl">&lt;%= id %&gt;</span>&quot;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+<span class="hl">&lt;% } %&gt;</span>
+...
+                </code></pre>
+            </section>
+            
+            <section>
+                <img src="images/06/FormularioImagenBD1.png" width="50%"><br>
+                <img src="images/06/FormularioDatosImagenBD.png" width="35%">
+            </section>
+            
         
     
     
