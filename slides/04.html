@@ -1850,6 +1850,7 @@ function consultaBD(callback) {
           "FROM Contactos c LEFT JOIN Tiene_Correo tc ON c.Id = tc.Id " +
           "GROUP BY c.id",
           function(err, rows) {
+                conexion.end();
                 callback(null, rows);
           });
       }
