@@ -73,8 +73,8 @@
             
             <section>
                 <h2>¿Por qué un modelo asíncrono?</h2>
-                <p>Node está pensado para aplicaciones con una alta capacidad de respuesta como, por ejemplo, servidores web.</p>
-                <p>La funcionalidad de la mayoría de aplicaciones web está basada en accesos a disco, u otra fuente de datos (p.ej. bases de datos), operaciones <strong>relativamente lentas</strong>.</p>
+                <p>Node está pensado para desarrollar aplicaciones con alta capacidad de respuesta como, por ejemplo, servidores web.</p>
+                <p>La funcionalidad de la mayoría de aplicaciones web está basada en accesos a disco u otra fuente de datos (p.ej. bases de datos), que son operaciones <strong>relativamente lentas</strong>.</p>
                 <p>Para que un servidor web pueda atender a varios clientes, ha de gestionar adecuadamente estas operaciones de entrada y salida.</p>
             </section>
             
@@ -82,7 +82,7 @@
                 <h3>Modelos de servidores web</h3>
                 <ol>
                     <li>Modelo tradicional: un proceso por petición.</li>
-                    <li>Modelo tradicional: pool de hebras de ejecución.</li>
+                    <li>Modelo tradicional: <em>pool</em> de hebras de ejecución.</li>
                     <li>NGINX Process Model (Node).</li>
                 </ol>
             </section>
@@ -118,11 +118,12 @@
                 <p>Existe <strong>un único hilo</strong> en ejecución</p>
                 <p>Este hilo se encarga de atender a todas las peticiones.</p>
         
-                <p>Cuando se requiere realizar una operación con coste elevado en tiempo (acceso a disco, BD, red, etc.), se realiza en una &laquo;hebra&raquo; distinta.</p>
+                <p>Cuando se requiere realizar una operación con coste elevado en tiempo (acceso a disco, BD, red, etc.), se realiza de manera asíncrona. La función <em>callback</em> se guarda en una cola de funciones que se ejecutarán cuando finalice el código que se está ejecutando actualmente.</p>
+                <div class="fragment">
+                <p><strong>Esta cola es gestionada por Node</strong>, no por el SO.</p>
                 
-                <p><strong>Estas hebras son gestionadas por Node</strong>, no por el SO.</p>
-                
-                <p>&rArr; El cambio de contexto entre hebras es menos costoso.</p>
+                <p>&rArr; El cambio de contexto es menos costoso.</p>
+                </div>
             </section>
             
             <section>
@@ -150,7 +151,7 @@ while (!terminado) {
             </section>
             
             <section>
-                <p>Por el contrario, si se realizan operaciones asíncronas, será la función callback (que se ejecuta concurrentemente) la que procesa y devuelve el resultado de la operación.</p>
+                <p>Por el contrario, si se realizan operaciones asíncronas, será la función callback la que procese y devuelva el resultado de la operación. Antes de ejecutar la función callback, la iteración actual del bucle continúa su ejecución.</p>
                 <pre><code data-trim class="javascript">
 while (!terminado) {
     1. Esperar petición de un cliente.
@@ -170,7 +171,7 @@ function callback(resultado) {
                 <h3>Consecuencias de este modelo</h3>
                 <p>En el contexto de un servidor web con Node, todas las operaciones de E/S deben ser <strong>asíncronas</strong>, para evitar cuellos de botella en el procesamiento de las peticiones.</p>
                 
-                <p>Esto también se aplica cuando se realicen operaciones que utilicen la CPU intensivamente.</p>
+                <p>Esto es especialmente relevante cuando se quiere realizar operaciones costosas en términos de tiempo de CPU.</p>
                 <pre><code data-trim data-noescape class="javascript">
 while (!terminado) {
     1. Esperar petición de un cliente.
@@ -297,7 +298,7 @@ var fib = require("./moduloFib"); // No imprime nada
             <section>
                 <h3>Los módulos se &laquo;cachean&raquo;</h3>
                 <p>Cuando un módulo se importa varias veces mediante <code>require</code> a lo largo de la ejecución de un programa, el módulo cargado solo se ejecuta la primera vez.</p>
-                <p>El resto de veces, <code>require</code> no vuelve a ejecutar el módulo. Se limita devuelve el contenido del <code>module.exports</code> que se definió en el módulo la primera vez que se cargó.</p>
+                <p>Las siguientes veces <code>require</code> no vuelve a ejecutar el módulo. Se limita a devolver el <code>module.exports</code> que se devolvió la primera vez que se cargó.</p>
                 <p>En el ejemplo <code>geometria.js</code>:</p>
                 <pre><code data-trim class="javascript">
 var g1 = require("./geometria");
@@ -664,6 +665,7 @@ npm install moment --save
                 <p>
                     Cajón de sastre con un centenar de funciones de utilidad sobre arrays y objetos.
                 </p>
+                <div class="fragment">
                 <p>Algunas ya conocidas:</p>
                 <ul>
                     <li><code>pluck(arrayDeObjetos, fieldName)</code></li>
@@ -671,6 +673,7 @@ npm install moment --save
                     <li><code>groupBy(arrayDeObjetos, f)</code></li>
                     <li><code>where(arrayDeObjetos, modelo)</code></li>
                 </ul>
+                </div>
             </section>
             
             <section>
@@ -680,13 +683,13 @@ var _ = require("underscore");
                 </code></pre>
                 <p>Algunas otras funciones:</p>
                 <ul>
-                    <li><code>shuffle(array)</code>: desordena un array aleatoriamente.
+                    <li class="fragment"><code>shuffle(array)</code>: desordena un array aleatoriamente.
                         <pre><code data-trim class="javascript">
 _.shuffle([1, 2, 3, 4, 5, 6, 7]) 
 // &rarr; [1, 6, 4, 2, 7, 3, 5]
                         </code></pre>
                     </li>
-                    <li><code>sample(array, n)</code>: toma <code>n</code> elementos de un array aleatoriamente.
+                    <li class="fragment"><code>sample(array, n)</code>: toma <code>n</code> elementos de un array aleatoriamente.
                         <pre><code data-trim class="javascript">
 _.shuffle([1, 2, 3, 4, 5, 6, 7]) 
 // &rarr; [6, 4, 3]
@@ -731,7 +734,7 @@ _.findIndex(["Berta", "Beatriz", "Fabio"], function(nombre) {
                         </code></pre>
                     </li>
                     <li>
-                        <code>range(ini, fin[, step])</code>: Devuelve una lista ascendente desde <code>ini</code> hasta <code>fin</code>.
+                        <code>range(ini, fin[, step])</code>: Devuelve una lista ascendente desde <code>ini</code> hasta <code>fin</code> (excluido).
                         <pre><code data-trim class="javascript">
 _.range(1, 5) // &rarr; [1, 2, 3, 4]
                         </code></pre>
@@ -777,7 +780,7 @@ console.log(comienzoCurso.format("LLL"));
             </section>
             
             <section>
-                <p>Formateado de fechas relativas:</p>
+                <p>Formatear fechas en relación a la actual:</p>
                 <pre><code data-trim class="javascript">
 console.log(comienzoCurso.fromNow());
     // &rarr; hace un mes
@@ -1001,7 +1004,7 @@ process.on("exit", function(exitCode) {
 var fs = require("fs");
 var flujoEntrada = fs.createReadStream("Poema.txt");
                 </code></pre>
-                <p>Inicialmente el flujo está en estado de <code>pausa</code>. No emite ninguna información hasta que se haga explícitamente con el método <code>read()</code>.</p>
+                <p>Inicialmente el flujo está en estado de <strong><em>pausa</em></strong>. No emite ninguna información hasta que se haga explícitamente con el método <code>read()</code>.</p>
             </section>
             
             <section>
@@ -1127,7 +1130,7 @@ flujoCompresion.pipe(flujoSalida);
                 <p>Aspectos más avanzados del acceso a BD:</p>
                 <ul>
                     <li><strong>Consultas paramétricas</strong><br>
-                        Adecuadas cuando una consulta SQL incluye componentes que provienen del usuario de la aplicación. Previenen ataques de inyección SQL.
+                        Adecuadas cuando una consulta SQL incluye subcadenas provenientes de la entrada  del usuario de la aplicación.Este tipo de consultas previene ataques de inyección SQL.
                     </li>
                     <li><strong>Pool de conexiones</strong><br>
                         La aplicación Node mantiene un almacén de conexiones abiertas y reutilizables entre los distintos métodos.</li>
@@ -1386,8 +1389,8 @@ Content-Length: 49
             </section>
             
             <section>
-                <p>Por defecto, Los datos del formulario se envían con la codificación <code>application/x-www-form-urlencoded</code>, en la que los datos del formulario aparecen exactamente de la misma manera en la que aparecerían en la URL de una petición GET.</p>
-                <p>Recuerda que el middleware <code>body-parser</code> puede extraer los datos de un formulario codificado de esta manera:</p>
+                <p>Por defecto, los datos del formulario se envían con la codificación <code>application/x-www-form-urlencoded</code>, en la que los datos del formulario aparecen exactamente de la misma manera en la que aparecerían en la URL de una petición GET.</p>
+                <p>El middleware <code>body-parser</code> puede extraer los datos de un formulario con esta codificación:</p>
                 <pre><code data-trim class="javascript">
 app.use(bodyParser.urlencoded({ extended: false }));
                 </code></pre>
@@ -1503,7 +1506,7 @@ app.post("/procesar_formulario.html",
 });                
                 </code></pre>
                 <img src="images/06/FormularioDatos.png" width="30%">
-                <p>De momento no hemos ganado gran cosa...</p>
+                <p class="fragment">Ahora veremos las ventajas de este tipo de formularios</p>
             </section>
             
             <section>
@@ -1584,7 +1587,7 @@ multerFactory = multer({ dest: "uploads/" });
             </section>
             
             <section>
-                <p>Como el formulario incluye un archivo adjunto, debemos utilizar el método <code>single()</code> de la factoria de middlewares creada por <code>multer</code>.</p>
+                <p>Como el formulario incluye un único componente para subir archivos, debemos utilizar el método <code>single()</code> de la factoria de middlewares creada por <code>multer</code>.</p>
                 <p>Este método recibe el nombre del campo del formulario que contiene el fichero adjunto.</p>
                 <pre><code data-trim data-noescape class="javascript">
 app.post("/procesar_formulario.html", 
@@ -1660,7 +1663,7 @@ app.post("/procesar_formulario.html",
         nombre: request.body.nombre,
         apellidos: request.body.apellidos,
         fumador: request.body.fumador === "si",
-        <span class="hl">imagen: urlFichero</span>
+        <span class="hl">ficheroImagen: urlFichero</span>
     });
 });
                     
@@ -1674,7 +1677,7 @@ app.post("/procesar_formulario.html",
 <span class="hl">&lt;% if (imagen) { %&gt;</span>
 &lt;tr&gt;
     &lt;td&gt;Foto:&lt;/td&gt;
-    &lt;td&gt;&lt;img src=&quot;<span class="hl">&lt;%= imagen %&gt;</span>&quot;&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;img src=&quot;<span class="hl">&lt;%= ficheroImagen %&gt;</span>&quot;&gt;&lt;/td&gt;
 &lt;/tr&gt;
 <span class="hl">&lt;% } %&gt;</span>
 ...
@@ -1769,6 +1772,7 @@ function insertarUsuario(usuario, callback) {
             </section>
             
             <section>
+                <p>¿Cómo obtener las imágenes de la BD?</p>
                 <p>Añadimos una ruta <code>/imagen/<span class="hl">:id</span></code> que devuelve al cliente la foto correspondiente al usuario con el <code>id</code> dado.</p>
                 <pre><code data-trim data-noescape class="javascript">
 app.get("/imagen/:id", function(request, response, next) {
@@ -1823,7 +1827,7 @@ function obtenerImagen(id, callback) {
             </section>
             
             <section>
-                <p>Una vez que el usuario ha enviado el formulario, y se ha insertado la información correspondiente en la BD, se visualiza la vista <code>datos_formularo_bd</code>.</p>
+                <p>Una vez que el usuario ha enviado el formulario, y se ha insertado la información correspondiente en la BD, se visualiza la vista <code>datos_formulario_bd</code>.</p>
                 <p>Esta vista utiliza una URL de la forma <code>/imagen/:id</code> para mostrar la imagen del usuario:</p>
                 <pre><code data-trim data-noescape class="html">
 ...
@@ -1859,10 +1863,10 @@ function obtenerImagen(id, callback) {
             
             <section>
                 <h2>Validación de formularios</h2>
-                <p>Un problema recurrente en las aplicaciones web es la comprobación que los datos introducidos por los usuarios en un formulario son correctos.</p>
-                <p>El módulo <code>express-validator</code> facilita al programador de la aplicación web esta comprobación.</p>
+                <p>Un problema recurrente en las aplicaciones web es la comprobación de que los datos introducidos por los usuarios en un formulario son correctos.</p>
+                <p>El módulo <code>express-validator</code> facilita esta comprobación.</p>
                 <p><a href="https://github.com/ctavan/express-validator">https://github.com/ctavan/express-validator</a></p>
-                <p>La comprobación realizada mediante este módulo se realiza del lado del <strong>servidor</strong>.</p>
+                <p>La comprobación realizada mediante este módulo se realiza en el lado del <strong>servidor</strong>.</p>
             </section>
             
             <section>
@@ -1885,13 +1889,13 @@ app.use(expressValidator());
                 <h4>Métodos añadidos al objeto <code>request</code></h4>
                 <ul>
                     <li><code>checkQuery()</code><br>
-                        Especifica condiciones en los parámetros adjuntados en la URL (formularios con <code>method="GET"</code>).
+                        Especifica condiciones en los parámetros de la URL (formularios con <code>method="GET"</code>).
                     </li>
                     <li><code>checkBody()</code><br>
                         Especifica condiciones en el cuerpo de la petición (formularios con <code>method="POST"</code>).
                     </li>
                     <li><code>checkParam()</code><br>
-                        Especifica condiciones en los parámetros de las URL paramétricas (por ejemplo, <code>/user/<span class="hl">:id</span>/profile</code>).
+                        Especifica condiciones en las componentes de las URL paramétricas (por ejemplo, <code>/user/<span class="hl">:id</span>/profile</code>).
                     </li>
                     <li><code>check()</code><br>
                         Especifica condiciones en cualquiera de las tres anteriores.
@@ -2000,9 +2004,9 @@ request.checkBody("login",
             </section>
             
             <section>
-                <p>Una vez ejecutados los métodos <code>check()</code>, puede comprobarse la existencia de errores mediante:</p>
+                <p>Una vez ejecutados los métodos <code>check()</code>, puede comprobarse la existencia de fallos mediante:</p>
                 <p><code>request.getValidationResult().then(callback);</code></p>
-                <p>donde la función <code>callback</code> recibe un objeto que permite obtener los errores producidos.</p>
+                <p>donde la función <code>callback</code> recibe un objeto que permite obtener los errores de validación detectados.</p>
                 <pre><code data-trim class="javascript">
 request.getValidationResult().then(function(result) {
     // El método isEmpty() devuelve true si las comprobaciones
