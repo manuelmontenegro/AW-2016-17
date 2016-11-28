@@ -1,0 +1,367 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tema 7 - Javascript en el cliente</title>
+
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/aw.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/magula.css">
+
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <link rel="stylesheet" href="css/traspas.css" />
+</head>
+
+<body>
+    <svg width="0" height="0" style="float:left">
+        <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth" style="display:float">
+                <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+            </marker>
+        </defs>
+    </svg>
+    <div class="reveal">
+        <div class="slides">
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="fade">
+                <div class="headerlesson">Tema 7</div>
+                <h1 style="height:4em;position:relative;top:0.3em">Javascript en el navegador:<br> jQuery y Bootstrap</h1>
+                <div class="headerlesson">
+                    Aplicaciones Web - GIS - Curso 2016/17
+                </div>
+                <div class="author">
+                    <span class="myname">Manuel Montenegro</span> [<a href="mailto:montenegro@fdi.ucm.es" style="color:white">montenegro@fdi.ucm.es</a>]
+                    <br/> Dpto de Sistemas Informáticos y Computación
+                    <br/> Facultad de Informática
+                    <br/> Universidad Complutense de Madrid
+                </div>
+                <div class="cc">
+                    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+                    <br/> Esta obra está bajo una
+                    <br/><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="color:white">Licencia CC BY-NC-SA 4.0 Internacional</a>.
+                </div>
+                <div style="clear:left;font-size:15px"></div>
+            </section>
+
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="fade" id="p1">
+                <ol class="contenidos" style="width:17em">
+                    <li><a href="#/p1" class="outline fragment highlight-orange">¿Por qué un modelo asíncrono?</a></li>
+                    <li><a href="#/p2" class="outline">Más sobre módulos</a></li>
+                    <li><a href="#/p3" class="outline">Funciones y paquetes adicionales</a></li>
+                    <li><a href="#/p4" class="outline">Eventos y flujos</a></li>
+                    <li><a href="#/p5" class="outline">Acceso a bases de datos</a></li>
+                    <li><a href="#/p6" class="outline">Subida de ficheros</a></li>
+                    <li><a href="#/p7" class="outline">Binarios y bases de datos</a></li>
+                    <li><a href="#/p8" class="outline">Validación de formularios</a></li>
+                    <li><a href="#/p9" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
+            <section>
+                <h2>Introducción</h2>
+                <img src="images/07/JavascriptServidor.svg" width="80%" style="border:none;box-shadow:none">
+                <p>
+                    <strong>Temas 4, 5 y 6</strong>: hemos utilizado Javascript para implementar servidores HTTP y toda la funcionalidad que se ejecuta dentro del lado del servidor: acceso a bases de datos, servir ficheros al cliente, lógica de aplicación, etc.
+                </p>
+            </section>            
+            
+            <section>
+                <img src="images/07/JavascriptCliente.svg" width="90%" style="border:none;box-shadow:none">
+                <p>En <strong>este tema</strong> abordaremos la implementación de programas en Javascript pensados para ejecutarse en el navegador.</p>
+            </section>
+            
+            <section>
+                <img src="images/07/JavascriptClienteScript.svg" width="75%" style="border:none;box-shadow:none">
+                <p>El código Javascript que se ejecuta en el navegador puede estar integrado en un documento HTML proporcionado por el servidor...</p>
+            </section>
+            
+            <section>
+                <img src="images/07/JavascriptClienteGET.svg" width="75%" style="border:none;box-shadow:none">
+                <p>...o bien puede ser un fichero individual proporcionado por el servidor, previa petición del navegador, por ejemplo, cuando aparece una etiqueta <code>&lt;script&gt;</code> con una referencia a un fichero <code>.js</code> externo:</p>
+                <pre><code data-trim class="html">
+&lt;script src="scripts/suma.js"&gt;&lt;/script&gt;
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>Una advertencia importante</h3>
+                <p>En los dos casos anteriores, aunque el código Javascript es proporcionado por el servidor, se ejecuta en el navegador. </p>
+                <p>En este contexto, solamente lo visto en el Tema 3 es aplicable aquí. El contenido de temas posteriores (Node.js, Express, etc.) no tiene sentido en el navegador.</p>
+            </section>
+            
+            <section>
+                <p>En particular, en la programación del lado del cliente no podemos utilizar nada de lo siguiente:</p>
+                <ul>
+                    <li>El sistema de módulos visto en Node.js.</li>
+                    <li>La función <code>require</code> para importar módulos.</li>
+                    <li>La herramienta <code>npm</code>.</li>
+                    <li>Módulos core de node: <code>fs</code>, <code>path</code>, etc.</li>
+                    <li>Paquetes externos de Node.js: <code>mysql</code>, <code>express</code>, <code>ejs</code>, etc.</li>
+                    <li>etc.</li>
+                </ul>
+                <p>En general, no es aplicable la funcionalidad <strong>específica de Node</strong> que no esté contemplada por el estándar de ECMAScript.</p>
+            </section>
+            
+            <section>
+                <p>No obstante, la programación de Javascript en el lado del cliente permite realizar algunas cosas que no tienen sentido en el lado del servidor:</p>
+                <ul>
+                    <li>Manipulación de elementos de la página web actualmente cargada (<strong>DOM</strong>).</li>
+                    <li>Funcionalidad relativa al historial de navegación (página anterior, siguiente, etc.)</li>
+                    <li>Peticiones al servidor: <strong>AJAX</strong> (tema siguiente).</li>
+                </ul>
+            </section>
+            
+            
+            <section>
+                <h3>Un primer ejemplo</h3>
+                <p>Creamos un documento HTML con el siguiente contenido:</p>
+                <pre><code data-trim class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Javascript integrado en la p&aacute;gina Web&lt;/title&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;    
+        &lt;script&gt;
+            console.log(&quot;Ejecutando script&quot;);
+            for (var i = 0; i &lt; 10; i++) {
+                console.log(`Iteraci&oacute;n n&ordm; ${i}...`);
+            }
+        &lt;/script&gt;
+    &lt;/head&gt;
+    
+    &lt;body&gt;
+        &lt;h1&gt;Javascript en el cliente.&lt;/h1&gt;
+        &lt;p&gt;Activa la consola de las &lt;strong&gt;herramientas del
+        desarrollador&lt;/strong&gt; para ver la salida generada por el
+        programa&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Abrir la página en el navegador y utilizar las <strong>herramientas del desarrollador</strong> para visualizar la consola.</p>
+                <p>En Firefox: <em>Ctrl+Mayús+K</em></p>
+                <img src="images/07/EjecucionFirefox.png" width="75%" style="border:none">
+            </section>
+
+            <section>
+                <p>Lo más recomendable es escribir el código Javascript en un <strong>fichero separado</strong>, y hacer referencia a él desde la página web. Para ello se utiliza también la etiqueta <code>&lt;script&gt;</code></p>
+                <pre><code data-trim data-noescape class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Javascript integrado en la p&aacute;gina Web&lt;/title&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;    
+        &lt;script src=&quot;<span class="hl">myscript.js</span>&quot;&gt;&lt;/script&gt;   <span class="arrow_box_left caja_codigo">Referencia a script</span>
+    &lt;/head&gt;
+    
+    &lt;body&gt;
+        &lt;h1&gt;Javascript en el cliente.&lt;/h1&gt;
+        &lt;p&gt;Activa la consola de las &lt;strong&gt;herramientas del
+        desarrollador&lt;/strong&gt; para ver la salida generada por el
+        programa&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Fichero <code>myscript.js</code>:</p>
+                <pre><code data-trim class="javascript">
+// myscript.js
+// -----------
+"use strict";
+
+console.log("Ejecutando script");
+for (var i = 0; i &lt; 10; i++) {
+    console.log(`Iteración nº ${i}...`);
+}
+                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Es posible incluir varios scripts en un mismo documento:</p>
+                <pre><code data-trim data-noescape class="html">
+&lt;head&gt;
+    &lt;script src=&quot;script1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;script2.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;script3.js&quot;&gt;&lt;/script&gt;
+    ...
+&lt;/head&gt;
+                </code></pre>
+                <p>Los scripts se cargarán y ejecutarán en el mismo orden en el que aparecen en el documento.</p>
+                <p><strong>Atención:</strong> las variables globales definidas en un script son accesibles desde los scripts incluidos posteriormente.</p>
+            </section>
+            
+            <section>
+                <h3>El objeto <code>window</code></h3>
+                <p>Contiene todas las funciones y variables globales definidas, más algunos métodos predefinidos:</p>
+                <ul>
+                    <li><code>alert()</code></li>
+                    <li><code>setTimeout()</code>, <code>clearTimeout()</code>, <code>setInterval()</code></li>
+                </ul>
+                <p>Toda variable y función global es implicitamente un atributo de <code>window</code>:</p>
+                <pre><code data-trim class="javascript">
+var str = "Mi cadena";
+console.log(str);        // &rarr; Mi cadena
+console.log(window.str); // &rarr; Mi cadena
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>El método <code>alert()</code></h4>
+                <p>Muestra una ventana emergente del navegador con un mensaje dado:</p>
+                <pre><code data-trim class="javascript">
+alert("¡Hola!");
+                </code></pre>
+                <img src="images/07/Alert.png" width="40%" style="border:none">
+                <p>La función es <strong>bloqueante</strong>: el script no continúa hasta que se pulse el botón <em>Aceptar</em>.</p>
+            </section>
+            
+            <section>
+                <h4>Temporizadores: <code>setTimeout()</code>, <code>setInterval()</code></h4>
+                <p>La llamada <code>setTimeout(fun, t)</code> ejecuta la función <code>fun</code> transcurrida una cantidad <code>t</code> de milisegundos.</p>
+                <pre><code data-trim class="javascript">
+function saludar() {
+    console.log("Hola!");
+}
+
+setTimeout(saludar, 1000);
+    // Imprime "¡Hola!" tras un segundo
+                </code></pre>
+                <p>equivalentemente:</p>
+ <pre><code data-trim class="javascript">
+setTimeout(function() {
+              console.log("¡Hola!");
+           }, 1000);
+    // Imprime "¡Hola!" tras un segundo
+                </code></pre>                
+            </section>
+            
+            <section>
+                <p>La función <code>setInterval(fun, t)</code> funciona de manera similar a <code>setTimeout</code>, pero ejecuta la función cada <code>t</code> milisegundos:</p>
+                <pre><code data-trim class="javascript">
+setInterval(saludar, 1000);
+    // Imprime "¡Hola!" cada segundo.
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Tanto <code>setTimeout()</code> como <code>setInterval()</code> devuelven un número identificador, que puede pasarse a <code>clearTimeout()</code> o <code>clearInterval()</code> para cancelar los temporizadores correspondientes:</p>
+                <pre><code data-trim class="javascript">
+var timerID = setInterval(saludar, 1000);
+
+// Tras cinco segundos cancelamos el temporizador anterior:
+setTimeout(function() {
+    clearInterval(timerID);
+}, 5000);
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>El método <code>open()</code></h4>
+                <p>Abre una ventana emergente con la URL dada.</p>
+                <p><em>¡Cuidado con los bloqueadores de ventanas emergentes!</em></p>
+                <pre><code data-trim class="javascript">
+var w1 = open("http://www.google.es");
+
+var w2 = open(""); // Ventana en blanco
+                </code></pre>
+                <p>Devuelven un objeto de la clase <code>Window</code> <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window">[+]</a>, que sirve para manipular su contenido, posición, etc.</p>
+            </section>
+            
+            <section>
+                <h3>El objeto <code>history</code></h3>
+                <p>Proporciona funcionalidad similar a los botones de <em>Atrás</em> y <em>Adelante</em> del navegador, que permiten navegar por las últimas páginas visitadas.</p>
+                <pre><code data-trim class="javascript">
+history.go(-1); // Navega a la última página visitada
+history.go(-2); // Navega a la penúltima página visitada
+history.go(-3); // Navega a la antepenúltima página visitada
+...
+history.go(1); // Página siguiente en el historial
+               // (tras retroceder)
+history.go(2);
+...
+history.back();  // equivale a history.go(-1)
+history.forward();  // equivale a history.go(1)
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>El objeto <code>navigator</code></h3>
+                <p>Proporciona información sobre el navegador:</p>
+                <pre><code data-trim class="javascript">
+console.log(navigator.appName);   // &rarr; Netscape
+console.log(navigator.language);  // &rarr; es-ES
+console.log(navigator.platform);  // &rarr; Linux x86_64
+console.log(navigator.product);   // &rarr; Gecko
+console.log(navigator.userAgent); 
+    // &rarr; Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:50.0)
+    //   Gecko/20100101 Firefox/50.0
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>El objeto <code>screen</code></h3>
+                <p>Contiene atributos sobre la resolución de pantalla:</p>
+                <ul>
+                    <li><code>width</code>, <code>height</code>: tamaño &laquo;total&raquo; de pantalla.
+                    <pre><code data-trim class="javascript">
+console.log(screen.width);  // &rarr; 1080
+console.log(screen.height);  // &rarr; 1920
+                    </code></pre></li>
+                    <li><code>availWidth</code>, <code>availHeight</code>: tamaño disponible (excluyendo barra de tareas del SO, etc.)
+                    <pre><code data-trim class="javascript">
+console.log(screen.width);  // &rarr; 1050
+console.log(screen.height);  // &rarr; 1920
+                    </code></pre></li>
+                </ul>
+            </section>
+        </div>
+
+    </div>
+
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            history: true,
+
+            // More info https://github.com/hakimel/reveal.js#dependencies
+            dependencies: [{
+                src: 'plugin/markdown/marked.js'
+            }, {
+                src: 'plugin/markdown/markdown.js'
+            }, {
+                src: 'plugin/notes/notes.js',
+                async: true
+            }, {
+                src: 'plugin/highlight/highlight.js',
+                async: true,
+                callback: function() {
+                    hljs.initHighlightingOnLoad();
+                }
+            }]
+        });
+    </script>
+</body>
+
+</html>
