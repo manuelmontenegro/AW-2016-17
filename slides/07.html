@@ -332,6 +332,185 @@ console.log(screen.height);  // &rarr; 1920
                     </code></pre></li>
                 </ul>
             </section>
+            
+            <section>
+                <h2>DOM (Document object model)</h2>
+                <p>
+                    Un documento HTML consiste esencialmente en una serie de elementos que pueden anidarse unos dentro de otros:
+                </p>
+                <pre><code data-trim class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Bienvenido a mi p&aacute;gina&lt;/title&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1 id="encabezado"&gt;&iexcl;Bienvenido!&lt;/h1&gt;
+        &lt;div class=&quot;section&quot;&gt;
+            &lt;h2&gt;Novedades&lt;/h2&gt;
+            &lt;p&gt;No hay muchas novedades &uacute;ltimamente&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;section&quot;&gt;
+            &lt;h2&gt;Contacto&lt;/h2&gt;
+            &lt;p&gt;Puedes contactar en la direcci&oacute;n de correo
+            &lt;a href=&quot;mailto:montenegro@fdi.ucm.es&quot;&gt;
+                    montenegro@fdi.ucm.es&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;                
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Por tanto, un documento HTML puede concebirse como una estructura arborescente:</p>
+                <img src="images/07/DOM.svg" width="80%" style="border:none;box-shadow:none">
+            </section>
+            
+            <section>
+                <p>El <strong>DOM</strong> <em>(Document Object Model)</em> es una interfaz que permite al programador Javascript navegar por el documento HTML como si de un árbol se tratase.</p>
+                <p>Esta interfaz se materializa en una serie de clases:</p>
+                <img src="images/07/ClasesDOM.svg" width="70%" style="border:none;box-shadow:none">
+            </section>
+            
+            <section>
+                <p>Los objetos de la clase <code>Node</code> contienen atributos para navegar por el árbol. Entre estos están:</p>
+                <ul>
+                    <li><code>childNodes</code> (tipo <code>NodeList</code>)</li>
+                    <li><code>firstChild</code> (tipo <code>Node</code>)</li>
+                    <li><code>lastChild</code> (tipo <code>Node</code>)</li>
+                    <li><code>nextSibling</code> (tipo <code>Node</code>)</li>
+                    <li><code>nodeType</code> (tipo <code>int</code>)
+                        <ul style=font-size:80%>
+                            <li>1: Elemento HTML (Ej: <code>&lt;p&gt;</code>)</li>
+                            <li>3: Texto</li>
+                            <li>etc.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>Ver: <a href="https://developer.mozilla.org/es/docs/DOM">https://developer.mozilla.org/es/docs/DOM</a></p>
+            </section>
+            
+            <section>
+                <p>La variable <code>document</code> contiene la raíz del árbol DOM.</p>
+                <p>Es un objeto de la clase <code>Document</code> (subclase de <code>Node</code>), que proporciona algunos métodos adicionales. Entre ellos:</p>
+                <ul>
+                    <li><code>getElementById(<em>id</em>)</code></li>
+                    <li><code>getElementsByTagName(<em>nombre</em>)</code></li>
+                    <li><code>getElementsByClassName(<em>nombre</em>)</code></li>
+                </ul>
+            </section>
+            
+            <section>
+                <h4>Ejemplos</h4>
+                <p>Mostrar todo el árbol DOM del documento:</p>
+                <pre><code data-trim class="javascript">
+function imprimirArbol(root, numEspacios) {
+    // Imprime la raíz del árbol con el
+    // número de espacios indicado
+    console.log(" ".repeat(numEspacios) + root.toString());
+    
+    // Recorre todos los hijos, imprimiendo cada uno de ellos
+    // en un nivel de indentación superior:
+    var current = root.firstChild;
+    while (current !== null) {
+        imprimirArbol(current, numEspacios + 2);
+        current = current.nextSibling;
+    }                
+}
+
+// Llamada inicial:
+imprimirArbol(document, 0);
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Acceder al contenido del encabezado:</p>
+                <pre><code data-trim class="javascript">
+var elemH1 = document.getElementById("encabezado");
+console.log(elemH1.textContent);    // &rarr; "¡Bienvenido!"
+                </code></pre>
+                <p>Acceder a los elementos <code>&lt;div&gt;</code>:</p>
+                <pre><code data-trim class="javascript">
+var elemsDiv = document.getElementsByTagName("div");
+console.log(elemsDiv.length)  // &rarr; 2
+                </code></pre>
+            </section>
+            
+            <section>
+                <h3>Inconvenientes de utilizar DOM</h3>
+                <p>En la práctica, no suelen utilizarse los métodos mostrados anteriormente para acceder directamente al árbol DOM.</p>
+                <p>
+                    <strong>Motivo</strong>: inconsistencias entre distintos navegadores.
+                </p>
+                <p>Es más recomendable utilizar una librería Javascript que proporcione su propia API abstrayendo las diferencias entre los navegadores:</p>
+                <ul>
+                    <li>Prototype.js</li>
+                    <li class="fragment highlight-blue">jQuery <span class="arrow_box_left caja_codigo fragment" style="position:relative; left:100px">Este tema</span></li>
+                </ul>
+            </section>
+            
+            <section>
+                <h2><span style="text-transform:none">j</span>Query</h2>
+                <p>Es una librería de Javascript que funciona en el lado del navegador web.</p>
+                <img src="images/07/jQueryLogo.png" width="50%" style="border:none;box-shadow:none">
+                <p><a href="http://jquery.com/">http://jquery.com/</a></p>
+            </section>
+            
+            <section>
+                <p>Proporciona una capa de abstracción entre las funciones del DOM y el programador:</p>
+                <p><img src="images/07/jQuery.svg" width="60%" style="border:none;box-shadow:none"></p>
+                <p><strong>Ventajas:</strong> eliminación de inconsistencias entre navegadores, código más claro y conciso, extensible mediante <em>plug-ins</em>.</p>
+            </section>
+            
+            <section>
+                <h3>Instalación</h3>
+                <p>Puede descargarse desde:</p>
+                <p><a href="https://jquery.com/download/">https://jquery.com/download/</a></p>
+                <p>Descargamos la versión 3.1.1, disponible en el fichero <code>jquery-3.1.1.min.js</code>, o bien en el fichero<br> <code>jquery-3.1.1.js</code></p>
+                <p>El fichero se incluye en el documento HTML:</p>
+                <pre><code data-trim class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        ...
+        &lt;script src=&quot;jquery-3.1.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    ...
+&lt;/html&gt;                
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>Alternativa más sencilla: CDN</h4>
+                <p>En lugar de descargar la librería e incluirla en nuestra aplicación web, es posible enlazar una copia de la librería directamente en un CDN:</p>
+                <pre><code data-trim class="javascript" style="font-size:90%">
+&lt;script src=&quot;https://code.jquery.com/jquery-3.1.1.min.js&quot;&gt;&lt;/script&gt;
+                </code></pre>
+                <p>Un CDN (<em>Content Delivery Network</em>) es un conjunto de servidores que albergan copias del mismo contenido estático para optimizar su descarga por parte del cliente.</p>
+                <p><a href="https://en.wikipedia.org/wiki/Content_delivery_network">https://en.wikipedia.org/wiki/Content_delivery_network</a></p>
+            </section>
+            
+            <section>
+                <p>Funciones disponibles:</p>
+                <ul>
+                    <li>Búsqueda en el DOM</li>
+                    <li>Manipulación del DOM</li>
+                    <li>Creación de nuevos elementos en el DOM</li>
+                    <li>Posicionamiento y dimensiones</li>
+                    <li>Manejo de eventos</li>
+                    <li>Animaciones</li>
+                    <li>AJAX <span style="color:#474">(siguiente tema)</span></li>
+                </ul>
+            </section>
+            
+            <section>
+                <section>
+                    <div class="bloquetitulo" style="padding:20px">
+                        <h3>Selectores</h3>
+                    </div>
+                </section>
+            </section>
         </div>
 
     </div>
