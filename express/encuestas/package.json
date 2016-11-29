@@ -1,0 +1,22 @@
+{
+  "name": "encuestas",
+  "version": "1.0.0",
+  "description": "Ejercicio 1 de la hoja 5 de ejercicios",
+  "private": true,
+  "license": "MIT",
+  "keywords": [
+    "ejercicio",
+    "aw",
+    "express",
+    "encuestas"
+  ],
+  "author": "Manuel Montenegro",
+  "contributors": [],
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "multer": "^1.2.0"
+  }
+}
