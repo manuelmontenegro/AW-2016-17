@@ -693,7 +693,7 @@ app.use(function(request, response, next) {
                 <p>También puede utilizarse middleware para comprobar si el usuario está identificado y, en caso contrario, redirigir a una página de identificación.</p>
                 <pre><code data-trim class="javascript">
 app.use(function(request, response, next) {
-    if (usuarioActual === undefined) {
+    if (/* el usuario actual no está identificado */) {
         response.redirect("/login.html");
     } else {
         next();
@@ -1615,9 +1615,9 @@ Content-Length: 26
             </section>
             
             <section>
-                <h4>Opciones de <code>setCookie</code></h4>
+                <h4>Opciones de <code>cookie</code></h4>
                 <ul>
-                    <li><code>domain</code> / <code>path</code><br>
+                    <li><code>domain</code>, <code>path</code><br>
                         Determinan el ámbito de la cookie.<br>
                     </li>
                     <li><code>expires</code><br>
