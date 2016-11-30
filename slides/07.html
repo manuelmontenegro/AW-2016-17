@@ -492,9 +492,24 @@ console.log(elemsDiv.length)  // &rarr; 2
             </section>
             
             <section>
+                <h4>La variable <code>$</code></h4>
+                <p>Al cargar la librería jQuery se define una <strong>variable global</strong> nueva que proporciona todas las funciones.</p>
+                <p>El nombre de esta variable es <code>$</code></p>
+                <p class="fragment">(sí, <code>$</code> es un nombre de variable válido en Javascript)</p>
+                <div class="fragment">
+                    <p>Esta variable tiene varios usos:</p>
+                    <ul>
+                        <li>Como función: <code>$(document)</code>, <code>$("header")</code>, etc.</li>
+                        <li>Como objeto: <code>$.ajax()</code>, <code>$.get()</code>, etc.</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section>
                 <p>Funciones disponibles:</p>
                 <ul>
-                    <li>Búsqueda en el DOM</li>
+                    <li>Inicialización de la página</li>
+                    <li>Búsqueda y navegación en el DOM</li>
                     <li>Manipulación del DOM</li>
                     <li>Creación de nuevos elementos en el DOM</li>
                     <li>Posicionamiento y dimensiones</li>
@@ -506,11 +521,231 @@ console.log(elemsDiv.length)  // &rarr; 2
             
             <section>
                 <section>
-                    <div class="bloquetitulo" style="padding:20px">
-                        <h3>Selectores</h3>
+                    <div class="bloquetitulo" style="padding:45px 20px 20px 20px">
+                        <h3>Inicialización de la página</h3>
                     </div>
                 </section>
+                
+                <section>
+                    <p>Gran parte de la programación Javascript en el cliente consiste en capturar los <strong>eventos</strong> que se producen determinados elementos de la página.</p>
+                    <p style="font-size:80%">Esto es lo que proporciona interactividad a la página.</p>
+                    <p>Tradicionalmente, la asignación de eventos se introducía directamente en el código HTML:</p>
+                    <pre><code data-trim class="html">
+&lt;button onclick="miFuncion()"&gt; ... &lt;/button&gt;
+                    </code></pre>
+                    <p><strong>Problema:</strong> mezcla lógica de la aplicación con la vista.</p>
+                </section>
+                
+                <section>
+                    <p>La asignación de eventos debe hacerse en un script separado del documento HTML:</p>
+                    <pre><code data-trim class="html">
+&lt;html&gt;
+...
+    &lt;script src="app.js"&gt;&lt;/script&gt;
+    ...
+    &lt;button id="miBoton"&gt; ... &lt;/button&gt;
+    ...
+&lt;/html&gt;
+                    </code></pre>
+                    <p><code>app.js</code></p>
+                    <pre><code data-trim class="javascript">
+...
+var boton = document.getElementById("miBoton");
+boton.onclick = miFuncion;
+...
+                    </code></pre>
+                    <strong>Problema:</strong> ¿cuándo se ejecuta este código? Debemos asegurarnos que el DOM esté cargado antes de asignar atributos a sus elementos.
+                </section>
+                
+                <section>
+                    <h4>Evento <code>ready</code> del DOM</h4>
+                    <p>Con jQuery podemos capturar el evento de inicialización de DOM. Este evento será lanzado cuando el DOM haya sido cargado en memoria:</p>
+                    <pre><code data-trim data-noescape class="javascript">
+$(document).ready(<em>funcion</em>);
+                    </code></pre>
+                    <p>La función pasada como parámetro a <code>ready</code> será ejecutada cuando se cargue el DOM.</p>
+                </section>
+                
+                <section>
+                    <h4>Ejemplo</h4>
+                    <p><code>app.js</code></p>
+                    <pre><code data-trim class="javascript">
+$(document).ready(function() {
+    var boton = document.getElementById("miBoton");
+    boton.onclick = botonPulsado;
+});
+
+function botonPulsado() {
+    alert("¡Me has pulsado!");
+}
+                    </code></pre>
+                    
+                    <p>Otra forma:</p>
+                    
+                     <pre><code data-trim class="javascript">
+$(document).ready(function() {
+    $("#miBoton").on("click", botonPulsado);
+});
+                    </code></pre>                   
+                </section>
+                                
+                
             </section>
+
+            <section>
+                <section>
+                    <div class="bloquetitulo" style="padding:45px 20px 20px 20px">
+                        <h3>Búsqueda y navegación en el DOM</h3>
+                    </div>
+                </section>
+                
+                <section>
+                    <p>jQuery proporciona métodos para manipular elementos del DOM: <code>attr()</code>, <code>class()</code>, <code>css()</code>, etc.</p>
+                    <p>Para utilizar estos métodos hemos de determinar previamente los elementos sobre los que se aplican.</p>
+                    <p>Esto se realiza mediante <strong>selectores</strong>.</p>
+                </section>
+                
+                <section>
+                    <h4>Selectores</h4>
+                    <p>Es posible llamar a <code>$</code> pasando una cadena de texto como parámetro. Esta cadena recibe el nombre de <strong>selector</strong>.</p>
+                    <pre><code data-trim class="javascript">
+$("div.entrada > input")                    
+                    </code></pre>
+                    <p>La sintaxis de los selectores es análoga a la utilizada en CSS.</p>
+                    <p>Ver: <a href="02.html#/63">selectores CSS</a></p>
+                    <p>La expresión <code>$(...)</code> devuelve una lista con los nodos del DOM especificados por el selector.</p>
+                </section>
+                
+                <section>
+                    <p>Una vez seleccionados los nodos, podemos utilizar las funciones de manipulación del DOM mencionadas:</p>
+                    <pre><code data-trim class="javascript">
+// Asigna un color de fondo a todos los elementos &lt;li&gt;
+$("li").css("background-color", "#FFFFD0");
+
+// Añade una clase a los elementos &lt;p&gt; de la clase 'entradilla'
+$("p.entradilla").addClass("seleccionado");
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Selectores disponibles</h4>
+                    <ul>
+                        <li>Todos los nodos del DOM:
+                            <pre><code data-trim class="javascript">
+$("*")
+                            </code></pre>
+                        </li>
+                        <li>Todos los elementos <code>&lt;p&gt;</code> del documento:
+                            <pre><code data-trim class="javascript">
+$("p")
+                            </code></pre>
+                        </li>
+                        <li>Todos los elementos <code>&lt;li&gt;</code> del documento que tengan la clase <code>seleccionado</code>:
+                            <pre><code data-trim class="javascript">
+$("li.seleccionado")
+                            </code></pre>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Todos los elementos con la clase <code>.seleccionado</code>.
+                            <pre><code data-trim class="javascript">
+$(".seleccionado")
+                            </code></pre>
+                        </li>
+                        <li>Elemento cuyo <code>id</code> sea <code>barra_principal</code>
+                            <pre><code data-trim class="javascript">
+$("#barra_principal")
+                            </code></pre>
+                        </li>
+                        <li>Elementos <code>&lt;p&gt;</code> con la clase <code>inciso</code> contenidos dentro de un elemento <code>&lt;div&gt;</code>:
+                            <pre><code data-trim class="javascript">
+$("div p.inciso")
+                            </code></pre>
+                        </li>
+                        <li>Igual que antes, pero solo los <code>&lt;p&gt;</code> que son hijos directos de <code>&lt;div&gt;</code>:
+                            <pre><code data-trim class="javascript">
+$("div > p.inciso")
+                            </code></pre>
+                        </li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <ul>
+                        <li>Elementos <code>&lt;div&gt;</code> que se encuentran después de un <code>&lt;form&gt;</code>.
+                            <pre><code data-trim class="javascript">
+$("form + div")
+                            </code></pre>
+                        </li>
+                        <li>Enlaces cuyo atributo <code>href</code> comience por <code>"http://"</code>.
+                            <pre><code data-trim class="javascript">
+$("a[href^='http://']")
+                            </code></pre>
+                        </li>
+                        
+                    </ul>
+                        <p>Referencia: <a href="http://api.jquery.com/category/selectors/">http://api.jquery.com/category/selectors/</a></p>
+                </section>
+                
+                <section>
+                    <h4>Recorrido en el DOM</h4>
+                    <p>También es posible seleccionar un elemento en relación a otro seleccionado previamente.</p>
+                    <p>Por ejemplo: seleccionamos los hijos directos de los elementos <code>&lt;header&gt;</code>:</p>
+                    <pre><code data-trim class="javascript">
+$("header").children()
+                    </code></pre>
+                    <p>Hijos de los elementos <code>&lt;header&gt;</code> que contengan la clase <code>seleccion</code>:</p>
+                    <pre><code data-trim class="javascript">
+$("header").children(".seleccion")                    
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>Descendientes (directos o indirectos) de los elementos <code>&lt;div&gt;</code> que contengan la clase <code>seleccion</code>:</p>
+                    <pre><code data-trim class="javascript">
+$("header").find(".seleccion")                    
+                    </code></pre>
+                </section>
+            
+                
+                <section>
+                    <p>Otras relaciones:</p>
+                    <ul>
+                        <li><code>.parent()</code><br>
+                            Padres de los elementos seleccionados:
+                        </li>
+                        <li><code>.parents(<em>[selector]</em>)</code><br>
+                            Antecesores de los elementos seleccionados:
+                        </li>
+                        <li><code>.parentsUntil(selector)</code><br>
+                            Padres de los elementos seleccionados hasta llegar a un nodo que ajuste con el selector indicado.
+                        </li>
+                    </ul>
+                        <p>Referencia: <a href="https://api.jquery.com/category/traversing/tree-traversal/">https://api.jquery.com/category/traversing/tree-traversal/</a></p>
+                </section>
+                
+                <section>
+                    <h4>Acceder a los elementos de la selección</h4>
+                    <ul>
+                        <li><code>.length</code>: Número de elementos seleccionados.
+                        <pre><code data-trim class="javascript">
+$("input[type='text'])").length
+                        </code></pre></li>
+                        <li><code>.eq(n)</code>: Elemento <code>n</code>-ésimo.
+                        <pre><code data-trim class="javascript">
+$("input[type='text'])").eq(2) // Segundo elemento
+                        </code></pre></li>
+                    </ul>
+                    
+                </section>
+            
+            
+                
+            </section>
+        
         </div>
 
     </div>
