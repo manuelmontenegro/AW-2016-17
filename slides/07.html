@@ -741,10 +741,521 @@ $("input[type='text'])").eq(2) // Segundo elemento
                     </ul>
                     
                 </section>
-            
-            
                 
             </section>
+            
+            <section>
+                <section>
+                    <div class="bloquetitulo" style="padding:45px 20px 20px 20px">
+                        <h3>Manipulación de elementos del DOM</h3>
+                    </div>
+                </section>
+                
+                <section>
+                    <p>Una vez seleccionado un conjunto de elementos mediante <code>$("...")</code>, podemos utilizar una serie de métodos para manipular las propiedades y el estilo de la selección.</p>
+                    
+                    <pre><code data-trim class="javascript">
+// Selector: elemento con ID "encabezado"
+// Manipulación: cambiar su color de fondo a gris
+                    
+$("#encabezado").css("background-color", "gray");
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Propiedades de un nodo del DOM</h4>
+                    <p>Cada elemento de la página HTML tiene un conjunto de propiedades, que depende del tipo de elemento:</p>
+                    <ul>
+                        <li>Imágenes: <code>src</code>, <code>alt</code>, <code>title</code>, ...</li>
+                        <li>Componentes de formularios: <code>type</code>, <code>checked</code>, <code>value</code>, etc.</li>
+                        <li>Enlaces: <code>href</code>, etc.</li>
+                        <li>Cualquier elemento: <code>class</code>, <code>id</code>, etc.</li>
+                        <li>etc.</li>
+                    </ul>
+                    <p>El código HTML especifica sus valores iniciales:</p>
+                    <pre><code data-trim class="html">
+&lt;input type="text" name="edad" value="0"&gt;                    
+                    </code></pre>
+                    <p>...pero estos valores pueden modificarse dinámicamente.</p>
+                </section>
+                
+                
+                <section>
+                    <h3>El método <code>prop</code></h3>
+                    <p><code>.prop(<em>nombrePropiedad</em>, <em>valorPropiedad</em>)</code></p>
+                    <p>Modifica una propiedad de los elementos seleccionados.</p>
+                    <pre><code data-trim class="html">
+...
+&lt;img src="img/CandadoAbierto.svg" id="candado"&gt;
+...
+                    </code></pre>
+                    <pre><code data-trim data-noescape class="javascript">
+var candadoAbierto = true;
+
+function cambiarCandado() {
+    candadoAbierto = !candadoAbierto;
+    if (candadoAbierto) {
+        <span class="hl">$("#candado").prop("src", "img/CandadoAbierto.svg");</span>
+    } else {
+        <span class="hl">$("#candado").prop("src", "img/CandadoCerrado.svg");</span>    
+    }
+}                    
+                   </code></pre>
+                </section>
+                
+                <section>
+                    <img src="images/07/Candado.png" width="60%">
+                </section>
+                
+                <section>
+                    <p><code>.prop(<em>nombrePropiedad</em>)</code></p>
+                    <p>Obtiene el valor actual de la propiedad.</p>
+                    <pre><code data-trim class="html">
+...
+&lt;p&gt;Edad: &lt;input type=&quot;text&quot; name=&quot;edad&quot; id=&quot;campoEdad&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;input type=&quot;checkbox&quot; name=&quot;fumador&quot; id=&quot;campoFumador&quot;&gt;
+    Fumador&lt;/p&gt;
+...
+                    </code></pre>
+                    <pre><code data-trim data-noescape class="javascript">
+function mostrarInfo() {
+    var edad = <span class="hl">$("#campoEdad").prop("value")</span>;
+    var fumador = <span class="hl">$("#campoFumador").prop("checked")</span>;
+    alert("Tienes " + edad + " años y " +
+        (fumador ? "" : "no ") + "eres fumador");
+}                    
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <img src="images/07/LeerFormulario.png" width="50%"><br>
+                    <img src="images/07/ResultadoFormulario.png" width="40%">
+                </section>
+                
+                <section>
+                    <h4>Modificar clases y estilos</h4>
+                    <p>Se pueden añadir, modificar o eliminar clases CSS de los elementos seleccionados mediante los siguientes métodos:</p>
+                    <ul>
+                        <li><code>.addClass(<em>nombreClase</em>)</code></li>
+                        <li><code>.removeClass(<em>nombreClase</em>)</code></li>
+                        <li><code>.toggleClass(<em>nombreClase</em>)</code></li>
+                        <li><code>.hasClass(<em>nombreClase</em>)</code></li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h4>Ejemplo</h4>
+                    <pre><code data-trim class="html">
+ &lt;h1&gt;¡Pulsa en mí para cambiar mi estilo!&lt;/h1&gt;
+                    </code></pre>
+                    <pre><code data-trim class="javascript">
+
+$(document).ready(function() {
+    var cabecera = $("h1");
+    cabecera.on("click", function() {
+        cabecera.toggleClass("rojo");
+    });
+});                    
+                    </code></pre>
+                    <img src="images/07/H1Estilo1.png" width="40%">
+                    <img src="images/07/H1Estilo2.png" width="40%">
+                </section>
+                
+                <section>
+                    <p>Mediante el método <code>.css()</code> podemos obtener y modificar una propiedad CSS de modo individual.</p>
+                    <p><code>.css(<em>nombrePropiedad</em>, <em>valorPropiedad</em>)</code></p>
+                    <pre><code data-trim class="javascript">
+// Todos los encabezados &lt;h1&gt; tendrán el texto de color verde
+$("h1").css("color", "green");
+                    </code></pre>
+                    
+                    <p><code>.css(<em>nombrePropiedad</em>)</code></p>
+                    <pre><code data-trim class="javascript">
+console.log($("h1").eq(0).css("font-size")); // &rarr; "32px"
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>Al modificar una propiedad CSS, podemos pasar una función que reciba...</p>
+                    <ul>
+                        <li>El índice del elemento seleccionado actual.</li>
+                        <li>El valor actual de la propiedad CSS.</li>
+                    </ul>
+                    <p>...y devuelva el nuevo valor de la propiedad CSS.</p>
+                    <pre><code data-trim class="javascript">
+$("h1").css("font-size", function(indice, actual) {
+    // La variable 'actual' contiene una cadena, como p.ej. "34px"
+    // Hemos de extraer el número de esta cadena:
+    var numPixels = /([0-9]+)px/.exec(actual)[1];
+    
+    // Devolvemos la nueva propiedad
+    return Number(numPixels) + 5 + "px";
+});
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Cambiar el contenido de un elemento</h4>
+                    <p>Obtener contenido contenido en el interior de un elemento:</p>
+                    <p><code>.text()</code></p>
+                    <p>Modificar contenido en el interior de un elemento:</p>
+                    <p><code>.text(<em>nuevoTexto</em>)</code></p>
+                </section>
+                
+                <section>
+                    <img src="images/07/Numeros.png" width="60%">
+                    <pre><code data-trim class="html">
+&lt;p&gt;
+    Introduce un n&uacute;mero: &lt;input type=&quot;text&quot; id=&quot;campoNumero&quot;&gt;
+    &lt;span id=&quot;mensaje&quot; class=&quot;incorrecto&quot;&gt;&lt;/span&gt;
+&lt;/p&gt;                    
+                    </code></pre>
+                    <pre><code data-trim class="javascript">
+$("#campoNumero").on("change", function() {
+    // Obtenemos valor actual
+    var valor = $(this).prop("value").trim();
+
+    if (valor === "") {
+        $("#mensaje").text("El campo está vacío");
+    } else if (isNaN(Number(valor))) {
+        $("#mensaje").text("No se ha introducido un número");
+    } else {
+        $("#mensaje").text("");
+    }
+});                    
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>Si se introducen etiquetas HTML en el texto pasado a <code>.text()</code>, éstas se &laquo;escapean&raquo;, de manera que se evita la inyección de código HTML en el elemento seleccionado.</p>
+                    <pre><code data-trim class="javascript">
+$("#mensaje").text("El campo está &lt;em&gt;vacío&lt;/em&gt;");
+                    </code></pre>
+                    <img src="images/07/NumerosEm.png" width="80%">
+                    
+                    <p>
+                        En el caso en que queramos que se interpreten las etiquetas, debemos utilizar el método <code>.html()</code>
+                    </p>
+                    <pre><code data-trim class="javascript">
+$("#mensaje").html("El campo está &lt;em&gt;vacío&lt;/em&gt;");
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Propiedades definidas por el usuario</h4>
+                    <p>Además de las propiedades predefinidas en los elementos del DOM (<code>class</code>, <code>value</code>, <code>src</code>, etc.), el programador puede añadir propiedades a cualquier elemento del DOM.</p>
+                    <img src="images/07/DomNumero.png" width="70%">
+                    <pre><code data-trim class="html">
+&lt;p id=&quot;elem&quot;&gt;Esto es un elemento del DOM que almacena un n&uacute;mero&lt;/p&gt;
+&lt;button id=&quot;incrementar&quot;&gt;Incrementar&lt;/button&gt;
+&lt;button id=&quot;obtener&quot;&gt;Obtener valor actual&lt;/button&gt;                    
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p><code>.data(<em>nombreAtributo</em>)</code></p>
+                    <p>Obtiene el valor de una propiedad personalizada del elemento seleccionado.</p>
+                    <pre><code data-trim class="javascript">
+// Establecemos el valor inicial del atributo 'number' contenido
+// dentro del párrafo
+
+$("#elem").data("number", 1 );                    
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p><code>.data(<em>nombreAtributo</em>, <em>nuevoValor</em>)</code></p>
+                    <p>Cambia el valor de una propiedad personalizada de los elementos seleccionados.</p>
+                    <pre><code data-trim class="javascript">
+// Al pulsar el botón Incrementar, se incrementan la propiedad
+// 'number' del párrafo.
+$("#incrementar").on("click", function() {
+    var elemento = $("#elem");
+    var num = elemento.data("number");
+    elemento.data("number", num + 1);
+});
+
+// Al pulsar el botón Obtener, se muestra el valor actual de la
+// propiedad 'number' del párrafo
+$("#obtener").on("click", function() {
+    alert($("#elem").data("number"));
+});
+                    
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>Es posible especificar los valores iniciales de este tipo de propiedades en el propio documento HTML. Para ello basta con añadir un atributo a la etiqueta correspondiente con el nombre de la propiedad precedida por el prefijo <code>data-</code></p>
+                    <pre><code data-trim data-noescape class="html">
+&lt;p id=&quot;elem&quot; <span class="hl">data-number=&quot;1&quot;</span>&gt;
+        Esto es un elemento del DOM que almacena un n&uacute;mero
+&lt;/p&gt;                    
+                    </code></pre>
+                    <p>Si hacemos esto en nuestro ejemplo, ya no será necesario inicializar este atributo en el código Javascript:</p>
+                    <pre><code data-trim data-noescape class="javascript">
+// Ya no es necesario inicializar la propiedad en el código
+<del>$("#elem").data("number", 1 );</del>
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Combinar operaciones de manipulación</h4>
+                    <p>Todas las operaciones de manipulación vistas hasta ahora pueden encadenarse para ser aplicadas en una misma selección.</p>
+                    <pre><code data-trim class="javascript">
+$("ul > li.opcion").addClass("seleccionada").data("numOpcion", 0);
+                    </code></pre>
+                    <pre><code data-trim class="javascript">
+$("img").prop("width", "90%")
+        .css("border-bottom", "2px solid black")
+        .css("border-top", "1px solid red)
+        .on("click", pulsarImagen);
+                    </code></pre>
+                </section>
+                
+            </section>
+            
+            <section>
+                <section>
+                    <div class="bloquetitulo" style="padding:45px 20px 20px 20px">
+                        <h3>Creación e inserción de nuevos elementos en el dom</h3>
+                    </div>
+                </section>
+                
+                <section>
+                    <h4>Creación de nodos</h4>
+                    <p>Al aplicar la función <code>$</code> a un código HTML, se crea un árbol DOM que refleja dicho código y se devuelve su selección.</p>
+                    <p>Podemos aplicar las funciones de manipulación del DOM vistas anteriormente al elemento recién creado.</p>
+                    <pre><code data-trim class="javascript">
+var elem = $("&lt;div&gt;Nuevo elemento&lt;/div&gt;");
+                    </code></pre>
+                    <pre><code data-trim class="javascript">
+$("&lt;img&gt;").prop("src", imagen).addClass("imagen-ciudad");
+                    </code></pre>
+                    <p style="background-color:#FCC">Estos elementos no forman parte del documento HTML actual, a menos que se añadan su árbol DOM.</p>
+                </section>
+                
+                <section>
+                    <h4>Añadir nodos al DOM</h4>
+                    <p><code>.append(<em>elem</em>)</code><br><code>.prepend(<em>elem</em>)</code></p>
+                    <img src="images/07/AppendPrepend.svg" width="90%" style="border:none; box-shadow:none">
+                </section>
+                
+                
+                <section>
+                    <p><code>.before(<em>elem</em>)</code><br>
+                        <code>.after(<em>elem</em>)</code>
+                    </p>
+                    <img src="images/07/BeforeAfter.svg" width="90%" style="border:none;box-shadow:none">
+                </section>
+                
+                <section>
+                    <h4>Ejemplo</h4>
+                    <img src="images/07/ListaCreciente.png" width="60%">
+                    <pre><code data-trim class="html">
+&lt;p&gt;Pulsa el bot&oacute;n de abajo para a&ntilde;adir elementos a la lista:&lt;/p&gt;
+&lt;ol id=&quot;listaNumerada&quot;&gt;
+&lt;/ol&gt;
+&lt;button id=&quot;anyadirElemento&quot;&gt;A&ntilde;adir elemento&lt;/button&gt;                    
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <pre><code data-trim class="javascript">
+
+$(document).ready(function() {
+    $("#anyadirElemento").on("click", function() {
+        var nuevoElemento = $("&lt;li&gt;Nuevo elemento&lt;/li&gt;");
+        $("#listaNumerada").append(nuevoElemento);
+    });
+});                    
+                    </code></pre>
+                    <p>Se puede introducir directamente código HTML en la función <code>append()</code>.</p>
+                    <pre><code data-trim class="javascript">
+
+$(document).ready(function() {
+    $("#anyadirElemento").on("click", function() {
+        $("#listaNumerada").append("&lt;li&gt;Nuevo elemento&lt;/li&gt;");
+    });
+});                    
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Otras funciones</h4>
+                    <ul>
+                        <li>
+                            <code>.remove()</code><br>
+                            Elimina del documento los objetos seleccionados.
+                        </li>
+                        <li>
+                            <code>.clone()</code><br>
+                            Hace una copia del objeto seleccionado.
+                        </li>
+                        <li>
+                            <code>.wrap(<em>elem</em>)</code><br>
+                            Envuelve los objetos seleccionados en el objeto pasado como parámetro.
+                        </li>
+                    </ul>
+                    <p>
+                        Más información: <a href="http://api.jquery.com/category/manipulation/">http://api.jquery.com/category/manipulation/</a>
+                    </p>
+                </section>
+                
+            </section>
+            
+            <section>
+                <section>
+                    <div class="bloquetitulo" style="padding:45px 20px 20px 20px">
+                        <h3>Posicionamiento y dimensiones</h3>
+                    </div>
+                </section>
+                
+                <section>
+                    <h4>Dimensiones de un objeto</h4>
+                    <p>El manejo de las dimensiones mediante las llamadas <code>.css("width")</code> y <code>.css("height")</code> es bastante complejo, ya que los valores de estas propiedades pueden estar expresados en distintas unidades: pixels, puntos, porcentajes, etc.</p>
+                    <p>Para facilitar esta tarea, existen sendos métodos <code>.width()</code> y <code>height()</code> que devuelven las dimensiones del objeto seleccionado en píxeles.</p>
+                </section>
+                
+                <section>
+                    <ul>
+                        <li>
+                            <code>.width()</code>, <code>.height()</code><br>
+                            Obtienen la anchura y la altura del elemento seleccionado.
+                        </li>
+                        <li>
+                            <code>.width(<em>anchura</em>)</code>, <code>.height(<em>altura</em>)</code><br>
+                            Modifican la anchura y altura del elemento seleccionado.
+                        </li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h4>Ejemplo</h4>
+                    <img src="images/07/CambioDimensiones.png" width="60%">
+                    <pre><code data-trim class="html">
+&lt;div class=&quot;parrafo&quot;&gt;
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit...
+&lt;/div&gt;
+&lt;div class=&quot;tama&ntilde;o&quot;&gt;&lt;/div&gt;
+&lt;button id=&quot;aumentarAnchura&quot;&gt;Aumentar anchura&lt;/button&gt;                    
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <pre><code data-trim class="javascript">
+// Actualiza la etiqueta de la esquina superior derecha con las
+// dimensiones del elemento pasado como parámetro
+function actualizarEtiqueta(elem) {
+    var ancho = Math.round(elem.width());
+    var alto = Math.round(elem.height());
+    $("div.tamaño").text(`${ancho} x ${alto}`);
+}
+
+
+$(document).ready(function() {
+    var parrafo = $("div.parrafo");
+    actualizarEtiqueta(parrafo);
+    
+    // Cuando se pulsa el botón de aumentar anchura...
+    $("#aumentarAnchura").on("click", function() {
+        // Obtenemos la anchura actual y establecemos la nueva
+        var anchoActual = parrafo.width();
+        parrafo.width(anchoActual + 20);
+        // Actualizamos la etiqueta con la nueva dimensión
+        actualizarEtiqueta(parrafo);
+    });
+});                    
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>Al igual que el método <code>.css()</code>, los métodos <code>.width()</code> y <code>height()</code> pueden recibir una función que exprese la nueva dimensión en función de la antigua.</p>
+                    <p>De este modo, en lugar de:</p>
+                    <pre><code data-trim class="javascript">
+var anchoActual = parrafo.width();
+parrafo.width(anchoActual + 20);                    
+                    </code></pre>
+                    <p>puede escribirse:</p>
+                    <pre><code data-trim class="javascript">
+parrafo.width(function(index, ancho) { return ancho + 20; });                    
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Variantes</h4>
+                    <ul>
+                        <li>
+                            <code>.innerWidth()</code>, <code>.innerHeight()</code><br>
+                            Obtienen o cambian la anchura o altura sin tener en cuenta el borde ni los márgenes (pero sí el <em>padding</em>).
+                        </li>
+                        <li>
+                            <code>.outerWidth()</code>, <code>.outerHeight()</code><br>
+                            Obtienen o cambian la anchura incluyendo <em>padding</em>, bordes y márgenes.
+                        </li>
+                    </ul>
+                </section>
+                
+                
+                <section>
+                    <h4>Posicionamiento</h4>
+                    <p>Existen dos métodos para obtener la posición del elemento seleccionado:</p>
+                    <ul>
+                        <li><code>.offset()</code><br>
+                            Devuelve posición con respecto al documento.
+                        </li>
+                        <li><code>.position()</code><br>
+                            Devuelve posición con respecto al elemento padre en el DOM.
+                        </li>
+                    </ul>
+                    Ambos devuelven un objeto con dos atributos: <code>left</code> (coordenada x) y <code>top</code> (coordenada y).
+                    <p>El método <code>offset()</code> permite, además, cambiar la posición de un objeto.</p>
+                </section>
+                
+                <section>
+                    <h4>Ejemplo</h4>
+                    <img src="images/07/CambioPosicion.png" width="70%">
+                    <pre><code data-trim class="html">
+&lt;div class=&quot;parrafo&quot;&gt;
+     Mu&eacute;veme con los cursores
+&lt;/div&gt;                    
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <pre><code data-trim class="javascript" style="font-size:90%; line-height: 110%">
+const IZQUIERDA = 37;
+const DERECHA = 39;
+const ARRIBA = 38;
+const ABAJO = 40;
+
+$(document).ready(function() {
+    var parrafo = $("div.parrafo");
+
+    $("body").on("keydown", function(evt) {
+        var incremento = { x: 0, y: 0 };
+
+        switch (evt.which) {
+            case IZQUIERDA: incremento.x = -10; break;
+            case DERECHA: incremento.x = 10; break;
+            // ...
+        }
+
+        parrafo.offset(function(index, current) {
+          return { 
+            top: Math.max(current.top + incremento.y, 0),
+            left: Math.max(current.left + incremento.x, 0)
+          };
+        });
+
+        evt.preventDefault();
+    });
+});                    
+                    </code></pre>
+                </section>
+            </section>
+
+            
+            
         
         </div>
 
