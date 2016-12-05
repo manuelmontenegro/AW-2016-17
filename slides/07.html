@@ -895,6 +895,47 @@ $("h1").css("font-size", function(indice, actual) {
                 </section>
                 
                 <section>
+                    <h4>Mostrar/ocultar elementos</h4>
+                    <p>Puede utilizarse el método <code>.css()</code> con la propiedad <code>display</code>, pero es más conveniente utilizar los métodos <code>.show()</code> y <code>.hide()</code></p>
+                </section>
+                
+                <section>
+                    <h4>Ejemplo</h4>
+                    <img src="images/07/ShowHide.png" width="40%">
+                    <pre><code data-trim class="html">
+&lt;button id=&quot;mostrarVentana&quot;&gt;Mostrar ventana&lt;/button&gt;
+&lt;div id=&quot;ventana&quot;&gt;
+    &lt;p&gt;
+        Esto es una ventana emergente. Puedes pulsar el bot&oacute;n de
+        abajo o el bot&oacute;n cerrar de la esquina para cerrar la
+        ventana.
+    &lt;/p&gt;
+    &lt;button id=&quot;cerrar&quot;&gt;Cerrar&lt;/button&gt;
+    &lt;span class=&quot;cerrar&quot;&gt;&amp;#x274C;&lt;/span&gt;
+&lt;/div&gt;                    
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <pre><code data-trim class="javascript">
+function abrirVentana() {
+    $("#ventana").show();
+}
+
+function cerrarVentana() {
+    $("#ventana").hide();
+}
+
+$(document).ready(function() {
+    $("#mostrarVentana").on("click", abrirVentana);
+    $("#ventana span.cerrar").on("click", cerrarVentana);
+    $("#cerrar").on("click", cerrarVentana);
+});
+                    
+                    </code></pre>
+                </section>
+                
+                <section>
                     <h4>Cambiar el contenido de un elemento</h4>
                     <p>Obtener contenido contenido en el interior de un elemento:</p>
                     <p><code>.text()</code></p>
@@ -1221,6 +1262,7 @@ parrafo.width(function(index, ancho) { return ancho + 20; });
                     </code></pre>
                 </section>
                 
+                
                 <section>
                     <pre><code data-trim class="javascript" style="font-size:90%; line-height: 110%">
 const IZQUIERDA = 37;
@@ -1252,7 +1294,255 @@ $(document).ready(function() {
 });                    
                     </code></pre>
                 </section>
+                
             </section>
+            
+            <section>
+                <section>
+                    <div class="bloquetitulo" style="padding:45px 20px 20px 20px">
+                        <h3>Eventos</h3>
+                    </div>
+                </section>
+                
+                <section>
+                    <p>Para asociar un evento a una selección basta con utilizar el método <code>.on()</code>, indicando el tipo de evento a capturar y una función manejadora del evento.</p>
+                    <pre><code data-trim class="javascript">
+$("div").on("mousedown", function() {
+    // Manejar evento
+});
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Eventos de ratón</h4>
+                    <ul>
+                        <li>
+                            <code>click</code>, <code>dblclick</code><br>
+                            Pulsación completa del botón izquierdo (pulsar+liberar).
+                        </li>
+                        <li>
+                            <code>contextmenu</code><br>
+                            Pulsación completa del botón derecho (pulsar+liberar).
+                        </li>
+                        <li>
+                            <code>mousedown</code>, <code>mouseup</code><br>
+                            Pulsación y liberación de un botón, respectivamente.
+                        </li>
+                        <li>
+                            <code>mouseenter</code>, <code>mouseleave</code>, <code>mousemove</code><br>
+                            Entrada/salida del puntero en un área, y su movimiento.
+                            
+                        </li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h4>Eventos de teclado</h4>
+                    <ul>
+                        <li><code>keydown</code>, <code>keyup</code><br>
+                            Pulsación o liberación de una tecla.
+                        </li>
+                        <li><code>keypress</code><br>
+                            Pulsación + liberación
+                        </li>
+                        
+                    </ul>
+                </section>
+                
+                <section>
+                    <h4>El objeto <code>event</code></h4>
+                    <p>Según el evento que capturemos, puede ser necesario conocer más información sobre cómo se produce el evento.</p>
+                    <p>Por ejemplo:</p>
+                    <ul>
+                        <li>Posición del cursor del ratón en <code>mousemove</code>.</li>
+                        <li>Qué botón del ratón se ha pulsado en <code>mousedown</code>.</li>
+                        <li>Qué tecla se ha pulsado en <code>keypress</code>.</li>
+                        <li>Si se pulsó alguna de las teclas auxiliaries (Ctrl, Alt) cuando se generó un evento <code>keydown</code>.</li>
+                        <li>etc.</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <p>La función manejadora de eventos que recibe el método <code>.on()</code> recibe un objeto de la clase <code>Event</code> que contiene esta información adicional.</p>
+                    <pre><code data-trim data-noescape class="javascript">
+$("#elem").on("mousedown", function(<span class="hl">event</span>) {
+    console.log("Posición: " + event.pageX + ", " + event.pageY);
+    console.log("Botón pulsado: " + event.which);
+});
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>Información del objeto <code>event</code>:</p>
+                    <ul>
+                        <li><code>target</code>: Elemento del DOM que produjo el evento.</li>
+                        <li><code>timeStamp</code>: Hora del evento.</li>
+                        <li><code>which</code>: Botón o tecla pulsado, en caso de eventos de ratón y teclado. </li>
+                        <li><code>ctrlKey</code>, <code>metaKey</code>, <code>shiftKey</code>, <code>altKey</code>: Indica si se ha pulsado alguna tecla auxiliar.</li>
+                        <li><code>pageX</code>, <code>pageY</code>: coordenadas del ratón, con respecto al documento HTML.</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h4>Ejemplo: movimiento del ratón</h4>
+                    <img src="images/07/PruebaRaton.png" width="60%">
+                    <pre><code data-trim class="html">
+&lt;p&gt;Mueve el rat&oacute;n por esta superficie ...&lt;/p&gt;
+&lt;div id=&quot;superficie&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;posicion&quot;&gt;&lt;/div&gt;                    
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <pre><code data-trim class="javascript">
+$(document).ready(function() {
+    $("#superficie").on("mouseenter", function() {
+        $("#posicion").show();
+    });
+
+    $("#superficie").on("mouseleave", function() {
+        $("#posicion").hide();
+    });
+
+    $("#superficie").on("mousemove", function(event) {
+        $("#posicion").text(
+            event.pageX + " x " + event.pageY
+        );
+    });
+});                    
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Ejemplo: pulsación de teclas</h4>
+                    <img src="images/07/PruebaTeclado.png" width="60%">
+<pre><code data-trim class="html">
+&lt;p&gt;C&oacute;digo de tecla pulsado: &lt;span id=&quot;codigoTecla&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;
+    &lt;span class=&quot;indicador&quot; id=&quot;ctrl&quot;&gt;Control&lt;/span&gt;
+    &lt;span class=&quot;indicador&quot; id=&quot;alt&quot;&gt;Alt&lt;/span&gt;
+    &lt;span class=&quot;indicador&quot; id=&quot;meta&quot;&gt;Meta&lt;/span&gt;
+    &lt;span class=&quot;indicador&quot; id=&quot;shift&quot;&gt;Shift&lt;/span&gt;
+&lt;/p&gt;
+</code></pre>                    
+                </section>
+                
+                <section>
+                    <pre><code data-trim class="javascript">
+$(document).ready(function(event) {
+    $(document).on("keypress", function(event) {
+        $(".indicador").removeClass("activo");
+        $("#codigoTecla").text(event.which);
+        
+        if (event.ctrlKey) {
+            $("#ctrl").addClass("activo");
+        }
+        
+        if (event.metaKey) {
+            $("#meta").addClass("activo");
+        }
+        
+        if (event.altKey) {
+            $("#alt").addClass("activo");
+        }
+        
+        if (event.shiftKey) {
+            $("#shift").addClass("activo");
+        }
+    });
+});                    
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Propagación de eventos</h4>
+                    <p>Sabemos que los elementos de HTML pueden estar anidados unos dentro de otros:</p>
+                    <img src="images/07/AnidamientoDOM.png" width="60%">
+                </section>
+                
+                <section>
+                    <pre style="float:left; width:40%; margin:5%"><code data-trim class="html">
+&lt;div id=&quot;contenedor&quot;&gt;
+    Regi&oacute;n externa
+    &lt;div id=&quot;region1&quot;&gt;
+        Region 1
+    &lt;/div&gt;
+    &lt;div id=&quot;region2&quot;&gt;
+        Region 2
+    &lt;/div&gt;
+&lt;/div&gt;                    
+                    </code></pre>
+                    <p style="float:right; width:45%">
+                        <img src="images/07/Anidamiento.svg" width="80%" style="border:none;box-shadow:none">
+                    </p>
+                    <div style="clear:both"></div>
+                </section>
+                
+                <section>
+                    <p>Supongamos que hacemos clic sobre la región 1:</p>
+                    <img src="images/07/AnidamientoDOM2.png" width="50%">
+                    <p>¿Quién recibe el evento <code>click</code>? ¿La region 1? ¿La región externa? ¿Ambas?</p>
+                </section>
+                
+                <section>
+                    <p>Los eventos se propagan de manera ascendente en el DOM, desde los elementos &laquo;internos&raquo; hasta los &laquo;externos&raquo;,<br> y <strong>en ese orden</strong> (<em>bubble propagation</em>)</p>
+                    <img src="images/07/Propagacion.svg" width="40%" style="border:none;box-shadow:none">
+                </section>
+                
+                <section>
+                    <p>Supongamos el siguiente código Javascript:</p>
+                    <pre><code data-trim class="javascript">
+$("body").on("click", function() {
+    console.log("Se ha pulsado en el cuerpo de la página");
+});
+
+$("#contenedor").on("click", function() {
+    console.log("Se ha pulsado en la región externa");
+});
+
+$("#region1").on("click", function() {
+    console.log("Se ha pulsado en la región 1");
+});
+
+$("#region2").on("click", function() {
+    console.log("Se ha pulsado en la región 2");
+});                    
+                    </code></pre>
+                </section>
+                <section>
+                    <p>Al hacer clic en la región 1:</p>
+                    <pre><code data-trim data-noescape class="no-highlight">
+Se ha pulsado en la región 1
+Se ha pulsado en la región externa        <span class="arrow_box_left caja_codigo" style="position:relative; top: 10px;">También reciben el evento</span>
+Se ha pulsado en el cuerpo de la página
+                    </code></pre>
+                    <p>Al hacer clic en la región 2:</p>
+                    <pre><code data-trim data-noescape class="no-highlight">
+Se ha pulsado en la región 2
+Se ha pulsado en la región externa        <span class="arrow_box_left caja_codigo" style="position:relative; top: 10px;">También reciben el evento</span>
+Se ha pulsado en el cuerpo de la página
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>Es posible impedir la propagación del evento hacia los elementos superiores del árbol DOM.</p>
+                    <p>Para ello hay que llamar al método <code>.stopPropagation()</code> el objeto <code>Event</code> recibido:</p>
+                    <pre><code data-trim data-noescape class="javascript">
+...                    
+$("#region1").on("click", function(<span class="hl">event</span>) {
+    console.log("Se ha pulsado en la región 1");
+    <span class="hl">event.stopPropagation();</span>
+});
+...
+                    </code></pre>
+                    <p>Al hacer clic en la región 1:</p>
+                    <pre><code data-trim data-noescape class="no-highlight">
+    Se ha pulsado en la región 1   <span class="arrow_box_left caja_codigo">El evento no se propaga hacia arriba</span>
+                    </code></pre>
+                </section>
+            </section>
+    
+    
 
             
             
