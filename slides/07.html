@@ -38,7 +38,7 @@
         <div class="slides">
             <section data-background-image="images/RedBackground.jpg" data-background-transition="fade">
                 <div class="headerlesson">Tema 7</div>
-                <h1 style="height:4em;position:relative;top:0.3em">Javascript en el navegador:<br> jQuery y Bootstrap</h1>
+                <h1 style="height:3em;position:relative;top:0.3em">Javascript en el navegador: jQuery</h1>
                 <div class="headerlesson">
                     Aplicaciones Web - GIS - Curso 2016/17
                 </div>
@@ -58,15 +58,12 @@
 
             <section data-background-image="images/RedBackground.jpg" data-background-transition="fade" id="p1">
                 <ol class="contenidos" style="width:17em">
-                    <li><a href="#/p1" class="outline fragment highlight-orange">¿Por qué un modelo asíncrono?</a></li>
-                    <li><a href="#/p2" class="outline">Más sobre módulos</a></li>
-                    <li><a href="#/p3" class="outline">Funciones y paquetes adicionales</a></li>
-                    <li><a href="#/p4" class="outline">Eventos y flujos</a></li>
-                    <li><a href="#/p5" class="outline">Acceso a bases de datos</a></li>
-                    <li><a href="#/p6" class="outline">Subida de ficheros</a></li>
-                    <li><a href="#/p7" class="outline">Binarios y bases de datos</a></li>
-                    <li><a href="#/p8" class="outline">Validación de formularios</a></li>
-                    <li><a href="#/p9" class="outline">Bibliografía</a></li>
+                    <li><a href="#/p1" class="outline fragment highlight-orange">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Objetos predefinidos</a></li>
+                    <li><a href="#/p3" class="outline">Document Object Model (DOM)</a></li>
+                    <li><a href="#/p4" class="outline"><span style="text-transform:none">j</span>Query</a></li>
+                    <li><a href="#/p5" class="outline">Sistema de módulos AMD</a></li>
+                    <li><a href="#/p6" class="outline">Bibliografía</a></li>
                 </ol>
             </section>
             
@@ -208,6 +205,29 @@ for (var i = 0; i &lt; 10; i++) {
                 <p><strong>Atención:</strong> las variables globales definidas en un script son accesibles desde los scripts incluidos posteriormente.</p>
             </section>
             
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p2">
+                <ol class="contenidos" style="width:17em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline current">Objetos predefinidos</a></li>
+                    <li><a href="#/p3" class="outline">Document Object Model (DOM)</a></li>
+                    <li><a href="#/p4" class="outline"><span style="text-transform:none">j</span>Query</a></li>
+                    <li><a href="#/p5" class="outline">Sistema de módulos AMD</a></li>
+                    <li><a href="#/p6" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
+            <section>
+                <h2>Objetos predefinidos</h2>
+                <p>Los siguientes objetos están disponibles en cualquier navegador:</p>
+                <ul>
+                    <li>Variables y funciones globales: <code>window</code></li>
+                    <li>Manejo del historial: <code>history</code></li>
+                    <li>Información del navegador: <code>navigator</code></li>
+                    <li>Información sobre la pantalla: <code>screen</code></li>
+                </ul>
+            </section>
+
+            
             <section>
                 <h3>El objeto <code>window</code></h3>
                 <p>Contiene todas las funciones y variables globales definidas, más algunos métodos predefinidos:</p>
@@ -332,6 +352,18 @@ console.log(screen.height);  // &rarr; 1920
                     </code></pre></li>
                 </ul>
             </section>
+
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p3">
+                <ol class="contenidos" style="width:17em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Objetos predefinidos</a></li>
+                    <li><a href="#/p3" class="outline current">Document Object Model (DOM)</a></li>
+                    <li><a href="#/p4" class="outline"><span style="text-transform:none">j</span>Query</a></li>
+                    <li><a href="#/p5" class="outline">Sistema de módulos AMD</a></li>
+                    <li><a href="#/p6" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
             
             <section>
                 <h2>DOM (Document object model)</h2>
@@ -449,6 +481,18 @@ console.log(elemsDiv.length)  // &rarr; 2
                     <li class="fragment highlight-blue">jQuery <span class="arrow_box_left caja_codigo fragment" style="position:relative; left:100px">Este tema</span></li>
                 </ul>
             </section>
+            
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p4">
+                <ol class="contenidos" style="width:17em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Objetos predefinidos</a></li>
+                    <li><a href="#/p3" class="outline">Document Object Model (DOM)</a></li>
+                    <li><a href="#/p4" class="outline current"><span style="text-transform:none">j</span>Query</a></li>
+                    <li><a href="#/p5" class="outline">Sistema de módulos AMD</a></li>
+                    <li><a href="#/p6" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
             
             <section>
                 <h2><span style="text-transform:none">j</span>Query</h2>
@@ -1667,19 +1711,320 @@ $("#elem").css("position", "relative")
             
             <section>
                 <ul>
-                    <li>jQueryMobile: componentes de interfaz de usuario enfocados a  dispositivos móviles.<br>
+                    <li><strong>jQueryMobile</strong>: componentes de interfaz de usuario enfocados a  dispositivos móviles.<br>
                     <a href="http://jquerymobile.com/">http://jquerymobile.com/</a>
                     </li>
-                    <li>QUnit: ejecución de tests de unidad.<br>
+                    <li><strong>QUnit</strong>: ejecución de tests de unidad.<br>
                         <a href="http://qunitjs.com/">http://qunitjs.com/</a>
                     </li>
                 </ul>
             </section>
-    
-    
+            
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="fade" id="p5">
+                <ol class="contenidos" style="width:17em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Objetos predefinidos</a></li>
+                    <li><a href="#/p3" class="outline">Document Object Model (DOM)</a></li>
+                    <li><a href="#/p4" class="outline"><span style="text-transform:none">j</span>Query</a></li>
+                    <li><a href="#/p5" class="outline current">Sistema de módulos AMD</a></li>
+                    <li><a href="#/p6" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
 
             
+            <section>
+                <h2>Módulos Javascript en el navegador</h2>
+                <p>El sistema de módulos de Node no es directamente aplicable al cliente.</p>
+                <p>Por tanto, no tenemos función <code>require</code>, ni módulos que exporten sus funciones mediante <code>module.exports</code>.</p>
+            </section>
             
+            <section>
+                <h3>Inclusión directa de ficheros .js</h3>
+                <p>Es posible separar el código Javascript de una página web en distintos ficheros <code>.js</code> e incluirlos mediante las respectivas etiquetas <code>&lt;script&gt;</code>:</p>
+                <pre><code data-trim class="html">
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;script src="modulo1.js"&gt;&lt;/script&gt;                
+        &lt;script src="modulo2.js"&gt;&lt;/script&gt;                
+        ...
+    &lt;/head&gt;
+    ...
+                </code></pre>
+                <p>El resultado de esto es equivalente a importar un único fichero <code>.js</code> en el que se concatenen todas las definiciones de <code>modulo1.js</code>, seguidas de las de <code>modulo2.js</code>, etc.</p>
+                <p>¿Qué problema conlleva esto?</p>
+            </section>
+            
+            <section>
+                <p>Supongamos las siguientes implementaciones:</p>
+                <p><code>modulo1.js</code></p>
+                <pre><code data-trim class="javascript">
+function minombre() {
+    ...
+}
+                </code></pre>
+                <p><code>modulo2.js</code></p>
+                <pre><code data-trim class="javascript">
+...
+minombre = 5;
+...
+                </code></pre>
+                <p>Existe un <strong>conflicto de nombres</strong> entre los dos módulos. Si un mismo identificador se define en ambos módulos, las definiciones de <code>modulo2.js</code> prevalecen sobre las de <code>modulo1.js</code>.</p>
+            </section>
+            
+            
+            <section>
+                <h3>La librería Require.js</h3>
+                <p><a href="http://requirejs.org/">http://requirejs.org/</a></p>
+                <p>Esta librería proporciona un sistema de módulos que evita que los identificadores definidos en distintos módulos interfieran entre sí.</p>
+                <p>Tiene la misma finalidad que el sistema de módulos de Node, pero está basada en otro modelo: AMD (<em>Asynchronous Module Definition</em>).</p>
+            </section>
+            
+            <section>
+                <p>En los siguientes ejemplos, supondremos la siguiente estructura de directorios:</p>
+                <img src="images/07/FolderStructure3.svg" width="40%" style="border:none;box-shadow:none">
+            </section>
+            
+            <section>
+                <h3>Definición de un módulo</h3>
+                <pre><code data-trim  data-noescape class="javascript">
+"use strict";
+
+define(["<em>dep1</em>", "<em>dep2</em>", ...], function(<em>mod1</em>, <em>mod2</em>, ...) {
+
+    // Definiciones del módulo
+    
+    return <em>objeto_o_funcion_exportado</em>;
+
+});
+                </code></pre>
+                <p>La función <code>define</code> recibe dos parámetros:</p>
+                <ul>
+                    <li>Una lista con los nombres de las dependencias de los módulos que se está definiendo.</li>
+                    <li>Una función que recibe los objetos exportados por dichas dependencias y devuelve el valor exportado por el módulo.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <p>La definición de un módulo mediante Require.js</p>
+                <pre><code data-trim  data-noescape class="javascript">
+"use strict";
+
+define(["<em>dep1</em>", "<em>dep2</em>", ...], function(<em>mod1</em>, <em>mod2</em>, ...) {
+
+    // Definiciones del módulo
+    return <em>objeto_o_funcion_exportado</em>;
+
+});
+                </code></pre>
+                <p>es equivalente al siguiente código en Node:</p>
+                <pre><code data-trim data-noescape class="javascript">
+var <em>mod1</em> = require("<em>dep1</em>");
+var <em>mod2</em> = require("<em>dep2</em>");
+...
+// Definiciones del módulo
+...
+module.exports = <em>objeto_o_funcion_exportado</em>;
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>Ejemplo</h4>
+                <img src="images/07/FolderStructure3.svg" width="40%" style="border:none;box-shadow:none;float:left">
+                <div style="float:right;width:60%">
+                    <code>fib.js</code>
+                    <pre><code data-trim data-noescape class="javascript" style="font-size:75%;line-height:110%">
+define([], function() {
+
+    var PHI = (1 + Math.sqrt(5)) / 2;
+
+    function fibMasEficiente(n) {
+        var p1 = Math.pow(PHI, n);
+        var p2 = Math.pow(1 - PHI, n);
+        return Math.round((p1 - p2) / Math.sqrt(5));
+    }
+
+    function fib(n) {
+        console.assert(typeof(n) === "number",
+            `fib: ${n} is not a number`);
+        return fibMasEficiente(n);
+    }
+
+    return fib;   <span class="arrow_box_left caja_codigo">Se exporta una única función</span>
+    
+});                    
+                    </code></pre>
+                    
+                </div>
+                <div style="clear:both"></div>
+            </section>
+
+            
+            <section>
+                <img src="images/07/FolderStructure3.svg" width="40%" style="border:none;box-shadow:none;float:left">
+                <div style="float:right;width:60%">
+                    <code>fact.js</code>
+                    <pre><code data-trim data-noescape class="javascript" style="font-size:90%;line-height:115%">
+define([], function() {
+    function fact(n) {
+        var result = 1;
+        for (var i = 1; i &lt;= n; i++) {
+            result = result * i;
+        }
+        return result;
+    }
+
+    return fact;   <span class="arrow_box_left caja_codigo">Se exporta una función</span>
+});                    
+                    </code></pre>
+                    <code>fact.js</code>
+                    <pre><code data-trim data-noescape class="javascript" style="font-size:90%;line-height:115%">
+define([], function () {
+
+    function sqr(n) {
+        return n * n;
+    }
+    
+    return sqr;    <span class="arrow_box_left caja_codigo">Se exporta una función</span>
+}); 
+                    </code></pre>
+                    
+                </div>
+                <div style="clear:both"></div>
+            </section>
+            
+    
+            <section>
+                <img src="images/07/FolderStructure3.svg" width="40%" style="border:none;box-shadow:none;float:left">
+                <div style="float:right;width:60%">
+                    <code>geometria.js</code>
+                    <pre><code data-trim data-noescape class="javascript" style="font-size:90%;line-height:115%">
+define(["<span class="hl">math/sqr</span>"], function(<span class="hl">sqr</span>) {
+            <span class="no_arrow_box caja_codigo" style="position:relative;top:10px">Este módulo depende de <span style="font-family:monospace">sqr</span></span>
+
+    function areaCuadrado(lado) {
+        return <span class="hl">sqr</span>(lado);
+    }
+
+    function areaCirculo(radio) {
+        return Math.PI * <span class="hl">sqr</span>(radio);
+    }
+
+    function perimetroCuadrado(lado) {
+        return 4 * lado;
+    }
+
+    function perimetroCirculo(radio) {
+        return 2 * Math.PI * radio;
+    }
+
+    return {   <span class="arrow_box_left caja_codigo" style="position:relative;top:-4px">Se exporta un objeto</span>
+       areaCuadrado: areaCuadrado,
+       areaCirculo: areaCirculo,
+       perimetroCuadrado: perimetroCuadrado,
+       perimetroCirculo: perimetroCirculo
+    };
+
+});                    </code></pre>
+                </div>
+                <div style="clear:both"></div>
+            </section>
+            
+            <section>
+                <div>
+                    <code>main.js</code>
+                    <pre><code data-trim data-noescape class="javascript" style="font-size:90%;line-height:115%">
+define(["math/sqr", "math/fib", "geometria"], function(sqr, fib, g) {
+
+    console.log(`4^2 = ${sqr(4)}`);
+    console.log(`fib(6) = ${fib(6)}`);
+    console.log(`Area de circulo de radio 10: ${g.areaCirculo(10)}`);
+    
+});                    </code></pre>
+                </div>
+                <p>Para utilizar este módulo en el documento HTML es necesario importar el script <code>require.js</code> pasando como atributo <code>data-main</code> el nombre del módulo principal:</p>
+                <pre><code data-trim data-noescape class="html">
+&lt;script src="scripts/require.js" <span class="hl">data-main="scripts/main"</span>&gt;
+&lt;/script&gt;    
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Antes de definir el módulo principal suele incluirse una llamada a <code>requirejs.config</code> indicando las opciones de configuración:</p>
+                <pre><code data-trim class="javascript">
+"use strict";
+
+requirejs.config({  
+    // Directorio en el que se encuentran los scripts
+    baseUrl: "scripts",
+});
+
+define(["math/sqr", "math/fib", "geometria"],
+    function(sqr, fib, g) {
+        ...
+    });
+
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Por defecto, al introducir un módulo <code>nombreMod</code> como dependencia, se busca <code>nombreMod.js</code> en el directorio indicado por la opción <code>baseUrl</code>.</p>
+                <p>Si se quiere, puede establecerse manualmente una correspondencia entre nombres lógicos de módulos y nombres en el sistema de ficheros. Para ello se utiliza la opción <code>paths</code>.</p>
+            </section>
+            
+            <section>
+                <h4>Ejemplo: uso de <span style="text-transform:none">j</span>Query</h4>
+                <pre><code data-trim data-noescape class="javascript">
+requirejs.config({
+    baseUrl: "scripts",
+    paths: {
+        jquery: "../jquery/jquery-3.1.1.min" <span class="arrow_box_left caja_codigo">No introducir extension .js</span>
+    } 
+});             
+                </code></pre>
+                
+                <p>El siguiente módulo cargará el fichero <code>../jquery/jquery-3.1.1.min.js</code> como dependencia:</p>
+                <pre><code data-trim class="javascript">
+define(["jquery"], function($) {
+    $("#miDiv").on("click", function() {
+        $("#aviso").show();
+    })
+});                
+                </code></pre>
+            </section>
+
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="fade" id="p6">
+                <ol class="contenidos" style="width:17em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Objetos predefinidos</a></li>
+                    <li><a href="#/p3" class="outline">Document Object Model (DOM)</a></li>
+                    <li><a href="#/p4" class="outline"><span style="text-transform:none">j</span>Query</a></li>
+                    <li><a href="#/p5" class="outline">Sistema de módulos AMD</a></li>
+                    <li><a href="#/p6" class="outline current">Bibliografía</a></li>
+                </ol>
+            </section>
+            
+            
+            <section>
+                <h2>Bibliografía</h2>
+                <div style="float:left; width:70%">
+                    <ul>
+                        <li>B. Bibeault, Y. Katz, A. De Rosa
+                            <br>
+                            <a href="http://cisne.sim.ucm.es/record=b3549757~S6*spi">jQuery in Action, 3<sup style="font-size:60%">rd</sup> edition</a>
+                            <br> Manning Publications, 2015
+                        </li>
+                        <li style="position:relative;top:20px">
+                            <a href="http://api.jquery.com/">Documentación de la API de jQuery</a>
+                            <span style="font-size:70%">http://api.jquery.com/</span>
+                        </li>
+                    </ul>
+                </div>
+                <div style="float:right; width:30%">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/51XOg1baCBL._SX396_BO1,204,203,200_.jpg" style="width:60%; border:none">
+                </div>
+                <div style="clear:both"></div>
+
+            </section>
         
         </div>
 
