@@ -1540,6 +1540,140 @@ $("#region1").on("click", function(<span class="hl">event</span>) {
     Se ha pulsado en la región 1   <span class="arrow_box_left caja_codigo">El evento no se propaga hacia arriba</span>
                     </code></pre>
                 </section>
+                
+                <section>
+                    <h4>Acciones por defecto</h4>
+                    <p>Algunos tipos de eventos llevan implícita una determinada acción por parte del navegador:</p>
+                    <ul>
+                        <li>
+                            Hacer clic en un enlace: el navegador salta a la URL correspondiente.
+                        </li>
+                        <li>
+                            Hacer clic en el botón <em>Enviar</em> de un formulario: el navegador realiza una petición GET/POST a la URL indicada en el attributo <code>action</code> del formulario.
+                        </li>
+                        <li>
+                            Pulsar una combinación de teclas (p. ej. <em>Ctrl+S</em>), que realiza una determinada acción en el navegador (p. ej. guardar la página actual en el cliente). 
+                        </li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <p>Es posible evitar la ejecución de estas acciones utilizando el método <code>preventDefault()</code> de la clase <code>Event</code>, tras capturar un evento.</p>
+                </section>
+                
+                <section>
+                    <h4>Ejemplo: validación de un formulario</h4>
+                    <img src="images/07/Validacion.png" width="70%">
+                    <pre><code data-trim class="html">
+&lt;form action=&quot;correcto.html&quot; method=&quot;GET&quot; id=&quot;formulario&quot;&gt;
+    Introduce un n&uacute;mero: 
+    &lt;input type=&quot;text&quot; name=&quot;num&quot;&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;Enviar&quot;&gt;
+&lt;/form&gt;                    
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <p>Si asociamos un evento al botón <code>Enviar</code> del formulario, podemos comprobar que el valor introducido es un número.</p>
+                    
+                    <pre><code data-trim class="javascript">
+$("#formulario input[type=submit]").on("click", function() {
+    var valor = $("#formulario input[type=text]").prop("value");
+    if (isNaN(Number(valor))) {
+       alert("No has introducido ningún número!");
+    }
+});
+                    </code></pre>
+                    <p>Sin embargo, esta solución no funciona: cuando el usuario introduce una entrada no numérica en el cuadro de texto, además de mostrarse el mensaje con <code>alert(...)</code>, se salta a la URL de destino del formulario (<code>correcto.html</code>).</p>
+                </section>
+                
+                <section>
+                    <p>Para evitar el envío del formulario en caso de no ser validado, hemos de inhibir la acción por defecto mediante el método <code>preventDefault()</code>.</p>
+
+                    <pre><code data-trim data-noescape class="javascript">
+$("#formulario input[type=submit]").on("click", function(<span class="hl">event</span>) {
+    var valor = $("#formulario input[type=text]").prop("value");
+    if (isNaN(Number(valor))) {
+       alert("No has introducido ningún número!");
+       
+       // Inhibir el envío del formulario
+       <span class="hl">event.preventDefault();</span>
+    }
+});
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Advertencia</h4>
+                    <p>Hemos visto un ejemplo de validación de formularios que se ejecuta en el lado del navegador.</p>
+                    
+                    <p>Esta validación es beneficiosa, en tanto que se evita el envío de formularios incorrectos al servidor.</p>
+                    <p>No obstante, esta validación del lado del cliente <strong>no exime</strong> de que también se realice la validación en el lado del servidor.</p>
+                </section>
+            </section>
+            
+            <section>
+                <section>
+                    <div class="bloquetitulo" style="padding:45px 20px 20px 20px">
+                        <h3>Animaciones y efectos</h3>
+                    </div>
+                </section>
+                
+                <section>
+                    <h4>Efectos</h4>
+                    <p>Además de los métodos <code>show()</code> y <code>hide()</code>, es posible utilizar efectos visuales para mostrar y ocultar elementos.</p>
+                    <ul>
+                        <li><code>fadeOut([<em>duración</em>])</code>, <code>fadeIn([<em>duración</em>])</code>,<code>fadeTo(<em>duración</em>, <em>opacidad</em>)</code><br>
+                            Desaparición / aparición gradual.
+                        </li>
+                        <li>
+                            <code>slideDown([<em>duración</em>])</code>, <code>slideUp([<em>duración</em>])</code><br>
+                            Desaparición / aparición mediante desplazamiento.
+                        </li>
+                    </ul>
+                    <p>Ejemplo:</p>
+                    <pre><code data-trim class="javascript">
+$("#elem").fadeOut(500); // Tarda medio milisegundo en desaparecer
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h4>Animaciones personalizadas</h4>
+                    <p>Método <code>.animate(<em>propiedades</em>, <em>t</em>)</code></p>
+                    <p>Modifica las propiedades CSS de la selección de manera gradual para que alcancen los valores indicados en el objeto <code><em>propiedades</em></code>. La transición dura <code><em>t</em></code> milisegundos.  </p>
+                    <pre><code data-trim class="javascript">
+// Se hace un desplazamiento y un fundido simultáneos durante
+// un segundo
+$("#elem").css("position", "relative")
+          .animate({ top: "100px", opacity: "0" }, 1000);
+                    </code></pre>
+                </section>
+            </section>
+            
+            
+            <section>
+                <h3>Extensiones de <span style="text-transform:none">j</span>Query</h3>
+                <p>jQuery es un framework modular, que permite la incorporación de extensiones (<em>plug-ins</em>)</p>
+                <ul>
+                    <li>Validación de formularios:<br>
+                        <a href="https://github.com/jzaefferer/jquery-validation">https://github.com/jzaefferer/jquery-validation</a><br>
+                        <a href="https://github.com/victorjonsson/jQuery-Form-Validator">https://github.com/victorjonsson/jQuery-Form-Validator</a>
+                    </li>
+                    <li><strong>jQuery UI</strong>: componentes de interfaz de usuario, drag-and-drop, etc.<br>
+                    <a href="http://jqueryui.com/">http://jqueryui.com/</a>
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <ul>
+                    <li>jQueryMobile: componentes de interfaz de usuario enfocados a  dispositivos móviles.<br>
+                    <a href="http://jquerymobile.com/">http://jquerymobile.com/</a>
+                    </li>
+                    <li>QUnit: ejecución de tests de unidad.<br>
+                        <a href="http://qunitjs.com/">http://qunitjs.com/</a>
+                    </li>
+                </ul>
             </section>
     
     
