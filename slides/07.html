@@ -62,7 +62,7 @@
                     <li><a href="#/p2" class="outline">Objetos predefinidos</a></li>
                     <li><a href="#/p3" class="outline">Document Object Model (DOM)</a></li>
                     <li><a href="#/p4" class="outline"><span style="text-transform:none">j</span>Query</a></li>
-                    <li><a href="#/p5" class="outline">Sistema de módulos AMD</a></li>
+                    <li><a href="#/p5" class="outline">Sistema de módulos: require.js</a></li>
                     <li><a href="#/p6" class="outline">Bibliografía</a></li>
                 </ol>
             </section>
@@ -71,13 +71,13 @@
                 <h2>Introducción</h2>
                 <img src="images/07/JavascriptServidor.svg" width="80%" style="border:none;box-shadow:none">
                 <p>
-                    <strong>Temas 4, 5 y 6</strong>: hemos utilizado Javascript para implementar servidores HTTP y toda la funcionalidad que se ejecuta dentro del lado del servidor: acceso a bases de datos, servir ficheros al cliente, lógica de aplicación, etc.
+                    <strong>Temas 4, 5 y 6</strong>: hemos utilizado Javascript para implementar servidores HTTP y toda la funcionalidad que se ejecuta dentro del servidor: acceso a bases de datos, servir ficheros al cliente, lógica de aplicación, etc.
                 </p>
             </section>            
             
             <section>
                 <img src="images/07/JavascriptCliente.svg" width="90%" style="border:none;box-shadow:none">
-                <p>En <strong>este tema</strong> abordaremos la implementación de programas en Javascript pensados para ejecutarse en el navegador.</p>
+                <p>En <strong>este tema</strong> abordaremos la implementación de código Javascript pensado para ejecutarse en el navegador.</p>
             </section>
             
             <section>
@@ -150,7 +150,7 @@
             </section>
             
             <section>
-                <p>Abrir la página en el navegador y utilizar las <strong>herramientas del desarrollador</strong> para visualizar la consola.</p>
+                <p>Abrimos la página en el navegador y utilizamos las <strong>herramientas del desarrollador</strong> para visualizar la consola.</p>
                 <p>En Firefox: <em>Ctrl+Mayús+K</em></p>
                 <img src="images/07/EjecucionFirefox.png" width="75%" style="border:none">
             </section>
@@ -211,7 +211,7 @@ for (var i = 0; i &lt; 10; i++) {
                     <li><a href="#/p2" class="outline current">Objetos predefinidos</a></li>
                     <li><a href="#/p3" class="outline">Document Object Model (DOM)</a></li>
                     <li><a href="#/p4" class="outline"><span style="text-transform:none">j</span>Query</a></li>
-                    <li><a href="#/p5" class="outline">Sistema de módulos AMD</a></li>
+                    <li><a href="#/p5" class="outline">Sistema de módulos: require.js</a></li>
                     <li><a href="#/p6" class="outline">Bibliografía</a></li>
                 </ol>
             </section>
@@ -359,7 +359,7 @@ console.log(screen.height);  // &rarr; 1920
                     <li><a href="#/p2" class="outline">Objetos predefinidos</a></li>
                     <li><a href="#/p3" class="outline current">Document Object Model (DOM)</a></li>
                     <li><a href="#/p4" class="outline"><span style="text-transform:none">j</span>Query</a></li>
-                    <li><a href="#/p5" class="outline">Sistema de módulos AMD</a></li>
+                    <li><a href="#/p5" class="outline">Sistema de módulos: require.js</a></li>
                     <li><a href="#/p6" class="outline">Bibliografía</a></li>
                 </ol>
             </section>
@@ -395,7 +395,7 @@ console.log(screen.height);  // &rarr; 1920
             </section>
             
             <section>
-                <p>Por tanto, un documento HTML puede concebirse como una estructura arborescente:</p>
+                <p>Por tanto, un documento HTML puede visualizarse como una estructura arborescente:</p>
                 <img src="images/07/DOM.svg" width="80%" style="border:none;box-shadow:none">
             </section>
             
@@ -443,7 +443,7 @@ function imprimirArbol(root, numEspacios) {
     console.log(" ".repeat(numEspacios) + root.toString());
     
     // Recorre todos los hijos, imprimiendo cada uno de ellos
-    // en un nivel de indentación superior:
+    // en un nivel de sangrado (indentación) superior:
     var current = root.firstChild;
     while (current !== null) {
         imprimirArbol(current, numEspacios + 2);
@@ -471,15 +471,17 @@ console.log(elemsDiv.length)  // &rarr; 2
             
             <section>
                 <h3>Inconvenientes de utilizar DOM</h3>
-                <p>En la práctica, no suelen utilizarse los métodos mostrados anteriormente para acceder directamente al árbol DOM.</p>
-                <p>
+                <p>En la práctica no suelen utilizarse los métodos mostrados anteriormente para acceder directamente al árbol DOM.</p>
+                <p class="fragment">
                     <strong>Motivo</strong>: inconsistencias entre distintos navegadores.
                 </p>
-                <p>Es más recomendable utilizar una librería Javascript que proporcione su propia API abstrayendo las diferencias entre los navegadores:</p>
-                <ul>
-                    <li>Prototype.js</li>
-                    <li class="fragment highlight-blue">jQuery <span class="arrow_box_left caja_codigo fragment" style="position:relative; left:100px">Este tema</span></li>
-                </ul>
+                <div class="fragment">
+                    <p>Es más recomendable utilizar una librería Javascript que proporcione su propia API abstrayendo las diferencias entre los navegadores:</p>
+                    <ul>
+                        <li>Prototype.js</li>
+                        <li class="fragment highlight-blue">jQuery <span class="arrow_box_left caja_codigo fragment" style="position:relative; left:100px">Este tema</span></li>
+                    </ul>
+                </div>
             </section>
             
             <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p4">
@@ -488,7 +490,7 @@ console.log(elemsDiv.length)  // &rarr; 2
                     <li><a href="#/p2" class="outline">Objetos predefinidos</a></li>
                     <li><a href="#/p3" class="outline">Document Object Model (DOM)</a></li>
                     <li><a href="#/p4" class="outline current"><span style="text-transform:none">j</span>Query</a></li>
-                    <li><a href="#/p5" class="outline">Sistema de módulos AMD</a></li>
+                    <li><a href="#/p5" class="outline">Sistema de módulos: require.js</a></li>
                     <li><a href="#/p6" class="outline">Bibliografía</a></li>
                 </ol>
             </section>
@@ -528,7 +530,7 @@ console.log(elemsDiv.length)  // &rarr; 2
             <section>
                 <h4>Alternativa más sencilla: CDN</h4>
                 <p>En lugar de descargar la librería e incluirla en nuestra aplicación web, es posible enlazar una copia de la librería directamente en un CDN:</p>
-                <pre><code data-trim class="javascript" style="font-size:90%">
+                <pre><code data-trim class="html" style="font-size:90%">
 &lt;script src=&quot;https://code.jquery.com/jquery-3.1.1.min.js&quot;&gt;&lt;/script&gt;
                 </code></pre>
                 <p>Un CDN (<em>Content Delivery Network</em>) es un conjunto de servidores que albergan copias del mismo contenido estático para optimizar su descarga por parte del cliente.</p>
@@ -537,7 +539,7 @@ console.log(elemsDiv.length)  // &rarr; 2
             
             <section>
                 <h4>La variable <code>$</code></h4>
-                <p>Al cargar la librería jQuery se define una <strong>variable global</strong> nueva que proporciona todas las funciones.</p>
+                <p>Al cargar la librería jQuery se define una <strong>variable global</strong> nueva que contiene los métodos de jQuery.</p>
                 <p>El nombre de esta variable es <code>$</code></p>
                 <p class="fragment">(sí, <code>$</code> es un nombre de variable válido en Javascript)</p>
                 <div class="fragment">
@@ -572,16 +574,17 @@ console.log(elemsDiv.length)  // &rarr; 2
                 
                 <section>
                     <p>Gran parte de la programación Javascript en el cliente consiste en capturar los <strong>eventos</strong> que se producen determinados elementos de la página.</p>
-                    <p style="font-size:80%">Esto es lo que proporciona interactividad a la página.</p>
-                    <p>Tradicionalmente, la asignación de eventos se introducía directamente en el código HTML:</p>
+                    <p style="font-size:80%" class="fragment">Esto es lo que proporciona interactividad a la página.</p>
+                    
+                    <div class="fragment"><p>Tradicionalmente, la asignación de eventos se introducía directamente en el código HTML:</p>
                     <pre><code data-trim class="html">
 &lt;button onclick="miFuncion()"&gt; ... &lt;/button&gt;
-                    </code></pre>
-                    <p><strong>Problema:</strong> mezcla lógica de la aplicación con la vista.</p>
+                    </code></pre></div>
+                    <p class="fragment"><strong>Problema:</strong> mezcla lógica de la aplicación con la vista.</p>
                 </section>
                 
                 <section>
-                    <p>La asignación de eventos debe hacerse en un script separado del documento HTML:</p>
+                    <p>La asignación de eventos suele hacerse en un script separado del documento HTML:</p>
                     <pre><code data-trim class="html">
 &lt;html&gt;
 ...
@@ -598,7 +601,7 @@ var boton = document.getElementById("miBoton");
 boton.onclick = miFuncion;
 ...
                     </code></pre>
-                    <strong>Problema:</strong> ¿cuándo se ejecuta este código? Debemos asegurarnos que el DOM esté cargado antes de asignar atributos a sus elementos.
+                    <p class="fragment"><strong>Problema:</strong> ¿cuándo se ejecuta este código? Debemos asegurarnos que el DOM esté cargado antes de asignar atributos a sus elementos.</p>
                 </section>
                 
                 <section>
@@ -624,13 +627,15 @@ function botonPulsado() {
 }
                     </code></pre>
                     
-                    <p>Otra forma:</p>
-                    
-                     <pre><code data-trim class="javascript">
-$(document).ready(function() {
-    $("#miBoton").on("click", botonPulsado);
-});
-                    </code></pre>                   
+                    <div class="fragment">
+                        <p>Otra forma:</p>
+
+                         <pre><code data-trim class="javascript">
+    $(document).ready(function() {
+        $("#miBoton").on("click", botonPulsado);
+    });
+                        </code></pre>                   
+                    </div>
                 </section>
                                 
                 
@@ -644,7 +649,7 @@ $(document).ready(function() {
                 </section>
                 
                 <section>
-                    <p>jQuery proporciona métodos para manipular elementos del DOM: <code>attr()</code>, <code>class()</code>, <code>css()</code>, etc.</p>
+                    <p>jQuery proporciona métodos para manipular elementos del DOM: <code>prop()</code>, <code>class()</code>, <code>css()</code>, etc.</p>
                     <p>Para utilizar estos métodos hemos de determinar previamente los elementos sobre los que se aplican.</p>
                     <p>Esto se realiza mediante <strong>selectores</strong>.</p>
                 </section>
@@ -661,7 +666,7 @@ $("div.entrada > input")
                 </section>
                 
                 <section>
-                    <p>Una vez seleccionados los nodos, podemos utilizar las funciones de manipulación del DOM mencionadas:</p>
+                    <p>Una vez seleccionados los nodos, podemos utilizar las funciones de manipulación del DOM mencionadas anteriormente:</p>
                     <pre><code data-trim class="javascript">
 // Asigna un color de fondo a todos los elementos &lt;li&gt;
 $("li").css("background-color", "#FFFFD0");
@@ -808,7 +813,7 @@ $("#encabezado").css("background-color", "gray");
                 
                 <section>
                     <h4>Propiedades de un nodo del DOM</h4>
-                    <p>Cada elemento de la página HTML tiene un conjunto de propiedades, que depende del tipo de elemento:</p>
+                    <p>Cada elemento de la página HTML tiene un conjunto de propiedades que depende del tipo de elemento:</p>
                     <ul>
                         <li>Imágenes: <code>src</code>, <code>alt</code>, <code>title</code>, ...</li>
                         <li>Componentes de formularios: <code>type</code>, <code>checked</code>, <code>value</code>, etc.</li>
@@ -816,11 +821,13 @@ $("#encabezado").css("background-color", "gray");
                         <li>Cualquier elemento: <code>class</code>, <code>id</code>, etc.</li>
                         <li>etc.</li>
                     </ul>
-                    <p>El código HTML especifica sus valores iniciales:</p>
-                    <pre><code data-trim class="html">
-&lt;input type="text" name="edad" value="0"&gt;                    
-                    </code></pre>
-                    <p>...pero estos valores pueden modificarse dinámicamente.</p>
+                    <div class="fragment">
+                        <p>El código HTML especifica sus valores iniciales,</p>
+                        <pre><code data-trim class="html">
+    &lt;input type="text" name="edad" value="0"&gt;                    
+                        </code></pre>
+                        <p>pero estos valores pueden modificarse dinámicamente.</p>
+                    </div>
                 </section>
                 
                 
@@ -1041,10 +1048,10 @@ $("#mensaje").html("El campo está &lt;em&gt;vacío&lt;/em&gt;");
                     <p><code>.data(<em>nombreAtributo</em>)</code></p>
                     <p>Obtiene el valor de una propiedad personalizada del elemento seleccionado.</p>
                     <pre><code data-trim class="javascript">
-// Establecemos el valor inicial del atributo 'number' contenido
-// dentro del párrafo
+// Obtenemos el valor inicial del atributo 'number' contenido
+// dentro del elemento #elem
 
-$("#elem").data("number", 1 );                    
+var n = $("#elem").data("number");                    
                     </code></pre>
                 </section>
                 
@@ -1092,7 +1099,7 @@ $("ul > li.opcion").addClass("seleccionada").data("numOpcion", 0);
                     <pre><code data-trim class="javascript">
 $("img").prop("width", "90%")
         .css("border-bottom", "2px solid black")
-        .css("border-top", "1px solid red)
+        .css("border-top", "1px solid red")
         .on("click", pulsarImagen);
                     </code></pre>
                 </section>
@@ -1116,7 +1123,7 @@ var elem = $("&lt;div&gt;Nuevo elemento&lt;/div&gt;");
                     <pre><code data-trim class="javascript">
 $("&lt;img&gt;").prop("src", imagen).addClass("imagen-ciudad");
                     </code></pre>
-                    <p style="background-color:#FCC">Estos elementos no forman parte del documento HTML actual, a menos que se añadan su árbol DOM.</p>
+                    <p style="background-color:#FCC" class="fragment">Estos elementos no forman parte del documento HTML actual, a menos que se añadan al árbol DOM.</p>
                 </section>
                 
                 <section>
@@ -1652,7 +1659,7 @@ $("#formulario input[type=submit]").on("click", function(<span class="hl">event<
                     <p>Hemos visto un ejemplo de validación de formularios que se ejecuta en el lado del navegador.</p>
                     
                     <p>Esta validación es beneficiosa, en tanto que se evita el envío de formularios incorrectos al servidor.</p>
-                    <p>No obstante, esta validación del lado del cliente <strong>no exime</strong> de que también se realice la validación en el lado del servidor.</p>
+                    <p>No obstante, la validación del lado del cliente <strong>no exime de la validación en el lado del servidor</strong>.</p>
                 </section>
             </section>
             
@@ -1720,13 +1727,13 @@ $("#elem").css("position", "relative")
                 </ul>
             </section>
             
-            <section data-background-image="images/RedBackground.jpg" data-background-transition="fade" id="p5">
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p5">
                 <ol class="contenidos" style="width:17em">
                     <li><a href="#/p1" class="outline">Introducción</a></li>
                     <li><a href="#/p2" class="outline">Objetos predefinidos</a></li>
                     <li><a href="#/p3" class="outline">Document Object Model (DOM)</a></li>
                     <li><a href="#/p4" class="outline"><span style="text-transform:none">j</span>Query</a></li>
-                    <li><a href="#/p5" class="outline current">Sistema de módulos AMD</a></li>
+                    <li><a href="#/p5" class="outline current">Sistema de módulos: require.js</a></li>
                     <li><a href="#/p6" class="outline">Bibliografía</a></li>
                 </ol>
             </section>
@@ -1775,7 +1782,7 @@ minombre = 5;
             <section>
                 <h3>La librería Require.js</h3>
                 <p><a href="http://requirejs.org/">http://requirejs.org/</a></p>
-                <p>Esta librería proporciona un sistema de módulos que evita que los identificadores definidos en distintos módulos interfieran entre sí.</p>
+                <p>Proporciona un sistema de módulos que evita que los identificadores definidos en distintos módulos interfieran entre sí.</p>
                 <p>Tiene la misma finalidad que el sistema de módulos de Node, pero está basada en otro modelo: AMD (<em>Asynchronous Module Definition</em>).</p>
             </section>
             
@@ -1794,7 +1801,6 @@ define(["<em>dep1</em>", "<em>dep2</em>", ...], function(<em>mod1</em>, <em>mod2
     // Definiciones del módulo
     
     return <em>objeto_o_funcion_exportado</em>;
-
 });
                 </code></pre>
                 <p>La función <code>define</code> recibe dos parámetros:</p>
@@ -1992,13 +1998,13 @@ define(["jquery"], function($) {
                 </code></pre>
             </section>
 
-            <section data-background-image="images/RedBackground.jpg" data-background-transition="fade" id="p6">
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p6">
                 <ol class="contenidos" style="width:17em">
                     <li><a href="#/p1" class="outline">Introducción</a></li>
                     <li><a href="#/p2" class="outline">Objetos predefinidos</a></li>
                     <li><a href="#/p3" class="outline">Document Object Model (DOM)</a></li>
                     <li><a href="#/p4" class="outline"><span style="text-transform:none">j</span>Query</a></li>
-                    <li><a href="#/p5" class="outline">Sistema de módulos AMD</a></li>
+                    <li><a href="#/p5" class="outline">Sistema de módulos: require.js</a></li>
                     <li><a href="#/p6" class="outline current">Bibliografía</a></li>
                 </ol>
             </section>
