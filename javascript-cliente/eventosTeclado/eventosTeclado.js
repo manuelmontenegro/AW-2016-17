@@ -1,0 +1,19 @@
+
+$(document).ready(function(event) {
+    $(document).on("keypress", function(event) {
+        $(".indicador").removeClass("activo");
+        $("#codigoTecla").text(event.which);
+        if (event.ctrlKey) {
+            $("#ctrl").addClass("activo");
+        }
+        if (event.metaKey) {
+            $("#meta").addClass("activo");
+        }
+        if (event.altKey) {
+            $("#alt").addClass("activo");
+        }
+        if (event.shiftKey) {
+            $("#shift").addClass("activo");
+        }
+    });
+});

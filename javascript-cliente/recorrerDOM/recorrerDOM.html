@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bienvenido a mi página</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h1 id="encabezado">¡Bienvenido!</h1>
+        <div class="section">
+            <h2>Novedades</h2>
+            <p>No hay muchas novedades últimamente</p>
+        </div>
+        <div class="section">
+            <h2>Contacto</h2>
+            <p>Puedes contactar en la dirección de correo
+            <a href="mailto:montenegro@fdi.ucm.es">montenegro@fdi.ucm.es</a></p>
+        </div>
+        
+        <script>
+            function imprimirArbol(root, indent) {
+                console.log(" ".repeat(indent) + root.toString());
+                var current = root.firstChild;
+                while (current !== null) {
+                    imprimirArbol(current, indent + 2);
+                    current = current.nextSibling;
+                }                
+            }
+        
+            imprimirArbol(document, 0);
+        </script>
+    </body>
+</html>
