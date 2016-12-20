@@ -15,5 +15,8 @@ $(document).ready(function(event) {
         if (event.shiftKey) {
             $("#shift").addClass("activo");
         }
+        // Para evitar que la pulsación sea capturada
+        // por el navegador
+        event.preventDefault();
     });
 });

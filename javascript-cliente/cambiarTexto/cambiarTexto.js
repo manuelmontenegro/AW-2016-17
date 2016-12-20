@@ -5,7 +5,7 @@ $(document).ready(function() {
         var valor = $(this).prop("value").trim();
         
         if (valor === "") {
-            $("#mensaje").text("El campo está <em>vacío</em>");
+            $("#mensaje").html("El campo está <em>vacío</em>");
         } else if (isNaN(Number(valor))) {
             $("#mensaje").text("No se ha introducido un número");
         } else {

@@ -9,8 +9,10 @@ $(document).ready(function() {
     });
 
     $("#superficie").on("mousemove", function(event) {
+        var posSuperficie = $("#superficie").offset();
         $("#posicion").text(
-            event.pageX + " x " + event.pageY
+            (event.pageX - posSuperficie.left) + " x " + 
+                (event.pageY - posSuperficie.top)
         );
     });
 });
