@@ -170,3 +170,12 @@ span.hl {
     padding: 0px 3px;
     border-radius: 5px;
 }
+
+table.restapi {
+    border: 2px solid black;
+    font-size: 80%
+}
+
+table.restapi th {
+    background-color: #DDF;
+}
