@@ -56,7 +56,21 @@
                 <div style="clear:left;font-size:15px"></div>
             </section>
 
-            <section style="height:15em"  data-transition="fade">
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="fade" id="p1">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline fragment highlight-orange">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Formatos XML y JSON</a></li>
+                    <li><a href="#/p3" class="outline">Servicios REST</a></li>
+                    <li><a href="#/p4" class="outline">Peticiones AJAX</li>
+                    <li><a href="#/p5" class="outline">Autenticación básica</a></li>
+                    <li><a href="#/p6" class="outline">Introducción a SOAP</a></li>
+                    <li><a href="#/p7" class="outline">El protocolo HTTPS</a></li>
+                    <li><a href="#/p8" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
+            
+            <section style="height:15em">
                 <h2>Introducción</h2>
                 <img src="images/08/EsquemaClasico.svg" width="80%" style="border:none;box-shadow:none">
                 <p>
@@ -134,6 +148,20 @@
                     </li>
                 </ul>
             </section>
+            
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p2">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline current">Formatos XML y JSON</a></li>
+                    <li><a href="#/p3" class="outline">Servicios REST</a></li>
+                    <li><a href="#/p4" class="outline">Peticiones AJAX</li>
+                    <li><a href="#/p5" class="outline">Autenticación básica</a></li>
+                    <li><a href="#/p6" class="outline">Introducción a SOAP</a></li>
+                    <li><a href="#/p7" class="outline">El protocolo HTTPS</a></li>
+                    <li><a href="#/p8" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
             
             <section>
                 <h2>Formatos de intercambio de datos</h2>
@@ -364,6 +392,20 @@ System.out.println(arr.getJSONObject(0).get("x"));  // &rarr; 13
 System.out.println(arr.getJSONObject(0).get("y"));  // &rarr; 12
                 </code></pre>
             </section>
+            
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p3">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Formatos XML y JSON</a></li>
+                    <li><a href="#/p3" class="outline current">Servicios REST</a></li>
+                    <li><a href="#/p4" class="outline">Peticiones AJAX</li>
+                    <li><a href="#/p5" class="outline">Autenticación básica</a></li>
+                    <li><a href="#/p6" class="outline">Introducción a SOAP</a></li>
+                    <li><a href="#/p7" class="outline">El protocolo HTTPS</a></li>
+                    <li><a href="#/p8" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
             
             <section>
                 <h2>Servicios de tipo REST</h2>
@@ -1120,6 +1162,20 @@ app.get("/contactos/:indice/imagen", function(request, response) {
                 <h5>Subir un fichero binario con Advanced REST Client</h5>
             </section>
             
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p4">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Formatos XML y JSON</a></li>
+                    <li><a href="#/p3" class="outline">Servicios REST</a></li>
+                    <li><a href="#/p4" class="outline current">Peticiones AJAX</li>
+                    <li><a href="#/p5" class="outline">Autenticación básica</a></li>
+                    <li><a href="#/p6" class="outline">Introducción a SOAP</a></li>
+                    <li><a href="#/p7" class="outline">El protocolo HTTPS</a></li>
+                    <li><a href="#/p8" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
+            
             <section>
                 <h2>Peticiones AJAX</h2>
                 <p>Hasta ahora hemos contemplado tres formas en las que el navegador realiza una petición HTTP:</p>
@@ -1415,6 +1471,20 @@ $.ajax({
                 </code></pre>
             </section>
             
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p5">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Formatos XML y JSON</a></li>
+                    <li><a href="#/p3" class="outline">Servicios REST</a></li>
+                    <li><a href="#/p4" class="outline">Peticiones AJAX</li>
+                    <li><a href="#/p5" class="outline current">Autenticación básica</a></li>
+                    <li><a href="#/p6" class="outline">Introducción a SOAP</a></li>
+                    <li><a href="#/p7" class="outline">El protocolo HTTPS</a></li>
+                    <li><a href="#/p8" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
+            
             <section>
                 <h2>Autenticación básica</h2>
                 <p>A menudo es necesario restringir el uso de un servicio web a un conjunto determinado de usuarios.</p>
@@ -1425,7 +1495,9 @@ $.ajax({
             <section>
                 <h3>Esquema de autenticación HTTP</h3>
                 <p>Supongamos que un navegador web quiere acceder a un recurso que requiere autenticación.</p>
-                <p><strong>Paso 1</strong>. El servidor devuelve un código 401 (<code>Unauthorized</code>) indicando, en las cabeceras de la respuesta, el <strong>reino de autenticación</strong>.</p>
+                <p><strong>Paso 1</strong>. El servidor devuelve un código 401 (<code>Unauthorized</code>)
+                    
+                    indicando, en las cabeceras de la respuesta, el <strong>reino de autenticación</strong>.</p>
                 <pre><code data-trim class="no-highlight">
 HTTP/1.1 401 Unauthorized
 ...
@@ -1612,6 +1684,21 @@ $(document).ready(function() {
                 </code></pre>
             </section>
             
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p6">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Formatos XML y JSON</a></li>
+                    <li><a href="#/p3" class="outline">Servicios REST</a></li>
+                    <li><a href="#/p4" class="outline">Peticiones AJAX</li>
+                    <li><a href="#/p5" class="outline">Autenticación básica</a></li>
+                    <li><a href="#/p6" class="outline current">Introducción a SOAP</a></li>
+                    <li><a href="#/p7" class="outline">El protocolo HTTPS</a></li>
+                    <li><a href="#/p8" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
+            
+            
             <section>
                 <h2>Servicios de tipo SOAP</h2>
                 <p>A diferencia de los servicios de tipo REST, no están centrados en el acceso a recursos mediante el uso de métodos HTTP.</p>
@@ -1706,6 +1793,20 @@ String numero = doc.getElementsByTagName("AtomicNumber")
 System.out.println(numero); // &rarr; 8
                 </code></pre>
             </section>
+            
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p7">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Formatos XML y JSON</a></li>
+                    <li><a href="#/p3" class="outline">Servicios REST</a></li>
+                    <li><a href="#/p4" class="outline">Peticiones AJAX</li>
+                    <li><a href="#/p5" class="outline">Autenticación básica</a></li>
+                    <li><a href="#/p6" class="outline">Introducción a SOAP</a></li>
+                    <li><a href="#/p7" class="outline current">El protocolo HTTPS</a></li>
+                    <li><a href="#/p8" class="outline">Bibliografía</a></li>
+                </ol>
+            </section>
+            
             
             <section>
                 <h2>El protocolo HTTPS</h2>
@@ -1953,7 +2054,156 @@ System.out.println(numero); // &rarr; 8
                 <img src="images/08/ServerClientCert2.svg" width="80%" style="border:none; box-shadow:none">
                 <p>El cliente recibe este certificado y comprueba (utilizando la clave pública de la CA), que la firma de la CA es auténtica.</p>
                 <p>Como el cliente confía en la CA, tiene la certeza de que la clave pública es del servidor cuyos datos constan en el certificado.</p>
-            </section>              
+            </section>        
+            
+            <section>
+                <h3>Generación de claves, firmas y certificados</h3>
+                <p>El protocolo HTTPS utiliza los procolos criptográficos TLS/SSL como mecanismo en la capa de transporte.</p>
+                <p>OpenSSL es un conjunto de herramientas relacionadas con estos dos protocolos.</p>
+                <p><a href="https://www.openssl.org/">https://www.openssl.org/</a></p>
+                <p>Algunas de estas herramientas sirven para crear claves, certificados y firmas.</p>
+            </section>
+            
+            <section>
+                <h4>Generar claves pública y privada</h4>
+                <pre><code data-trim class="no-highlight">
+# openssl genrsa -out mi_clave.pem 1024
+                </code></pre>
+                <p>Se genera un fichero <code>mi_clave.pem</code> con un par de claves publica/privada.</p>
+                <img src="images/08/MiClave.svg" width="30%" style="border:none; box-shadow:none">
+            </section>
+
+            <section>
+                <h4>Generar certificado sin firmar</h4>
+                <pre><code data-trim class="no-highlight">
+# openssl req -new -key mi_clave.pem -out certificado.csr
+                </code></pre>
+                <p>Tras solicitar información que se adjuntará en el certificado (host, organización, ciudad, etc.), se genera un fichero <code>certificado.csr</code> con la clave pública.
+                </p>
+                <p>El certificado no tiene firma.</p>
+                <img src="images/08/CertificadoSinFirmar.svg" width="30%" style="border:none; box-shadow:none">
+            </section>
+            
+            <section>
+                <h4>Firmar certificado</h4>
+                <p>El certificado generado deberá enviarse a una autoridad de certificación para que sea firmado por ésta.</p>
+                <p>Cuando la CA compruebe que el remitente del certificado es quién dice ser, firmará dicho certificado con su clave privada:</p>
+                <pre><code data-trim data-noescape class="no-highlight">
+# openssl x509 -req -in certificado.csr -signkey <em><span class="hl">clave_ca.key</span></em> 
+    -out certificado_firmado.crt                   </code></pre>
+                <p>donde <code>clave_ca.key</code> es la clave privada de CA que firma el certificado.</p>
+            </section>
+            
+            <section>
+                <h4>Certificados autofirmados</h4>
+                <p>En entornos de desarrollo puede no ser posible o viable el acceso a una CA que firme nuestros certificados.</p>
+                <p>Como alternativa, los certificados pueden ser firmados por la misma entidad que los genera:</p>
+                <pre><code data-trim data-noescape class="no-highlight">
+# openssl x509 -req -in certificado.csr -signkey mi_clave.pem 
+    -out certificado_firmado.crt                   </code></pre>
+                <img src="images/08/CertificadoFirmado.svg" width="35%" style="border:none; box-shadow:none">
+            </section>
+            
+            <section>
+                <p>No obstante, los navegadores web no confían (obviamente) en esta clase de certificados, por lo que muestran un mensaje de advertencia al intentar establecer una conexión HTTPS con este tipo de certificados.</p>
+                <img src="images/08/NavegadorHTTPS1.png" width="70%">
+            </section>
+
+            <section>
+                <h3>Crear un servidor HTTPS en Node</h3>
+                <p>Al igual que el módulo <code>http</code> (<em>ver Tema 4</em>), existe un módulo core <code>https</code> para crear servidores web HTTPS.</p>
+                <pre><code data-trim class="javascript">
+var https = require("https");
+var fs = require("fs");
+
+var clavePrivada = fs.readFileSync("./miclave.key");
+var certificado = fs.readFileSync("./certificado_firmado.crt");
+
+var servidor = https.createServer(
+        { key: clavePrivada, cert: certificado },
+        function(request, response) {
+            // Cada vez que se reciba una petición
+            // se llamará a esta función callback
+        });
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>El puerto por defecto para el protocolo HTTPS es el 443.</p>
+                <p>No obstante, en desarrollo suele utilizarse un puerto distinto (por ejemplo, el 5555).</p>
+                <pre><code data-trim class="javascript">
+        
+servidor.listen(5555, function(err) {
+    console.log("Escuchando en puerto 5555");
+});
+                                
+                </code></pre>
+            </section>
+            
+            <section>
+                <h4>Integrar <code>https</code> con Express.js</h4>
+                <p>A la hora de crear un servidor, puede utilizarse una aplicación Express.js como callback de peticiones.</p>
+                <pre><code data-trim data-noescape class="javascript">
+var express = require("express");
+var https = require("https");
+var fs = require("fs");
+// ...
+var app = express();
+
+app.get("/", function(request, response) {
+   response.end("Bienvenido!"); 
+});
+
+var servidor = https.createServer(
+        { key: clavePrivada, cert: certificado }, <span class="hl">app</span>);
+        
+servidor.listen(5555, function(err) {  ...  });
+                </code></pre>
+            </section>
+            
+            <section>
+                <p>Al acceder a <code>https://localhost:5555/</code> en el navegador se nos mostrará un mensaje advirtiéndonos de que el certificado está autofirmado.</p>
+                <p>Si el usuario acepta el certificado, se accede al recurso solicitado:</p>
+                <img src="images/08/NavegadorHTTPS2.png" width="70%">
+            </section>
+            
+            <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p8">
+                <ol class="contenidos" style="width:13em">
+                    <li><a href="#/p1" class="outline">Introducción</a></li>
+                    <li><a href="#/p2" class="outline">Formatos XML y JSON</a></li>
+                    <li><a href="#/p3" class="outline">Servicios REST</a></li>
+                    <li><a href="#/p4" class="outline">Peticiones AJAX</li>
+                    <li><a href="#/p5" class="outline">Autenticación básica</a></li>
+                    <li><a href="#/p6" class="outline">Introducción a SOAP</a></li>
+                    <li><a href="#/p7" class="outline">El protocolo HTTPS</a></li>
+                    <li><a href="#/p8" class="outline current">Bibliografía</a></li>
+                </ol>
+            </section>
+            
+            <section>
+                <h2>Bibliografía</h2>
+                <div style="float:left; width:70%">
+                    <ul>
+                        <li>V. Bojinov
+                            <br>
+                            <a href="http://cisne.sim.ucm.es/record=b3590101~S6*spi">RESTful Web API Design with Node.js, 2<sup style="font-size:60%">nd</sup> edition</a>
+                            <br> Packt Publishing, 2016
+                        </li>
+                        <li>B. Bibeault, Y. Katz, A. De Rosa
+                            <br>
+                            <a href="http://cisne.sim.ucm.es/record=b3549757~S6*spi">jQuery in Action, 3<sup style="font-size:60%">rd</sup> edition</a>
+                            <br> Manning Publications, 2015
+                        </li>
+                    </ul>
+                </div>
+                <div style="float:right; width:30%">
+                    <img src="https://d1ldz4te4covpm.cloudfront.net/sites/default/files/imagecache/ppv4_main_book_cover/5869OS_2899_RESTful%20Web%20API%20Design%20with%20Node.jpg" style="width:50%; border:none">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/51XOg1baCBL._SX396_BO1,204,203,200_.jpg" style="width:50%; border:none">
+                </div>
+                <div style="clear:both"></div>
+
+            </section>
+                    
         </div>
         
 
