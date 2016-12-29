@@ -235,7 +235,7 @@ for (var i = 0; i &lt; 10; i++) {
                     <li><code>alert()</code></li>
                     <li><code>setTimeout()</code>, <code>clearTimeout()</code>, <code>setInterval()</code></li>
                 </ul>
-                <p>Toda variable y función global es implicitamente un atributo de <code>window</code>:</p>
+                <p>Toda variable y función global es implícitamente un atributo de <code>window</code>:</p>
                 <pre><code data-trim class="javascript">
 var str = "Mi cadena";
 console.log(str);        // &rarr; Mi cadena
@@ -929,7 +929,7 @@ console.log($("h1").eq(0).css("font-size")); // &rarr; "32px"
                 <section>
                     <p>Al modificar una propiedad CSS, podemos pasar una función que reciba...</p>
                     <ul>
-                        <li>El índice del elemento seleccionado actual.</li>
+                        <li>El índice del elemento actual dentro de la selección.</li>
                         <li>El valor actual de la propiedad CSS.</li>
                     </ul>
                     <p>...y devuelva el nuevo valor de la propiedad CSS.</p>
