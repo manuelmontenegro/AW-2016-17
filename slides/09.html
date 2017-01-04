@@ -86,7 +86,7 @@
                     <li>Principio de <strong>igualdad de oportunidades</strong>
                         <ul style="font-size:80%">
                             <li>La web es un recurso presente en muchos ámbitos: salud, educación, política, comercio, etc.</li>
-                            <li>Los sitios web accesibles permiten la participación activa de las personas en estos ámbitos.</li>
+                            <li>Los sitios web accesibles permiten la participación activa de las personas con discapacidad en estos ámbitos.</li>
                         </ul>
                     </li>
                     <li>
@@ -220,7 +220,7 @@
                 <h4>Discapacidad cognitiva</h4>
                 <p style="color:#339;font-weight:bold">Barreras en la Web</p>
                 <ul>
-                    <li>Sistemas de navegación en la web complejos.</li>
+                    <li>Sistemas complejos de navegación en la web.</li>
                     <li>Pasajes de texto sin imágenes, gráficos, resaltado de estructura.</li>
                 </ul>
                 <p style="color:#339;font-weight:bold">Herramientas de acceso a la Web</p>
@@ -275,18 +275,18 @@
                 <p>Se compone, a su vez, de grupos de trabajo que desarrollan su labor en distintos ámbitos:</p>
                 <ul>
                     <li>Accesibilidad de herramientas de creación de contenido.</li>
-                    <li>Formación en accesibilidad.</li>
-                    <li>Herramientas de evaluación de la accesibilidad.</li>
-                    <li>Protocolos y formatos</li>
                     <li>Accesibilidad de los clientes (agentes de usuario).</li>
                     <li>Pautas de diseño accesible.</li>
+                    <li>Herramientas de evaluación de la accesibilidad.</li>
+                    <li>Protocolos y formatos</li>
+                    <li>Formación en accesibilidad.</li>
                 </ul>
             </section>
             
             <section>
                 <h3>Pautas de accesibilidad</h3>
                 <p>Los grupos de trabajo de WAI producen informes técnicos, que evolucionan en recomendaciones del W3C.</p>
-                <p>Estas recomendaciones incluyen <strong>pautas de accesibilidad web</strong>, que involucran al as tres componentes mencionadas anteriormente:</p>
+                <p>Estas recomendaciones incluyen <strong>pautas de accesibilidad web</strong>, que involucran a las tres componentes mencionadas anteriormente:</p>
                 <img src="https://www.w3.org/WAI/intro/relate.png" width="50%"> 
             </section>
             
@@ -334,7 +334,7 @@
             
             <section>
                 <h4>Contenido operable</h4>
-                <p>La propiedad de operabilidad involucra a la <strong>interacción</strong> del usuario con el sitio web.</p>
+                <p>La propiedad de operabilidad involucra la <strong>interacción</strong> del usuario con el sitio web.</p>
                 <p style="color:#33A; font-weight:bold">Pautas a seguir (resumen):</p>
                 <ol start="5">
                     <li>La funcionalidad ha de ser accesible desde el teclado.</li>
@@ -425,7 +425,7 @@
             
             <section>
                 <h2>Pautas básicas de accesibilidad</h2>
-                <p>En este apartado se muestran algunas buenas prácticas a tener en cuenta cuando se diseña la <strong>interacción de usuario</strong> y el <strong>aspecto gráfico</strong> de una aplicación web.</p>
+                <p>En este apartado se muestran algunas buenas prácticas a tener en cuenta cuando se planifica la <strong>interacción con el usuario</strong> y el <strong>aspecto gráfico</strong> de una aplicación web.</p>
                 
                 
                 <p>Tomadas de: <a href="https://www.w3.org/WAI/gettingstarted/tips/designing.html">https://www.w3.org/WAI/gettingstarted/tips/designing.html</a><br>
@@ -464,7 +464,7 @@
             
             <section>
                 <h4>El atributo <code>longdesc</code></h4>
-                <p>Se utiliza para diagramas complejos. Por ejemplo, diagramas de barras.</p>
+                <p>Se utiliza para gráficos complejos. Por ejemplo, diagramas de barras.</p>
                 <p>Este atributo lleva asociada una URL donde se ofrece una descripción <strong>detallada</strong> de la imagen.</p>
                 <div style="float:left; width:35%">
                 <img src="images/09/BarDiagram.png" width="100%">
@@ -530,7 +530,7 @@
                     <li>Zoom de páginas web en navegador.</li>
                 </ul>
                 
-                <p>Los frameworks de diseño adaptable (<em>responsive design</em>), como <a href="http://getbootstrap.com/">Bootstrap</a> facilitan esta tarea.</p>
+                <p>Los frameworks de diseño adaptable (<em>responsive design</em>), como <a href="http://getbootstrap.com/">Bootstrap</a>, facilitan esta tarea.</p>
             </section>
             
             <section>
@@ -539,7 +539,7 @@
                 <p><code>&lt;h1&gt;</code>, ... <code>&lt;h6&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;ins&gt;</code>, <code>&lt;del&gt;</code>,<br>
                 <code>&lt;nav&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;figure&gt;</code>, etc.</p>
                 
-                <p>Evitar los elementos declarados obsoletos en HTML5, más centrados en el estilo visual de la página:</p>
+                <p>Deben evitarse los elementos obsoletos de HTML, más centrados en el estilo visual de la página:</p>
                 <p><code>&lt;b&gt;</code>, <code>&lt;i&gt;</code>, <code>&lt;s&gt;</code>, <code>&lt;big&gt;</code>, <code>&lt;font&gt;</code>, <code>&lt;tt&gt;</code>, etc.</p>
                 <p>El estilo visual debe definirse en el CSS.</p>
             </section>
@@ -597,7 +597,7 @@
             
             <section>
                 <h4>Los atributos <code>aria-*</code></h4>
-                <p>Mientras que el atributo <code>role</code> describe de una manera general el tipo de un objeto, los atributos <code>aria-*</code> especifican otras propiedades útiles de un elemento.</p>
+                <p>Mientras que el atributo <code>role</code> describe, en términos generales, el tipo de un objeto, los atributos <code>aria-*</code> especifican otras propiedades útiles de un elemento.</p>
                 <p>Por ejemplo:</p>
                 <ul>
                     <li><code>aria-checked</code>: indica si un <em>checkbox</em> está activado.</li>
