@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Tema 8 - Javascript en el cliente</title>
+    <title>Tema 8 - Servicios Web, AJAX y RIAs</title>
 
 
     <link rel="stylesheet" href="css/reveal.css">
@@ -74,7 +74,7 @@
                 <h2>Introducción</h2>
                 <img src="images/08/EsquemaClasico.svg" width="80%" style="border:none;box-shadow:none">
                 <p>
-                    Hasta ahora hemos utilizado el protocolo HTTP para comunicar un navegador web con un servidor.
+                    Hasta ahora hemos estudiado el protocolo HTTP utilizado en la comuniación entre un navegador web y un servidor.
                 </p>
             </section>
             
@@ -82,7 +82,7 @@
                 <h2>Introducción</h2>
                 <img src="images/08/EsquemaClasico.svg" width="80%" style="border:none;box-shadow:none">
                 <p>
-                    Tipos de contenido devueltos por el servidor: documentos HTML (<code>.html</code>), imágenes (<code>.png</code>, <code>.jpg</code>, <code>.svg</code>), código Javascript para ser ejecutado en navegador (<code>.js</code>).
+                    El servidor devolvía al cliente: documentos HTML (<code>.html</code>), imágenes (<code>.png</code>, <code>.jpg</code>, <code>.svg</code>), código Javascript para ser ejecutado en navegador (<code>.js</code>).
                 </p>
                 <p>El destinatario de estos contenidos es el <strong>navegador web</strong>.</p>
             </section>
@@ -93,14 +93,14 @@
                 <p>
                     ¿Y si utilizamos el mismo esquema y el mismo protocolo HTTP para que el servidor devuelva otro tipo de contenido?
                 </p>
-                <p>El contenido estaría destinado a ser consumido por un programa que tome el papel del cliente.</p>
+                <p>El contenido estaría destinado a ser consumido por un programa que tome el papel del cliente; no necesariamente un navegador.</p>
             </section>
             
             <section>
                 <h3>Servicios web</h3>
                 <p>Un <strong>servicio web</strong> es un servicio ofrecido por un dispositivo a otros dispositivos a través de la web.</p>
-                <p>La comunicación se realiza normalmente mediante HTTP.</p>
                 <p>Los servicios web están diseñados para la comunicación máquina a máquina.</p>
+                <p>La comunicación requerida por el servicio se realiza normalmente mediante HTTP.</p>
             </section>
             
             <section>
@@ -111,15 +111,15 @@
             </section>
             
             <section>
-                <h3>Ejemplos</h3>
+                <h3>Ejemplos de servicios web</h3>
                 <ul>
                     <li><strong>Fixer.io</strong> - <a href="http://fixer.io/">http://fixer.io/</a><br>
                     Proporciona una API para los tipos de cambio de divisas.
                     </li>
-                    <li><strong>OpenWeatherMap</strong> - <a href="http://fixer.io/">https://openweathermap.org/</a><br>
+                    <li><strong>OpenWeatherMap</strong> - <a href="https://openweathermap.org/">https://openweathermap.org/</a><br>
                     Permite acceder a los datos meteorológicos de distintas ciudades.
                     </li>
-                    <li><strong>Google Drive</strong>, <strong>Dropbox</strong><br>
+                    <li><strong>Google Drive</strong>, <strong>Dropbox</strong>, <strong>GitHub</strong><br>
                         Disponen de una API mediante la cual pueden implementarse aplicaciones que accedan, desde el escritorio o de manera automática, a ficheros almacenados en la nube.
                     </li>
                 </ul>
@@ -144,7 +144,7 @@
                         <span style="font-size:80%">Utilizan los distintos tipos de peticiones HTTP (<code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code>) para especificar las operaciones a realizar. Las operaciones se realizan sobre recursos, cada uno identificado mediante una URL.</span>
                     </li>
                     <li style="margin-top:20px"><strong>SOAP</strong> (<em>Simple Object Access Protocol</em>)<br>
-                        <span style="font-size:80%">Utilizan mensajes en formato XML para fijar el tipo de operación a realizar.</span>
+                        <span style="font-size:80%">Utilizan mensajes en formato XML para especificar el tipo de operación que se desea realizar y sus parámetros.</span>
                     </li>
                 </ul>
             </section>
@@ -178,6 +178,7 @@
                         ... y si es legible, mejor.
                     </li>
                 </ul>
+                <div class="fragment">
                 <p>Formatos de intercambio más populares:</p>
                 <ul>
                     <li><strong>XML</strong> (<em>eXtensible Markup Language</em>)
@@ -186,6 +187,7 @@
                     </li>
                 </ul>
                 <p>Nosotros utilizaremos principalmente JSON.</p>
+                </div>
             </section>
             
             
@@ -354,13 +356,13 @@
                 <h4>Lenguajes de especificación para JSON</h4>
                 <p>Permiten especificar la estructura que ha de seguir un determinado fichero JSON.</p>
                 <p>La especificación más conocida es JSON Schema: <a href="http://json-schema.org/">http://json-schema.org/</a></p>
-                <p>Sin embargo, apenas se utiliza.</p>
+                <p class="fragment">Sin embargo, apenas se utiliza.</p>
                     
             </section>
             
             <section>
                 <h4>Utilizar JSON en Javascript</h4>
-                <p>El objeto <code>JSON</code> está disponible tanto en el servidor (Node) como en el cliente (navegadores).</p>
+                <p>Las siguientes funciones están disponibles tanto en el servidor (Node) como en el cliente (navegadores).</p>
                 <ul>
                     <li>
                         <code>JSON.parse(<em>texto</em>)</code><br> Convierte un texto en formato JSON en un objeto Javascript
@@ -409,7 +411,7 @@ System.out.println(arr.getJSONObject(0).get("y"));  // &rarr; 12
             
             <section>
                 <h2>Servicios de tipo REST</h2>
-                <p>Utilizan la semántica de las acciones HTTP (<code>GET</code>, <code>POST</code>, etc.) para indicar la acción a realizar sobre un determinado recurso, identificado por una URL.</p>
+                <p>Utilizan la semántica de los métodos HTTP (<code>GET</code>, <code>POST</code>, etc.) para indicar la acción a realizar sobre un determinado recurso, identificado por una URL.</p>
                 <p><strong style="color:#6a28f0">Principios básicos:</strong></p>
                 <ol>
                     <li>Todo es un recurso.</li>
@@ -490,7 +492,7 @@ System.out.println(arr.getJSONObject(0).get("y"));  // &rarr; 12
             <section>
                 <p>La descripción semántica de estos recursos es &laquo;orientativa&raquo;</p>
                 <p>Nada nos impide utilizar un método para realizar una acción distinta a la especificada por su semántica.</p>
-                <p>No obstante, de algunos métodos se extraen propiedades implícitas.</p>
+                <p>No obstante, algunos métodos imponen de manera implícita ciertas propiedades:</p>
                 <ul>
                     <li>El método <code>GET</code> no altera el estado del recurso al que hace referencia.</li>
                     <li>Los métodos <code>GET</code>, <code>PUT</code> y <code>DELETE</code> son idempotentes. Realizar una misma operación varias veces seguidas es equivalente a realizarla una única vez.</li>
@@ -592,7 +594,7 @@ Content-Type: text/xml
             <section>
                 <h3>Implementación de servicios web de tipo REST con Express.js</h3>
                 <p>Se puede utilizar el framework <em>Express.js</em> para implementar servicios web de tipo REST.</p>
-                <p>Supopngamos un objeto de la clase <code>Application</code>:</p>
+                <p>Supongamos un objeto de la clase <code>Application</code>:</p>
                 <pre><code data-trim class="javascript">
 var app = express();                
                 </code></pre>
@@ -817,6 +819,7 @@ app.get("/contacto", function(request, response) {
 });
                 
                 </code></pre>
+                <div class="fragment">
                 <p>¿Qué pasaría si en lugar de la URL <code>/contacto</code> utilizásemos <code>/contactos</code> para este tipo de peticiones?</p>
                 <pre><code data-trim class="javascript">
 app.get("/contactos", function(request, response) {
@@ -825,6 +828,7 @@ app.get("/contactos", function(request, response) {
 });
                 
                 </code></pre>
+                    </div>
             </section>
 
             <section>
@@ -875,8 +879,8 @@ app.get("/contactos", function(request, response) {
                         </td>
                     </tr>
                 </table>
-                <p>¿Cómo pasamos un JSON como parámetro a la petición?</p>
-                <p>El JSON debe ir en el <strong>cuerpo</strong> de la misma.</p>
+                <p class="fragment">¿Cómo pasamos un JSON como parámetro a la petición?</p>
+                <p class="fragment">El JSON debe ir en el <strong>cuerpo</strong> de la misma.</p>
             </section>
             
             <section>
@@ -1103,10 +1107,12 @@ Connection: keep-alive
             
             <section>
                 <h4>Peticiones GET en Advanced REST Client</h4>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/_iD9yCPBHIQ" frameborder="0" allowfullscreen></iframe>
             </section>
             
             <section>
                 <h4>Peticiones POST en Advanced REST Client</h4>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/jDgMkRjtzlA" frameborder="0" allowfullscreen></iframe>
             </section>
             
             <section>
@@ -1160,6 +1166,7 @@ app.get("/contactos/:indice/imagen", function(request, response) {
             
             <section>
                 <h5>Subir un fichero binario con Advanced REST Client</h5>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/Em6PL6AgrbI" frameborder="0" allowfullscreen></iframe>
             </section>
             
             <section data-background-image="images/RedBackground.jpg" data-background-transition="zoom" id="p4">
@@ -1181,22 +1188,21 @@ app.get("/contactos/:indice/imagen", function(request, response) {
                 <p>Hasta ahora hemos contemplado tres formas en las que el navegador realiza una petición HTTP:</p>
                 <ul>
                     <li>
-                        El usuario introduce una URL en la barra de direcciones del navegador.
-                        Se genera una petición <code>GET</code> con la URL introducida.
+                        El usuario introduce una URL en la barra de direcciones del navegador. Este último envía una petición <code>GET</code> con la URL introducida.
                     </li>
                     <li>
                         El usuario hace clic en un enlace. El navegador realiza una petición <code>GET</code> con la URL indicada en el atributo <code>href</code>.
                     </li>
                     <li>
-                        El usuario hace clic en el botón <em>Submit</em> del formulario. El navegador realiza una petición <code>GET</code> o <code>POST</code> (según el atributo <code>method</code> del formulario) a la URL indicada en el atributo <code>action</code>.
+                        El usuario hace clic en el botón <em>Submit</em> del formulario. El navegador realiza una petición <code>GET</code> o <code>POST</code> (según el atributo <code>method</code> del formulario) a la URL indicada en el atributo <code>action</code> del formulario.
                     </li>
                 </ul>
             </section>
             
             <section>
-                <p>Existe un mecanismo mediante el cual es posible realizar peticiones HTTP mediante <strong>Javascript</strong> en el navegador</p>
+                <p>Existe otro mecanismo mediante el cual es posible realizar peticiones HTTP mediante <strong>Javascript</strong> en el navegador</p>
                 <p><strong>AJAX</strong> = <em>Asynchronous Javascript and XML</em></p>
-                <p>Anteriormente se utilizaba el formto XML para pasar parámetros a las peticiones AJAX, y para recibir los resultados.</p>
+                <p>Anteriormente se utilizaba el formato XML para pasar parámetros a las peticiones AJAX, y para recibir los resultados.</p>
                 <p>Nosotros utilizaremos JSON.</p>
             </section>
             
@@ -1231,7 +1237,7 @@ app.get("/contactos/:indice/imagen", function(request, response) {
                 <ul>
                     <li>
                         <code>data</code><br>
-                        Datos a adjuntar en la petición, ya sea como parámetros de la <em>query string</em> (esto es, detrás de la URL), o dentro del cuerpo de la petición (en el caso de peticiones POST o PUT).
+                        Datos a adjuntar en la petición, ya sea como parámetros de la <em>query string</em> (esto es, detrás de la URL en el caso de peticiones GET), o dentro del cuerpo de la petición (en el caso de peticiones POST o PUT).
                     </li>
                     <li>
                         <code>contentType</code><br>
@@ -1251,7 +1257,7 @@ $.ajax({  ...
 });
                 </code></pre>
                 <ul>
-                    <li><code>data</code>: Datos contenidos en el cuerpo de la respuesta HTTP. Si el formato de la respuesta es JSON, se convertirá a un objeto Javascript.</li>
+                    <li><code>data</code>: Datos contenidos en el cuerpo de la respuesta HTTP. Si el formato de la respuesta es JSON, se convierte automáticamente en un objeto Javascript.</li>
                     <li><code>statusText</code>: Cadena que describe el estado de la petición (normalmente <code>"success"</code>).</li>
                     <li><code>jqXHR</code>: Objeto con más información sobre la respuesta (envoltorio del objeto <code>XMLHTTPRequest</code>).</li>
                 </ul>
@@ -1269,7 +1275,7 @@ $.ajax({  ...
                 </code></pre>
                 <ul>
                     <li><code>jqXHR</code>: Envoltorio del objeto <code>XMLHTTPRequest</code>.</li>
-                    <li><code>statusText</code>: Cadena que describe el estado (<code>"timeout"</code>, <code>"parseerror"</code>, <code>"abort"</code>, etc.)</li>
+                    <li><code>statusText</code>: Cadena que describe el estado de la petición (<code>"timeout"</code>, <code>"parseerror"</code>, <code>"abort"</code>, etc.)</li>
                     <li><code>errorThrown</code>: Texto adjunto a la respuesta HTTP devuelta (<code>"Not Found"</code>, <code>"Internal Server Error"</code>, etc).</li>
                 </ul>
             </section>
@@ -1307,7 +1313,7 @@ $.ajax({  ...
                             Códigos respuesta
                         </th>
                         <td>
-                            <code>200</code> si tuvo éxito, <code>400</code> si no se ha introducido un número, y <code>500</code> en otro caso de error.
+                            <code>200</code> si tuvo éxito, <code>400</code> (<em>Bad Request</em>) si no se ha introducido un número, y <code>500</code> en otro caso de error.
                         </td>
                     </tr>
                     <tr>
@@ -1356,7 +1362,7 @@ app.get("/factorial/:num", function(request, response) {
     &lt;input type=&quot;text&quot; id=&quot;cuadroTexto&quot;&gt;
 &lt;/div&gt;
 &lt;button id=&quot;botonEnviar&quot;&gt;Enviar&lt;/button&gt;
-&lt;div id=&quot;resultado&quot;&gt;&lt;/div&gt; <span class="arrow_box_left caja_codigo">Aquí se mostrará el resultado</span>
+&lt;div id=&quot;resultado&quot;&gt;&lt;/div&gt; <span class="arrow_box_left caja_codigo fragment">Aquí se mostrará el resultado</span>
                 </code></pre>
             </section>
             
@@ -1438,7 +1444,7 @@ $.ajax({
             
             <section>
                 <h4>Peticiones con JSON</h4>
-                <p>Ahora suponemos que el número cuyo factorial se desea calcular viene dado en el cuerpo de la petición, en forma de un JSON:</p>
+                <p>Ahora suponemos que el número cuyo factorial se desea calcular viene dado en el <strong>cuerpo</strong> de la petición, en forma de un JSON:</p>
                 <p><code>{ "num": 6 }</code></p>
                 <p>Con una petición de tipo GET no podemos adjuntar un cuerpo, por lo que utilizamos una petición POST.</p>
             </section>
@@ -1487,8 +1493,8 @@ $.ajax({
             
             <section>
                 <h2>Autenticación básica</h2>
-                <p>A menudo es necesario restringir el uso de un servicio web a un conjunto determinado de usuarios.</p>
-                <p>Mediante un sistema de autenticación cualquier usuario que quiera acceder deberá proporcionar su identidad, generalmente mediante un nombre de usuario y contraseña.</p>
+                <p>A menudo es necesario restringir el uso de un servicio web a un determinado conjunto de usuarios.</p>
+                <p>Mediante un sistema de autenticación, cualquier usuario que quiera acceder deberá proporcionar su identidad, generalmente mediante un nombre de usuario y contraseña.</p>
                 <p>El protocolo HTTP incorpora mecanismos de control de acceso autenticado.</p>
             </section>
             
@@ -1508,7 +1514,7 @@ WWW-Authenticate: Basic realm="Pagina protegida por contrasena"
             </section>
             
             <section>
-                <p><strong>Paso 2</strong>. El navegador muestra una ventana al usuario invitándole a introducir los datos de identificación: nombre de usuario y contraseña.</p>
+                <p><strong>Paso 2</strong>. El navegador, cuando recibe un error 401, muestra una ventana al usuario invitándole a introducir los datos de identificación: nombre de usuario y contraseña.</p>
                 <img src="images/08/Autenticacion.png" width="70%">
             </section>
             
@@ -1533,7 +1539,7 @@ Authorization: Basic bWFudWVsOjEyMzQ1Ng==
                 <p>Si queremos incorporar un sistema de autenticación en nuestros servicios web:</p>
                 <ul>
                     <li><strong>En el servidor</strong>: debemos reconocer y procesar la cabecera <code>Authorization</code> de las peticiones HTTP.</li>
-                    <li><strong>En el cliente</strong>: debemos incluir la cabecera <code>Authorization </code> en las peticiones AJAX.</li>
+                    <li><strong>En el cliente</strong>: debemos incluir la cabecera <code>Authorization</code> en las peticiones AJAX.</li>
                 </ul>
             </section>
             
@@ -1592,7 +1598,7 @@ var miEstrategia =
             </section>
             
             <section>
-                <p>La función de autenticación comprobará que los datos son correctos.</p>
+                <p>La función de autenticación, que debemos implementar nosotros, comprobará que los datos son correctos.</p>
                 <ul>
                     <li>Si se produce error, debe llamar a <code>f(err)</code>.</li>
                     <li>Si no se produce error, pero los datos introducidos son incorrectos, se debe llamar a <code>f(null, false)</code>.</li>
@@ -1638,6 +1644,7 @@ app.get("/protegido",
             
             <section>
                 <h4>Acceso autenticado mediante el cliente REST</h4>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/cqqX-1I--40" frameborder="0" allowfullscreen></iframe>
             </section>
             
             <section>
@@ -1701,8 +1708,8 @@ $(document).ready(function() {
             
             <section>
                 <h2>Servicios de tipo SOAP</h2>
-                <p>A diferencia de los servicios de tipo REST, no están centrados en el acceso a recursos mediante el uso de métodos HTTP.</p>
-                <p>Esencialmente se hace uso de peticiones POST y GET, utilizando XML como mecanismo de comunicación.</p>
+                <p>A diferencia de los servicios de tipo REST, los servicios SOAP no están basados en el acceso a recursos mediante el uso de métodos HTTP.</p>
+                <p>Esencialmente hacen uso de peticiones POST y GET, utilizando XML como mecanismo de comunicación.</p>
                 <p>Para cada servicio, existe un fichero (<strong>WSDL</strong>) que especifica el catálogo de operaciones ofrecidas por el servicio.</p>
             </section>
             
@@ -1827,7 +1834,7 @@ System.out.println(numero); // &rarr; 8
                     <li><strong style="color:#9011ba">Clave privada</strong>, solo conocida por el propietario.</li>
                     <li><strong style="color:#9011ba">Clave publica</strong>, conocida por todos.</li>
                 </ul>
-                <p style="background-color:#DFD;padding: 10px">Cualquier mensaje encriptado con la clave pública solo puede ser desencriptado por la clave privada, y viceversa.</p>
+                <p style="background-color:#DFD;padding: 10px" class="fragment">Cualquier mensaje encriptado con la clave pública solo puede ser desencriptado por la clave privada, y viceversa.</p>
             </section>
             
             <section>
@@ -1837,43 +1844,43 @@ System.out.println(numero); // &rarr; 8
                 <p>La clave pública tiene el rol de una caja con <em>candado</em> y la clave privada tiene el rol de la <em>llave</em> que abre el candado.</p>
             </section>
             
-            <section style="height:16em">
+            <section style="height:16em" data-transition="slide-in fade-out">
                 <h4>Ejemplo</h4>
                 <img src="images/08/MessageCrypto1.svg" width="80%" style="border:none; box-shadow:none">
                 <p>Supongamos que Alice (izqda.) quiere enviar un mensaje a Bob (dcha.)</p>
             </section>
 
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade">
                 <h4>Ejemplo</h4>
                 <img src="images/08/MessageCrypto2.svg" width="80%" style="border:none; box-shadow:none">
                 <p>Alice obtiene la clave pública de Bob.</p>
             </section>
             
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade">
                 <h4>Ejemplo</h4>
                 <img src="images/08/MessageCrypto3.svg" width="80%" style="border:none; box-shadow:none">
                 <p>Alice utiliza esta clave pública para encriptar el mensaje.</p>
             </section>
 
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade-in slide-out">
                 <h4>Ejemplo</h4>
                 <img src="images/08/MessageCrypto4.svg" width="80%" style="border:none; box-shadow:none">
                 <p>Bob utiliza su clave privada (llave) para desencriptar el mensaje.</p>
             </section>
             
-            <section style="height:16em">
+            <section style="height:16em" data-transition="slide-in fade-out">
                 <h4>Ejemplo HTTPS</h4>
                 <img src="images/08/HTTPCrypto1.svg" width="80%" style="border:none; box-shadow:none">
                 <p>Bajo el protocolo HTTPS, el paso de mensajes funciona de manera similar. El servidor posee dos claves: pública y privada.</p>
             </section>
         
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade">
                 <h4>Ejemplo HTTPS</h4>
                 <img src="images/08/HTTPCrypto2.svg" width="80%" style="border:none; box-shadow:none">
                 <p>El cliente adquiere la clave pública del servidor.</p>
             </section>
 
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade">
                 <h4>Ejemplo HTTPS</h4>
                 <img src="images/08/HTTPCrypto3.svg" width="80%" style="border:none; box-shadow:none">
                 <p>Por otro lado, el cliente genera su propio par de claves pública y privada.</p>
@@ -1881,83 +1888,83 @@ System.out.println(numero); // &rarr; 8
                 <p>Para la siguiente petición puede generarse un par distinto.</p>
             </section>
             
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade">
                 <h4>Ejemplo HTTPS</h4>
                 <img src="images/08/HTTPCrypto4.svg" width="80%" style="border:none; box-shadow:none">
                 <p>El cliente envía su clave privada, pero encriptada utilizando la clave pública del servidor.</p>
                 <p>Solo el servidor puede desencriptar el mensaje.</p>
             </section>
 
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade">
                 <h4>Ejemplo HTTPS</h4>
                 <img src="images/08/HTTPCrypto5.svg" width="80%" style="border:none; box-shadow:none">
                 <p>El servidor desencripta el mensaje anterior, obteniendo la clave privada que el cliente utilizará en esta petición.</p>
             </section>
             
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade">
                 <h4>Ejemplo HTTPS</h4>
                 <img src="images/08/HTTPCrypto6.svg" width="80%" style="border:none; box-shadow:none">
                 <p>El cliente pasa a enviar su petición HTTPS encriptada, utilizando su clave pública. Esta petición podrá ser desencriptada por el servidor, ya que este posee la clave privada (roja).</p>
             </section>
             
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade-in slide-out">
                 <h4>Ejemplo HTTPS</h4>
                 <img src="images/08/HTTPCrypto7.svg" width="80%" style="border:none; box-shadow:none">
                 <p>El servidor desencripta la petición.</p>
-                <p><strong>Problema:</strong> Este esquema no es inmune a los ataques de intermediario.</p>
+                <p class="fragment"><strong>Problema:</strong> Este esquema no es inmune a los ataques de intermediario.</p>
             </section>
             
-            <section style="height:16em">
+            <section style="height:16em" data-transition="slide-in fade-out">
                 <h4>Ataque de intermediario</h4>
                 <img src="images/08/HTTPMiM1.svg" width="80%" style="border:none; box-shadow:none">
                 <p>Supongamos que un intermediario malicioso puede acceder y modificar los mensajes que transitan por el canal de comunicación.</p>
             </section>
 
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade">
                 <h4>Ataque de intermediario</h4>
                 <img src="images/08/HTTPMiM2.svg" width="80%" style="border:none; box-shadow:none">
                 <p>El intermediario genera su propio par de claves publica/privada.</p>
             </section>
             
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade">
                 <h4>Ataque de intermediario</h4>
                 <img src="images/08/HTTPMiM3.svg" width="80%" style="border:none; box-shadow:none">
                 <p>Cuando el cliente solicita la clave pública del servidor, el intermediario la intercepta y envía al cliente su propia clave pública (amarilla).</p>
             </section>
 
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade">
                 <h4>Ataque de intermediario</h4>
                 <img src="images/08/HTTPMiM4.svg" width="80%" style="border:none; box-shadow:none">
                 <p>El cliente, tras generar su propio par de claves pública/privada, envía su clave privada al servidor, encriptada con la clave pública del intermediario.</p>
                 <p>El cliente piensa que la clave pública que posee es la del servidor.</p>
             </section>
 
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade">
                 <h4>Ataque de intermediario</h4>
                 <img src="images/08/HTTPMiM5.svg" width="80%" style="border:none; box-shadow:none">
                 <p>El intermediario desencripta el mensaje, obteniendo así la clave privada generada por el cliente.</p>
             </section>            
 
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade">
                 <h4>Ataque de intermediario</h4>
                 <img src="images/08/HTTPMiM6.svg" width="80%" style="border:none; box-shadow:none">
                 <p>Además, el intermediario vuelve a encriptar el mensaje, pero esta vez con la clave pública del servidor, y reenvía el resultado a este último.</p>
             </section>            
         
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade">
                 <h4>Ataque de intermediario</h4>
                 <img src="images/08/HTTPMiM7.svg" width="80%" style="border:none; box-shadow:none">
                 <p>El servidor desencripta el mensaje anterior, obteniendo la clave privada del cliente.</p>
                 <p>Ninguno de los dos extremos es consciente de que un intermediario ha manipulado los mensajes.</p>
             </section>
             
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade">
                 <h4>Ataque de intermediario</h4>
                 <img src="images/08/HTTPCA1.svg" width="80%" style="border:none; box-shadow:none">
                 <p>El problema de fondo es que, cuando el cliente recibe la clave pública del servidor, no hay ninguna manera de comprobar la <strong>autenticidad de esta clave</strong>.</p>
             </section>             
             
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade">
                 <h4>Ataque de intermediario</h4>
                 <img src="images/08/HTTPCA2.svg" width="80%" style="border:none; box-shadow:none">
                 <p>... a menos que el cliente confíe en una <strong>autoridad externa</strong> que le asegure que dicha clave pública proviene del servidor.</p>
@@ -1975,45 +1982,45 @@ System.out.println(numero); // &rarr; 8
                 <p>La clave privada tiene el rol de un <em>bolígrafo</em> que puede firmar, y la clave pública simula unas <em>gafas</em> que permiten comprobar la autenticidad de las firmas del bolígrafo.</p>
             </section>
 
-            <section style="height:16em">
+            <section style="height:16em" data-transition="slide-in fade-out">
                 <h4>Ejemplo</h4>
                 <img src="images/08/SignatureCrypto1.svg" width="80%" style="border:none; box-shadow:none">
-                <p>Supongamos que Alice (izqda.) quiere recibir un mensaje de Bob (dcha.), con ciertas garantías de que el remitente del mensaje es, realmente, Bob.</p>
+                <p>Supongamos que Alice (izqda.) quiere recibir un mensaje de Bob (dcha.), con la garantía de que el remitente del mensaje es, realmente, Bob.</p>
             </section>
 
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade">
                 <h4>Ejemplo</h4>
                 <img src="images/08/SignatureCrypto2.svg" width="80%" style="border:none; box-shadow:none">
                 <p>Alice obtiene la clave pública de Bob.</p>
             </section>
             
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade">
                 <h4>Ejemplo</h4>
                 <img src="images/08/SignatureCrypto3.svg" width="80%" style="border:none; box-shadow:none">
                 <p>Alice obtiene la clave pública de Bob.</p>
             </section>
 
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade">
                 <h4>Ejemplo</h4>
                 <img src="images/08/SignatureCrypto4.svg" width="80%" style="border:none; box-shadow:none">
                 <p>Bob <strong>firma</strong> (encripta) el mensaje con su clave privada, y lo envía a Alice.</p>
             </section>
                     
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade-in slide-out">
                 <h4>Ejemplo</h4>
                 <img src="images/08/SignatureCrypto5.svg" width="80%" style="border:none; box-shadow:none">
                 <p>Alice recibe el mensaje encriptado y lo desencripta utilizando la clave pública. Esta clave solo puede desencriptar mensajes cifrados con la clave privada correspondiente, por lo que el remitente ha de ser Bob.</p>
                 <p>Solo Bob puede encriptar los mensajes descifrables con la su clave pública.</p>
             </section>
 
-            <section style="height:16em">
+            <section style="height:16em" data-transition="slide-in fade-out">
                 <h4>Autoridad de certificación</h4>
                 <img src="images/08/ServerCA1.svg" width="80%" style="border:none; box-shadow:none">
                 <p>Volvemos al contexto de cliente-servidor con autoridad certificadora autorizadora.</p>
                 <p>El servidor quiere que la CA certifique la autenticidad de su clave privada.</p>
             </section>
                                 
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade">
                 <h4>Autoridad de certificación</h4>
                 <img src="images/08/ServerCA2.svg" width="80%" style="border:none; box-shadow:none">
                 <p>El servidor genera un <strong>certificado</strong>, que contiene:</p>
@@ -2024,32 +2031,31 @@ System.out.println(numero); // &rarr; 8
                 <p>Este certificado está sin firmar.</p>
             </section>
             
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade">
                 <h4>Autoridad de certificación</h4>
                 <img src="images/08/ServerCA3.svg" width="80%" style="border:none; box-shadow:none">
                 <p>El servidor envía el certificado sin firmar a la CA para que esta última lo firme.</p>
             </section>            
             
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade-in slide-out">
                 <h4>Autoridad de certificación</h4>
                 <img src="images/08/ServerCA4.svg" width="80%" style="border:none; box-shadow:none">
                 <p>La CA, tras comprobar (posiblemente por medios no telemáticos) que los datos del certificado concuerdan con la identidad de quién solicita su firma, procede a firmar el certificado.</p>
-                <p>Todo este proceso ocurre con relativamente poca frecuencia (depende de la caducidad del certificado).</p>
             </section>       
             
-            <section style="height:16em">
+            <section style="height:16em" data-transition="slide-in slide-out">
                 <h4>Autoridad de certificación</h4>
                 <img src="images/08/HTTPClientCA.svg" width="80%" style="border:none; box-shadow:none">
                 <p>Por otro lado, suponemos que el navegador <strong>conoce</strong> a la entidad certificadora, y que este viene instalado con la clave pública de la CA, contenida dentro de un <strong>certificado raíz</strong> (<em>CA root certificate</em>)</p>
             </section>       
 
-            <section style="height:16em">
+            <section style="height:16em" data-transition="slide-in fade-out">
                 <h4>Comunicación certificada cliente/servidor</h4>
                 <img src="images/08/ServerClientCert1.svg" width="80%" style="border:none; box-shadow:none">
                 <p>Cuando el cliente solicita la clave pública al servidor, este último le envía la clave pública metida dentro del certificado con la firma de la CA.</p>
             </section>        
             
-            <section style="height:16em">
+            <section style="height:16em" data-transition="fade-in slide-out">
                 <h4>Comunicación certificada cliente/servidor</h4>
                 <img src="images/08/ServerClientCert2.svg" width="80%" style="border:none; box-shadow:none">
                 <p>El cliente recibe este certificado y comprueba (utilizando la clave pública de la CA), que la firma de la CA es auténtica.</p>
