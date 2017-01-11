@@ -70,11 +70,11 @@
             </section>
             
             
-            <section style="height:15em">
+            <section style="height:15em" data-transition="slide-in fade-out">
                 <h2>Introducción</h2>
                 <img src="images/08/EsquemaClasico.svg" width="80%" style="border:none;box-shadow:none">
                 <p>
-                    Hasta ahora hemos estudiado el protocolo HTTP utilizado en la comuniación entre un navegador web y un servidor.
+                    Hasta ahora hemos estudiado el protocolo HTTP utilizado en la comunicación entre un navegador web y un servidor.
                 </p>
             </section>
             
@@ -82,12 +82,12 @@
                 <h2>Introducción</h2>
                 <img src="images/08/EsquemaClasico.svg" width="80%" style="border:none;box-shadow:none">
                 <p>
-                    El servidor devolvía al cliente: documentos HTML (<code>.html</code>), imágenes (<code>.png</code>, <code>.jpg</code>, <code>.svg</code>), código Javascript para ser ejecutado en navegador (<code>.js</code>).
+                    El servidor devolvía al cliente: documentos HTML (<code>.html</code>), imágenes (<code>.png</code>, <code>.jpg</code>, <code>.svg</code>), código Javascript para ser ejecutado en navegador (<code>.js</code>), etc.
                 </p>
-                <p>El destinatario de estos contenidos es el <strong>navegador web</strong>.</p>
+                <p class="fragment">El destinatario de estos contenidos es el <strong>navegador web</strong></p>
             </section>
             
-            <section style="height:15em" data-transition="fade">
+            <section style="height:15em" data-transition="fade-in slide-out">
                 <h2>Introducción</h2>
                 <img src="images/08/EsquemaServicioWeb.svg" width="80%" style="border:none;box-shadow:none">
                 <p>
@@ -275,7 +275,7 @@
             "fechaNacimiento": "20/01/1989",
             "telefonos": [
                 { "tipo": "casa", "numero": 917371235 },
-                { "tipo": "trabajo", "numero": 914483124 },
+                { "tipo": "trabajo", "numero": 914483124 }
             ]
           },
     "c2": {
@@ -1450,7 +1450,7 @@ $.ajax({
             </section>
             
             <section>
-                <p>En el lado del cliente necesitamos utilizar el middleware <code>body-parser</code>, que interpreta el JSON contenido en el cuerpo del mensaje y añade el objeto correspondiente a la propiedad <code>request.body</code>:</p>
+                <p>En el lado del servidor necesitamos utilizar el middleware <code>body-parser</code>, que interpreta el JSON contenido en el cuerpo del mensaje y añade el objeto correspondiente a la propiedad <code>request.body</code>:</p>
                 <pre><code data-trim data-noescape class="javascript">
 app.use(bodyParser.json());
 // ...
